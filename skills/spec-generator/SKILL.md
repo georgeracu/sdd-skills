@@ -221,6 +221,7 @@ Key conventions:
 - **Current Behavior** describes what's broken (the defect)
 - **Expected Behavior** describes the correct behavior using `SHALL`
 - **Unchanged Behavior** documents what must NOT change using `SHALL CONTINUE TO`
+- Enumerate every existing neighboring behavior the fix could plausibly disturb, drawing from the issue report, affected service, and architecture notes—not only behaviors the reporter explicitly named.
 - Number items with section prefix (1.1, 1.2, 2.1, 2.2, 3.1, 3.2)
 
 ## Step 4: Phase 2 -- Second Document
