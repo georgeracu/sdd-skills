@@ -25,9 +25,9 @@ When starting a feature spec after brainstorming:
 4. Copy the brainstorming output to `brainstorm.md` in that directory
 5. Read `brainstorm.md` as context for generating `requirements.md`
 
-The brainstorming doc is reference material — it captures agreed direction and constraints but is not a formal spec document. It will be deleted after `sdd:spec-task-review` passes.
+The brainstorming doc is reference material: it captures agreed direction and constraints but is not a formal spec document. It will be deleted after `sdd:spec-task-review` passes.
 
-For bugfix specs, skip this section entirely — there is no brainstorming output.
+For bugfix specs, skip this section entirely, as there is no brainstorming output.
 
 ## Updating Existing Specs
 
@@ -72,9 +72,9 @@ Then determine the next available sequential number:
 ls -d project/work-items/[0-9]*/ 2>/dev/null | sort -t/ -k3 -V | tail -1
 ```
 
-Without a shell, glob `project/work-items/[0-9]*/` instead. No match means this is work item `01`.
+Without a shell, glob `project/work-items/[0-9]*/` instead. No match means this is work item `01`; that includes a repository with no `project/work-items/` tree at all.
 
-Create the directory with the next sequential number:
+Create the directory under `project/work-items/` with the next sequential number, creating `project/work-items/` itself if it does not exist yet. Spec documents never go in the repository root, even when the repository has no `project/` tree:
 
 - Features: `{NN}-{kebab-case-name}/` (e.g., `01-user-authentication/`)
 - Bugs: `{NN}-{kebab-case-name}-bugfix/` (e.g., `02-null-pointer-bugfix/`)
@@ -221,7 +221,7 @@ Key conventions:
 - **Current Behavior** describes what's broken (the defect)
 - **Expected Behavior** describes the correct behavior using `SHALL`
 - **Unchanged Behavior** documents what must NOT change using `SHALL CONTINUE TO`
-- Enumerate every existing neighboring behavior the fix could plausibly disturb, drawing from the issue report, affected service, and architecture notes—not only behaviors the reporter explicitly named.
+- Enumerate every existing neighboring behavior the fix could plausibly disturb, drawing from the issue report, affected service, and architecture notes, not only behaviors the reporter explicitly named.
 - Number items with section prefix (1.1, 1.2, 2.1, 2.2, 3.1, 3.2)
 
 ## Step 4: Phase 2 -- Second Document
