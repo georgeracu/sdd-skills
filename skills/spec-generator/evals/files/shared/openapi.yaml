@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: Usage Metering API
+  version: 1.4.0
+servers:
+  - url: https://api.example.test/v1
+paths:
+  /accounts/{accountId}:
+    get:
+      operationId: getAccount
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: The account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /accounts/{accountId}/plan:
+    put:
+      operationId: changePlan
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanChange'
+      responses:
+        '200':
+          description: The account after the change
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /accounts/{accountId}/usage:
+    get:
+      operationId: getUsage
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      responses:
+        '200':
+          description: Usage for the current billing period
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageSummary'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^acc_[a-z0-9]{12}$'
+  responses:
+    BadRequest:
+      description: The request failed validation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+    NotFound:
+      description: No such account
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+  schemas:
+    Account:
+      type: object
+      required: [accountId, plan, ownerEmail, status]
+      properties:
+        accountId:
+          type: string
+        plan:
+          type: string
+          enum: [starter, team, scale]
+        ownerEmail:
+          type: string
+          format: email
+        status:
+          type: string
+          enum: [active, suspended]
+    PlanChange:
+      type: object
+      required: [plan]
+      properties:
+        plan:
+          type: string
+          enum: [starter, team, scale]
+    UsageSummary:
+      type: object
+      required: [accountId, billingPeriod, metered, quota, quotaExceeded]
+      properties:
+        accountId:
+          type: string
+        billingPeriod:
+          type: string
+          pattern: '^[0-9]{4}-[0-9]{2}$'
+        metered:
+          type: integer
+          minimum: 0
+        quota:
+          type: integer
+          minimum: 0
+        quotaExceeded:
+          type: boolean
+    Problem:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+        message:
+          type: string

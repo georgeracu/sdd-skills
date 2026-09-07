@@ -1,0 +1,139 @@
+{
+  "iteration": "iteration-1",
+  "pack_hash": "a47506cf4bc10d6c1f278a97547e882a78eb65c641ee9ce035cc7eb67cce2f2e",
+  "baseline": "without_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.7778,
+        "stddev": 0.3143,
+        "n": 3
+      },
+      "time_seconds": {
+        "mean": 104.1317,
+        "stddev": 69.3519,
+        "n": 3
+      },
+      "tokens": {
+        "mean": 272164.2222,
+        "stddev": 110125.1374,
+        "n": 3
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.1111,
+        "stddev": 0.1571,
+        "n": 3
+      },
+      "time_seconds": {
+        "mean": 72.4312,
+        "stddev": 43.4685,
+        "n": 3
+      },
+      "tokens": {
+        "mean": 141671.1111,
+        "stddev": 39679.6088,
+        "n": 3
+      }
+    },
+    "delta": {
+      "pass_rate": 0.6667,
+      "time_seconds": 31.7005,
+      "tokens": 130493.1111
+    }
+  },
+  "cases": {
+    "requirements-from-brainstorm": {
+      "with_skill": {
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Meets the expected outcome: The reply should produce a requirements document for quota alerts as the first document of the spec, in a numbered work-item directory with the brainstorm copied in beside it, and stop there asking me to review it before any design work starts. The document should open with an introduction and a glossary, then state each requirement as a user story with numbered acceptance criteria in EARS form (WHEN, IF ... THEN, THE ... SHALL) whose subjects are glossary terms such as Account_Owner, Alert_Threshold and Notification_Service. It should carry the brainstorm's decisions through as requirements: default thresholds of 80% and 100%, one to five distinct percentages, one alert per threshold per billing period, evaluation on the ingest increment with the fired state kept on the usage-meters item, plan changes and lowered thresholds taking effect on the next increment, no alerts for suspended accounts, and the new quota-threshold notification template. It should also cover reading and replacing the threshold set through the API, following the existing plan sub-resource, with the error cases for an invalid list.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "without_skill": {
+        "passed": 0,
+        "failed": 3,
+        "total": 3,
+        "pass_rate": 0.0,
+        "checks": [
+          {
+            "text": "Meets the expected outcome: The reply should produce a requirements document for quota alerts as the first document of the spec, in a numbered work-item directory with the brainstorm copied in beside it, and stop there asking me to review it before any design work starts. The document should open with an introduction and a glossary, then state each requirement as a user story with numbered acceptance criteria in EARS form (WHEN, IF ... THEN, THE ... SHALL) whose subjects are glossary terms such as Account_Owner, Alert_Threshold and Notification_Service. It should carry the brainstorm's decisions through as requirements: default thresholds of 80% and 100%, one to five distinct percentages, one alert per threshold per billing period, evaluation on the ingest increment with the fired state kept on the usage-meters item, plan changes and lowered thresholds taking effect on the next increment, no alerts for suspended accounts, and the new quota-threshold notification template. It should also cover reading and replacing the threshold set through the API, following the existing plan sub-resource, with the error cases for an invalid list.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "tasks-behind-blocked-review": {
+      "without_skill": {
+        "passed": 1,
+        "failed": 2,
+        "total": 3,
+        "pass_rate": 0.3333,
+        "checks": [
+          {
+            "text": "Meets the expected outcome: The reply should hold off on tasks.md because the design review came back BLOCKED, say plainly that no task list gets generated behind a blocked review, and set out the two critical findings in its own words: the export has no per-event data source, and the endpoint cannot select or validate a billing period. It should put the first decision to me, whether requirement 3 or the design gives way, propose the concrete design.md revisions for the second, fold in the two major findings on the http4k handler pattern and the suspended-account contradiction while it is there, and say the design review is re-run before tasks are generated.",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Meets the expected outcome: The reply should hold off on tasks.md because the design review came back BLOCKED, say plainly that no task list gets generated behind a blocked review, and set out the two critical findings in its own words: the export has no per-event data source, and the endpoint cannot select or validate a billing period. It should put the first decision to me, whether requirement 3 or the design gives way, propose the concrete design.md revisions for the second, fold in the two major findings on the http4k handler pattern and the suspended-account contradiction while it is there, and say the design review is re-run before tasks are generated.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "bugfix-spec-from-issue": {
+      "with_skill": {
+        "passed": 1,
+        "failed": 2,
+        "total": 3,
+        "pass_rate": 0.3333,
+        "checks": [
+          {
+            "text": "Meets the expected outcome: The reply should produce a bugfix requirements document as the first document of the spec, in a directory named for work item 08 with a -bugfix suffix, and stop for my review before any design. The document should open with an introduction saying where the bug occurs and what it costs customers, then analyse it in three numbered sections: the current behaviour, covering the stale quota and quotaExceeded after an upgrade and the mirror-image downgrade case; the expected behaviour, that a plan change shows in the very next usage read; and the behaviour that must stay the same, that the quota is still cached for reads with no plan change in between, that ingest keeps recording during any window, and that the plan-changed notification keeps firing. Each line should be a WHEN ... THEN the system SHALL statement, using SHALL CONTINUE TO in the third section, numbered 1.x, 2.x and 3.x.",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          }
+        ]
+      },
+      "without_skill": {
+        "passed": 0,
+        "failed": 3,
+        "total": 3,
+        "pass_rate": 0.0,
+        "checks": [
+          {
+            "text": "Meets the expected outcome: The reply should produce a bugfix requirements document as the first document of the spec, in a directory named for work item 08 with a -bugfix suffix, and stop for my review before any design. The document should open with an introduction saying where the bug occurs and what it costs customers, then analyse it in three numbered sections: the current behaviour, covering the stale quota and quotaExceeded after an upgrade and the mirror-image downgrade case; the expected behaviour, that a plan change shows in the very next usage read; and the behaviour that must stay the same, that the quota is still cached for reads with no plan change in between, that ingest keeps recording during any window, and that the plan-changed notification keeps firing. Each line should be a WHEN ... THEN the system SHALL statement, using SHALL CONTINUE TO in the third section, numbered 1.x, 2.x and 3.x.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}

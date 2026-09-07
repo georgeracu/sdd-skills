@@ -55,6 +55,8 @@ Before generating any spec, read these for format and process guidance:
 - **Spec Documentation**: `project/work-items/spec-documentation/` -- detailed process documentation
 - **Existing Specs**: `.kiro/specs/` -- real examples of completed specs for content quality reference
 
+A repository adopting the pipeline for the first time has none of these. When a reference location is missing, say so once in your reply and carry on: the document structures in this skill and in `references/` are the templates, and `.kiro/specs/` is only a quality reference. Do not stop to ask for the missing reference directories and do not create them. The work item directory under `project/work-items/` is different: Step 1 always creates it, brainstorm copy included, even when it is the first one in the repository.
+
 ## Step 1: Gather Input & Determine Spec Type
 
 Ask the user:
@@ -69,6 +71,8 @@ Then determine the next available sequential number:
 # Scan existing directories in project/work-items/ for numbered prefixes
 ls -d project/work-items/[0-9]*/ 2>/dev/null | sort -t/ -k3 -V | tail -1
 ```
+
+Without a shell, glob `project/work-items/[0-9]*/` instead. No match means this is work item `01`.
 
 Create the directory with the next sequential number:
 
@@ -118,6 +122,10 @@ Before generating any document, read relevant project documentation to ensure ac
    Glob pattern: knowledge-base/**/*.md
    ```
 
+### When Context Is Missing
+
+A glob that matches nothing is information, not a blocker. Record in the document's Introduction which sources were unavailable (for example, no `openapi.yaml` yet, so API consistency could not be checked against an existing contract) and generate from what the user supplied. Only stop to ask when the description itself is too thin to write requirements from.
+
 ### Why This Matters
 
 - Prevents designing APIs that conflict with existing endpoints
@@ -129,6 +137,8 @@ Before generating any document, read relevant project documentation to ensure ac
 ## Step 3: Phase 1 -- First Document
 
 Generate the first document based on spec type. **Present to user for review. Iterate until approved.**
+
+The user review stop applies to every spec type. A bugfix spec skips the review skills, not the user reviews: it stops after `bugfix.md` and again after `design.md`.
 
 ### Requirements-First Feature -> `requirements.md`
 
@@ -162,7 +172,8 @@ Structure:
 
 Key conventions:
 
-- Use **EARS notation** (Easy Approach to Requirements Syntax): `WHEN`, `THE SYSTEM SHALL`, `IF...THEN`
+- Use **EARS notation** (Easy Approach to Requirements Syntax): `WHEN`, `THE [Glossary_Term] SHALL`, `IF...THEN`
+- The subject of every acceptance criterion is a glossary term (`THE Notification_Service SHALL`), never `the system`, so that requirements, design components and tests name the same thing
 - Every requirement has a **User Story** with acceptance criteria
 - Acceptance criteria are **numbered** within each requirement (1.1, 1.2, ... 2.1, 2.2, ...)
 - Define a **Glossary** of domain terms used as subjects in EARS statements
@@ -250,19 +261,19 @@ Derive the fix design from the approved bug analysis:
 
 See [references/design-document-sections.md](references/design-document-sections.md) for the full list of required and optional sections, and design quality standards.
 
-## Step 5: Design Review Gate
+## Step 5: Design Review Gate (Feature Specs Only)
 
-After the user approves design.md AND both requirements.md (or bugfix.md) and design.md exist, invoke the **sdd:spec-design-review** skill as a quality gate before generating tasks.
+After the user approves design.md AND both requirements.md and design.md exist, invoke the **sdd:spec-design-review** skill as a quality gate before generating tasks.
 
 **Timing by workflow type:**
 - **Requirements-First**: After Phase 2 (design.md) is approved
 - **Design-First**: After Phase 2 (requirements.md) is approved (both documents now exist)
-- **Bugfix**: After Phase 2 (design.md) is approved
+- **Bugfix**: Skip this gate. Present design.md to the user for review and, once approved, proceed to tasks.md
 
 **Process:**
 
 1. Invoke the `sdd:spec-design-review` skill
-2. The skill validates alignment between requirements.md (or bugfix.md) and design.md
+2. The skill validates alignment between requirements.md and design.md
 3. It also checks architecture consistency with the existing codebase
 4. A `design-review-summary.md` is generated in the spec directory
 
@@ -451,7 +462,7 @@ User describes feature/bug
 |
 +-- Feature (Design-First) -> design.md --> sdd:spec-design-review --> requirements.md --> tasks.md --> sdd:spec-task-review
 |
-+-- Bugfix -----------------> bugfix.md --> design.md --> tasks.md (no gates)
++-- Bugfix -----------------> bugfix.md --> design.md --> tasks.md (no review-skill gates)
                                 |              |              |
                                 v              v              v
                            User Review    User Review    User Review

@@ -1,0 +1,42 @@
+{
+  "skill_name": "spec-generator",
+  "evals": [
+    {
+      "id": 1,
+      "slug": "requirements-from-brainstorm",
+      "prompt": "Start the spec for quota alerts. It's a feature, requirements-first. The brainstorm is in brainstorm.md and the rest of the project context (domain terms, architecture, API contract) is alongside it in the working directory.",
+      "expected_output": "The reply should produce a requirements document for quota alerts as the first document of the spec, in a numbered work-item directory with the brainstorm copied in beside it, and stop there asking me to review it before any design work starts. The document should open with an introduction and a glossary, then state each requirement as a user story with numbered acceptance criteria in EARS form (WHEN, IF ... THEN, THE ... SHALL) whose subjects are glossary terms such as Account_Owner, Alert_Threshold and Notification_Service. It should carry the brainstorm's decisions through as requirements: default thresholds of 80% and 100%, one to five distinct percentages, one alert per threshold per billing period, evaluation on the ingest increment with the fired state kept on the usage-meters item, plan changes and lowered thresholds taking effect on the next increment, no alerts for suspended accounts, and the new quota-threshold notification template. It should also cover reading and replacing the threshold set through the API, following the existing plan sub-resource, with the error cases for an invalid list.",
+      "files": [
+        "evals/files/quota-alerts/brainstorm.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ]
+    },
+    {
+      "id": 2,
+      "slug": "tasks-behind-blocked-review",
+      "prompt": "The design review for the usage export work item is in. Generate tasks.md now, I want to start implementation this afternoon. requirements.md, design.md and design-review-summary.md are all in the working directory.",
+      "expected_output": "The reply should hold off on tasks.md because the design review came back BLOCKED, say plainly that no task list gets generated behind a blocked review, and set out the two critical findings in its own words: the export has no per-event data source, and the endpoint cannot select or validate a billing period. It should put the first decision to me, whether requirement 3 or the design gives way, propose the concrete design.md revisions for the second, fold in the two major findings on the http4k handler pattern and the suspended-account contradiction while it is there, and say the design review is re-run before tasks are generated.",
+      "files": [
+        "evals/files/usage-export/requirements.md",
+        "evals/files/usage-export/design.md",
+        "evals/files/usage-export/design-review-summary.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "bugfix-spec-from-issue",
+      "prompt": "Bug #412 needs a spec before anyone touches the code: after a plan upgrade the usage endpoint keeps reporting quotaExceeded true for up to an hour. The report is in issue-412.md and the service is QuotaService.kt; domain terms and architecture are alongside. Make it work item 08.",
+      "expected_output": "The reply should produce a bugfix requirements document as the first document of the spec, in a directory named for work item 08 with a -bugfix suffix, and stop for my review before any design. The document should open with an introduction saying where the bug occurs and what it costs customers, then analyse it in three numbered sections: the current behaviour, covering the stale quota and quotaExceeded after an upgrade and the mirror-image downgrade case; the expected behaviour, that a plan change shows in the very next usage read; and the behaviour that must stay the same, that the quota is still cached for reads with no plan change in between, that ingest keeps recording during any window, and that the plan-changed notification keeps firing. Each line should be a WHEN ... THEN the system SHALL statement, using SHALL CONTINUE TO in the third section, numbered 1.x, 2.x and 3.x.",
+      "files": [
+        "evals/files/stale-quota/issue-412.md",
+        "evals/files/stale-quota/QuotaService.kt",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md"
+      ]
+    }
+  ]
+}
