@@ -94,6 +94,44 @@
         "evals/files/stale-quota/QuotaService.kt",
         "evals/files/shared/ARCHITECTURE.md"
       ]
+    },
+    {
+      "id": 7,
+      "slug": "design-first-feature",
+      "prompt": "Start a new webhook receiver feature using a design-first workflow. The external provider's fixed payload and HTTP contract are in webhook-contract.md; shared architecture and the existing OpenAPI contract are alongside it. Write the design first.",
+      "expected_output": "The reply should create design.md as the first document in a new sequentially numbered work-item directory, using the external webhook-contract.md as a binding constraint. The design must preserve the exact payload fields and 204/400 response behavior, define idempotency by event_id, align the receiver with the existing architecture and API patterns, and stop for user review. It should explicitly say that requirements.md will be derived from the approved design, and that sdd:spec-design-review runs once both documents exist. No requirements.md should be created in this first turn.",
+      "criteria": [
+        "Creates only design.md first in a new sequentially numbered work-item directory; no requirements.md is generated.",
+        "Treats webhook-contract.md as authoritative, preserving payload fields, 204 success, 400 malformed-input behavior, retries, and event_id idempotency.",
+        "Aligns the design with the supplied architecture and OpenAPI context and is implementation-ready.",
+        "Stops for user review and explains that requirements.md follows design approval and sdd:spec-design-review runs once both documents exist."
+      ],
+      "files": [
+        "evals/files/design-first-webhook/webhook-contract.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ]
+    },
+    {
+      "id": 8,
+      "slug": "brainstorm-handoff-with-existing-work-items",
+      "prompt": "Start the spec for invoice reminders. It is a feature using the requirements-first workflow. Find the matching brainstorm under docs/superpowers/specs (there is also an unrelated dark-mode brainstorm), then hand it off into the next work-item directory. The repository already has work items 01-quota-alerts, 02-usage-export, and 05-stale-quota-cache-bugfix; use the highest existing number plus one. Shared architecture and the existing OpenAPI contract are available for context.",
+      "expected_output": "The reply should select the invoice-reminders brainstorm by topic rather than choosing the unrelated dark-mode file or merely the newest file, create work item 06-invoice-reminders (highest existing number 05 plus one despite gaps), copy the selected brainstorm in as brainstorm.md, and generate requirements.md from its decisions. Requirements should cover seven-day unpaid-invoice reminders through the existing Notification_Service, daily scheduling, no new table, idempotency per invoice and Billing_Period, and skipping paid or cancelled invoices. It should stop for user review before design work starts.",
+      "criteria": [
+        "Finds the topic-matching invoice-reminders brainstorm and ignores the unrelated dark-mode brainstorm.",
+        "Scans existing work-item numbers numerically and creates 06-invoice-reminders, not a count-based or 03 directory.",
+        "Copies the selected brainstorm as brainstorm.md and derives an EARS-style requirements.md carrying all agreed decisions and constraints.",
+        "Stops for user review before beginning design work."
+      ],
+      "files": [
+        "evals/files/brainstorm-handoff/docs/superpowers/specs/invoice-reminders.md",
+        "evals/files/brainstorm-handoff/docs/superpowers/specs/dark-mode.md",
+        "evals/files/brainstorm-handoff/project/work-items/01-quota-alerts/item-01.md",
+        "evals/files/brainstorm-handoff/project/work-items/02-usage-export/item-02.md",
+        "evals/files/brainstorm-handoff/project/work-items/05-stale-quota-cache-bugfix/item-05.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ]
     }
   ]
 }
