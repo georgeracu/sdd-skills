@@ -57,6 +57,43 @@
         "evals/files/shared/ARCHITECTURE.md",
         "evals/files/shared/openapi.yaml"
       ]
+    },
+    {
+      "id": 5,
+      "slug": "design-from-approved-requirements",
+      "prompt": "The quota alerts requirements are approved. Move to Phase 2 and write design.md. requirements.md is in the working directory, with the shared architecture, ubiquitous language, and OpenAPI contract.",
+      "expected_output": "The reply should create design.md beside the approved requirements in the next numbered work-item directory, follow every section in references/design-document-sections.md that applies, and stop for user review. The design should name components using glossary terms and trace them to requirement numbers, model threshold configuration as a sub-resource shaped like the existing plan sub-resource, preserve the no-new-DynamoDB-table constraint by storing fired threshold state on the usage-meters item, and describe API, data flow, correctness, errors, and unit/integration/E2E testing. It should note that sdd:spec-design-review will run after the user approves the design.",
+      "criteria": [
+        "Creates a comprehensive design.md next to the approved requirements and stops for user review.",
+        "Includes the applicable design-document-sections.md sections, with named components and explicit requirement tracing.",
+        "Defines the threshold API as a plan-shaped sub-resource and respects the no-new-table constraint with fired state on usage-meters.",
+        "Covers correctness properties, error handling, and unit, integration, and E2E testing.",
+        "Does not invoke sdd:spec-design-review; explains it will run after design approval."
+      ],
+      "files": [
+        "evals/files/quota-alerts-approved/requirements.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ]
+    },
+    {
+      "id": 6,
+      "slug": "bugfix-design-from-approved-analysis",
+      "prompt": "The bug analysis for issue #412 is approved. Write design.md for the fix. bugfix.md and QuotaService.kt are in the working directory, alongside ARCHITECTURE.md.",
+      "expected_output": "The reply should create design.md beside the approved bugfix analysis and stop for user review without invoking a review skill, because bugfix workflows have no design-review skill. The design should define Bug_Condition, Quota_Cache and related preservation terms, state the stale one-hour TTL and missing plan-change invalidation as the code-level root cause, name QuotaService.kt and the affected quotaFor/usageFor path in the fix, state two correctness properties for fixing the fault and preserving cached reads without a plan change, and provide exploration, fix-checking, and preservation-checking tests.",
+      "criteria": [
+        "Creates a design.md beside the approved bugfix analysis and stops for user review.",
+        "Defines Bug_Condition, Property, and Preservation glossary terms and formally states the fault condition.",
+        "Identifies the one-hour Quota_Cache TTL and absent plan-change invalidation as the root cause, naming QuotaService.kt and its affected functions.",
+        "States correctness properties for immediate plan-change freshness and preserved caching when no plan changes occur.",
+        "Testing strategy covers exploratory reproduction, fix verification, and preservation/regression checks, without invoking a review skill."
+      ],
+      "files": [
+        "evals/files/stale-quota-approved/bugfix.md",
+        "evals/files/stale-quota/QuotaService.kt",
+        "evals/files/shared/ARCHITECTURE.md"
+      ]
     }
   ]
 }
