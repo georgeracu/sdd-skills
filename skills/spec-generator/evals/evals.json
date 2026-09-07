@@ -132,6 +132,25 @@
         "evals/files/shared/ARCHITECTURE.md",
         "evals/files/shared/openapi.yaml"
       ]
+    },
+    {
+      "id": 9,
+      "slug": "update-existing-spec-with-completed-tasks",
+      "prompt": "Update the existing profile-summary spec: a stakeholder now requires a new `timezone` field on the API response. The first four tasks in tasks.md are already merged and must remain completed. Read requirements.md, design.md, tasks.md and the shared openapi.yaml, then update the spec for review.",
+      "expected_output": "The reply should update the existing work item rather than create a new one, adding a requirement with numbered EARS acceptance criteria for timezone and a matching design change. It should preserve tasks 1 through 4 as [x], leave completed work intact, and re-sequence the remaining work so the first new task updates openapi.yaml and runs scripts/generate-api-types.sh before implementation. New implementation tasks must trace requirements/design components and include build-and-test subtasks and a checkpoint. The list must end with E2E tests under e2e/, documentation and knowledge-base updates, and final full validation. The assistant should present the three changed documents for review and execute nothing.",
+      "criteria": [
+        "Updates the supplied existing work item in place and asks no questions already answered by the prompt.",
+        "Adds a numbered EARS requirement and corresponding design support for the timezone response field.",
+        "Preserves tasks 1 through 4 as completed [x] and does not rewrite already-merged work unless required.",
+        "Places openapi.yaml update and scripts/generate-api-types.sh as the first new task, with traced implementation tasks, build/test subtasks, and a checkpoint.",
+        "Keeps the mandatory ending tasks last: E2E tests under e2e/, documentation/knowledge-base update, and final full validation; stops for review without executing anything."
+      ],
+      "files": [
+        "evals/files/existing-spec-update/project/work-items/03-profile-summary/requirements.md",
+        "evals/files/existing-spec-update/project/work-items/03-profile-summary/design.md",
+        "evals/files/existing-spec-update/project/work-items/03-profile-summary/tasks.md",
+        "evals/files/shared/openapi.yaml"
+      ]
     }
   ]
 }
