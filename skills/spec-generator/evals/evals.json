@@ -11,6 +11,10 @@
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
         "evals/files/shared/ARCHITECTURE.md",
         "evals/files/shared/openapi.yaml"
+      ],
+      "expected_files": [
+        "01-quota-alerts/requirements.md",
+        "01-quota-alerts/brainstorm.md"
       ]
     },
     {
