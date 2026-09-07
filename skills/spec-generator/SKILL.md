@@ -281,7 +281,7 @@ After the user approves design.md AND both requirements.md and design.md exist, 
 
 - **APPROVED**: Proceed to tasks.md generation
 - **APPROVED WITH MINOR ISSUES**: Inform the user of issues found. Recommend addressing major issues but allow proceeding to tasks.md if the user chooses
-- **BLOCKED**: Do NOT proceed to tasks.md. Present the critical issues to the user, iterate on the affected document until the review passes, then re-run the design review
+- **BLOCKED**: Do NOT proceed to tasks.md. Present the critical issues to the user. When a critical finding has an obvious design-side fix, draft the concrete revision to the affected document (for example, the exact API parameter, validation, or component change) in the same turn rather than only listing the issue and waiting. State explicitly that the design review will be re-run after the revision and before tasks.md generation continues; iterate until the review passes.
 
 ```
 Both documents approved -> sdd:spec-design-review -> [APPROVED] -> tasks.md
