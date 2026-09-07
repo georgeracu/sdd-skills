@@ -15,6 +15,17 @@
       "expected_files": [
         "01-quota-alerts/requirements.md",
         "01-quota-alerts/brainstorm.md"
+      ],
+      "criteria": [
+        "Writes requirements.md inside a numbered work-item directory with the brainstorm copied in beside it",
+        "Stops after requirements.md and asks for review before any design work; no design.md or tasks.md is produced",
+        "The document opens with an introduction and a glossary",
+        "Each requirement is a user story with numbered acceptance criteria in EARS form (WHEN, IF ... THEN, THE ... SHALL)",
+        "The subject of each acceptance criterion is a glossary term such as Account_Owner, Alert_Threshold or Notification_Service, not 'the system'",
+        "Carries the brainstorm's threshold decisions: defaults of 80% and 100%, one to five distinct percentages, one alert per threshold per billing period",
+        "Carries the brainstorm's evaluation decisions: evaluation on the ingest increment with fired state kept on the usage-meters item, plan changes and lowered thresholds taking effect on the next increment, no alerts for suspended accounts",
+        "Requires the new quota-threshold notification template",
+        "Covers reading and replacing the threshold set through the API, following the existing plan sub-resource, with error cases for an invalid list"
       ]
     },
     {
@@ -28,19 +39,47 @@
         "evals/files/usage-export/design-review-summary.md",
         "evals/files/shared/ARCHITECTURE.md",
         "evals/files/shared/openapi.yaml"
+      ],
+      "criteria": [
+        "Does not generate tasks.md and says plainly that no task list is generated behind a BLOCKED design review",
+        "Sets out both critical findings in its own words: no per-event data source for the export, and no way to select or validate a billing period",
+        "Puts the first decision to the user: whether requirement 3 or the design gives way",
+        "Proposes concrete design.md revisions for the billing-period finding",
+        "Folds in the two major findings: the http4k handler pattern and the suspended-account contradiction",
+        "Says the design review is re-run before tasks are generated"
       ]
     },
     {
       "id": 3,
       "slug": "bugfix-spec-from-issue",
       "prompt": "Bug #412 needs a spec before anyone touches the code: after a plan upgrade the usage endpoint keeps reporting quotaExceeded true for up to an hour. The report is in issue-412.md and the service is QuotaService.kt; domain terms and architecture are alongside. Make it work item 08.",
-      "expected_output": "The reply should produce a bugfix requirements document as the first document of the spec, in a directory named for work item 08 with a -bugfix suffix, and stop for my review before any design. The document should open with an introduction saying where the bug occurs and what it costs customers, then analyse it in three numbered sections: the current behaviour, covering the stale quota and quotaExceeded after an upgrade and the mirror-image downgrade case; the expected behaviour, that a plan change shows in the very next usage read; and the behaviour that must stay the same, that the quota is still cached for reads with no plan change in between, that ingest keeps recording during any window, and that the plan-changed notification keeps firing. Each line should be a WHEN ... THEN the system SHALL statement, using SHALL CONTINUE TO in the third section, numbered 1.x, 2.x and 3.x.",
+      "expected_output": "The reply should produce a bugfix requirements document as the first document of the spec, in a directory named for work item 08 with a -bugfix suffix, and stop for my review before any design. The document should open with an introduction saying where the bug occurs and what it costs customers, then analyse it in three numbered sections: the current behaviour, covering the stale quota and quotaExceeded after an upgrade and the mirror-image downgrade case; the expected behaviour, that a plan change shows in the very next usage read; and the behaviour that must stay the same, that the quota is still cached for reads with no plan change in between, that ingest keeps recording during any window, and that the plan-changed notification keeps firing. Each line should be a WHEN ... THEN the system statement, numbered 1.x, 2.x and 3.x: the current-behaviour lines describe the defect without SHALL, the expected-behaviour lines use SHALL, and the unchanged-behaviour lines use SHALL CONTINUE TO.",
       "files": [
         "evals/files/stale-quota/issue-412.md",
         "evals/files/stale-quota/QuotaService.kt",
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
         "evals/files/shared/ARCHITECTURE.md"
-      ]
+      ],
+      "criteria": [
+        "Writes a bugfix requirements document in a directory named for work item 08 with a -bugfix suffix",
+        "Stops after the bugfix document and asks for review; no design.md or tasks.md is produced",
+        "Opens with an introduction saying where the bug occurs and what it costs customers",
+        "Section 1 (current behaviour) covers the stale quota and quotaExceeded after an upgrade and the mirror-image downgrade case, in WHEN ... THEN lines numbered 1.x without SHALL",
+        "Section 2 (expected behaviour) states that a plan change shows in the very next usage read, in WHEN ... THEN the system SHALL lines numbered 2.x",
+        "Section 3 (unchanged behaviour) uses SHALL CONTINUE TO in lines numbered 3.x and names all three preserved behaviours: the quota is still cached for reads with no plan change in between, ingest keeps recording during any window, and the plan-changed notification keeps firing"
+      ],
+      "assertions": {
+        "must_not_include": [
+          {
+            "text": "Hypothesized Root Cause",
+            "scope": "outputs"
+          },
+          {
+            "text": "# Implementation Plan",
+            "scope": "outputs"
+          }
+        ]
+      }
     },
     {
       "id": 4,
