@@ -37,6 +37,26 @@
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
         "evals/files/shared/ARCHITECTURE.md"
       ]
+    },
+    {
+      "id": 4,
+      "slug": "tasks-from-approved-design",
+      "prompt": "The design review for the plan summary work item is in and APPROVED. Generate tasks.md now. requirements.md, design.md and design-review-summary.md are in the working directory, along with the shared architecture and OpenAPI context.",
+      "expected_output": "The reply should create tasks.md in a numbered work-item directory after confirming the design review is APPROVED, and stop for the user's review before invoking sdd:spec-task-review. Tasks should trace each implementation and test task to requirement numbers (1.1-1.4) and named design components (PlanSummaryHandler, PlanSummaryService, and PlanSummary), be ordered so the API contract and generated types precede implementation, and include build/test subtasks after implementation work. Because this work adds an endpoint, the list must include updating openapi.yaml and running scripts/generate-api-types.sh, unit tests, handler integration tests, E2E tests under e2e/, an update to the knowledge base and relevant documentation, and final full validation.",
+      "criteria": [
+        "Creates tasks.md in a sequentially numbered work-item directory and preserves the approved requirements and design inputs.",
+        "Every requirement 1.1 through 1.4 is traced by one or more tasks, and tasks name the corresponding PlanSummaryHandler, PlanSummaryService, or PlanSummary design component.",
+        "Tasks are dependency-ordered with the OpenAPI update and scripts/generate-api-types.sh before implementation, and implementation tasks include build/test subtasks.",
+        "The ending tasks include the API contract/type regeneration requirement, E2E tests under e2e/, knowledge-base/documentation updates, and final full validation.",
+        "The assistant stops and asks for review without invoking sdd:spec-task-review."
+      ],
+      "files": [
+        "evals/files/plan-summary-approved/requirements.md",
+        "evals/files/plan-summary-approved/design.md",
+        "evals/files/plan-summary-approved/design-review-summary.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ]
     }
   ]
 }
