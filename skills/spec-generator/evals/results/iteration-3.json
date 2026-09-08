@@ -1,0 +1,847 @@
+{
+  "iteration": "iteration-3",
+  "pack_hash": "3550ec7c80772aef5569bf728214ebe669f6dbfcdab07735ae7632db86196490",
+  "baseline": "without_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.775,
+        "stddev": 0.2992,
+        "n": 9
+      },
+      "time_seconds": {
+        "mean": 85.2227,
+        "stddev": 42.8966,
+        "n": 9
+      },
+      "tokens": {
+        "mean": 287912.2778,
+        "stddev": 110004.3421,
+        "n": 9
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.418,
+        "stddev": 0.2533,
+        "n": 9
+      },
+      "time_seconds": {
+        "mean": 68.0601,
+        "stddev": 34.3099,
+        "n": 9
+      },
+      "tokens": {
+        "mean": 152607.5185,
+        "stddev": 34224.3986,
+        "n": 9
+      }
+    },
+    "delta": {
+      "pass_rate": 0.357,
+      "time_seconds": 17.1626,
+      "tokens": 135304.7593
+    }
+  },
+  "cases": {
+    "requirements-from-brainstorm": {
+      "without_skill": {
+        "passed": 6,
+        "failed": 27,
+        "total": 33,
+        "pass_rate": 0.1818,
+        "checks": [
+          {
+            "text": "Run produced file: 01-quota-alerts/requirements.md",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/brainstorm.md",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes requirements.md inside a numbered work-item directory with the brainstorm copied in beside it",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops after requirements.md and asks for review before any design work; no design.md or tasks.md is produced",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The document opens with an introduction and a glossary",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Each requirement is a user story with numbered acceptance criteria in EARS form (WHEN, IF ... THEN, THE ... SHALL)",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The subject of each acceptance criterion is a glossary term such as Account_Owner, Alert_Threshold or Notification_Service, not 'the system'",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Carries the brainstorm's threshold decisions: defaults of 80% and 100%, one to five distinct percentages, one alert per threshold per billing period",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Carries the brainstorm's evaluation decisions: evaluation on the ingest increment with fired state kept on the usage-meters item, plan changes and lowered thresholds taking effect on the next increment, no alerts for suspended accounts",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Requires the new quota-threshold notification template",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Covers reading and replacing the threshold set through the API, following the existing plan sub-resource, with error cases for an invalid list",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 33,
+        "failed": 0,
+        "total": 33,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Run produced file: 01-quota-alerts/requirements.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/brainstorm.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes requirements.md inside a numbered work-item directory with the brainstorm copied in beside it",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops after requirements.md and asks for review before any design work; no design.md or tasks.md is produced",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The document opens with an introduction and a glossary",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Each requirement is a user story with numbered acceptance criteria in EARS form (WHEN, IF ... THEN, THE ... SHALL)",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The subject of each acceptance criterion is a glossary term such as Account_Owner, Alert_Threshold or Notification_Service, not 'the system'",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Carries the brainstorm's threshold decisions: defaults of 80% and 100%, one to five distinct percentages, one alert per threshold per billing period",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Carries the brainstorm's evaluation decisions: evaluation on the ingest increment with fired state kept on the usage-meters item, plan changes and lowered thresholds taking effect on the next increment, no alerts for suspended accounts",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Requires the new quota-threshold notification template",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Covers reading and replacing the threshold set through the API, following the existing plan sub-resource, with error cases for an invalid list",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "tasks-behind-blocked-review": {
+      "with_skill": {
+        "passed": 15,
+        "failed": 3,
+        "total": 18,
+        "pass_rate": 0.8333,
+        "checks": [
+          {
+            "text": "Meets criterion: Does not generate tasks.md and says plainly that no task list is generated behind a BLOCKED design review",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Sets out both critical findings in its own words: no per-event data source for the export, and no way to select or validate a billing period",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Puts the first decision to the user: whether requirement 3 or the design gives way",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Proposes concrete design.md revisions for the billing-period finding",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Folds in the two major findings: the http4k handler pattern and the suspended-account contradiction",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Says the design review is re-run before tasks are generated",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "without_skill": {
+        "passed": 16,
+        "failed": 2,
+        "total": 18,
+        "pass_rate": 0.8889,
+        "checks": [
+          {
+            "text": "Meets criterion: Does not generate tasks.md and says plainly that no task list is generated behind a BLOCKED design review",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Sets out both critical findings in its own words: no per-event data source for the export, and no way to select or validate a billing period",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Puts the first decision to the user: whether requirement 3 or the design gives way",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Proposes concrete design.md revisions for the billing-period finding",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Folds in the two major findings: the http4k handler pattern and the suspended-account contradiction",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Says the design review is re-run before tasks are generated",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "bugfix-spec-from-issue": {
+      "without_skill": {
+        "passed": 5,
+        "failed": 19,
+        "total": 24,
+        "pass_rate": 0.2083,
+        "checks": [
+          {
+            "text": "Output does not include: Hypothesized Root Cause",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: # Implementation Plan",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes a bugfix requirements document in a directory named for work item 08 with a -bugfix suffix",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops after the bugfix document and asks for review; no design.md or tasks.md is produced",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Opens with an introduction saying where the bug occurs and what it costs customers",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Section 1 (current behaviour) covers the stale quota and quotaExceeded after an upgrade and the mirror-image downgrade case, in WHEN ... THEN lines numbered 1.x without SHALL",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Section 2 (expected behaviour) states that a plan change shows in the very next usage read, in WHEN ... THEN the system SHALL lines numbered 2.x",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Section 3 (unchanged behaviour) uses SHALL CONTINUE TO in lines numbered 3.x and names all three preserved behaviours: the quota is still cached for reads with no plan change in between, ingest keeps recording during any window, and the plan-changed notification keeps firing",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 21,
+        "failed": 3,
+        "total": 24,
+        "pass_rate": 0.875,
+        "checks": [
+          {
+            "text": "Output does not include: Hypothesized Root Cause",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: # Implementation Plan",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes a bugfix requirements document in a directory named for work item 08 with a -bugfix suffix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops after the bugfix document and asks for review; no design.md or tasks.md is produced",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Opens with an introduction saying where the bug occurs and what it costs customers",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Section 1 (current behaviour) covers the stale quota and quotaExceeded after an upgrade and the mirror-image downgrade case, in WHEN ... THEN lines numbered 1.x without SHALL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Section 2 (expected behaviour) states that a plan change shows in the very next usage read, in WHEN ... THEN the system SHALL lines numbered 2.x",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Section 3 (unchanged behaviour) uses SHALL CONTINUE TO in lines numbered 3.x and names all three preserved behaviours: the quota is still cached for reads with no plan change in between, ingest keeps recording during any window, and the plan-changed notification keeps firing",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "tasks-from-approved-design": {
+      "without_skill": {
+        "passed": 3,
+        "failed": 7,
+        "total": 10,
+        "pass_rate": 0.3,
+        "checks": [
+          {
+            "text": "Meets criterion: Creates tasks.md in a sequentially numbered work-item directory and preserves the approved requirements and design inputs.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 2
+          },
+          {
+            "text": "Meets criterion: Every requirement 1.1 through 1.4 is traced by one or more tasks, and tasks name the corresponding PlanSummaryHandler, PlanSummaryService, or PlanSummary design component.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 2
+          },
+          {
+            "text": "Meets criterion: Tasks are dependency-ordered with the OpenAPI update and scripts/generate-api-types.sh before implementation, and implementation tasks include build/test subtasks.",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 2
+          },
+          {
+            "text": "Meets criterion: The ending tasks include the API contract/type regeneration requirement, E2E tests under e2e/, knowledge-base/documentation updates, and final full validation.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 2
+          },
+          {
+            "text": "Meets criterion: The assistant stops and asks for review without invoking sdd:spec-task-review.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 2
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 8,
+        "failed": 2,
+        "total": 10,
+        "pass_rate": 0.8,
+        "checks": [
+          {
+            "text": "Meets criterion: Creates tasks.md in a sequentially numbered work-item directory and preserves the approved requirements and design inputs.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 2
+          },
+          {
+            "text": "Meets criterion: Every requirement 1.1 through 1.4 is traced by one or more tasks, and tasks name the corresponding PlanSummaryHandler, PlanSummaryService, or PlanSummary design component.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 2
+          },
+          {
+            "text": "Meets criterion: Tasks are dependency-ordered with the OpenAPI update and scripts/generate-api-types.sh before implementation, and implementation tasks include build/test subtasks.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 2
+          },
+          {
+            "text": "Meets criterion: The ending tasks include the API contract/type regeneration requirement, E2E tests under e2e/, knowledge-base/documentation updates, and final full validation.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 2
+          },
+          {
+            "text": "Meets criterion: The assistant stops and asks for review without invoking sdd:spec-task-review.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 2
+          }
+        ]
+      }
+    },
+    "design-from-approved-requirements": {
+      "with_skill": {
+        "passed": 13,
+        "failed": 2,
+        "total": 15,
+        "pass_rate": 0.8667,
+        "checks": [
+          {
+            "text": "Meets criterion: Creates a comprehensive design.md next to the approved requirements and stops for user review.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Includes the applicable design-document-sections.md sections, with named components and explicit requirement tracing.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Defines the threshold API as a plan-shaped sub-resource and respects the no-new-table constraint with fired state on usage-meters.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Covers correctness properties, error handling, and unit, integration, and E2E testing.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not invoke sdd:spec-design-review; explains it will run after design approval.",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          }
+        ]
+      },
+      "without_skill": {
+        "passed": 8,
+        "failed": 7,
+        "total": 15,
+        "pass_rate": 0.5333,
+        "checks": [
+          {
+            "text": "Meets criterion: Creates a comprehensive design.md next to the approved requirements and stops for user review.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Includes the applicable design-document-sections.md sections, with named components and explicit requirement tracing.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Defines the threshold API as a plan-shaped sub-resource and respects the no-new-table constraint with fired state on usage-meters.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Covers correctness properties, error handling, and unit, integration, and E2E testing.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not invoke sdd:spec-design-review; explains it will run after design approval.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "bugfix-design-from-approved-analysis": {
+      "with_skill": {
+        "passed": 15,
+        "failed": 0,
+        "total": 15,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Meets criterion: Creates a design.md beside the approved bugfix analysis and stops for user review.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Defines Bug_Condition, Property, and Preservation glossary terms and formally states the fault condition.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Identifies the one-hour Quota_Cache TTL and absent plan-change invalidation as the root cause, naming QuotaService.kt and its affected functions.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: States correctness properties for immediate plan-change freshness and preserved caching when no plan changes occur.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Testing strategy covers exploratory reproduction, fix verification, and preservation/regression checks, without invoking a review skill.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "without_skill": {
+        "passed": 8,
+        "failed": 7,
+        "total": 15,
+        "pass_rate": 0.5333,
+        "checks": [
+          {
+            "text": "Meets criterion: Creates a design.md beside the approved bugfix analysis and stops for user review.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Defines Bug_Condition, Property, and Preservation glossary terms and formally states the fault condition.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Identifies the one-hour Quota_Cache TTL and absent plan-change invalidation as the root cause, naming QuotaService.kt and its affected functions.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: States correctness properties for immediate plan-change freshness and preserved caching when no plan changes occur.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Testing strategy covers exploratory reproduction, fix verification, and preservation/regression checks, without invoking a review skill.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "design-first-feature": {
+      "without_skill": {
+        "passed": 0,
+        "failed": 12,
+        "total": 12,
+        "pass_rate": 0.0,
+        "checks": [
+          {
+            "text": "Meets criterion: Creates only design.md first in a new sequentially numbered work-item directory; no requirements.md is generated.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Treats webhook-contract.md as authoritative, preserving payload fields, 204 success, 400 malformed-input behavior, retries, and event_id idempotency.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Aligns the design with the supplied architecture and OpenAPI context and is implementation-ready.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops for user review and explains that requirements.md follows design approval and sdd:spec-design-review runs once both documents exist.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 0,
+        "failed": 12,
+        "total": 12,
+        "pass_rate": 0.0,
+        "checks": [
+          {
+            "text": "Meets criterion: Creates only design.md first in a new sequentially numbered work-item directory; no requirements.md is generated.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Treats webhook-contract.md as authoritative, preserving payload fields, 204 success, 400 malformed-input behavior, retries, and event_id idempotency.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Aligns the design with the supplied architecture and OpenAPI context and is implementation-ready.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops for user review and explains that requirements.md follows design approval and sdd:spec-design-review runs once both documents exist.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "brainstorm-handoff-with-existing-work-items": {
+      "without_skill": {
+        "passed": 7,
+        "failed": 5,
+        "total": 12,
+        "pass_rate": 0.5833,
+        "checks": [
+          {
+            "text": "Meets criterion: Finds the topic-matching invoice-reminders brainstorm and ignores the unrelated dark-mode brainstorm.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Scans existing work-item numbers numerically and creates 06-invoice-reminders, not a count-based or 03 directory.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Copies the selected brainstorm as brainstorm.md and derives an EARS-style requirements.md carrying all agreed decisions and constraints.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops for user review before beginning design work.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 12,
+        "failed": 0,
+        "total": 12,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Meets criterion: Finds the topic-matching invoice-reminders brainstorm and ignores the unrelated dark-mode brainstorm.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Scans existing work-item numbers numerically and creates 06-invoice-reminders, not a count-based or 03 directory.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Copies the selected brainstorm as brainstorm.md and derives an EARS-style requirements.md carrying all agreed decisions and constraints.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops for user review before beginning design work.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "update-existing-spec-with-completed-tasks": {
+      "with_skill": {
+        "passed": 9,
+        "failed": 6,
+        "total": 15,
+        "pass_rate": 0.6,
+        "checks": [
+          {
+            "text": "Meets criterion: Updates the supplied existing work item in place and asks no questions already answered by the prompt.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Adds a numbered EARS requirement and corresponding design support for the timezone response field.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Preserves tasks 1 through 4 as completed [x] and does not rewrite already-merged work unless required.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Places openapi.yaml update and scripts/generate-api-types.sh as the first new task, with traced implementation tasks, build/test subtasks, and a checkpoint.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Keeps the mandatory ending tasks last: E2E tests under e2e/, documentation/knowledge-base update, and final full validation; stops for review without executing anything.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "without_skill": {
+        "passed": 8,
+        "failed": 7,
+        "total": 15,
+        "pass_rate": 0.5333,
+        "checks": [
+          {
+            "text": "Meets criterion: Updates the supplied existing work item in place and asks no questions already answered by the prompt.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Adds a numbered EARS requirement and corresponding design support for the timezone response field.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Preserves tasks 1 through 4 as completed [x] and does not rewrite already-merged work unless required.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Places openapi.yaml update and scripts/generate-api-types.sh as the first new task, with traced implementation tasks, build/test subtasks, and a checkpoint.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Keeps the mandatory ending tasks last: E2E tests under e2e/, documentation/knowledge-base update, and final full validation; stops for review without executing anything.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
