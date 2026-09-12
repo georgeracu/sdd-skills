@@ -41,6 +41,10 @@ The full pipeline hands off to and from the [superpowers](https://github.com/obr
 
 superpowers is required to run the pipeline end to end. The individual review and generator skills work without it: bugfix specs never touch brainstorming, `spec-generator`'s brainstorming handoff only fires when a matching file already exists under `docs/superpowers/specs/`, and every review skill (`spec-design-review`, `spec-task-review`, `spec-qa-review`, `spec-implementation-audit`, `spec-maintenance`) works from the spec documents in `project/work-items/`, however those were produced.
 
+## Worked example
+
+`examples/38-source-fidelity-and-accuracy-sla/` holds one feature carried through the pipeline in the private project the skills came from: brainstorm, requirements, design, design review, tasks, test plan, implementation audit, QA review and maintenance report, copied as they are. Its README maps each file to the skill that produced it, records the gate verdicts, and lists where the artefacts diverge from the skill text (the task-review gate was skipped, and the QA review sits in its own file rather than inside the test plan). Start with `design-review-summary.md` if you want to see what a gate report looks like.
+
 ## Installation
 
 Copy or symlink each `skills/<name>` directory into `.claude/skills/sdd/<name>` for Claude Code, or `.agents/skills/sdd/<name>` for agents that read the agentskills layout. This repo dogfoods the symlink form itself, for example:
