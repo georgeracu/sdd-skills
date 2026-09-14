@@ -28,7 +28,7 @@ For each requirement in requirements.md:
 ## Data Model Checklist
 
 - [ ] Field names follow existing naming conventions
-- [ ] DynamoDB table design follows existing patterns
+- [ ] Database schema design follows existing patterns (key naming, index conventions)
 - [ ] Entity terminology matches glossary and codebase
 - [ ] No unnecessary data duplication
 - [ ] Indexes support all access patterns
@@ -39,7 +39,7 @@ For each requirement in requirements.md:
 - [ ] Authorization checks included where needed
 - [ ] Input validation at system boundaries
 - [ ] No PII exposure in logs or unnecessary storage
-- [ ] IAM permissions follow least privilege
+- [ ] Cloud IAM permissions follow least privilege
 
 ## Common Discrepancy Patterns
 

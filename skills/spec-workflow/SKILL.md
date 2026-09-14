@@ -68,28 +68,28 @@ After `sdd:spec-task-review` passes, `brainstorm.md` is deleted.
 
 ## Work-Item Identifier Rules
 
-Every change that ships behaviour (feature, bugfix, refactor, infra evolution) **must** live under a numbered SDD spec directory. The spec number is the primary identifier; the Paperclip ticket (AIW-*) is a secondary cross-reference only.
+Every change that ships behaviour (feature, bugfix, refactor, infra evolution) **must** live under a numbered SDD spec directory. The spec number is the primary identifier; the issue-tracker ticket ({TICKET-ID}) is a secondary cross-reference only.
 
 ### Required: numbered spec directory
 
 - Directory: `project/work-items/{NN}-{name}/` where `NN` is the next sequential integer.
 - Commit scopes: `feat(spec-41)`, `fix(spec-38)`, etc. — the spec number, not the ticket id.
-- PR title/description: reference the spec as `spec {NN}`. Include the Paperclip ticket as `(AIW-NNN)` parenthetically if one exists.
-- Paperclip issue body: include `spec: {NN}` so the crosswalk stays up to date.
+- PR title/description: reference the spec as `spec {NN}`. Include the issue-tracker ticket as `({TICKET-ID})` parenthetically if one exists.
+- Ticket body: include `spec: {NN}` so the crosswalk stays up to date.
 
-### Acceptable: ticket-scoped `AIW-*` directory (no spec number)
+### Acceptable: ticket-scoped `{TICKET-ID}` directory (no spec number)
 
-An `AIW-*` directory is acceptable only when the work is:
+A `{TICKET-ID}` directory, named after a tracker ticket rather than carrying a spec number, is acceptable only when the work is:
 
-- A **throwaway spike** that informs a future decision but ships no behaviour change (e.g. accuracy eval runs, market research briefs, data-acquisition discoveries).
+- A **throwaway spike** that informs a future decision but ships no behaviour change (e.g. evaluation runs, research briefs, discovery spikes).
 - A **board report** or governance document (e.g. full app audit, crosswalk maintenance).
-- A **single-commit trivial bugfix** on the eval harness or golden-set data that does not warrant a spec lifecycle.
+- A **single-commit trivial bugfix** on tooling or test data that does not warrant a spec lifecycle.
 
 If the spike result ships into production code, promote it to a numbered spec before merging.
 
 ### When in doubt
 
-If you are unsure whether the work warrants a spec: if it changes any user-visible behaviour or any production infrastructure, it gets a spec. Spikes stay `AIW-*` only while they remain exploratory.
+If you are unsure whether the work warrants a spec: if it changes any user-visible behaviour or any production infrastructure, it gets a spec. Spikes stay in a `{TICKET-ID}` directory only while they remain exploratory.
 
 ## Artifacts
 

@@ -11,9 +11,9 @@ Full verification that completed implementation matches the specification. Runs 
 
 ## Prerequisites
 
-Verify these files exist in `project/work-items/{spec-name}/`:
+Verify these files exist in `project/work-items/{NN}-{name}/`:
 
-1. `requirements.md` — the source of truth for what was requested
+1. `requirements.md` (or `bugfix.md` for a bugfix work item): the source of truth for what was requested
 2. `design.md` — the source of truth for how it should be built
 3. `tasks.md` — all non-optional tasks should be checked off
 
@@ -23,9 +23,9 @@ Verify these files exist in `project/work-items/{spec-name}/`:
 
 For every requirement in `requirements.md`, locate corresponding code in the codebase:
 
-- Frontend components in `frontend/src/`
-- Backend handlers in `backend/src/main/kotlin/`
-- Infrastructure in CloudFormation templates
+- Frontend source (e.g. `frontend/src/`)
+- Backend source (e.g. `backend/src/main/kotlin/`)
+- Infrastructure-as-code files (e.g. CloudFormation or Terraform templates)
 - API contracts in `openapi.yaml`
 
 **Flag as CRITICAL:** Any requirement with no corresponding implementation. Partially implemented requirements (code exists but incomplete) are also CRITICAL.
@@ -65,7 +65,7 @@ Read `tasks.md` and verify:
 Verify:
 
 - Architecture docs reflect changes (if system design changed)
-- `openapi.yaml` is up to date (run `scripts/generate-api-types.sh` and check for diff)
+- `openapi.yaml` is up to date (run the project's type-generation script, if API types are generated from `openapi.yaml`, and check for diff)
 - Knowledge base updated if new patterns were introduced
 - Auto-memory updated if project conventions changed
 
@@ -75,9 +75,9 @@ Verify:
 
 Collect and paste evidence:
 
-- **Test results**: Run `cd backend && ./gradlew build` and `cd frontend && npm run build && npm test`
-- **E2E results**: Run `cd e2e && npm test` (if applicable)
-- **API type freshness**: Run `scripts/generate-api-types.sh` and verify no diff
+- **Test results**: Run the project's backend and frontend build and test commands, as documented in `AGENTS.md` or the README (each if the project has one)
+- **E2E results**: Run the project's E2E test command (if the project has one)
+- **API type freshness**: Run the project's type-generation script (if API types are generated from `openapi.yaml`) and verify no diff
 - **Build output**: Paste actual command output showing pass/fail
 
 Evidence must be actual pasted output, not claims like "tests pass".
@@ -90,7 +90,7 @@ Evidence must be actual pasted output, not claims like "tests pass".
 
 ## Output
 
-Write `project/work-items/{spec-name}/implementation-audit.md`:
+Write `project/work-items/{NN}-{name}/implementation-audit.md`. Use `project/work-items/templates/gates/implementation-audit.md` as the structure when it exists; otherwise use the outline below.
 
 ````
 # Implementation Audit: {Spec Name}
@@ -124,22 +124,22 @@ Write `project/work-items/{spec-name}/implementation-audit.md`:
 
 ### Backend Build & Tests
 ```
-[Pasted output from ./gradlew build]
+[Pasted output from the backend build]
 ```
 
 ### Frontend Build & Tests
 ```
-[Pasted output from npm run build && npm test]
+[Pasted output from the frontend build and tests]
 ```
 
 ### E2E Tests
 ```
-[Pasted output from npm test in e2e/]
+[Pasted output from the E2E tests]
 ```
 
 ### API Type Freshness
 ```
-[Output of generate-api-types.sh showing no diff, or diff if stale]
+[Output of the type-generation script showing no diff, or the diff if stale]
 ```
 
 ## Verdict

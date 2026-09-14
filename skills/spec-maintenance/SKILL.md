@@ -30,7 +30,7 @@ A work item is considered implemented if its `project/work-items/{NN}-{name}/` d
 
 ### 2. Search for Impacts
 
-Use `codebase-search` skill to search documentation efficiently. For each change in the current spec, query previous specs for overlapping concerns:
+Use Grep and Glob, or the project's search skill if one is installed, to search documentation efficiently. For each change in the current spec, query previous specs for overlapping concerns:
 
 - **Endpoints**: Search for API paths that the current spec added, modified, or removed
 - **Data models**: Search for entity names, table names, field names that changed
@@ -97,7 +97,7 @@ For each impacted previous spec, edit the actual files:
 
 ### 5. Generate Maintenance Report
 
-Write `project/work-items/{current-spec}/spec-maintenance-report.md`:
+Write `project/work-items/{NN}-{name}/spec-maintenance-report.md`. Use `project/work-items/templates/gates/spec-maintenance-report.md` as the structure when it exists; otherwise use the outline below.
 
 ```markdown
 # Spec Maintenance Report: {Current Spec Name}
@@ -151,7 +151,7 @@ No previously implemented specs were impacted by this implementation.
 
 This skill does not have CRITICAL/MAJOR/MINOR severity levels or gate behaviour. It always passes. Stale specs are informational, not blocking.
 
-If the number of impacts is large (>10 items across multiple specs), warn the user — this may indicate architectural drift that deserves attention.
+If the number of impacts is large (>10 items across multiple specs; project default, adjust in the template if your project sets a different bar), warn the user, since this may indicate architectural drift that deserves attention.
 
 ## Next Step
 

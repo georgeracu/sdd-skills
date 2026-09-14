@@ -10,9 +10,9 @@ The `design.md` must be comprehensive and implementation-ready. Include the foll
 
 3. **Architecture** -- System architecture with Mermaid diagrams showing components, relationships, and data flow.
 
-4. **Components and Interfaces** -- Component descriptions with interface definitions in the project's language (Kotlin/TypeScript).
+4. **Components and Interfaces** -- Component descriptions with interface definitions in the project's language.
 
-5. **Data Models** -- Data structures, database schemas (DynamoDB tables, indexes, keys), and DTOs with all fields and types.
+5. **Data Models** -- Data structures, database schemas (tables, indexes, keys), and DTOs with all fields and types.
 
 6. **Correctness Properties** -- Universal statements about system behavior:
    - Format: `_For any_ [input], [behavior] SHALL [hold true]`
@@ -28,7 +28,7 @@ The `design.md` must be comprehensive and implementation-ready. Include the foll
    - Complete endpoint specifications (method, path, headers)
    - Request/response schemas with all fields and types
    - Error codes and descriptions
-   - Authentication requirements (IAM/SigV4, guest vs registered)
+   - Authentication requirements (e.g. IAM/SigV4, guest vs registered)
    - Alignment with existing `openapi.yaml` patterns
 
 10. **Sequence Diagrams** (when the feature has multi-component interactions):
@@ -36,10 +36,10 @@ The `design.md` must be comprehensive and implementation-ready. Include the foll
     - Error handling scenarios
     - Complex interaction patterns (e.g., Lambda -> DynamoDB -> S3)
 
-11. **AWS Service Integration** (when the feature uses AWS services):
-    - Service configurations (Lambda, DynamoDB, S3, Bedrock, Cognito, etc.)
-    - IAM policies and permissions
-    - CloudFormation resource definitions
+11. **Cloud Service Integration** (when the feature uses managed cloud services):
+    - Service configurations (compute, storage, database, messaging, identity, and so on)
+    - Access policies and permissions
+    - Infrastructure-as-code resource definitions
     - Infrastructure requirements
 
 12. **Security Architecture** (when the feature handles auth, user data, or external input):
@@ -56,7 +56,7 @@ The `design.md` must be comprehensive and implementation-ready. Include the foll
 
 ## Design Quality Standards
 
-- Include **concrete examples** (e.g., S3 key: `user-123/2025/01/scan-xyz.jpg`, DynamoDB item structure)
+- Include **concrete examples** (e.g. object key: `user-123/2025/01/report-xyz.pdf`, or a stored item structure)
 - Provide **complete data class definitions** with all fields and types
 - Specify **exact error codes and messages**
 - Document **trade-offs and alternatives considered**

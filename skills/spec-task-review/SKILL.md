@@ -11,7 +11,7 @@ Validate that `tasks.md` is complete, correctly sequenced, and implementable bef
 
 ## Prerequisites
 
-Verify these files exist in `project/work-items/{spec-name}/`:
+Verify these files exist in `project/work-items/{NN}-{name}/`:
 
 1. `requirements.md` — user stories and acceptance criteria
 2. `design.md` — architecture, components, data models
@@ -73,7 +73,7 @@ Verify mandatory ending tasks exist:
 
 ## Output
 
-Write `project/work-items/{spec-name}/task-review-summary.md`:
+Write `project/work-items/{NN}-{name}/task-review-summary.md`. Use `project/work-items/templates/gates/task-review-summary.md` as the structure when it exists; otherwise use the outline below.
 
 ```
 # Task Review Summary: {Spec Name}

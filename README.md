@@ -16,24 +16,62 @@ Seven agent skills that implement a spec-driven development pipeline: EARS requi
 
 Three of the seven are explicit blocking gates on CRITICAL findings: `spec-design-review`, `spec-task-review` and `spec-implementation-audit`. `spec-qa-review` reports gaps but doesn't itself block, and `spec-maintenance` has no gate behaviour at all (it always passes, by design).
 
-## What the skills assume about your repo
+## Expected project structure
 
-These are the conventions the skills read from or write to, taken directly from the skill text:
+The skills read from and write to a fixed layout. `scaffold/` in this repo holds that layout with the templates and process documents already filled in, so rather than typing the structure out by hand, copy it into the root of your project.
 
-- `docs/superpowers/specs/{topic}-design.md`: output of the superpowers `brainstorming` skill. `spec-generator` finds the most recent matching file and copies it into the new work item as `brainstorm.md`.
-- `project/work-items/{NN}-{name}/`: the work item directory. `requirements.md`, `design.md`, `tasks.md` and every downstream review document live here, numbered sequentially.
-- `project/work-items/template-spec/`: structural templates for `requirements.md`, `design.md` and `tasks.md`.
-- `project/work-items/spec-documentation/`: detailed process documentation, read by `spec-generator` before it writes anything.
-- `.kiro/specs/`: completed specs kept as content-quality reference examples.
-- `UBIQUITOUS_LANGUAGE.md` (glob `**/UBIQUITOUS_LANGUAGE.md`): domain terminology, read for consistency.
-- `knowledge-base/**/*.md` and `knowledge-base/README.md`: domain knowledge base, read during generation and updated as a mandatory ending task.
-- `openapi.yaml`: read for API consistency checks, and updated as a task whenever a spec touches an API.
-- `scripts/generate-api-types.sh`: regenerates API types from `openapi.yaml`; a clean diff from this script is evidence in `spec-implementation-audit`.
-- `**/ARCHITECTURE.md`, `project/architecture/**`, `docs/architecture/**`: architecture documentation, read for context.
-- `AGENTS.md`: commit conventions, referenced by `spec-generator`'s execution step.
-- `MEMORY.md` and `CLAUDE.md`: read by `spec-design-review` for high-level architectural context.
-- `e2e/`: directory for end-to-end tests, referenced throughout as the home for E2E test tasks and runs.
-- auto-memory: updated as a mandatory ending task whenever project conventions change (the skill text doesn't fix a path for this, just the behaviour).
+```
+.claude/skills/sdd/<skill-name>/            # the seven skills, installed here (see Installation)
+project/work-items/README.md                # orientation for the pipeline, shipped in the scaffold
+project/work-items/spec-documentation/
+    Agent-roles.md                          # optional persona-per-step model, read by spec-generator
+    Artifacts.md                            # process doc, read by spec-generator before it writes anything
+    Bugfix-pipeline.md                      # process doc, read by spec-generator before it writes anything
+    Feature-pipeline.md                     # process doc, read by spec-generator before it writes anything
+    Quality-gates.md                        # process doc, read by spec-generator before it writes anything
+    README.md                               # process doc, read by spec-generator before it writes anything
+    Superpowers-integration.md              # process doc, read by spec-generator before it writes anything
+project/work-items/templates/
+    project/work-items/templates/README.md  # how to use the templates
+    feature/requirements.md                 # shape for a feature's requirements.md
+    feature/design.md                       # shape for a feature's design.md
+    feature/tasks.md                        # shape for a feature's tasks.md
+    bugfix/bugfix.md                        # shape for a bugfix's bugfix.md
+    bugfix/design.md                        # shape for a bugfix's design.md
+    bugfix/tasks.md                         # shape for a bugfix's tasks.md
+    gates/design-review-summary.md          # shape for spec-design-review's output
+    gates/task-review-summary.md            # shape for spec-task-review's output
+    gates/test-plan.md                      # shape for spec-qa-review's output
+    gates/implementation-audit.md           # shape for spec-implementation-audit's output
+    gates/spec-maintenance-report.md        # shape for spec-maintenance's output
+project/work-items/{NN}-{name}/             # one directory per work item, created by spec-generator
+docs/superpowers/specs/                     # written by superpowers' brainstorming skill, read by spec-generator
+```
+
+### Bootstrap
+
+1. Install the skills (see Installation, below).
+2. Copy the scaffold into your project, from a clone of this repo:
+
+   ```
+   cp -R scaffold/. /path/to/your-project/
+   ```
+
+3. In your project's `AGENTS.md` (or README), note the build, test and type-generation commands: the skills read them from there rather than assuming gradlew or npm.
+4. Install superpowers if you want the end-to-end pipeline (see Dependency on superpowers, below).
+
+### Optional inputs the skills look for when present
+
+- `openapi.yaml` (glob `**/openapi.yaml`, or `docs/apis/**/*.yaml`): read for API consistency checks.
+- `**/ARCHITECTURE.md`, `project/architecture/**`, `docs/architecture/**`: architecture documentation.
+- `**/UBIQUITOUS_LANGUAGE.md`: domain terminology.
+- `knowledge-base/**/*.md`: domain knowledge base.
+- `AGENTS.md`, `MEMORY.md` and `CLAUDE.md`: commit conventions and architectural context.
+- `e2e/`: home for end-to-end test tasks and runs.
+
+A missing optional input is recorded in the spec as a note, not treated as an error.
+
+`project/work-items/spec-documentation/Agent-roles.md` describes an optional persona-per-step team model; the skills don't depend on it.
 
 ## Dependency on superpowers
 
@@ -45,6 +83,8 @@ superpowers is required to run the pipeline end to end. The individual review an
 
 `examples/38-source-fidelity-and-accuracy-sla/` holds one feature carried through the pipeline in the private project the skills came from: brainstorm, requirements, design, design review, tasks, test plan, implementation audit, QA review and maintenance report, copied as they are. Its README maps each file to the skill that produced it, records the gate verdicts, and lists where the artefacts diverge from the skill text (the task-review gate was skipped, and the QA review sits in its own file rather than inside the test plan). Start with `design-review-summary.md` if you want to see what a gate report looks like.
 
+Its artefacts follow the same layout that `scaffold/` provides, so it doubles as a filled-in reference for the templates.
+
 ## Installation
 
 Copy or symlink each `skills/<name>` directory into `.claude/skills/sdd/<name>` for Claude Code, or `.agents/skills/sdd/<name>` for agents that read the agentskills layout. This repo dogfoods the symlink form itself, for example:
@@ -55,6 +95,8 @@ ln -s ../../../skills/spec-generator .agents/skills/sdd/spec-generator
 ```
 
 repeated for each of the seven directories. The skills refer to each other with the `sdd:` prefix (`sdd:spec-generator`, `sdd:spec-design-review` and so on), so keep that namespace when installing.
+
+See Bootstrap, above, for copying `scaffold/` into your project once the skills are installed.
 
 ## Status
 

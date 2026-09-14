@@ -35,11 +35,11 @@ This skill is triggered automatically by the spec-generator skill after design.m
 Before running this review, verify these files exist:
 
 1. **requirements.md** or **bugfix.md** (Phase 1 output from spec-generator)
-   - Location: `project/work-items/[spec-name]/requirements.md` or `bugfix.md`
+   - Location: `project/work-items/{NN}-{name}/requirements.md` or `bugfix.md`
    - Contains: User stories, acceptance criteria, glossary
 
 2. **design.md** (Phase 2 output from spec-generator)
-   - Location: `project/work-items/[spec-name]/design.md`
+   - Location: `project/work-items/{NN}-{name}/design.md`
    - Contains: Architecture, components, data models, correctness properties
 
 3. **Existing codebase** (for architecture consistency checks)
@@ -52,8 +52,8 @@ Before running this review, verify these files exist:
 Read the spec documents from the work item directory:
 
 ```bash
-Read: project/work-items/[spec-name]/requirements.md  # or bugfix.md
-Read: project/work-items/[spec-name]/design.md
+Read: project/work-items/{NN}-{name}/requirements.md  # or bugfix.md
+Read: project/work-items/{NN}-{name}/design.md
 ```
 
 ### Step 2: Gather Architectural Context
@@ -62,7 +62,7 @@ Before reviewing, gather context about the existing system by reading relevant f
 
 **Examples of files to check based on design scope:**
 - If the design adds API endpoints → read `openapi.yaml` and existing handler patterns
-- If the design adds DynamoDB tables → read existing CloudFormation templates
+- If the design adds database tables → read existing infrastructure-as-code files (e.g. CloudFormation or Terraform templates)
 - If the design adds frontend components → read existing component patterns
 - If the design modifies auth flows → read existing auth service code
 - If the design adds Lambda functions → read existing Lambda patterns
@@ -133,7 +133,7 @@ MAJOR: POST /api/v1/scan endpoint missing error response schema
 **Check:** Proposed data models are consistent with existing models and follow established patterns.
 
 **Validation:**
-- DynamoDB table designs follow existing patterns (PK/SK naming, GSI conventions)
+- Database schema designs follow existing patterns (key naming, index conventions)
 - Entity names use consistent terminology with the glossary and existing codebase
 - Data types match existing conventions (e.g., ISO 8601 dates, enum formats)
 - Relationships between new and existing entities are clear
@@ -156,7 +156,7 @@ MAJOR: Design proposes "city_id" field but existing system uses "municipalityId"
 - Input validation is defined at system boundaries
 - No sensitive data exposure in logs or responses
 - OWASP top 10 considerations addressed where relevant
-- IAM permissions follow least privilege principle
+- Cloud IAM permissions follow least privilege principle
 
 **Example discrepancy:**
 ```
@@ -226,9 +226,9 @@ Suggestion: Fix the architecture
 
 ### Step 6: Create Review Summary
 
-Write a comprehensive `design-review-summary.md` file in the **same directory** as the input files.
+Write a comprehensive `design-review-summary.md` file in the **same directory** as the input files. Use `project/work-items/templates/gates/design-review-summary.md` as the structure when it exists; otherwise use the outline below.
 
-**File location:** `project/work-items/[spec-name]/design-review-summary.md`
+**File location:** `project/work-items/{NN}-{name}/design-review-summary.md`
 
 **Structure:**
 
@@ -236,7 +236,7 @@ Write a comprehensive `design-review-summary.md` file in the **same directory** 
 # Design Review Summary: [Spec Name]
 
 **Review Date:** [YYYY-MM-DD]
-**Reviewer:** Claude (spec-design-review skill)
+**Reviewer:** spec-design-review skill
 **Documents Reviewed:**
 - requirements.md (or bugfix.md)
 - design.md
@@ -369,7 +369,7 @@ Based on severity:
 Save the review summary in the **same directory** as the input files:
 
 ```
-project/work-items/[spec-name]/design-review-summary.md
+project/work-items/{NN}-{name}/design-review-summary.md
 ```
 
 ## Review Criteria & Common Patterns

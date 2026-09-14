@@ -14,7 +14,7 @@ Before finalizing each document, verify against this checklist:
 - [ ] Mermaid diagrams render correctly (architecture, sequence)
 - [ ] Correctness properties trace back to requirements
 - [ ] Error handling strategy is comprehensive (not just happy path)
-- [ ] AWS configurations include all necessary settings (if applicable)
+- [ ] Infrastructure configurations include all necessary settings (if applicable)
 - [ ] Security considerations addressed (auth, input validation, encryption)
 - [ ] Performance considerations noted where relevant
 - [ ] Consistent with project's existing API patterns (`openapi.yaml`)

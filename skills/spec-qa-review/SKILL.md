@@ -33,7 +33,7 @@ Write a coverage matrix that answers: "what IS tested / SHOULD be tested at each
 
 | Layer | What to analyse |
 |---|---|
-| **Unit** | Functions, components, edge cases, error paths. **Gate: ≥85% line/branch coverage.** Mark N/A with justification for specs with no unit-testable code (e.g. pure infrastructure). |
+| **Unit** | Functions, components, edge cases, error paths. **Gate: ≥85% line/branch coverage** (project default; adjust in the template if your project sets a different bar). Mark N/A with justification for specs with no unit-testable code (e.g. pure infrastructure). |
 | **Integration** | Service boundaries, API contracts, data flow between layers |
 | **E2E** | User journeys, happy paths, critical failure paths |
 | **Performance** | Load assumptions, response time budgets, bundle/memory size |
@@ -43,12 +43,12 @@ All five layers are analysed every pass. Do not skip a layer without marking it 
 
 ## Plan Mode Process
 
-1. Read `project/work-items/{spec-name}/requirements.md` and `design.md`
+1. Read `project/work-items/{NN}-{name}/requirements.md` (or `bugfix.md` for a bugfix work item) and `design.md`
 2. For each layer, determine what SHOULD be tested — be specific (name the functions, flows, and boundaries)
 3. Flag any layer with zero expected coverage as a gap immediately
-4. Create `project/work-items/{spec-name}/test-plan.md` with the Expected column populated
+4. Create `project/work-items/{NN}-{name}/test-plan.md` with the Expected column populated
 
-**File location is mandatory:** `project/work-items/{spec-name}/test-plan.md` — do not save elsewhere.
+**File location is mandatory:** `project/work-items/{NN}-{name}/test-plan.md`, not anywhere else.
 
 ## Review Mode Process
 
@@ -63,7 +63,8 @@ All five layers are analysed every pass. Do not skip a layer without marking it 
 
 ## Test Plan Document
 
-**Location:** `project/work-items/{spec-name}/test-plan.md`
+**Location:** `project/work-items/{NN}-{name}/test-plan.md`
+Use `project/work-items/templates/gates/test-plan.md` as the structure when it exists; otherwise use the outline below.
 **Never replace — only update.** Created in Plan mode, updated in Review mode.
 
 ```markdown
@@ -101,7 +102,7 @@ All five layers are analysed every pass. Do not skip a layer without marking it 
 Output in conversation after every Review mode pass:
 
 ```
-## QA Gap Report — {spec-name}
+## QA Gap Report: {NN}-{name}
 
 ### Coverage Summary
 | Layer       | Expected | Actual   | Status  |

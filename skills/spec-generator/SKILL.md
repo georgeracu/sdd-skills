@@ -51,11 +51,11 @@ When the user asks to "update" or "review" an existing spec:
 
 Before generating any spec, read these for format and process guidance:
 
-- **Templates**: `project/work-items/template-spec/` -- structural templates for each document
+- **Templates**: `project/work-items/templates/` -- structural templates for each document, held under `feature/`, `bugfix/` and `gates/`
 - **Spec Documentation**: `project/work-items/spec-documentation/` -- detailed process documentation
-- **Existing Specs**: `.kiro/specs/` -- real examples of completed specs for content quality reference
+- **Existing Specs**: completed work items under `project/work-items/[0-9]*/` (those containing `implementation-audit.md`) -- real examples of completed specs for content quality reference
 
-A repository adopting the pipeline for the first time has none of these. When a reference location is missing, say so once in your reply and carry on: the document structures in this skill and in `references/` are the templates, and `.kiro/specs/` is only a quality reference. Do not stop to ask for the missing reference directories and do not create them. The work item directory under `project/work-items/` is different: Step 1 always creates it, brainstorm copy included, even when it is the first one in the repository.
+A repository adopting the pipeline for the first time has none of these. When a reference location is missing, say so once in your reply and carry on: the document structures in this skill and in `references/` are the templates. Do not stop to ask for the missing reference directories and do not create them. The work item directory under `project/work-items/` is different: Step 1 always creates it, brainstorm copy included, even when it is the first one in the repository.
 
 ## Step 1: Gather Input & Determine Spec Type
 
@@ -77,7 +77,7 @@ Without a shell, glob `project/work-items/[0-9]*/` instead. No match means this 
 Create the directory under `project/work-items/` with the next sequential number, creating `project/work-items/` itself if it does not exist yet. Spec documents never go in the repository root, even when the repository has no `project/` tree:
 
 - Features: `{NN}-{kebab-case-name}/` (e.g., `01-user-authentication/`)
-- Bugs: `{NN}-{kebab-case-name}-bugfix/` (e.g., `02-null-pointer-bugfix/`)
+- Bugs: `{NN}-{kebab-case-name}/` (e.g., `02-null-pointer-on-login/`)
 
 ## Step 2: Gather Existing Context
 
@@ -107,7 +107,6 @@ Before generating any document, read relevant project documentation to ensure ac
 4. **Existing Specs**: Review completed specs for content quality and style reference:
    ```bash
    Glob pattern: project/work-items/[0-9]*/*.md
-   Glob pattern: .kiro/specs/**/*.md
    ```
 
 5. **Existing Tests**: Understand current test patterns and coverage:
@@ -116,6 +115,7 @@ Before generating any document, read relevant project documentation to ensure ac
    Glob pattern: **/*.test.ts
    Glob pattern: **/*.spec.ts
    ```
+   and any other test-file pattern the project uses (see `AGENTS.md`).
 
 6. **Knowledge Base**: Check for relevant domain knowledge:
    ```bash
@@ -142,7 +142,7 @@ The user review stop applies to every spec type. A bugfix spec skips the review 
 
 ### Requirements-First Feature -> `requirements.md`
 
-Follow the template at `project/work-items/template-spec/requirements.md`.
+Follow the template at `project/work-items/templates/feature/requirements.md`.
 
 Structure:
 
@@ -181,13 +181,13 @@ Key conventions:
 
 ### Design-First Feature -> `design.md`
 
-Follow the template at `project/work-items/template-spec/design.md`.
+Follow the template at `project/work-items/templates/feature/design.md`.
 
 See **Design Document Sections** below for the full structure and required sections.
 
 ### Bugfix -> `bugfix.md`
 
-Follow the template structure from existing bugfix specs (e.g., `.kiro/specs/16-httpmethod-null-bugfix/bugfix.md`).
+Follow the template at `project/work-items/templates/bugfix/bugfix.md`.
 
 Structure:
 
@@ -247,6 +247,8 @@ Derive feasible requirements from the approved design:
 
 ### Bugfix -> `design.md`
 
+Follow the template at `project/work-items/templates/bugfix/design.md`.
+
 Derive the fix design from the approved bug analysis:
 
 - **Glossary** with Bug_Condition, Property, and Preservation terms
@@ -299,11 +301,11 @@ Both documents approved -> sdd:spec-design-review -> [APPROVED] -> tasks.md
 
 Generate `tasks.md` derived from both approved documents. **Present to user for review.**
 
-Follow the template at `project/work-items/template-spec/tasks.md`.
+Follow the template at `project/work-items/templates/feature/tasks.md`, or `project/work-items/templates/bugfix/tasks.md` for a bugfix spec.
 
 ### Task Sequencing Rules
 
-1.  **API-First**: If the spec involves changes to existing APIs or new endpoints, the **first task** MUST be updating the OpenAPI spec file (`openapi.yaml`) and regenerating types (`scripts/generate-api-types.sh`). Implementation tasks MUST follow this and build against the updated spec.
+1.  **API-First**: If the spec involves changes to existing APIs or new endpoints, the **first task** MUST be updating the OpenAPI spec file (`openapi.yaml`) and running the project's type-generation script (if API types are generated from `openapi.yaml`). Implementation tasks MUST follow this and build against the updated spec.
 
 2.  **Build-and-Test After Each Task**: Every implementation task MUST include a sub-task to build the project and run relevant tests. This catches regressions early and ensures incremental correctness.
 
@@ -316,13 +318,13 @@ Follow the template at `project/work-items/template-spec/tasks.md`.
     - **Update OpenAPI spec** (if API changes were made but the spec wasn't updated as the first task)
     - **Add or update E2E tests** in the `e2e/` directory (if applicable)
     - **Update documentation and knowledge base**: Update relevant docs (architecture, README, `knowledge-base/README.md`), add/update auto-memory if patterns changed
-    - **Final validation**: Run full build and ALL tests (backend + frontend + E2E) to ensure the system compiles and there are no failures
+    - **Final validation**: Run the full build and ALL tests (backend, frontend and E2E, each if the project has one) to ensure the system compiles and there are no failures
 
 ### Checkpoint Tasks
 
-Insert checkpoint tasks every 3-5 implementation tasks. Checkpoints MUST:
+Insert checkpoint tasks every 3-5 implementation tasks (project default; adjust in the template if your project sets a different bar). Checkpoints MUST:
 
-- Run the full project build (`backend` and `frontend`)
+- Run the project's full build (backend and frontend, each if the project has one), as documented in `AGENTS.md` or the README
 - Run all tests (unit, integration)
 - Verify no regressions in existing functionality
 - Pause for user review if questions arise
@@ -340,20 +342,20 @@ Insert checkpoint tasks every 3-5 implementation tasks. Checkpoints MUST:
 
 - [ ] 1. Update OpenAPI spec and regenerate types
   - Update `openapi.yaml` with new/modified endpoints and schemas
-  - Run `scripts/generate-api-types.sh` to regenerate TypeScript and Kotlin types
+  - Run the project's type-generation script to regenerate API types
   - Verify generated types compile
   - _Requirements: N.N, N.N_
 
 - [ ] 2. [Backend implementation task]
   - [Sub-task description]
   - Write unit tests for new/modified code
-  - Run backend build and tests: `cd backend && ./gradlew build`
+  - Run the project's backend build and test command, as documented in `AGENTS.md` or the README
   - _Requirements: N.N_
 
 - [ ] 3. [Frontend implementation task]
   - [Sub-task description]
   - Write unit tests for new/modified components
-  - Run frontend build and tests: `cd frontend && npm run build && npm test`
+  - Run the project's frontend build and test command, as documented in `AGENTS.md` or the README
   - _Requirements: N.N_
 
 - [ ] 4. Checkpoint - [Milestone description]
@@ -379,10 +381,10 @@ Insert checkpoint tasks every 3-5 implementation tasks. Checkpoints MUST:
   - _Requirements: N.N_
 
 - [ ] N. Final validation
-  - Run full backend build and tests: `cd backend && ./gradlew build`
-  - Run full frontend build and tests: `cd frontend && npm run build && npm test`
-  - Run E2E tests: `cd e2e && npm test`
-  - Verify OpenAPI spec is up to date: `scripts/generate-api-types.sh` produces no diff
+  - Run the project's full backend build and test command (if the project has one)
+  - Run the project's full frontend build and test command (if the project has one)
+  - Run the project's E2E test command (if the project has one)
+  - Verify the OpenAPI spec is up to date: the type-generation script produces no diff
   - Confirm all tests pass with zero failures
 ```
 
@@ -436,17 +438,16 @@ When the user asks to implement tasks:
 
 ### Build & Test Commands Reference
 
-Keep these handy during execution:
+Each project defines its own commands: read `AGENTS.md` or the README and keep those handy during execution. Each row applies only if the project has that layer.
 
-| What                          | Command                                             |
+| What                          | Where to find it                                    |
 | ----------------------------- | --------------------------------------------------- |
-| Backend build + tests         | `cd backend && ./gradlew build`                     |
-| Frontend build                | `cd frontend && npm run build`                      |
-| Frontend tests                | `cd frontend && npm test`                           |
-| E2E tests (mock)              | `cd e2e && npm test`                                |
-| E2E tests (production)        | `cd e2e && BASE_URL=https://<production-url> npm run test:e2e:smoke` |
-| Regenerate API types          | `scripts/generate-api-types.sh`                     |
-| Check OpenAPI spec freshness  | Run generate script and verify no git diff           |
+| Backend build + tests         | The project's backend build and test command        |
+| Frontend build + tests        | The project's frontend build and test command       |
+| E2E tests (mock)              | The project's E2E test command                      |
+| E2E tests (production)        | The project's E2E smoke command against the production base URL |
+| Regenerate API types          | The project's type-generation script (if API types are generated from `openapi.yaml`) |
+| Check OpenAPI spec freshness  | Run the type-generation script and verify no git diff |
 
 ## Workflow Summary
 
@@ -467,7 +468,7 @@ User describes feature/bug
         v
 +-- Feature (Req-First) --> requirements.md --> design.md --> sdd:spec-design-review --> tasks.md --> sdd:spec-task-review
 |
-+-- Feature (Design-First) -> design.md --> sdd:spec-design-review --> requirements.md --> tasks.md --> sdd:spec-task-review
++-- Feature (Design-First) -> design.md --> requirements.md --> sdd:spec-design-review --> tasks.md --> sdd:spec-task-review
 |
 +-- Bugfix -----------------> bugfix.md --> design.md --> tasks.md (no review-skill gates)
                                 |              |              |

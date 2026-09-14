@@ -53,7 +53,7 @@
       "id": 3,
       "slug": "bugfix-spec-from-issue",
       "prompt": "Bug #412 needs a spec before anyone touches the code: after a plan upgrade the usage endpoint keeps reporting quotaExceeded true for up to an hour. The report is in issue-412.md and the service is QuotaService.kt; domain terms and architecture are alongside. Make it work item 08.",
-      "expected_output": "The reply should produce a bugfix requirements document as the first document of the spec, in a directory named for work item 08 with a -bugfix suffix, and stop for my review before any design. The document should open with an introduction saying where the bug occurs and what it costs customers, then analyse it in three numbered sections: the current behaviour, covering the stale quota and quotaExceeded after an upgrade and the mirror-image downgrade case; the expected behaviour, that a plan change shows in the very next usage read; and the behaviour that must stay the same, that the quota is still cached for reads with no plan change in between, that ingest keeps recording during any window, and that the plan-changed notification keeps firing. Each line should be a WHEN ... THEN the system statement, numbered 1.x, 2.x and 3.x: the current-behaviour lines describe the defect without SHALL, the expected-behaviour lines use SHALL, and the unchanged-behaviour lines use SHALL CONTINUE TO.",
+      "expected_output": "The reply should produce a bugfix requirements document as the first document of the spec, in a numbered directory for work item 08, and stop for my review before any design. The document should open with an introduction saying where the bug occurs and what it costs customers, then analyse it in three numbered sections: the current behaviour, covering the stale quota and quotaExceeded after an upgrade and the mirror-image downgrade case; the expected behaviour, that a plan change shows in the very next usage read; and the behaviour that must stay the same, that the quota is still cached for reads with no plan change in between, that ingest keeps recording during any window, and that the plan-changed notification keeps firing. Each line should be a WHEN ... THEN the system statement, numbered 1.x, 2.x and 3.x: the current-behaviour lines describe the defect without SHALL, the expected-behaviour lines use SHALL, and the unchanged-behaviour lines use SHALL CONTINUE TO.",
       "files": [
         "evals/files/stale-quota/issue-412.md",
         "evals/files/stale-quota/QuotaService.kt",
@@ -61,7 +61,7 @@
         "evals/files/shared/ARCHITECTURE.md"
       ],
       "criteria": [
-        "Writes a bugfix requirements document in a directory named for work item 08 with a -bugfix suffix",
+        "Writes a bugfix requirements document in a numbered directory for work item 08",
         "Stops after the bugfix document and asks for review; no design.md or tasks.md is produced",
         "Opens with an introduction saying where the bug occurs and what it costs customers",
         "Section 1 (current behaviour) covers the stale quota and quotaExceeded after an upgrade and the mirror-image downgrade case, in WHEN ... THEN lines numbered 1.x without SHALL",
@@ -85,11 +85,11 @@
       "id": 4,
       "slug": "tasks-from-approved-design",
       "prompt": "The design review for the plan summary work item is in and APPROVED. Generate tasks.md now. requirements.md, design.md and design-review-summary.md are in the working directory, along with the shared architecture and OpenAPI context.",
-      "expected_output": "The reply should create tasks.md in a numbered work-item directory after confirming the design review is APPROVED, and stop for the user's review before invoking sdd:spec-task-review. Tasks should trace each implementation and test task to requirement numbers (1.1-1.4) and named design components (PlanSummaryHandler, PlanSummaryService, and PlanSummary), be ordered so the API contract and generated types precede implementation, and include build/test subtasks after implementation work. Because this work adds an endpoint, the list must include updating openapi.yaml and running scripts/generate-api-types.sh, unit tests, handler integration tests, E2E tests under e2e/, an update to the knowledge base and relevant documentation, and final full validation.",
+      "expected_output": "The reply should create tasks.md in a numbered work-item directory after confirming the design review is APPROVED, and stop for the user's review before invoking sdd:spec-task-review. Tasks should trace each implementation and test task to requirement numbers (1.1-1.4) and named design components (PlanSummaryHandler, PlanSummaryService, and PlanSummary), be ordered so the API contract and generated types precede implementation, and include build/test subtasks after implementation work. Because this work adds an endpoint, the list must include updating openapi.yaml and regenerating the API types from it, unit tests, handler integration tests, E2E tests under e2e/, an update to the knowledge base and relevant documentation, and final full validation.",
       "criteria": [
         "Creates tasks.md in a sequentially numbered work-item directory and preserves the approved requirements and design inputs.",
         "Every requirement 1.1 through 1.4 is traced by one or more tasks, and tasks name the corresponding PlanSummaryHandler, PlanSummaryService, or PlanSummary design component.",
-        "Tasks are dependency-ordered with the OpenAPI update and scripts/generate-api-types.sh before implementation, and implementation tasks include build/test subtasks.",
+        "Tasks are dependency-ordered with the OpenAPI update and API type regeneration before implementation, and implementation tasks include build/test subtasks.",
         "The ending tasks include the API contract/type regeneration requirement, E2E tests under e2e/, knowledge-base/documentation updates, and final full validation.",
         "The assistant stops and asks for review without invoking sdd:spec-task-review."
       ],
@@ -180,12 +180,12 @@
       "id": 9,
       "slug": "update-existing-spec-with-completed-tasks",
       "prompt": "Update the existing profile-summary spec: a stakeholder now requires a new `timezone` field on the API response. The first four tasks in tasks.md are already merged and must remain completed. Read requirements.md, design.md, tasks.md and the shared openapi.yaml, then update the spec for review.",
-      "expected_output": "The reply should update the existing work item rather than create a new one, adding a requirement with numbered EARS acceptance criteria for timezone and a matching design change. It should preserve tasks 1 through 4 as [x], leave completed work intact, and re-sequence the remaining work so the first new task updates openapi.yaml and runs scripts/generate-api-types.sh before implementation. New implementation tasks must trace requirements/design components and include build-and-test subtasks and a checkpoint. The list must end with E2E tests under e2e/, documentation and knowledge-base updates, and final full validation. The assistant should present the three changed documents for review and execute nothing.",
+      "expected_output": "The reply should update the existing work item rather than create a new one, adding a requirement with numbered EARS acceptance criteria for timezone and a matching design change. It should preserve tasks 1 through 4 as [x], leave completed work intact, and re-sequence the remaining work so the first new task updates openapi.yaml and regenerates the API types before implementation. New implementation tasks must trace requirements/design components and include build-and-test subtasks and a checkpoint. The list must end with E2E tests under e2e/, documentation and knowledge-base updates, and final full validation. The assistant should present the three changed documents for review and execute nothing.",
       "criteria": [
         "Updates the supplied existing work item in place and asks no questions already answered by the prompt.",
         "Adds a numbered EARS requirement and corresponding design support for the timezone response field.",
         "Preserves tasks 1 through 4 as completed [x] and does not rewrite already-merged work unless required.",
-        "Places openapi.yaml update and scripts/generate-api-types.sh as the first new task, with traced implementation tasks, build/test subtasks, and a checkpoint.",
+        "Places the openapi.yaml update and API type regeneration as the first new task, with traced implementation tasks, build/test subtasks, and a checkpoint.",
         "Keeps the mandatory ending tasks last: E2E tests under e2e/, documentation/knowledge-base update, and final full validation; stops for review without executing anything."
       ],
       "files": [
