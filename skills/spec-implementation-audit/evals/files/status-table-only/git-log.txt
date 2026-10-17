@@ -1,0 +1,6 @@
+$ git log --oneline main..HEAD
+e92f058 docs: document quota-threshold template and new attributes
+1d7b3e4 feat: AlertEvaluator with fired-state recording
+c05e6a9 feat: ThresholdsHandler for PUT thresholds
+8b41d07 feat: ThresholdValidator
+3f9a1c2 feat: threshold contract and regenerated types
