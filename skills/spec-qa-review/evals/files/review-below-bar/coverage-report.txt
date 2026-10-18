@@ -1,0 +1,12 @@
+JaCoCo summary (./gradlew build), backend module
+
+Package                              Lines          Branches
+example.usage.service                 14/33 (42%)     6/22 (27%)
+example.usage.api.handlers            16/26 (62%)     6/12 (50%)
+example.usage.repository              14/20 (70%)     4/8  (50%)
+TOTAL                                 44/79 (56%)    16/42 (38%)
+
+Uncovered: ThresholdSet.of (duplicate, range and type branches), QuotaAlertEvaluator (suspended, multi-threshold and lost-write branches)
+
+Tests: 15 passed, 0 failed, 0 skipped
+Playwright (npm test, mock server): 2 passed

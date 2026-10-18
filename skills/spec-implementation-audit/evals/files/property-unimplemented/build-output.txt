@@ -1,0 +1,51 @@
+$ cd backend && ./gradlew build
+
+> Task :compileKotlin
+> Task :compileTestKotlin
+> Task :test
+
+ThresholdValidatorTest
+  PASSED accepts one to five distinct values and sorts them
+  PASSED rejects an empty list
+  PASSED rejects more than five values
+  PASSED rejects zero and 101
+  PASSED rejects duplicates
+  PASSED accepts the boundaries 1 and 100
+ThresholdsHandlerTest
+  PASSED stores a valid set in ascending order
+  PASSED rejects an invalid set with invalid_thresholds and leaves the stored set alone
+  PASSED rejects a non-integer value
+  PASSED returns 404 account_not_found for an unknown account
+IngestHandlerTest
+  PASSED increments the meter then calls the evaluator with the new total
+  PASSED returns 404 account_not_found for an unknown account
+AlertEvaluatorTest
+  PASSED sends nothing below the lowest threshold
+  PASSED sends a quota-threshold alert with the full payload at 80 percent
+  PASSED sends both alerts when one increment crosses 80 and 100
+  PASSED never alerts a suspended account
+DynamoUsageMeterRepositoryTest
+  PASSED increment returns the new metered total
+  PASSED metered is zero for a new period
+> Task :check
+
+BUILD SUCCESSFUL in 41s
+18 tests completed, 0 failed, 0 skipped
+
+$ cd frontend && npm run build && npm test
+
+> dashboard@1.4.0 build
+> tsc --noEmit && vite build
+
+vite v5.4.8 building for production...
+build completed in 6.12s
+
+> dashboard@1.4.0 test
+> vitest run
+
+ Test Files  14 passed (14)
+      Tests  73 passed (73)
+
+$ scripts/generate-api-types.sh && git diff --exit-code
+Generated Kotlin and TypeScript types from openapi.yaml
+(no diff)

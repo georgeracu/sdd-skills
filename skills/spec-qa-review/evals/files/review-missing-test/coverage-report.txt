@@ -1,0 +1,10 @@
+JaCoCo summary (./gradlew build), backend module
+
+Package                              Lines          Branches
+example.usage.service                 31/33 (94%)    19/22 (86%)
+example.usage.api.handlers            24/26 (92%)    11/12 (92%)
+example.usage.repository              18/20 (90%)     6/8  (75%)
+TOTAL                                 73/79 (92%)    36/42 (86%)
+
+Tests: 21 passed, 0 failed, 0 skipped
+Playwright (npm test, mock server): 2 passed
