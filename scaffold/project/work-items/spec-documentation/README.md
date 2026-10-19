@@ -20,23 +20,23 @@ This directory documents this project's Spec-Driven Development (SDD) workflow �
 
 SDD is a documented pipeline of skills that chain together with quality gates between phases. Two pipelines:
 
-- **Feature pipeline** (12 steps): brainstorming → spec generation → design review → task review → test plan → implementation → audit → coverage review → maintenance → PR
+- **Feature pipeline** (12 steps): discovery → spec generation → design review → task review → test plan → implementation → audit → coverage review → maintenance → PR
 - **Bugfix pipeline** (3 steps): spec generation → implementation → PR. No gates, no audits.
 
 Every work item produces artifacts under `project/work-items/{NN}-{name}/`. Artifacts are version-controlled and travel with the code.
 
 ## Core principles
 
-- **Brainstorming is the front door for features.** Ideas are refined before specs are written.
+- **Discovery is the front door for features.** Ideas are refined before specs are written.
 - **Specs drive implementation.** Requirements, design, and tasks are formalised before code.
 - **Quality gates catch issues early.** Design alignment, task completeness, and implementation correctness are verified at stage boundaries.
 - **Superpowers skills stay unmodified.** SDD skills own the chaining and override default superpowers transitions via `sdd:spec-workflow`.
-- **Bugfixes get a lighter pipeline.** No brainstorming, no quality gates, straight through.
+- **Bugfixes get a lighter pipeline.** No discovery, no quality gates, straight through.
 
 ## Entry point
 
 When agents start work on a new feature or bug, they should load `sdd:spec-workflow`. Its description triggers on phrases like "create a feature", "create a spec", "implement this spec", "new work item".
 
-For features, this kicks off `brainstorming` (superpowers) first.
+For features, this kicks off `sdd:spec-discovery` first.
 For bugs, it goes straight to `sdd:spec-generator` in bugfix mode.
 

@@ -110,8 +110,8 @@ Write `project/work-items/{NN}-{name}/task-review-summary.md`. Use `project/work
 
 ## Gate Behaviour
 
-- **APPROVED** → delete `brainstorm.md` from the work-items directory, proceed to `sdd:spec-qa-review` plan mode
-- **APPROVED WITH ISSUES** → warn user, allow proceeding if no critical issues
+- **APPROVED** → delete `discovery.md` from the work-items directory, proceed to `sdd:spec-qa-review` plan mode
+- **APPROVED WITH ISSUES** → warn user; if no critical issues, delete `discovery.md` and proceed as for APPROVED
 - **BLOCKED** → present issues, fix `tasks.md`, re-run this review. If blocked twice, ask the user.
 
 ## Next Step

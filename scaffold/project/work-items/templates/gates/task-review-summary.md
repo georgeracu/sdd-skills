@@ -5,7 +5,7 @@
   Reviews: requirements.md + design.md + tasks.md
   Severity scale: CRITICAL | MAJOR | MINOR
 
-  On APPROVED, this gate deletes brainstorm.md from the work-item directory.
+  On APPROVED or APPROVED WITH ISSUES, this gate deletes discovery.md from the work-item directory.
 
   Replace all [bracketed] placeholders with actual content.
   Remove these HTML comments when creating a real summary.
@@ -97,6 +97,6 @@
 
 ## Next Steps
 
-- **If APPROVED:** brainstorm.md deleted. Proceed to `sdd:spec-qa-review` plan mode.
+- **If APPROVED or APPROVED WITH ISSUES:** discovery.md deleted. Proceed to `sdd:spec-qa-review` plan mode.
 - **If APPROVED WITH ISSUES:** Address Major issues if possible, then proceed to plan mode.
 - **If BLOCKED:** Fix tasks.md per the issues above. Re-run `sdd:spec-task-review`. If blocked twice, escalate to user.

@@ -11,7 +11,7 @@ Pipeline map for Spec-Driven Development. This skill is a reference — it docum
 
 | Step | Skill | Output | Next |
 |------|-------|--------|------|
-| 1 | `brainstorming` (superpowers) | `docs/superpowers/specs/{topic}-design.md` | `sdd:spec-generator` |
+| 1 | `sdd:spec-discovery` | `discovery.md` in the work item, after user approval | `sdd:spec-generator` |
 | 2 | `sdd:spec-generator` Phase 1 | `requirements.md` | Phase 2 |
 | 3 | `sdd:spec-generator` Phase 2 | `design.md` | `sdd:spec-design-review` |
 | 4 | `sdd:spec-design-review` (gate) | `design-review-summary.md` | Phase 3 on pass |
@@ -38,7 +38,7 @@ No quality gate skills for bugfixes. User still reviews each phase document inte
 
 These rules take precedence over default superpowers skill chaining:
 
-- After `brainstorming`: invoke `sdd:spec-generator` (NOT `writing-plans`)
+- For SDD features use `sdd:spec-discovery`, not `brainstorming`. After either: invoke `sdd:spec-generator` (NOT `writing-plans`)
 - After `subagent-driven-development`: invoke `sdd:spec-implementation-audit` (NOT `finishing-a-development-branch`)
 - After `sdd:spec-qa-review` review mode passes: invoke `sdd:spec-maintenance`
 - After `sdd:spec-maintenance`: invoke `finishing-a-development-branch`
@@ -54,17 +54,11 @@ All gates follow the same pattern:
 3. Re-run the failed gate
 4. If the fix loop fails twice on the same gate, stop and ask the user
 
-## Brainstorming → Spec-Generator Handoff
+## Discovery → Spec-Generator Handoff
 
-When `sdd:spec-generator` starts after brainstorming:
-
-1. Find the most recent brainstorming output in `docs/superpowers/specs/`
-2. Determine the next sequential work-item number in `project/work-items/`
-3. Create `project/work-items/{NN}-{name}/`
-4. Copy the brainstorming output to `brainstorm.md` in that directory
-5. Read `brainstorm.md` as context for generating `requirements.md`
-
-After `sdd:spec-task-review` passes, `brainstorm.md` is deleted.
+1. `sdd:spec-discovery` creates `project/work-items/{NN}-{name}/`, writes `discovery.md` there and, on user approval, passes the directory path to `sdd:spec-generator`.
+2. `sdd:spec-generator` uses that directory and reads `discovery.md` as context for `requirements.md`.
+3. After `sdd:spec-task-review` passes, `discovery.md` is deleted.
 
 ## Work-Item Identifier Rules
 
@@ -97,7 +91,7 @@ If you are unsure whether the work warrants a spec: if it changes any user-visib
 
 | File | Created by | Lifecycle |
 |------|-----------|-----------|
-| `brainstorm.md` | `sdd:spec-generator` (copied from brainstorming output) | Deleted after spec-task-review |
+| `discovery.md` | `sdd:spec-discovery` | Deleted after spec-task-review |
 | `requirements.md` | `sdd:spec-generator` | Permanent |
 | `design.md` | `sdd:spec-generator` | Permanent |
 | `design-review-summary.md` | `sdd:spec-design-review` | Permanent |

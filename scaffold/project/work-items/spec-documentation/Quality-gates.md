@@ -55,7 +55,7 @@ Sections:
 - Completeness check (mandatory ending tasks exist)
 - Gate verdict
 
-On APPROVED: deletes `brainstorm.md` (no longer needed once tasks are locked in).
+On APPROVED or APPROVED WITH ISSUES: deletes `discovery.md` (no longer needed once tasks are locked in).
 
 ### spec-implementation-audit
 

@@ -1,6 +1,6 @@
 # Agent Roles
 
-This team model is optional. The seven skills do not depend on it.
+This team model is optional. The eight skills do not depend on it.
 
 This document maps a team of agent personas to the Spec-Driven Development (SDD) pipeline. It is the canonical reference for **who does what** during SDD work.
 
@@ -12,7 +12,7 @@ Eleven personas. Each has a primary mandatory skill (the one that bootstraps the
 
 | # | Persona | Slug | Primary skills |
 |---|---|---|---|
-| 1 | Senior Product Owner | `senior-product-owner` | `brainstorming`, `sdd:spec-generator` (Phase 1) |
+| 1 | Senior Product Owner | `senior-product-owner` | `sdd:spec-discovery`, `sdd:spec-generator` (Phase 1) |
 | 2 | Tech Lead | `tech-lead` | `sdd:spec-workflow`, `sdd:spec-task-review`, `sdd:spec-implementation-audit`, `tech-lead` |
 | 3 | Application Architect | `application-architect` | `sdd:spec-generator` (Phase 2), `sdd:spec-design-review`, `technical-analysis` |
 | 4 | Data Architect | `data-architect` | `sdd:spec-generator` (Phase 2 — Data Models) |
@@ -22,9 +22,9 @@ Eleven personas. Each has a primary mandatory skill (the one that bootstraps the
 | 8 | Senior Frontend Engineer | `senior-frontend-engineer` | `frontend-dev`, `frontend-design`, `subagent-driven-development`, `test-driven-development` |
 | 9 | Senior QA Engineer | `senior-qa-engineer` | `sdd:spec-qa-review`, `qa-review` |
 | 10 | Senior Content Writer | `senior-content-writer` | `strategic-tech-writing`, `diataxis`, `tech-docs` |
-| 11 | Senior Market Researcher | `senior-market-researcher` | `brainstorming` (advisor), market-research domain skills |
+| 11 | Senior Market Researcher | `senior-market-researcher` | `sdd:spec-discovery` (advisor), market-research domain skills |
 
-The **Senior Market Researcher** sits outside the SDD pipeline itself. They produce market briefs, competitor scans, and consumer research that feed the **Senior PO**'s Phase 1 brainstorm as evidence. Their output is committed to a location of your choosing, for example `docs/market-research/` (briefs, competitor scans, trends, opportunities, quarterly state), not into `project/work-items/`, which is reserved for SDD artefacts.
+The **Senior Market Researcher** sits outside the SDD pipeline itself. They produce market briefs, competitor scans, and consumer research that feed the **Senior PO**'s Phase 1 discovery as evidence. Their output is committed to a location of your choosing, for example `docs/market-research/` (briefs, competitor scans, trends, opportunities, quarterly state), not into `project/work-items/`, which is reserved for SDD artefacts.
 
 ---
 
@@ -48,8 +48,8 @@ The Board (you, the human) is the only role that assigns top-level work. There a
        └──────────┬───────────┘                  └──────────┬───────────┘
                   │                                         │
                   ▼                                         ▼
-          brainstorming                             classify defect,
-          (superpowers)                             reproduce,
+          spec-discovery                            classify defect,
+                                                    reproduce,
                   │                                 confirm bug
                   ▼                                         │
        sdd:spec-workflow                                    ▼
@@ -63,10 +63,10 @@ The PO is the **front door for everything that is not a bug**:
 
 - New product features
 - UX/content changes
-- Technical changes (refactors, migrations, infra evolution) — the PO is still the intake; the Tech Lead and architects join during brainstorming to ensure technical framing is sound
+- Technical changes (refactors, migrations, infra evolution) — the PO is still the intake; the Tech Lead and architects join during discovery to ensure technical framing is sound
 - Anything requiring user-facing acceptance criteria
 
-The PO always starts with `brainstorming` (superpowers), which produces a design at `docs/superpowers/specs/{topic}-design.md`. The brainstorm is then copied into a new work item, and `sdd:spec-workflow` takes over in **feature mode**.
+The PO always starts with `sdd:spec-discovery`, which writes `discovery.md` into a new work item, and `sdd:spec-workflow` takes over in **feature mode**.
 
 ### Tech Lead triage (bugs only)
 
@@ -77,7 +77,7 @@ The TL is the **front door for bug reports**. The triage step is short:
 3. Identify the affected components
 4. Invoke `sdd:spec-workflow` in **bugfix mode**
 
-No brainstorming, no gates, no audits — the bugfix pipeline is intentionally light.
+No discovery, no gates, no audits — the bugfix pipeline is intentionally light.
 
 ---
 
@@ -87,7 +87,7 @@ The 12-step feature pipeline from [Feature-pipeline.md](Feature-pipeline.md), wi
 
 | # | Step | Primary | Reviewers / Contributors |
 |---|---|---|---|
-| 1 | Brainstorming | Senior PO | Tech Lead, Senior Content Writer (refines wording), Enterprise Architect (sanity-checks fit with prior specs) |
+| 1 | Discovery | Senior PO | Tech Lead, Senior Content Writer (refines wording), Enterprise Architect (sanity-checks fit with prior specs) |
 | 2 | `requirements.md` | Senior PO | Tech Lead |
 | 3 | `design.md` | Application Architect | Data Architect (Data Models section), Security Architect (Security Architecture, when in scope), Senior Backend/Frontend Engineer (feasibility) |
 | 4 | `spec-design-review` gate | Tech Lead (verdict) | Application + Data + Security Architects sign; Enterprise Architect flags cross-spec impact |
@@ -130,7 +130,7 @@ Each handoff is an explicit boundary. The outgoing role hands a completed artefa
 Board ─── task ───► Senior PO (or Tech Lead for bugs)
 
 [FEATURE PIPELINE]
-Senior PO ─── brainstorm output ───► Senior PO writes requirements.md
+Senior PO ─── discovery.md ───► Senior PO writes requirements.md
 Senior PO ─── requirements.md ───► Application Architect drafts design.md
 App Architect ─── design.md ───► Data + Security Architects fill their sections
 Architects ─── design.md ───► Tech Lead opens spec-design-review
@@ -161,7 +161,7 @@ You (the Board) invoke a persona by name or slug. Examples:
 - "Tech Lead, triage this bug: [report]" → loads `tech-lead` persona
 - "App Architect, draft the design for work item 38" → loads `application-architect` persona
 
-The persona's first action is always to invoke its primary skill — e.g. the Senior PO immediately calls `brainstorming`, the Tech Lead immediately calls `sdd:spec-workflow`. Persona files contain the exact bootstrap sequence.
+The persona's first action is always to invoke its primary skill — e.g. the Senior PO immediately calls `sdd:spec-discovery`, the Tech Lead immediately calls `sdd:spec-workflow`. Persona files contain the exact bootstrap sequence.
 
 ## Reference
 

@@ -7,7 +7,7 @@ The canonical ordering lives in `.claude/skills/sdd/spec-workflow/SKILL.md`. Thi
 ## Pipeline overview
 
 ```
-brainstorming
+spec-discovery ──► discovery.md
     │
     ▼
 spec-generator (Phase 1) ──► requirements.md
@@ -45,15 +45,15 @@ finishing-a-development-branch ──► PR
 
 ## Steps
 
-### 1. Brainstorming (superpowers)
+### 1. spec-discovery
 
-Explore the problem space before writing a spec. Produces a design doc under `docs/superpowers/specs/{topic}-design.md`.
+Explore the problem space before writing a spec. Agrees the work-item name with the user, creates `project/work-items/{NN}-{name}/` and writes `discovery.md` there.
 
-Output is a conversation artefact — captured direction and constraints, not a formal spec.
+Output is a conversation artefact — captured direction and constraints, not a formal spec. The step stops at a review gate: on user approval it invokes `sdd:spec-generator` with the work-item path.
 
 ### 2. spec-generator — Phase 1: Requirements
 
-Creates `project/work-items/{NN}-{name}/` with the next sequential number. Copies the brainstorming output to `brainstorm.md` for context.
+Uses the work-item directory that `sdd:spec-discovery` created and reads `discovery.md` for context.
 
 Generates `requirements.md`: user stories, acceptance criteria in EARS notation (`WHEN ... THE [Glossary_Term] SHALL ...`), glossary.
 
@@ -85,7 +85,7 @@ Validates `tasks.md` for:
 - **Implementability** — no ambiguity, real file paths, realistic scope per task
 - **Completeness** — mandatory ending tasks exist (E2E tests, docs update, final validation)
 
-Produces `task-review-summary.md`. On pass, deletes `brainstorm.md`.
+Produces `task-review-summary.md`. On APPROVED or APPROVED WITH ISSUES, deletes `discovery.md`.
 
 ### 7. spec-qa-review (plan mode)
 
@@ -129,6 +129,7 @@ Creates the PR.
 
 Every artefact-producing step pauses for user review:
 
+- `discovery.md` (Step 1)
 - `requirements.md` (Phase 1)
 - `design.md` (Phase 2)
 - `tasks.md` (Phase 3)

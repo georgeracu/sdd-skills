@@ -1,27 +1,28 @@
 # SDD Skills
 
-Seven agent skills that implement a spec-driven development pipeline: EARS requirements, design, gated reviews, traced tasks, implementation audit, QA review and maintenance. Written as `SKILL.md` files for coding agents that load skills this way, such as Claude Code, Codex and pi.
+Eight agent skills that implement a spec-driven development pipeline: EARS requirements, design, gated reviews, traced tasks, implementation audit, QA review and maintenance. Written as `SKILL.md` files for coding agents that load skills this way, such as Claude Code, Codex and pi.
 
 ## The pipeline
 
 | Order | Skill | Purpose |
 |---|---|---|
-| 1 | `spec-workflow` | Reference document, not a pipeline step in its own right: maps the full ordering and documents the override rules that take precedence over superpowers' default chaining. |
-| 2 | `spec-generator` | Generates `requirements.md`, `design.md` and `tasks.md` in three phases, with a user review gate between each. |
-| 3 | `spec-design-review` (gate) | Validates `design.md` against `requirements.md` and existing architecture before tasks are generated. |
-| 4 | `spec-task-review` (gate) | Validates `tasks.md` covers every requirement and design element, is correctly sequenced and is implementable, before execution starts. |
-| 5 | `spec-qa-review` | Plan mode writes `test-plan.md` before implementation; review mode audits actual test coverage against that plan afterwards. |
-| 6 | `spec-implementation-audit` (gate) | Verifies the finished implementation matches requirements, design and tasks, backed by pasted build/test evidence. |
-| 7 | `spec-maintenance` | After QA review passes, checks whether the new work invalidates anything in previously implemented specs and annotates them. |
+| 1 | `spec-discovery` | Agrees the work-item name with the user, discovers intent, constraints and approach, writes `discovery.md` in the work item and stops at a review gate before invoking `spec-generator`. |
+| 2 | `spec-workflow` | Reference document, not a pipeline step in its own right: maps the full ordering and documents the override rules that take precedence over superpowers' default chaining. |
+| 3 | `spec-generator` | Generates `requirements.md`, `design.md` and `tasks.md` in three phases, with a user review gate between each. |
+| 4 | `spec-design-review` (gate) | Validates `design.md` against `requirements.md` and existing architecture before tasks are generated. |
+| 5 | `spec-task-review` (gate) | Validates `tasks.md` covers every requirement and design element, is correctly sequenced and is implementable, before execution starts. |
+| 6 | `spec-qa-review` | Plan mode writes `test-plan.md` before implementation; review mode audits actual test coverage against that plan afterwards. |
+| 7 | `spec-implementation-audit` (gate) | Verifies the finished implementation matches requirements, design and tasks, backed by pasted build/test evidence. |
+| 8 | `spec-maintenance` | After QA review passes, checks whether the new work invalidates anything in previously implemented specs and annotates them. |
 
-Three of the seven are explicit blocking gates on CRITICAL findings: `spec-design-review`, `spec-task-review` and `spec-implementation-audit`. `spec-qa-review` reports gaps but doesn't itself block, and `spec-maintenance` has no gate behaviour at all (it always passes, by design).
+Three of the eight are explicit blocking gates on CRITICAL findings: `spec-design-review`, `spec-task-review` and `spec-implementation-audit`. `spec-qa-review` reports gaps but doesn't itself block, and `spec-maintenance` has no gate behaviour at all (it always passes, by design).
 
 ## Expected project structure
 
 The skills read from and write to a fixed layout. `scaffold/` in this repo holds that layout with the templates and process documents already filled in, so rather than typing the structure out by hand, copy it into the root of your project.
 
 ```
-.claude/skills/sdd/<skill-name>/            # the seven skills, installed here (see Installation)
+.claude/skills/sdd/<skill-name>/            # the eight skills, installed here (see Installation)
 project/work-items/README.md                # orientation for the pipeline, shipped in the scaffold
 project/work-items/spec-documentation/
     Agent-roles.md                          # optional persona-per-step model, read by spec-generator
@@ -44,8 +45,7 @@ project/work-items/templates/
     gates/test-plan.md                      # shape for spec-qa-review's output
     gates/implementation-audit.md           # shape for spec-implementation-audit's output
     gates/spec-maintenance-report.md        # shape for spec-maintenance's output
-project/work-items/{NN}-{name}/             # one directory per work item, created by spec-generator
-docs/superpowers/specs/                     # written by superpowers' brainstorming skill, read by spec-generator
+project/work-items/{NN}-{name}/             # one directory per work item, created by spec-discovery
 ```
 
 ### Bootstrap
@@ -75,9 +75,9 @@ A missing optional input is recorded in the spec as a note, not treated as an er
 
 ## Dependency on superpowers
 
-The full pipeline hands off to and from the [superpowers](https://github.com/obra/superpowers) plugin: `brainstorming` feeds `spec-generator`, `subagent-driven-development` executes the tasks, and `finishing-a-development-branch` closes out the branch after `spec-maintenance`. `spec-workflow` documents override rules that replace superpowers' default chaining (after `brainstorming`, invoke `sdd:spec-generator` rather than `writing-plans`; after `subagent-driven-development`, invoke `sdd:spec-implementation-audit` rather than `finishing-a-development-branch` directly), with one exception: the bugfix pipeline follows superpowers' default chaining throughout, since there are no quality gates on bugfixes.
+Step 1 (`spec-discovery`) and every gate are self-contained. Implementation and branch close-out hand off to the [superpowers](https://github.com/obra/superpowers) plugin's `subagent-driven-development` and `finishing-a-development-branch`, or to any equivalent. `spec-workflow` documents the override rule that still applies after `subagent-driven-development`: invoke `sdd:spec-implementation-audit` rather than `finishing-a-development-branch` directly. The bugfix pipeline follows superpowers' default chaining throughout, since there are no quality gates on bugfixes.
 
-superpowers is required to run the pipeline end to end. The individual review and generator skills work without it: bugfix specs never touch brainstorming, `spec-generator`'s brainstorming handoff only fires when a matching file already exists under `docs/superpowers/specs/`, and every review skill (`spec-design-review`, `spec-task-review`, `spec-qa-review`, `spec-implementation-audit`, `spec-maintenance`) works from the spec documents in `project/work-items/`, however those were produced.
+Without superpowers the pipeline runs from discovery to the test plan, and resumes at the implementation audit once the tasks are implemented. Every review skill (`spec-design-review`, `spec-task-review`, `spec-qa-review`, `spec-implementation-audit`, `spec-maintenance`) works from the spec documents in `project/work-items/`, however those were produced.
 
 ## Worked example
 
@@ -94,7 +94,7 @@ ln -s ../../../skills/spec-generator .claude/skills/sdd/spec-generator
 ln -s ../../../skills/spec-generator .agents/skills/sdd/spec-generator
 ```
 
-repeated for each of the seven directories. The skills refer to each other with the `sdd:` prefix (`sdd:spec-generator`, `sdd:spec-design-review` and so on), so keep that namespace when installing.
+repeated for each of the eight directories. The skills refer to each other with the `sdd:` prefix (`sdd:spec-generator`, `sdd:spec-design-review` and so on), so keep that namespace when installing.
 
 See Bootstrap, above, for copying `scaffold/` into your project once the skills are installed.
 
