@@ -28,7 +28,7 @@ Read these in order without asking anything. Note each missing input on the `Sou
 1. Read the inputs.
 2. If the request describes existing behaviour broken against its spec, ask: "(a) new or changed behaviour, or (b) a defect in existing behaviour?" On (b), stop and tell the user to run `sdd:spec-generator` in bugfix mode. Write nothing.
 3. If an existing work item covers the topic, ask: "(a) start a new work item, or (b) update `{NN}-{name}` through `sdd:spec-generator` update mode?" If the match is a directory holding only a `discovery.md` with `Status: Draft`, ask instead: "(a) resume that draft, or (b) start afresh?" On an update, stop and hand off.
-4. If the request already fixes a single capability with no open variable, say so, skip to step 6 and state every inferred answer in the draft.
+4. If the request already answers problem, scope, approach, decisions, constraints and edge states, say so and skip to step 6. Write every variable it still leaves open under Open questions with a recommended answer instead of asking; the review gate is where the user corrects them.
 5. Otherwise ask the questions below, one per message, in this order. Where the answers can be listed, give lettered options with the recommended one first. Skip a question the request or the inputs already answer, and state the inferred answer at the top of the next question so the user can correct it.
    1. Problem and users: who is affected, what goes wrong today, why now, what each role gets.
    2. Split, only when the request spans parts that could ship independently: "(a) one work item, (b) split into X and Y, starting with X". Continue with the chosen part only.
