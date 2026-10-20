@@ -169,7 +169,7 @@
       "id": 4,
       "slug": "no-build-output",
       "prompt": "01-threshold-alerts is done and all the tasks are ticked. Please run the implementation audit; I haven't run the build, you can take it that the tests pass. The requirements, design and tasks for the work item are in the working directory, with the code alongside them (the files are flat here, so read each by its name).",
-      "expected_output": "The code, the tasks and the documentation are all in order, but no build, test or type-generation output was supplied and the files give no way to run the project. The Proof of Implementation rule requires actual pasted command output and says claims like 'tests pass' are not evidence, and the severity scale lists missing evidence as MAJOR. The audit must therefore not pass on the user's say-so: it should record a MAJOR discrepancy for missing evidence, leave the Evidence sections without invented output (no fabricated gradle or npm results), and state what the rule requires (the backend and frontend build and test output and the API type freshness check, pasted as actual output). The expected Status is FAILED, or at the least not PASSED with the gap stated explicitly; a clean PASSED with 'tests pass' written in the Evidence section is the failure this case catches. Per-requirement rows may show as implemented and Task Completion as five of five.",
+      "expected_output": "The code, the tasks and the documentation are all in order, but no build, test or type-generation output was supplied and the files give no way to run the project. The Proof of Implementation rule requires actual pasted command output and says claims like 'tests pass' are not evidence, and the severity scale lists missing evidence as MAJOR. The audit must therefore not pass on the user's say-so: it should record a MAJOR discrepancy for missing evidence, leave the Evidence sections without invented output (no fabricated gradle or npm results), and state what the rule requires (the backend and frontend build and test output and the API type freshness check, pasted as actual output). Missing evidence is a MAJOR finding and any MAJOR fails the gate, so the expected Status is FAILED; a PASSED with 'tests pass' written in the Evidence section is the failure this case catches. Per-requirement rows may show as implemented and Task Completion as five of five.",
       "files": [
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
         "evals/files/work-item/requirements.md",
@@ -194,7 +194,7 @@
         "implementation-audit.md"
       ],
       "criteria": [
-        "Does not state PASSED; the Status is FAILED, or the audit explicitly withholds a pass because evidence is missing",
+        "Writes implementation-audit.md with Status FAILED because evidence is missing",
         "Raises a MAJOR discrepancy for missing build, test or type-freshness evidence",
         "Says what the rule requires: actual pasted command output from the backend build and tests, the frontend build and tests and the API type freshness check, not a claim that tests pass",
         "The Evidence sections are empty or marked as missing and contain no invented command output",
@@ -202,7 +202,8 @@
       ],
       "assertions": {
         "must_include": [
-          "MAJOR"
+          "MAJOR",
+          "FAILED"
         ],
         "must_not_include": [
           {

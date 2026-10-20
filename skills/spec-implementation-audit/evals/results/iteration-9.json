@@ -1,0 +1,211 @@
+{
+  "iteration": "iteration-9",
+  "pack_hash": "88b29578767ebef603b73121fac63359d2442ea53764d30f6ae2e52f0df13e33",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 163.37,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 565089.6667,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.6111,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 150.6327,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 488712,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "delta": {
+      "pass_rate": 0.3889,
+      "time_seconds": 12.7373,
+      "tokens": 76377.6667
+    }
+  },
+  "cases": {
+    "no-build-output": {
+      "old_skill": {
+        "passed": 22,
+        "failed": 14,
+        "total": 36,
+        "pass_rate": 0.6111,
+        "checks": [
+          {
+            "text": "Output includes: MAJOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: FAILED",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Status: PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: BUILD SUCCESSFUL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: tests completed, 0 failed",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: implementation-audit.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes implementation-audit.md with Status FAILED because evidence is missing",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a MAJOR discrepancy for missing build, test or type-freshness evidence",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Says what the rule requires: actual pasted command output from the backend build and tests, the frontend build and tests and the API type freshness check, not a claim that tests pass",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Evidence sections are empty or marked as missing and contain no invented command output",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Still reports the requirement rows and task completion from the files it can read, with no CRITICAL finding invented to compensate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 36,
+        "failed": 0,
+        "total": 36,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: MAJOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Status: PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: BUILD SUCCESSFUL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: tests completed, 0 failed",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: implementation-audit.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes implementation-audit.md with Status FAILED because evidence is missing",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a MAJOR discrepancy for missing build, test or type-freshness evidence",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Says what the rule requires: actual pasted command output from the backend build and tests, the frontend build and tests and the API type freshness check, not a claim that tests pass",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Evidence sections are empty or marked as missing and contain no invented command output",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Still reports the requirement rows and task completion from the files it can read, with no CRITICAL finding invented to compensate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
