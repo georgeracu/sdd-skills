@@ -4,8 +4,8 @@
     {
       "id": 1,
       "slug": "requirements-from-discovery",
-      "prompt": "Start the spec for quota alerts. It's a feature, requirements-first. The approved discovery is already at project/work-items/01-quota-alerts/discovery.md and the rest of the project context (domain terms, architecture, API contract) is alongside it in the working directory.",
-      "expected_output": "The reply should produce a requirements document for quota alerts as the first document of the spec, in the existing 01-quota-alerts work-item directory beside the existing discovery.md, and stop there asking me to review it before any design work starts. The document should open with an introduction and a glossary, then state each requirement as a user story with numbered acceptance criteria in EARS form (WHEN, IF ... THEN, THE ... SHALL) whose subjects are glossary terms such as Account_Owner, Alert_Threshold and Notification_Service. It should carry the discovery's decisions through as requirements: default thresholds of 80% and 100%, one to five distinct percentages, one alert per threshold per billing period, evaluation on the ingest increment with the fired state kept on the usage-meters item, plan changes and lowered thresholds taking effect on the next increment, no alerts for suspended accounts, and the new quota-threshold notification template. It should also cover reading and replacing the threshold set through the API, following the existing plan sub-resource, with the error cases for an invalid list.",
+      "prompt": "Start the spec for quota alerts. It's a feature, requirements-first. The approved discovery is already at project/work-items/01-quota-alerts/discovery.md and the rest of the project context (domain terms, architecture, API contract) is alongside it in the working directory. Write requirements.md in place in that work item; the copy you save under ./outputs/ keeps the same path, outputs/project/work-items/01-quota-alerts/requirements.md.",
+      "expected_output": "The reply should produce a requirements document for quota alerts as the first document of the spec, in the existing 01-quota-alerts work-item directory beside the existing discovery.md, and stop there asking me to review it before any design work starts. The document should open with an introduction and a glossary, then state each requirement as a user story with numbered acceptance criteria in EARS form (WHEN, IF ... THEN, THE ... SHALL) whose subjects are glossary terms such as Account_Owner, Alert_Threshold and Notification_Service. It should carry the discovery's decisions through as requirements: default thresholds of 80% and 100%, one to five distinct percentages, one alert per threshold per billing period, evaluation on the ingest increment with the fired state kept on the usage-meters item, plan changes and lowered thresholds taking effect on the next increment, no alerts for suspended accounts, and the new quota-threshold notification template. It should also cover reading and replacing the threshold set through the API, following the existing plan sub-resource, with the error cases for an invalid list. The copy under outputs/ sits at project/work-items/01-quota-alerts/requirements.md and does not count as a new directory.",
       "files": [
         "evals/files/quota-alerts/project",
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
@@ -13,10 +13,10 @@
         "evals/files/shared/openapi.yaml"
       ],
       "expected_files": [
-        "01-quota-alerts/requirements.md"
+        "project/work-items/01-quota-alerts/requirements.md"
       ],
       "criteria": [
-        "Writes requirements.md in the existing 01-quota-alerts work-item directory, beside the existing discovery.md, without creating a new directory or copying the discovery",
+        "Writes requirements.md in the existing 01-quota-alerts work-item directory, beside the existing discovery.md, without creating a new directory or copying the discovery; the outputs/ copy at the same path is expected and is not a new directory",
         "Stops after requirements.md and asks for review before any design work; no design.md or tasks.md is produced",
         "The document opens with an introduction and a glossary",
         "Each requirement is a user story with numbered acceptance criteria in EARS form (WHEN, IF ... THEN, THE ... SHALL)",
@@ -157,12 +157,12 @@
     {
       "id": 8,
       "slug": "discovery-handoff-with-existing-work-items",
-      "prompt": "Start the spec for invoice reminders. It is a feature using the requirements-first workflow. The approved discovery is already at project/work-items/06-invoice-reminders/discovery.md; there is also an unrelated approved discovery for dark mode in 07-dark-mode. The repository already has work items 01-quota-alerts, 02-usage-export, and 05-stale-quota-cache-bugfix. Shared architecture and the existing OpenAPI contract are available for context.",
-      "expected_output": "The reply should use the named work item 06-invoice-reminders in place, ignore the unrelated 07-dark-mode discovery, create no new directory and make no copy of the discovery, and write requirements.md beside the existing discovery.md, derived from its decisions. Requirements should cover seven-day unpaid-invoice reminders through the existing Notification_Service, daily scheduling, no new table, idempotency per invoice and Billing_Period, and skipping paid or cancelled invoices. It should stop for user review before design work starts.",
+      "prompt": "Start the spec for invoice reminders. It is a feature using the requirements-first workflow. The approved discovery is already at project/work-items/06-invoice-reminders/discovery.md; there is also an unrelated approved discovery for dark mode in 07-dark-mode. The repository already has work items 01-quota-alerts, 02-usage-export, and 05-stale-quota-cache-bugfix. Shared architecture and the existing OpenAPI contract are available for context. Write requirements.md in place in that work item; the copy you save under ./outputs/ keeps the same path, outputs/project/work-items/06-invoice-reminders/requirements.md.",
+      "expected_output": "The reply should use the named work item 06-invoice-reminders in place, ignore the unrelated 07-dark-mode discovery, create no new directory and make no copy of the discovery, and write requirements.md beside the existing discovery.md, derived from its decisions. Requirements should cover seven-day unpaid-invoice reminders through the existing Notification_Service, daily scheduling, no new table, idempotency per invoice and Billing_Period, and skipping paid or cancelled invoices. It should stop for user review before design work starts. The copy under outputs/ sits at project/work-items/06-invoice-reminders/requirements.md and does not count as a new directory.",
       "criteria": [
         "Uses the named work item project/work-items/06-invoice-reminders and its discovery.md.",
         "Ignores the unrelated 07-dark-mode discovery.",
-        "Creates no new work-item directory and makes no copy of the discovery file.",
+        "Creates no new work-item directory under project/work-items/ and makes no copy of the discovery file; the outputs/ copy of requirements.md at the same path is expected.",
         "Derives an EARS-style requirements.md carrying all agreed decisions and constraints: seven-day unpaid-invoice reminders through the existing Notification_Service, daily scheduling, no new table, idempotency per invoice and Billing_Period, and skipping paid or cancelled invoices.",
         "Stops for user review before beginning design work."
       ],
@@ -172,7 +172,7 @@
         "evals/files/shared/openapi.yaml"
       ],
       "expected_files": [
-        "06-invoice-reminders/requirements.md"
+        "project/work-items/06-invoice-reminders/requirements.md"
       ]
     },
     {
