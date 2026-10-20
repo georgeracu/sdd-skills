@@ -19,6 +19,8 @@ Verify these files exist in `project/work-items/{NN}-{name}/`:
 
 ## Audit Process
 
+The audit reads the work item and the code and changes neither. The only file it writes is `implementation-audit.md`.
+
 ### 1. Feature Exists
 
 For every requirement in `requirements.md`, locate corresponding code in the codebase:
@@ -53,12 +55,12 @@ For each requirement's acceptance criteria, verify error states and edge cases:
 
 ### 4. Tasks Completed
 
-Read `tasks.md` and verify:
+Read `tasks.md` and count:
 
-- All non-optional tasks (`- [ ]` without `*` prefix) are checked off (`- [x]`)
-- Optional tasks are noted as skipped or completed
+- A non-optional task (`- [ ]` without `*` prefix) is complete only when its checkbox is `- [x]`. A status table, a commit hash or the user's word that the task is done is context for the finding, not completion.
+- An unticked optional task counts as Skipped, with no finding.
 
-**Flag as CRITICAL:** Non-optional tasks still unchecked.
+**Flag as CRITICAL:** each non-optional task still unchecked. The action is to tick it or finish it, then re-run the audit.
 
 ### 5. Documentation Updated
 
@@ -80,7 +82,7 @@ Collect and paste evidence:
 - **API type freshness**: Run the project's type-generation script (if API types are generated from `openapi.yaml`) and verify no diff
 - **Build output**: Paste actual command output showing pass/fail
 
-Evidence must be actual pasted output, not claims like "tests pass".
+Every evidence block holds the command line and its verbatim output. Run each command that `AGENTS.md` or the README names. Output the user supplies counts when it shows the command and its result; the user's word that tests pass does not count. A command the project does not have reads `NOT APPLICABLE: [where AGENTS.md or the README says so]` and is no finding. A command the project has, with no output, reads `NOT RUN: [reason]` and nothing else, and is a MAJOR finding whatever the reason.
 
 ## Severity Levels
 
@@ -147,11 +149,9 @@ Write `project/work-items/{NN}-{name}/implementation-audit.md`. Use `project/wor
 [PASSED/FAILED reasoning]
 ````
 
-## Gate Behaviour
+## Gate
 
-- **PASSED** → proceed to `sdd:spec-qa-review` review mode
-- **FAILED** → dispatch fix subagents for specific gaps via `subagent-driven-development`, re-run this audit. If fails twice, ask the user.
+Set the one `**Status:**` line from the findings. Its value is exactly `PASSED` or `FAILED`, with nothing after it. Every `NOT RUN` evidence block is a MAJOR finding.
 
-## Next Step
-
-On pass → invoke `sdd:spec-qa-review` in review mode.
+- **FAILED** on any CRITICAL or MAJOR finding. Dispatch fix subagents for the specific gaps via `subagent-driven-development`, then re-run this audit. If the `implementation-audit.md` already in the work item directory has `**Status:** FAILED`, ask the user instead of dispatching again.
+- **PASSED** on MINOR findings only, or none. Invoke `sdd:spec-qa-review` in review mode.
