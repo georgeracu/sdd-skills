@@ -1,6 +1,14 @@
-# Quota Alerts Design
+# Quota Alerts Discovery
 
-Brainstorming output, 2026-03-02. Agreed direction and constraints for the quota alerts feature. Reference material for the spec, not the spec itself.
+**Date:** 2026-03-02
+**Work item:** 01-quota-alerts
+**Spec type:** feature
+**Workflow:** Requirements-First
+**Status:** Approved 2026-10-15
+**Sources consulted:** UBIQUITOUS_LANGUAGE.md, ARCHITECTURE.md, openapi.yaml
+**Sources unavailable:** none
+
+Discovery output, 2026-03-02. Agreed direction and constraints for the quota alerts feature. Reference material for the spec, not the spec itself.
 
 ## Problem
 

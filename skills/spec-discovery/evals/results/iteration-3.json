@@ -1,0 +1,541 @@
+{
+  "iteration": "iteration-3",
+  "pack_hash": "5829cb6b4f115f7a1dccbe02894482106f4655b0a8fe603816555809a2a371ab",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.8389,
+        "stddev": 0.1366,
+        "n": 6
+      },
+      "time_seconds": {
+        "mean": 33.6434,
+        "stddev": 28.0398,
+        "n": 6
+      },
+      "tokens": {
+        "mean": 202610.8889,
+        "stddev": 86939.0846,
+        "n": 6
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.7319,
+        "stddev": 0.2903,
+        "n": 6
+      },
+      "time_seconds": {
+        "mean": 30.8607,
+        "stddev": 20.6833,
+        "n": 6
+      },
+      "tokens": {
+        "mean": 177302.8334,
+        "stddev": 72442.7501,
+        "n": 6
+      }
+    },
+    "delta": {
+      "pass_rate": 0.107,
+      "time_seconds": 2.7827,
+      "tokens": 25308.0555
+    }
+  },
+  "cases": {
+    "vague-request-asks-one-question": {
+      "with_skill": {
+        "passed": 13,
+        "failed": 2,
+        "total": 15,
+        "pass_rate": 0.8667,
+        "checks": [
+          {
+            "text": "Meets criterion: Asks exactly one question in the reply",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The question is about the problem and users, the first in the sequence",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Options, if offered, are lettered with the recommended one first",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no file and creates no directory",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not invoke sdd:spec-generator",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 14,
+        "failed": 1,
+        "total": 15,
+        "pass_rate": 0.9333,
+        "checks": [
+          {
+            "text": "Meets criterion: Asks exactly one question in the reply",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The question is about the problem and users, the first in the sequence",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Options, if offered, are lettered with the recommended one first",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no file and creates no directory",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not invoke sdd:spec-generator",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "fully-specified-request-writes-discovery": {
+      "with_skill": {
+        "passed": 16,
+        "failed": 8,
+        "total": 24,
+        "pass_rate": 0.6667,
+        "checks": [
+          {
+            "text": "Meets criterion: Writes project/work-items/03-usage-digest/discovery.md and treats the given name and number as confirmed, asking no further question; any variable the request leaves open goes under Open questions with a recommended answer",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The header carries Status: Draft, spec type feature and workflow Requirements-First",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Includes Problem, Users and outcomes, Scope, Approach, Decisions, Constraints, Edge and failure states, Terms and Open questions sections",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Decisions carry the given values: Monday 08:00 UTC, the current Billing_Period to date with its percentage of the Quota, one digest per account per week, enabled by default",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Edge states carry the given behaviour: zero Usage_Meter, suspended account, retry hourly at most three times",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Terms lists Account_Owner and Account_Admin, marking each as existing or new",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops with the message: `discovery.md` is written to `project/work-items/03-usage-digest/discovery.md`. Review it and reply \"approved\", or tell me what to change. I will not start the spec until you approve.",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no requirements.md, design.md or tasks.md and does not invoke sdd:spec-generator",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 3,
+        "failed": 21,
+        "total": 24,
+        "pass_rate": 0.125,
+        "checks": [
+          {
+            "text": "Meets criterion: Writes project/work-items/03-usage-digest/discovery.md and treats the given name and number as confirmed, asking no further question; any variable the request leaves open goes under Open questions with a recommended answer",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The header carries Status: Draft, spec type feature and workflow Requirements-First",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Includes Problem, Users and outcomes, Scope, Approach, Decisions, Constraints, Edge and failure states, Terms and Open questions sections",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Decisions carry the given values: Monday 08:00 UTC, the current Billing_Period to date with its percentage of the Quota, one digest per account per week, enabled by default",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Edge states carry the given behaviour: zero Usage_Meter, suspended account, retry hourly at most three times",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Terms lists Account_Owner and Account_Admin, marking each as existing or new",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops with the message: `discovery.md` is written to `project/work-items/03-usage-digest/discovery.md`. Review it and reply \"approved\", or tell me what to change. I will not start the spec until you approve.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no requirements.md, design.md or tasks.md and does not invoke sdd:spec-generator",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "defect-report-routes-to-bugfix": {
+      "with_skill": {
+        "passed": 10,
+        "failed": 2,
+        "total": 12,
+        "pass_rate": 0.8333,
+        "checks": [
+          {
+            "text": "Meets criterion: Identifies the request as a defect in existing behaviour rather than a new feature",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Tells the user to run sdd:spec-generator in bugfix mode",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no file and creates no directory, including no discovery.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not run a feature discovery interview",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 10,
+        "failed": 2,
+        "total": 12,
+        "pass_rate": 0.8333,
+        "checks": [
+          {
+            "text": "Meets criterion: Identifies the request as a defect in existing behaviour rather than a new feature",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Tells the user to run sdd:spec-generator in bugfix mode",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no file and creates no directory, including no discovery.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not run a feature discovery interview",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "proposes-next-number-across-gaps": {
+      "old_skill": {
+        "passed": 10,
+        "failed": 2,
+        "total": 12,
+        "pass_rate": 0.8333,
+        "checks": [
+          {
+            "text": "Meets criterion: Proposes a work item numbered 06, not 03 and not 04",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Proposes a kebab-case name in the form 06-<name>",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Asks the user to confirm or change the name and number before creating anything",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Creates no directory and writes no discovery.md in this reply",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 12,
+        "failed": 0,
+        "total": 12,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Meets criterion: Proposes a work item numbered 06, not 03 and not 04",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Proposes a kebab-case name in the form 06-<name>",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Asks the user to confirm or change the name and number before creating anything",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Creates no directory and writes no discovery.md in this reply",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "approval-sets-status-and-hands-off": {
+      "old_skill": {
+        "passed": 12,
+        "failed": 6,
+        "total": 18,
+        "pass_rate": 0.6667,
+        "checks": [
+          {
+            "text": "Meets criterion: Treats the reply as explicit approval and asks no further discovery questions",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Sets the Status line of discovery.md to Approved followed by a date in YYYY-MM-DD form",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Leaves the Problem, Scope, Decisions, Constraints and Edge and failure states sections unchanged",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gives the handoff sentence: Discovery approved. Next: `sdd:spec-generator` for work item `project/work-items/04-usage-digest/`, feature, Requirements-First; it reads `discovery.md` as context for `requirements.md`, or for `design.md` under Design-First.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Names sdd:spec-generator as the next skill and passes the work-item path project/work-items/04-usage-digest/",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no requirements.md, design.md or tasks.md under the spec-discovery skill",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 12,
+        "failed": 6,
+        "total": 18,
+        "pass_rate": 0.6667,
+        "checks": [
+          {
+            "text": "Meets criterion: Treats the reply as explicit approval and asks no further discovery questions",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Sets the Status line of discovery.md to Approved followed by a date in YYYY-MM-DD form",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Leaves the Problem, Scope, Decisions, Constraints and Edge and failure states sections unchanged",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gives the handoff sentence: Discovery approved. Next: `sdd:spec-generator` for work item `project/work-items/04-usage-digest/`, feature, Requirements-First; it reads `discovery.md` as context for `requirements.md`, or for `design.md` under Design-First.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Names sdd:spec-generator as the next skill and passes the work-item path project/work-items/04-usage-digest/",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no requirements.md, design.md or tasks.md under the spec-discovery skill",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "draft-discovery-offers-resume": {
+      "with_skill": {
+        "passed": 15,
+        "failed": 0,
+        "total": 15,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Meets criterion: Identifies project/work-items/03-usage-digest/discovery.md as a draft on the same topic",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Asks whether to (a) resume that draft or (b) start afresh, as the only question in the reply",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not ask the problem-and-users question or any later discovery question",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not propose a new work-item name or the number 04",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no file, edits no file and creates no directory",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 15,
+        "failed": 0,
+        "total": 15,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Meets criterion: Identifies project/work-items/03-usage-digest/discovery.md as a draft on the same topic",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Asks whether to (a) resume that draft or (b) start afresh, as the only question in the reply",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not ask the problem-and-users question or any later discovery question",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not propose a new work-item name or the number 04",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no file, edits no file and creates no directory",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}

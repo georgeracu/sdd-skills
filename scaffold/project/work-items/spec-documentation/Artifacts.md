@@ -7,7 +7,7 @@ Every work item produces a set of files under `project/work-items/{NN}-{name}/`.
 ```
 project/work-items/
 ├── {NN}-{name}/
-│   ├── brainstorm.md              (features only — deleted after task-review)
+│   ├── discovery.md               (features only — deleted after task-review)
 │   ├── requirements.md            (features) / bugfix.md (bugs)
 │   ├── design.md
 │   ├── design-review-summary.md   (features only)
@@ -26,9 +26,9 @@ For the shape of each document, see the matching template under `templates/`.
 
 ## File reference
 
-### `brainstorm.md` (features only)
+### `discovery.md` (features only)
 
-**Created by:** `spec-generator` (copied from brainstorming output at `docs/superpowers/specs/`)
+**Created by:** `sdd:spec-discovery`
 **Lifecycle:** Deleted after `spec-task-review` passes
 **Purpose:** Context input for requirements generation. Not a formal spec — a conversation artefact.
 
@@ -110,7 +110,7 @@ Sequencing rules:
 **Created by:** `spec-task-review` gate
 **Lifecycle:** Permanent
 
-Records gate verdict. On pass, deletes `brainstorm.md`.
+Records gate verdict. On APPROVED or APPROVED WITH ISSUES, deletes `discovery.md`.
 
 ### `test-plan.md` (features only)
 
@@ -150,9 +150,6 @@ If no prior specs were impacted, the report states that clearly.
 
 | Artefact | Location | Reason |
 |---|---|---|
-| Brainstorming output | `docs/superpowers/specs/{topic}-design.md` | Owned by the `brainstorming` superpowers skill |
 | OpenAPI spec | `openapi.yaml` (or the project's API contract location) | Code, not spec |
 | Knowledge base updates | `knowledge-base/` | Project-wide docs, not per-work-item |
 | ADRs | `docs/` or `knowledge-base/` | Cross-cutting decisions |
-
-The `brainstorm.md` file inside a work item is a COPY of the brainstorming output — the original stays in `docs/superpowers/specs/` and is owned by superpowers.

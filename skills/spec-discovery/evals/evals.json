@@ -1,0 +1,108 @@
+{
+  "skill_name": "spec-discovery",
+  "evals": [
+    {
+      "id": 1,
+      "slug": "vague-request-asks-one-question",
+      "prompt": "Use the sdd:spec-discovery skill. I want to add some kind of usage report to the product. Can you help me get started?",
+      "expected_output": "The reply asks exactly one question, about the problem and who is affected, with lettered options where the answers can be listed and the recommended option first. It does not ask a second question, does not propose a work-item name, and writes no file and creates no directory.",
+      "criteria": [
+        "Asks exactly one question in the reply",
+        "The question is about the problem and users, the first in the sequence",
+        "Options, if offered, are lettered with the recommended one first",
+        "Writes no file and creates no directory",
+        "Does not invoke sdd:spec-generator"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "slug": "fully-specified-request-writes-discovery",
+      "prompt": "Use the sdd:spec-discovery skill. We are adding a weekly usage digest for account owners. Problem: account owners only see usage by logging in, so they miss spikes until the invoice arrives. Users: Account_Owner receives the digest; Account_Admin can switch it off for the account. In scope: (1) a weekly email digest of the account's Usage_Meter, (2) an opt-out setting per account, (3) a digest preview endpoint. Out of scope: per-user digests, custom schedules, PDF export. Approach: build the digest from the existing usage records and send it through the existing Notification_Service; no new table. Decisions: sent every Monday at 08:00 UTC; reports the Usage_Meter for the current Billing_Period to date and its percentage of the Quota; at most one digest per account per week; opt-out defaults to off (digest enabled). Constraints: reuse Notification_Service with a new digest template; add no new datastore. Edge states: an account whose Usage_Meter is zero gets no digest; a suspended account gets no digest; if Notification_Service is unavailable the send is retried the next hour, at most three times. The workflow is Requirements-First and the work item is named 03-usage-digest. The shared architecture and domain language files are available for context.",
+      "expected_output": "The reply writes project/work-items/03-usage-digest/discovery.md without asking further questions, because the request fixes every variable and the name is given. The file has the header with Status: Draft, Problem, Users and outcomes, Scope with three in-scope items and the exclusions, Approach, Decisions carrying the Monday 08:00 UTC timing, the current Billing_Period to date with its percentage of the Quota, one digest per account per week and default enabled, Constraints, Edge and failure states, Terms and Open questions. It then stops with the exact review-gate message naming the path and writes no requirements.md.",
+      "criteria": [
+        "Writes project/work-items/03-usage-digest/discovery.md and treats the given name and number as confirmed, asking no further question; any variable the request leaves open goes under Open questions with a recommended answer",
+        "The header carries Status: Draft, spec type feature and workflow Requirements-First",
+        "Includes Problem, Users and outcomes, Scope, Approach, Decisions, Constraints, Edge and failure states, Terms and Open questions sections",
+        "Decisions carry the given values: Monday 08:00 UTC, the current Billing_Period to date with its percentage of the Quota, one digest per account per week, enabled by default",
+        "Edge states carry the given behaviour: zero Usage_Meter, suspended account, retry hourly at most three times",
+        "Terms lists Account_Owner and Account_Admin, marking each as existing or new",
+        "Stops with the message: `discovery.md` is written to `project/work-items/03-usage-digest/discovery.md`. Review it and reply \"approved\", or tell me what to change. I will not start the spec until you approve.",
+        "Writes no requirements.md, design.md or tasks.md and does not invoke sdd:spec-generator"
+      ],
+      "files": [
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/fully-specified/project"
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "defect-report-routes-to-bugfix",
+      "prompt": "Use the sdd:spec-discovery skill. Quota alerts are firing twice for the same threshold in a billing period. The spec for quota alerts says one alert per threshold per billing period, so the current behaviour is wrong. Can you start on this?",
+      "expected_output": "The reply recognises a defect in existing behaviour against its spec, tells the user to run sdd:spec-generator in bugfix mode, and writes nothing.",
+      "criteria": [
+        "Identifies the request as a defect in existing behaviour rather than a new feature",
+        "Tells the user to run sdd:spec-generator in bugfix mode",
+        "Writes no file and creates no directory, including no discovery.md",
+        "Does not run a feature discovery interview"
+      ],
+      "files": [
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md"
+      ]
+    },
+    {
+      "id": 4,
+      "slug": "proposes-next-number-across-gaps",
+      "prompt": "Use the sdd:spec-discovery skill. We are adding a per-account API rate limit display. Problem: account owners cannot see how close they are to the request limit of their plan, so they hit it unexpectedly. Users: Account_Owner views it. In scope: (1) a read-only rate limit summary endpoint. Out of scope: changing limits, alerts. Approach: read the counters the gateway already keeps. Decisions: counters reset hourly; the summary reports used and remaining requests; no caching. Constraints: add no new datastore. Edge states: an account with no counters reports zero used; an unavailable counter source returns a service-unavailable error. The workflow is Requirements-First. I have not picked a name for the work item yet. Existing work items are in the working directory; there is no architecture document for this project.",
+      "expected_output": "The reply proposes a kebab-case name and the number 06, as 06-<kebab-name>, taking the highest existing number 05 plus one rather than 03 or a count of directories, and asks the user to confirm or change it. It creates no directory and writes no file until the user confirms.",
+      "criteria": [
+        "Proposes a work item numbered 06, not 03 and not 04",
+        "Proposes a kebab-case name in the form 06-<name>",
+        "Asks the user to confirm or change the name and number before creating anything",
+        "Creates no directory and writes no discovery.md in this reply"
+      ],
+      "files": [
+        "evals/files/number-gaps/project"
+      ]
+    },
+    {
+      "id": 5,
+      "slug": "approval-sets-status-and-hands-off",
+      "prompt": "Use the sdd:spec-discovery skill. Earlier you wrote project/work-items/04-usage-digest/discovery.md and stopped at the review gate. I have reviewed it. My reply: approved.",
+      "expected_output": "The reply treats the message as explicit approval. It sets the Status line of project/work-items/04-usage-digest/discovery.md to Approved followed by today's date in YYYY-MM-DD form and leaves every other section unchanged. It then gives the exact handoff sentence: Discovery approved. Next: `sdd:spec-generator` for work item `project/work-items/04-usage-digest/`, feature, Requirements-First; it reads `discovery.md` as context for `requirements.md`, or for `design.md` under Design-First. It asks no further discovery questions and writes no requirements.md, design.md or tasks.md under this skill.",
+      "criteria": [
+        "Treats the reply as explicit approval and asks no further discovery questions",
+        "Sets the Status line of discovery.md to Approved followed by a date in YYYY-MM-DD form",
+        "Leaves the Problem, Scope, Decisions, Constraints and Edge and failure states sections unchanged",
+        "Gives the handoff sentence: Discovery approved. Next: `sdd:spec-generator` for work item `project/work-items/04-usage-digest/`, feature, Requirements-First; it reads `discovery.md` as context for `requirements.md`, or for `design.md` under Design-First.",
+        "Names sdd:spec-generator as the next skill and passes the work-item path project/work-items/04-usage-digest/",
+        "Writes no requirements.md, design.md or tasks.md under the spec-discovery skill"
+      ],
+      "files": [
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/approval/project"
+      ]
+    },
+    {
+      "id": 6,
+      "slug": "draft-discovery-offers-resume",
+      "prompt": "Use the sdd:spec-discovery skill. We want to send account owners a weekly email summary of their usage. Existing work items are in the working directory.",
+      "expected_output": "The reply finds that project/work-items/03-usage-digest/ holds only a discovery.md with Status: Draft on the same topic, and asks one question: (a) resume that draft, or (b) start afresh. It does not ask the problem question, does not propose a new work-item name or number, and writes no file and creates no directory.",
+      "criteria": [
+        "Identifies project/work-items/03-usage-digest/discovery.md as a draft on the same topic",
+        "Asks whether to (a) resume that draft or (b) start afresh, as the only question in the reply",
+        "Does not ask the problem-and-users question or any later discovery question",
+        "Does not propose a new work-item name or the number 04",
+        "Writes no file, edits no file and creates no directory"
+      ],
+      "files": [
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/resume-draft/project"
+      ]
+    }
+  ]
+}

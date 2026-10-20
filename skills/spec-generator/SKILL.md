@@ -1,6 +1,6 @@
 ---
 name: spec-generator
-description: 'Use when creating a feature spec or bugfix spec as part of the SDD pipeline. Generates structured specs under project/work-items/ following a three-phase workflow (requirements → design → tasks) with quality gates. Triggered after brainstorming or directly for bugfixes.'
+description: 'Use when creating a feature spec or bugfix spec as part of the SDD pipeline. Generates structured specs under project/work-items/ following a three-phase workflow (requirements → design → tasks) with quality gates. Triggered after sdd:spec-discovery or directly for bugfixes.'
 user-invocable: true
 ---
 
@@ -15,19 +15,17 @@ Generate or update structured specifications under `project/work-items/` followi
 
 Each spec produces or maintains three documents through an interactive three-phase process with user review gates between phases.
 
-## Brainstorming Handoff (Feature Specs Only)
+## Discovery Handoff (Feature Specs Only)
 
-When starting a feature spec after brainstorming:
+`sdd:spec-discovery` creates `project/work-items/{NN}-{name}/`, writes `discovery.md` there and passes the directory path when it invokes this skill.
 
-1. Find the most recent file in `docs/superpowers/specs/` matching the topic
-2. Determine the next sequential work-item number in `project/work-items/`
-3. Create `project/work-items/{NN}-{name}/`
-4. Copy the brainstorming output to `brainstorm.md` in that directory
-5. Read `brainstorm.md` as context for generating `requirements.md`
+1. Take the work-item path from the handoff.
+2. When invoked directly for a feature, find the work item whose `discovery.md` matches the topic and has status `Approved`. Do not copy anything: the file stays in the work item.
+3. Read `discovery.md` as context for generating `requirements.md`.
 
-The brainstorming doc is reference material: it captures agreed direction and constraints but is not a formal spec document. It will be deleted after `sdd:spec-task-review` passes.
+`discovery.md` is reference material: it captures agreed direction and constraints but is not a formal spec document. It will be deleted after `sdd:spec-task-review` passes.
 
-For bugfix specs, skip this section entirely, as there is no brainstorming output.
+For bugfix specs, skip this section entirely, as there is no discovery output.
 
 ## Updating Existing Specs
 
@@ -55,17 +53,17 @@ Before generating any spec, read these for format and process guidance:
 - **Spec Documentation**: `project/work-items/spec-documentation/` -- detailed process documentation
 - **Existing Specs**: completed work items under `project/work-items/[0-9]*/` (those containing `implementation-audit.md`) -- real examples of completed specs for content quality reference
 
-A repository adopting the pipeline for the first time has none of these. When a reference location is missing, say so once in your reply and carry on: the document structures in this skill and in `references/` are the templates. Do not stop to ask for the missing reference directories and do not create them. The work item directory under `project/work-items/` is different: Step 1 always creates it, brainstorm copy included, even when it is the first one in the repository.
+A repository adopting the pipeline for the first time has none of these. When a reference location is missing, say so once in your reply and carry on: the document structures in this skill and in `references/` are the templates. Do not stop to ask for the missing reference directories and do not create them. The work item directory under `project/work-items/` is different: Step 1 creates it unless `sdd:spec-discovery` already did, even when it is the first one in the repository.
 
 ## Step 1: Gather Input & Determine Spec Type
 
-Ask the user:
+When a `discovery.md` header supplies the description, spec type and workflow, take them from there and ask only what it lacks. Otherwise ask the user:
 
 1. **Description**: What feature or bug are you speccing?
 2. **Spec type**: Feature or Bug?
 3. **Workflow** (features only): Requirements-First or Design-First?
 
-Then determine the next available sequential number:
+Then, unless the work-item directory already exists, determine the next available sequential number:
 
 ```bash
 # Scan existing directories in project/work-items/ for numbered prefixes
@@ -74,7 +72,7 @@ ls -d project/work-items/[0-9]*/ 2>/dev/null | sort -t/ -k3 -V | tail -1
 
 Without a shell, glob `project/work-items/[0-9]*/` instead. No match means this is work item `01`; that includes a repository with no `project/work-items/` tree at all.
 
-Create the directory under `project/work-items/` with the next sequential number, creating `project/work-items/` itself if it does not exist yet. Spec documents never go in the repository root, even when the repository has no `project/` tree:
+When the directory exists, skip numbering and use it. Otherwise create the directory under `project/work-items/` with the next sequential number, creating `project/work-items/` itself if it does not exist yet. Spec documents never go in the repository root, even when the repository has no `project/` tree:
 
 - Features: `{NN}-{kebab-case-name}/` (e.g., `01-user-authentication/`)
 - Bugs: `{NN}-{kebab-case-name}/` (e.g., `02-null-pointer-on-login/`)
@@ -182,6 +180,8 @@ Key conventions:
 ### Design-First Feature -> `design.md`
 
 Follow the template at `project/work-items/templates/feature/design.md`.
+
+Read the Approach, Constraints and Decisions sections of `discovery.md` as input to `design.md`.
 
 See **Design Document Sections** below for the full structure and required sections.
 
@@ -414,8 +414,8 @@ After the user approves `tasks.md` for a feature spec, invoke the **sdd:spec-tas
 
 **Based on review outcome:**
 
-- **APPROVED**: `brainstorm.md` is deleted. Proceed to `sdd:spec-qa-review` plan mode.
-- **APPROVED WITH ISSUES**: Inform user. Recommend fixes but allow proceeding.
+- **APPROVED**: `discovery.md` is deleted. Proceed to `sdd:spec-qa-review` plan mode.
+- **APPROVED WITH ISSUES**: Inform user. Recommend fixes but allow proceeding; `discovery.md` is deleted when proceeding.
 - **BLOCKED**: Fix `tasks.md` issues, re-run review.
 
 ## Step 7: Quality Checklist
@@ -459,7 +459,7 @@ User describes feature/bug
   & create directory
         |
         v
-  Brainstorming handoff       <-- Copy brainstorm.md (features only)
+  Discovery handoff           <-- Read discovery.md in work item
   (Feature specs only)
         |
         v
