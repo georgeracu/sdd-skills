@@ -5,8 +5,6 @@ description: Use after all implementation tasks are complete to verify the codeb
 
 # Spec Implementation Audit — Quality Gate
 
-Full verification that completed implementation matches the specification. Runs once after all tasks are done.
-
 **Workflow Position:** Runs AFTER `subagent-driven-development` completes all tasks and BEFORE `sdd:spec-qa-review` review mode.
 
 ## Prerequisites
@@ -15,7 +13,6 @@ Verify these files exist in `project/work-items/{NN}-{name}/`:
 
 1. `requirements.md` (or `bugfix.md` for a bugfix work item): the source of truth for what was requested
 2. `design.md` — the source of truth for how it should be built
-3. `tasks.md` — all non-optional tasks should be checked off
 
 ## Audit Process
 
@@ -25,8 +22,8 @@ The audit reads the work item and the code and changes neither. The only file it
 
 For every requirement in `requirements.md`, locate corresponding code in the codebase:
 
-- Frontend source (e.g. `frontend/src/`)
-- Backend source (e.g. `backend/src/main/kotlin/`)
+- Frontend source
+- Backend source
 - Infrastructure-as-code files (e.g. CloudFormation or Terraform templates)
 - API contracts in `openapi.yaml`
 
@@ -55,7 +52,7 @@ For each requirement's acceptance criteria, verify error states and edge cases:
 
 ### 4. Tasks Completed
 
-Read `tasks.md` and count:
+Read `tasks.md` and count. The audit never edits `tasks.md`: it reads each checkbox as it was when the audit started, and a box ticked during the audit does not count.
 
 - A non-optional task (`- [ ]` without `*` prefix) is complete only when its checkbox is `- [x]`. A status table, a commit hash or the user's word that the task is done is context for the finding, not completion.
 - An unticked optional task counts as Skipped, with no finding.
@@ -84,74 +81,16 @@ Collect and paste evidence:
 
 Every evidence block holds the command line and its verbatim output. Run each command that `AGENTS.md` or the README names. Output the user supplies counts when it shows the command and its result; the user's word that tests pass does not count. A command the project does not have reads `NOT APPLICABLE: [where AGENTS.md or the README says so]` and is no finding. A command the project has, with no output, reads `NOT RUN: [reason]` and nothing else, and is a MAJOR finding whatever the reason.
 
-## Severity Levels
-
-- **CRITICAL**: Missing implementation, contradicts spec, uncompleted tasks
-- **MAJOR**: Missing edge cases, stale docs, missing evidence
-- **MINOR**: Style issues, minor naming inconsistencies
-
 ## Output
 
-Write `project/work-items/{NN}-{name}/implementation-audit.md`. Use `project/work-items/templates/gates/implementation-audit.md` as the structure when it exists; otherwise use the outline below.
+Write `project/work-items/{NN}-{name}/implementation-audit.md` from `project/work-items/templates/gates/implementation-audit.md`. If the template is missing, use these headings: Status, Per-Requirement Status, Task Completion, Discrepancies, Evidence, Verdict.
 
-````
-# Implementation Audit: {Spec Name}
-
-**Audit Date:** YYYY-MM-DD
-**Status:** PASSED | FAILED
-
-## Per-Requirement Status
-
-| Requirement | AC | Status | Evidence |
-|------------|-----|--------|----------|
-| Req 1 | 1.1 | ✅ Implemented | Handler at backend/src/.../Handler.kt |
-| Req 1 | 1.2 | ❌ Missing | No error handling for X |
-
-## Task Completion
-
-- Total tasks: N
-- Completed: N
-- Skipped (optional): N
-- Incomplete: N
-
-## Discrepancies
-
-### CRITICAL-NNN: [Title]
-**Requirement:** [Reference]
-**Expected:** [From spec]
-**Actual:** [From codebase]
-**Action:** [Fix needed]
-
-## Evidence
-
-### Backend Build & Tests
-```
-[Pasted output from the backend build]
-```
-
-### Frontend Build & Tests
-```
-[Pasted output from the frontend build and tests]
-```
-
-### E2E Tests
-```
-[Pasted output from the E2E tests]
-```
-
-### API Type Freshness
-```
-[Output of the type-generation script showing no diff, or the diff if stale]
-```
-
-## Verdict
-
-[PASSED/FAILED reasoning]
-````
+- Per-Requirement Status: one row per acceptance criterion, with the code file that implements it as evidence.
+- Verdict: the outcome and the next step from the Gate.
 
 ## Gate
 
-Set the one `**Status:**` line from the findings. Its value is exactly `PASSED` or `FAILED`, with nothing after it. Every `NOT RUN` evidence block is a MAJOR finding.
+Set the one `**Status:**` line from the findings. Its value is exactly `PASSED` or `FAILED`, with nothing after it. Every `NOT RUN` evidence block is a MAJOR finding. A naming or style issue is a MINOR finding.
 
-- **FAILED** on any CRITICAL or MAJOR finding. Dispatch fix subagents for the specific gaps via `subagent-driven-development`, then re-run this audit. If the `implementation-audit.md` already in the work item directory has `**Status:** FAILED`, ask the user instead of dispatching again.
+- **FAILED** on any CRITICAL or MAJOR finding. Stop once the report is written: the audit does not fix findings, tick tasks or re-run itself. The caller dispatches fix subagents for the specific gaps via `subagent-driven-development`, then re-runs this audit. If the `implementation-audit.md` already in the work item directory had `**Status:** FAILED` before this audit, the caller asks the user instead of dispatching again.
 - **PASSED** on MINOR findings only, or none. Invoke `sdd:spec-qa-review` in review mode.
