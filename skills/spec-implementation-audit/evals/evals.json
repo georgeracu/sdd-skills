@@ -229,7 +229,7 @@
       "id": 5,
       "slug": "property-without-implementation",
       "prompt": "Everything on 01-threshold-alerts is ticked and the build is green (output is in build-output.txt). Run the implementation audit. The requirements, design and tasks for the work item are in the working directory, with the code alongside them (the files are flat here, so read each by its name).",
-      "expected_output": "All tasks are ticked and the pasted build output is green, but AlertEvaluator never records or reads fired thresholds: UsageMeterRepository has no firedThresholds or markFired, and every increment at or above a threshold publishes the quota-threshold alert again. Property 1 in design.md (at most one alert per threshold per Billing_Period) therefore has no implementing code, and the tests do not exercise it. The skill has no check named for correctness properties, but the property is backed by acceptance criteria 2.3 (record fired thresholds scoped to the Billing_Period) and 2.4 (no repeat alert), which have no implementation or are contradicted. Under the Feature Exists and Behaviour Matches rules these are CRITICAL, so the audit should raise CRITICAL findings referencing AC 2.3 and 2.4 (and Property 1), mark those rows missing or partial, and set Status and Verdict to FAILED despite the green build. Requirement 1, the suspended-Account rule (2.5) and the quota-threshold template payload are implemented and should not be flagged. The ARCHITECTURE.md claim that fired state is recorded is stale against the code, which may be raised as MAJOR.",
+      "expected_output": "All tasks are ticked and the pasted build output is green, but AlertEvaluator never records or reads fired thresholds: UsageMeterRepository has no firedThresholds or markFired, and every increment at or above a threshold publishes the quota-threshold alert again. Property 1 in design.md (at most one alert per threshold per Billing_Period) therefore has no implementing code, and the tests do not exercise it. Under the Correctness Properties rule a property with no enforcing code is CRITICAL, and the criteria it validates, 2.3 (record fired thresholds scoped to the Billing_Period) and 2.4 (no repeat alert), have no implementation or are contradicted, which is CRITICAL under Feature Exists and Behaviour Matches. The audit should raise a CRITICAL finding that names Property 1 and CRITICAL findings referencing AC 2.3 and 2.4, mark those rows missing or partial, and set Status and Verdict to FAILED despite the green build. Requirement 1, the suspended-Account rule (2.5) and the quota-threshold template payload are implemented and should not be flagged. The ARCHITECTURE.md claim that fired state is recorded is stale against the code, which may be raised as MAJOR.",
       "files": [
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
         "evals/files/work-item/requirements.md",
@@ -257,7 +257,7 @@
       "criteria": [
         "Writes implementation-audit.md in the working directory with Status FAILED despite all tasks ticked and a green build",
         "Raises a CRITICAL discrepancy for acceptance criteria 2.3 and 2.4: no fired-state is recorded or checked, so alerts repeat",
-        "Connects the finding to Property 1 in design.md, naming that nothing implements it and no test covers it",
+        "Raises a CRITICAL finding that names Property 1 in design.md, saying that nothing implements it and no test covers it",
         "Marks the AC 2.3 and 2.4 rows as missing or partial, and AC 2.5, 2.2 and Requirement 1 rows as implemented",
         "The Verdict says a green build does not offset the missing behaviour, and the action is to implement the fired-state recording and re-run the audit",
         "Pastes the build output from build-output.txt in the Evidence section"
@@ -275,6 +275,61 @@
           },
           {
             "text": "Status: PASSED",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "slug": "property-without-backing-criterion",
+      "prompt": "All the tasks on 01-threshold-alerts are done and ticked off. Run the implementation audit before we go to QA review. The requirements, design and tasks for the work item are in the working directory, with the code alongside them (the files are flat here, so read each by its name). The output of the backend build, the frontend build and tests, and the API type generation check is in build-output.txt.",
+      "expected_output": "The code, tasks, documentation and build output are the same as a clean pass: every acceptance criterion of Requirements 1 and 2 is implemented and tested, all five non-optional tasks are ticked, and build-output.txt is green. design.md, however, adds Property 4 (one increment that crosses several Alert_Thresholds sends one Quota_Alert per threshold, in ascending threshold order), and its Validates line names Requirement 2.6, which requirements.md does not have. The code does enforce it (AlertEvaluator iterates the stored, sorted Threshold_Set) and AlertEvaluatorTest exercises it ('sends both alerts when one increment crosses 80 and 100'), so this is not a missing implementation. Under the Correctness Properties rule a property whose Validates line names an acceptance criterion requirements.md does not have is MAJOR. The audit should raise a MAJOR finding that names Property 4 and the missing Requirement 2.6, raise no CRITICAL finding, mark every acceptance criterion row implemented, and set Status and Verdict to FAILED, with the action to add the backing criterion to requirements.md or remove the property from design.md and re-run the audit. Properties 1 to 3 are backed, implemented and tested and should not be flagged. The audit is written as implementation-audit.md in the working directory.",
+      "files": [
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/work-item/requirements.md",
+        "evals/files/property-unbacked/design.md",
+        "evals/files/code/AGENTS.md",
+        "evals/files/code/ARCHITECTURE.md",
+        "evals/files/code/openapi.yaml",
+        "evals/files/code/Ports.kt",
+        "evals/files/code/ThresholdValidator.kt",
+        "evals/files/code/ThresholdsHandler.kt",
+        "evals/files/code/AlertEvaluator.kt",
+        "evals/files/code/IngestHandler.kt",
+        "evals/files/code/DynamoUsageMeterRepository.kt",
+        "evals/files/code/ThresholdValidatorTest.kt",
+        "evals/files/code/ThresholdsHandlerTest.kt",
+        "evals/files/code/AlertEvaluatorTest.kt",
+        "evals/files/code/IngestHandlerTest.kt",
+        "evals/files/code/DynamoUsageMeterRepositoryTest.kt",
+        "evals/files/clean-pass/tasks.md",
+        "evals/files/evidence/build-output.txt"
+      ],
+      "expected_files": [
+        "implementation-audit.md"
+      ],
+      "criteria": [
+        "Writes implementation-audit.md in the working directory with Status FAILED despite all tasks ticked and a green build",
+        "Raises a MAJOR finding that names Property 4 and says its Validates line cites Requirement 2.6, which requirements.md does not have",
+        "Does not raise a CRITICAL finding: Property 4 is implemented by AlertEvaluator and tested by AlertEvaluatorTest",
+        "Per-Requirement Status marks every acceptance criterion of Requirements 1 and 2 implemented, with evidence naming a code file",
+        "Does not flag Properties 1, 2 or 3",
+        "The Verdict states FAILED and the action is to add the backing criterion to requirements.md or remove Property 4, then re-run the audit"
+      ],
+      "assertions": {
+        "must_include": [
+          "MAJOR",
+          "FAILED",
+          "Property 4"
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          },
+          {
+            "text": "CRITICAL-0",
             "scope": "outputs"
           }
         ]
