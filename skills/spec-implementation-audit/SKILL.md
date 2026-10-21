@@ -1,6 +1,6 @@
 ---
 name: spec-implementation-audit
-description: Use after all implementation tasks are complete to verify the codebase matches the spec. Runs once after subagent-driven-development finishes all tasks. Checks feature completeness, behaviour correctness, edge case handling, task completion, documentation updates, and collects proof of implementation.
+description: Implementation audit gate. Use when every task in a work item's tasks.md is done and before sdd:spec-qa-review review mode, or when re-running after a FAILED audit. Compares the code with requirements.md and design.md and writes implementation-audit.md.
 ---
 
 # Spec Implementation Audit — Quality Gate
@@ -40,7 +40,14 @@ For each implemented requirement, verify the logic matches the spec:
 
 **Flag as CRITICAL:** Implementation contradicts spec.
 
-### 3. Edge Cases Handled
+### 3. Correctness Properties
+
+For every property under Correctness Properties in `design.md`, name the acceptance criteria its `Validates` line cites, the code that enforces it and the test that exercises it. Name the property by its number in each finding.
+
+**Flag as CRITICAL:** a property with no enforcing code, or code that contradicts it.
+**Flag as MAJOR:** a property with no enforcing test; a property with no `Validates` line, or whose `Validates` line names an acceptance criterion that `requirements.md` does not have.
+
+### 4. Edge Cases Handled
 
 For each requirement's acceptance criteria, verify error states and edge cases:
 
@@ -50,7 +57,7 @@ For each requirement's acceptance criteria, verify error states and edge cases:
 
 **Flag as MAJOR:** Missing error handling for specified edge cases.
 
-### 4. Tasks Completed
+### 5. Tasks Completed
 
 Read `tasks.md` and count. The audit never edits `tasks.md`: it reads each checkbox as it was when the audit started, and a box ticked during the audit does not count.
 
@@ -59,7 +66,7 @@ Read `tasks.md` and count. The audit never edits `tasks.md`: it reads each check
 
 **Flag as CRITICAL:** each non-optional task still unchecked. The action is to tick it or finish it, then re-run the audit.
 
-### 5. Documentation Updated
+### 6. Documentation Updated
 
 Verify:
 
@@ -70,7 +77,7 @@ Verify:
 
 **Flag as MAJOR:** Stale documentation.
 
-### 6. Proof of Implementation
+### 7. Proof of Implementation
 
 Collect and paste evidence:
 

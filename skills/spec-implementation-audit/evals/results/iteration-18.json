@@ -1,0 +1,373 @@
+{
+  "iteration": "iteration-18",
+  "pack_hash": "0bd80453bc4ef21ad2a18391d2dd3e321355995daced83738d30a286fce1c885",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9722,
+        "stddev": 0.0278,
+        "n": 2
+      },
+      "time_seconds": {
+        "mean": 145.8608,
+        "stddev": 5.7045,
+        "n": 2
+      },
+      "tokens": {
+        "mean": 430489.5,
+        "stddev": 9116.5,
+        "n": 2
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.8611,
+        "stddev": 0.0833,
+        "n": 2
+      },
+      "time_seconds": {
+        "mean": 101.9738,
+        "stddev": 5.1438,
+        "n": 2
+      },
+      "tokens": {
+        "mean": 387648.1667,
+        "stddev": 13467.8334,
+        "n": 2
+      }
+    },
+    "delta": {
+      "pass_rate": 0.1111,
+      "time_seconds": 43.887,
+      "tokens": 42841.3333
+    }
+  },
+  "cases": {
+    "property-without-implementation": {
+      "old_skill": {
+        "passed": 34,
+        "failed": 2,
+        "total": 36,
+        "pass_rate": 0.9444,
+        "checks": [
+          {
+            "text": "Output includes: CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Property 1",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Status: PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: implementation-audit.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes implementation-audit.md in the working directory with Status FAILED despite all tasks ticked and a green build",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a CRITICAL discrepancy for acceptance criteria 2.3 and 2.4: no fired-state is recorded or checked, so alerts repeat",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a CRITICAL finding that names Property 1 in design.md, saying that nothing implements it and no test covers it",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Marks the AC 2.3 and 2.4 rows as missing or partial, and AC 2.5, 2.2 and Requirement 1 rows as implemented",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Verdict says a green build does not offset the missing behaviour, and the action is to implement the fired-state recording and re-run the audit",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Pastes the build output from build-output.txt in the Evidence section",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 34,
+        "failed": 2,
+        "total": 36,
+        "pass_rate": 0.9444,
+        "checks": [
+          {
+            "text": "Output includes: CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Property 1",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Status: PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: implementation-audit.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes implementation-audit.md in the working directory with Status FAILED despite all tasks ticked and a green build",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a CRITICAL discrepancy for acceptance criteria 2.3 and 2.4: no fired-state is recorded or checked, so alerts repeat",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a CRITICAL finding that names Property 1 in design.md, saying that nothing implements it and no test covers it",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Marks the AC 2.3 and 2.4 rows as missing or partial, and AC 2.5, 2.2 and Requirement 1 rows as implemented",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Verdict says a green build does not offset the missing behaviour, and the action is to implement the fired-state recording and re-run the audit",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Pastes the build output from build-output.txt in the Evidence section",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "property-without-backing-criterion": {
+      "with_skill": {
+        "passed": 36,
+        "failed": 0,
+        "total": 36,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: MAJOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Property 4",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: CRITICAL-0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: implementation-audit.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes implementation-audit.md in the working directory with Status FAILED despite all tasks ticked and a green build",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a MAJOR finding that names Property 4 and says its Validates line cites Requirement 2.6, which requirements.md does not have",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not raise a CRITICAL finding: Property 4 is implemented by AlertEvaluator and tested by AlertEvaluatorTest",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Per-Requirement Status marks every acceptance criterion of Requirements 1 and 2 implemented, with evidence naming a code file",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not flag Properties 1, 2 or 3",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Verdict states FAILED and the action is to add the backing criterion to requirements.md or remove Property 4, then re-run the audit",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 28,
+        "failed": 8,
+        "total": 36,
+        "pass_rate": 0.7778,
+        "checks": [
+          {
+            "text": "Output includes: MAJOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Property 4",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: CRITICAL-0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: implementation-audit.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes implementation-audit.md in the working directory with Status FAILED despite all tasks ticked and a green build",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a MAJOR finding that names Property 4 and says its Validates line cites Requirement 2.6, which requirements.md does not have",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not raise a CRITICAL finding: Property 4 is implemented by AlertEvaluator and tested by AlertEvaluatorTest",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Per-Requirement Status marks every acceptance criterion of Requirements 1 and 2 implemented, with evidence naming a code file",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not flag Properties 1, 2 or 3",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Verdict states FAILED and the action is to add the backing criterion to requirements.md or remove Property 4, then re-run the audit",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
