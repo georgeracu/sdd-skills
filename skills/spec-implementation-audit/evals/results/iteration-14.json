@@ -1,0 +1,199 @@
+{
+  "iteration": "iteration-14",
+  "pack_hash": "b1f10cd5a1c44664044790b50192d58476e8476df64e787109fb099e18a7df4b",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.8485,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 132.8047,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 503106,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.8182,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 100.7207,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 391598.6667,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "delta": {
+      "pass_rate": 0.0303,
+      "time_seconds": 32.084,
+      "tokens": 111507.3333
+    }
+  },
+  "cases": {
+    "unticked-tasks-no-table": {
+      "old_skill": {
+        "passed": 27,
+        "failed": 6,
+        "total": 33,
+        "pass_rate": 0.8182,
+        "checks": [
+          {
+            "text": "Output includes: CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Status: PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: implementation-audit.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes implementation-audit.md in the working directory with Status FAILED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises CRITICAL findings for the unchecked non-optional tasks 3 and 4, naming both tasks",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Task Completion shows two incomplete tasks and three completed, and treats the unticked optional task 6 as skipped rather than incomplete",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not raise a CRITICAL finding for task 6 or for tasks 1, 2 and 5",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Verdict explains that the failure is the uncompleted tasks, and the action is to complete or tick them and re-run the audit",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not present the build output as a reason to override the unchecked tasks",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 28,
+        "failed": 5,
+        "total": 33,
+        "pass_rate": 0.8485,
+        "checks": [
+          {
+            "text": "Output includes: CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Status: PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: implementation-audit.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes implementation-audit.md in the working directory with Status FAILED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises CRITICAL findings for the unchecked non-optional tasks 3 and 4, naming both tasks",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Task Completion shows two incomplete tasks and three completed, and treats the unticked optional task 6 as skipped rather than incomplete",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not raise a CRITICAL finding for task 6 or for tasks 1, 2 and 5",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Verdict explains that the failure is the uncompleted tasks, and the action is to complete or tick them and re-run the audit",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not present the build output as a reason to override the unchecked tasks",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
