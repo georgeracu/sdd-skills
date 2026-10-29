@@ -30,8 +30,8 @@ The usage endpoint caches an Account's Quota for one hour in `QuotaService`, so 
 
 ### Unchanged Behavior (Regression Prevention)
 
-3.1 WHEN an Account has no Plan_Change between Usage_Read calls, THEN the QuotaService SHALL CONTINUE TO serve a cached Quota until its one-hour TTL expires.
+3.1 WHEN an Account has no Plan_Change between Usage_Read calls in the same Billing_Period, THEN the QuotaService SHALL CONTINUE TO serve a cached Quota until its one-hour TTL expires.
 
-3.2 WHEN a Plan_Change occurs, THEN the ingest path SHALL CONTINUE TO record events during any read-cache transition.
+3.2 WHEN a Plan_Change occurs, THEN the ingest path SHALL CONTINUE TO record every event it acknowledges, and SHALL CONTINUE TO answer 503 to a call it cannot record, so that the client retries it.
 
 3.3 WHEN a Plan_Change occurs, THEN the Plan_Changed_Notification SHALL CONTINUE TO fire.

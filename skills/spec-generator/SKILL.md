@@ -283,7 +283,7 @@ After the user approves design.md AND both requirements.md and design.md exist, 
 **Based on review outcome:**
 
 - **APPROVED**: Proceed to tasks.md generation
-- **APPROVED WITH MINOR ISSUES**: Inform the user of issues found. Recommend addressing major issues but allow proceeding to tasks.md if the user chooses
+- **APPROVED WITH ISSUES**: Inform the user of issues found. Recommend addressing major issues but allow proceeding to tasks.md if the user chooses
 - **BLOCKED**: Do NOT proceed to tasks.md. Then, in this order:
 
    1. Present every critical finding.

@@ -9,7 +9,7 @@ Account_Owners need advance notice before API usage reaches the Account's Quota.
 - **Account_Owner**: The user who manages an Account and receives account notifications.
 - **Account**: A paying customer with one Plan and one usage meter.
 - **Quota**: The usage limit supplied by an Account's Plan.
-- **Usage_Meter**: The per-Account, per-Billing_Period usage record.
+- **Usage_Meter**: The running count of Metered_Events for an Account in the current Billing_Period.
 - **Alert_Threshold**: A distinct integer percentage from 1 through 100 of Quota.
 - **Quota_Alert**: A notification sent when a Usage_Meter crosses an Alert_Threshold.
 - **Billing_Period**: One calendar month in UTC.
@@ -28,7 +28,7 @@ Account_Owners need advance notice before API usage reaches the Account's Quota.
 2. WHEN an Account_Owner replaces the Threshold_Set, THE Account API SHALL store one to five distinct integer Alert_Threshold values between 1 and 100.
 3. IF a replacement contains fewer than one, more than five, duplicate, non-integer or out-of-range values, THEN THE Account API SHALL reject it with a validation error and leave the Threshold_Set unchanged.
 4. WHEN an Account_Owner reads the Threshold_Set, THE Account API SHALL return the current values.
-5. THE Account API SHALL expose read and replace operations for the Threshold_Set as a sub-resource shaped like the existing `plan` sub-resource, returning the standard error response for an unknown Account.
+5. THE Account API SHALL expose read and replace operations for the Threshold_Set as a sub-resource under the Account, placed like the existing `plan` sub-resource, with its `AccountId` parameter and its standard error responses.
 
 ### Requirement 2: Evaluate usage crossings
 
@@ -37,7 +37,7 @@ Account_Owners need advance notice before API usage reaches the Account's Quota.
 #### Acceptance Criteria
 
 1. WHEN the ingest path increments a Usage_Meter, THE Account SHALL evaluate the new usage percentage against each Alert_Threshold.
-2. WHEN a Usage_Meter reaches an Alert_Threshold for the first time in a Billing_Period, THE Notification_Service SHALL send one Quota_Alert to the Account_Owner.
+2. WHEN a Usage_Meter reaches an Alert_Threshold for the first time in a Billing_Period, THE Notification_Service SHALL send one Quota_Alert to the Account_Owner. A Quota_Alert that fails to send is logged and not retried.
 3. THE Usage_Meter SHALL retain which Alert_Threshold values have fired, resetting that state with the Billing_Period.
 4. IF an Alert_Threshold has already fired in the Billing_Period, THEN THE Account SHALL NOT send another Quota_Alert for that threshold.
 

@@ -4,13 +4,13 @@
     {
       "id": 1,
       "slug": "aligned-design-approved",
-      "prompt": "Review the design for the quota alerts work item at project/work-items/01-quota-alerts. requirements.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
+      "prompt": "Review the design for the quota alerts work item (01-quota-alerts). Its requirements.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
       "expected_output": "The design matches its requirements and the architecture, so the review should find no discrepancies and write a summary with overall status APPROVED, with zero critical, major and minor discrepancies and statistics covering five requirements. It should confirm the alignments that matter: evaluation on the ingest increment with fired state on the usage-meters item, delivery through the existing Notification_Service with the quota-threshold template, the thresholds sub-resource following the plan sub-resource with 400 and 404 responses, suspended accounts skipped, and the handler, service and repository layout. It should say the work can proceed to tasks.md generation and must not raise invented discrepancies.",
       "criteria": [
         "Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
-        "Overall status is APPROVED, not BLOCKED and not APPROVED WITH MINOR ISSUES",
+        "Overall status is APPROVED, not BLOCKED and not APPROVED WITH ISSUES",
         "Reports zero critical, major and minor discrepancies and covers all five requirements in the statistics",
-        "Confirms the alignments that carry the design, such as ingest-time evaluation, Notification_Service delivery with the quota-threshold template and the thresholds sub-resource shaped like plan",
+        "Confirms the alignments that carry the design, such as ingest-time evaluation, Notification_Service delivery with the quota-threshold template and the thresholds sub-resource placed like plan",
         "Does not invent discrepancies or demand changes to a design that is aligned",
         "Says the work item may proceed to tasks.md generation"
       ],
@@ -22,7 +22,7 @@
         "evals/files/shared/openapi.yaml"
       ],
       "expected_files": [
-        "01-quota-alerts/design-review-summary.md"
+        "design-review-summary.md"
       ],
       "assertions": {
         "must_include": [
@@ -35,7 +35,7 @@
             "scope": "outputs"
           },
           {
-            "text": "APPROVED",
+            "text": "**Status:** APPROVED",
             "scope": "outputs"
           }
         ],
@@ -51,6 +51,10 @@
           {
             "text": "MINOR-001",
             "scope": "outputs"
+          },
+          {
+            "text": "**Status:** APPROVED WITH",
+            "scope": "outputs"
           }
         ]
       }
@@ -58,7 +62,7 @@
     {
       "id": 2,
       "slug": "requirement-without-design-blocked",
-      "prompt": "Review the design for the quota alerts work item at project/work-items/01-quota-alerts. requirements.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
+      "prompt": "Review the design for the quota alerts work item (01-quota-alerts). Its requirements.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
       "expected_output": "Requirement 3 (suspended accounts, ACs 3.1 and 3.2) has no design support anywhere in design.md: nothing checks the account status and no correctness property traces to it. By the skill's rule a requirement without any design coverage is CRITICAL, so the summary must give overall status BLOCKED with at least one critical discrepancy (CRITICAL-001) naming Requirement 3 and its acceptance criteria, with a concrete fix such as a status check in QuotaAlertEvaluator and a matching correctness property and test. The remaining requirements are covered and should be listed as confirmed alignments. The reply must stop the workflow, tell the author to fix design.md and re-run the review, and not proceed to tasks.md.",
       "criteria": [
         "Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
@@ -76,7 +80,7 @@
         "evals/files/shared/openapi.yaml"
       ],
       "expected_files": [
-        "01-quota-alerts/design-review-summary.md"
+        "design-review-summary.md"
       ],
       "assertions": {
         "must_include": [
@@ -85,7 +89,7 @@
             "scope": "outputs"
           },
           {
-            "text": "BLOCKED",
+            "text": "**Status:** BLOCKED",
             "scope": "outputs"
           }
         ],
@@ -100,14 +104,14 @@
     {
       "id": 3,
       "slug": "naming-drift-major",
-      "prompt": "Review the design for the quota alerts work item at project/work-items/01-quota-alerts. requirements.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
-      "expected_output": "The design is complete and architecturally sound but drifts from the project's vocabulary: it calls the Account_Owner an Account_Admin, the Usage_Meter a Usage_Counter and the Alert_Threshold an Alert_Level, and names the usage-meters attribute usageCount where the existing table and the usage summary use metered. The skill classes terminology and data-model naming inconsistencies as MAJOR, and nothing here is critical, so the status should be APPROVED WITH MINOR ISSUES (not BLOCKED, not APPROVED), with major discrepancies (MAJOR-001 onward) naming the drifted terms against the glossary and the existing metered attribute and suggesting the renames. The summary should let the author continue to task generation while recommending the renames first.",
+      "prompt": "Review the design for the quota alerts work item (01-quota-alerts). Its requirements.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
+      "expected_output": "The design is complete and architecturally sound but drifts from the project's vocabulary. In identifiers, the evaluator takes a UsageCounterRepository where the glossary term is Usage_Meter and the existing repository is UsageMeterRepository, and names its count parameter usageCount where the usage-meters attribute and the usage summary use metered; the stored attribute itself is unchanged. In prose, it calls the Account_Owner an Account_Admin, the Usage_Meter a Usage_Counter and the Alert_Threshold an Alert_Level. Identifier drift is MAJOR and nothing here is critical, so the status should be APPROVED WITH ISSUES (not BLOCKED, not APPROVED), with major discrepancies (MAJOR-001 onward) naming the drifted identifiers and the prose drift named against the glossary, and concrete renames. The summary should let the author continue to task generation while recommending the renames first.",
       "criteria": [
         "Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
-        "Overall status is APPROVED WITH MINOR ISSUES, not BLOCKED and not plain APPROVED",
+        "Overall status is APPROVED WITH ISSUES, not BLOCKED and not plain APPROVED",
         "Reports no critical discrepancies",
-        "Raises major discrepancies that name the drifted terms (Account_Admin, Usage_Counter, Alert_Level) against the glossary terms Account_Owner, Usage_Meter and Alert_Threshold",
-        "Flags usageCount as inconsistent with the existing metered attribute and suggests renaming it",
+        "Raises a major discrepancy for the drifted identifier UsageCounterRepository against Usage_Meter and UsageMeterRepository; raising usageCount against metered is optional",
+        "Names the prose drift (Account_Admin, Usage_Counter, Alert_Level) against the glossary terms Account_Owner, Usage_Meter and Alert_Threshold",
         "Gives concrete rename fixes and allows continuation to tasks.md while recommending the major issues be fixed first"
       ],
       "files": [
@@ -118,7 +122,7 @@
         "evals/files/shared/openapi.yaml"
       ],
       "expected_files": [
-        "01-quota-alerts/design-review-summary.md"
+        "design-review-summary.md"
       ],
       "assertions": {
         "must_include": [
@@ -131,7 +135,7 @@
             "scope": "outputs"
           },
           {
-            "text": "APPROVED WITH MINOR ISSUES",
+            "text": "**Status:** APPROVED WITH ISSUES",
             "scope": "outputs"
           }
         ],
@@ -146,7 +150,7 @@
     {
       "id": 4,
       "slug": "synchronous-ses-call-blocked",
-      "prompt": "Review the design for the quota alerts work item at project/work-items/01-quota-alerts. requirements.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
+      "prompt": "Review the design for the quota alerts work item (01-quota-alerts). Its requirements.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
       "expected_output": "The design has the ingest Lambda render the email and call SES synchronously, which contradicts ARCHITECTURE.md: the Notification_Service publishes to the notifications SQS queue and a separate Lambda renders the template and sends through SES, and callers pass a template id and payload, never a rendered email. It also puts a synchronous external call on the ingest path. By the skill's rule a fundamental architectural misalignment is CRITICAL, so the summary must give overall status BLOCKED with CRITICAL-001 naming the direct SES call against the Notification_Service and queue pattern, and a fix to pass the quota-threshold template id and payload through the Notification_Service. Requirements coverage is otherwise complete and should be confirmed. The workflow stops before tasks.md.",
       "criteria": [
         "Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
@@ -165,7 +169,7 @@
         "evals/files/shared/openapi.yaml"
       ],
       "expected_files": [
-        "01-quota-alerts/design-review-summary.md"
+        "design-review-summary.md"
       ],
       "assertions": {
         "must_include": [
@@ -174,7 +178,7 @@
             "scope": "outputs"
           },
           {
-            "text": "BLOCKED",
+            "text": "**Status:** BLOCKED",
             "scope": "outputs"
           }
         ],
@@ -189,7 +193,7 @@
     {
       "id": 5,
       "slug": "bugfix-design-approved",
-      "prompt": "Review the design for the stale quota cache bugfix at project/work-items/05-stale-quota-cache-bugfix. bugfix.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
+      "prompt": "Review the design for the stale quota cache bugfix (05-stale-quota-cache-bugfix). Its bugfix.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
       "expected_output": "This work item has a bugfix.md rather than requirements.md, and the review must read it as the requirements source: the defect (1.x), the expected behaviour (2.x) and the unchanged behaviour (3.x). The design fixes the cause with a planVersion marker on the usage-meters item that the read already loads, keeps the Quota_Cache and its one-hour TTL, leaves ingest increments and the plan-changed notification alone, and adds no API change. It is consistent with ARCHITECTURE.md, so the status should be APPROVED with no critical or major discrepancies, and the summary must name bugfix.md in the documents reviewed and confirm that the unchanged-behaviour items 3.1 to 3.3 are protected, not only the fix. It must write 05-stale-quota-cache-bugfix/design-review-summary.md and say the work can proceed to tasks.md.",
       "criteria": [
         "Writes design-review-summary.md for the 05-stale-quota-cache-bugfix work item",
@@ -207,7 +211,7 @@
         "evals/files/shared/openapi.yaml"
       ],
       "expected_files": [
-        "05-stale-quota-cache-bugfix/design-review-summary.md"
+        "design-review-summary.md"
       ],
       "assertions": {
         "must_include": [
@@ -220,7 +224,7 @@
             "scope": "outputs"
           },
           {
-            "text": "APPROVED",
+            "text": "**Status:** APPROVED",
             "scope": "outputs"
           }
         ],
@@ -231,6 +235,199 @@
           },
           {
             "text": "MAJOR-001",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** APPROVED WITH",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "slug": "prose-only-drift-minor",
+      "prompt": "Review the design for the quota alerts work item (01-quota-alerts). Its requirements.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
+      "expected_output": "The design matches the aligned quota alerts design in every identifier: components, interfaces, attributes and API paths all use the glossary terms. Only the Overview prose drifts, calling the Account_Owner an account administrator, the Alert_Threshold an alert level and the Usage_Meter a usage counter. Drift confined to prose is MINOR, so the summary should raise minor issues (MINOR-001 onward) naming the prose terms against the glossary, raise no critical or major discrepancy, and give overall status APPROVED WITH ISSUES. It should allow continuation to tasks.md.",
+      "criteria": [
+        "Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+        "Overall status is APPROVED WITH ISSUES, not BLOCKED and not plain APPROVED",
+        "Raises the prose drift (account administrator, alert level, usage counter) against Account_Owner, Alert_Threshold and Usage_Meter as MINOR",
+        "Raises no critical or major discrepancy, and does not class the prose drift as an identifier or data-model inconsistency",
+        "Confirms the identifiers (QuotaAlertEvaluator, firedThresholds, metered, the thresholds sub-resource) match the glossary and the existing model",
+        "Allows continuation to tasks.md generation"
+      ],
+      "files": [
+        "evals/files/quota-alerts-prose-drift/requirements.md",
+        "evals/files/quota-alerts-prose-drift/design.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ],
+      "expected_files": [
+        "design-review-summary.md"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "MINOR-001",
+            "scope": "outputs"
+          },
+          {
+            "text": "Critical discrepancies: 0",
+            "scope": "outputs"
+          },
+          {
+            "text": "Major discrepancies: 0",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** APPROVED WITH ISSUES",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "CRITICAL-001",
+            "scope": "outputs"
+          },
+          {
+            "text": "MAJOR-001",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "slug": "latency-constraint-unsupported-blocked",
+      "prompt": "Review the design for the quota alerts work item (01-quota-alerts). Its requirements.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
+      "expected_output": "requirements.md adds AC 2.5: the ingest call must complete within 50 ms at the 99th percentile with threshold evaluation included. design.md says nothing about it: evaluation runs synchronously on the ingest path with up to five conditional UpdateItem calls and a Notification_Service send per crossing, and there is no latency budget, measurement or test. A stated performance constraint with no design support is CRITICAL, so the summary must give overall status BLOCKED with CRITICAL-001 naming AC 2.5, a fix such as a latency budget for the evaluation writes or moving evaluation off the synchronous path with a load test, and must stop before tasks.md. The other requirements are covered and should be confirmed.",
+      "criteria": [
+        "Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+        "Overall status is BLOCKED",
+        "Raises a critical discrepancy naming AC 2.5 (50 ms p99 on the ingest call) as having no design support",
+        "Explains why the design puts it at risk, such as synchronous conditional writes and a send on the ingest path, and gives a concrete fix with a way to verify it",
+        "Does not downgrade the constraint to a minor missing performance target",
+        "Stops the workflow: does not generate tasks.md and asks for the design to be fixed and the review re-run"
+      ],
+      "files": [
+        "evals/files/quota-alerts-latency/requirements.md",
+        "evals/files/quota-alerts-latency/design.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ],
+      "expected_files": [
+        "design-review-summary.md"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "CRITICAL-001",
+            "scope": "outputs"
+          },
+          {
+            "text": "2.5",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** BLOCKED",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "Critical discrepancies: 0",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "slug": "unauthenticated-read-blocked",
+      "prompt": "Review the design for the quota alerts work item (01-quota-alerts). Its requirements.md and design.md are in the working directory, with the domain terms, architecture and API contract alongside.",
+      "expected_output": "The design registers GET /accounts/{accountId}/thresholds without the API Gateway authoriser so a marketing calculator can call it, and returns the Account_Owner's ownerEmail in the response. Anyone who knows or guesses an account id can read the owner's email address and thresholds: an authorisation bypass and a data exposure, which are CRITICAL. The summary must give overall status BLOCKED with CRITICAL-001 naming the unauthenticated read and the ownerEmail exposure, with a fix that keeps the route behind the authoriser and drops ownerEmail from ThresholdSet. The workflow stops before tasks.md.",
+      "criteria": [
+        "Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+        "Overall status is BLOCKED",
+        "Raises a critical discrepancy that the thresholds read is registered without the authoriser",
+        "Names the ownerEmail exposure in the response as part of the security finding",
+        "Fixes it by keeping the route behind the authoriser and removing ownerEmail from ThresholdSet, with the design author as owner",
+        "Stops the workflow: does not generate tasks.md and asks for the design to be fixed and the review re-run"
+      ],
+      "files": [
+        "evals/files/quota-alerts-public-endpoint/requirements.md",
+        "evals/files/quota-alerts-public-endpoint/design.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ],
+      "expected_files": [
+        "design-review-summary.md"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "CRITICAL-001",
+            "scope": "outputs"
+          },
+          {
+            "text": "ownerEmail",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** BLOCKED",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "Critical discrepancies: 0",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "slug": "second-block-escalates",
+      "prompt": "Re-run the design review for the quota alerts work item (01-quota-alerts) after the author revised design.md. Its requirements.md, design.md and the previous design-review-summary.md are in the working directory, with the domain terms, architecture and API contract alongside.",
+      "expected_output": "The previous review blocked on CRITICAL-001: Requirement 3 (suspended accounts) has no design support. The revised design.md changes only the error-handling log line; nothing reads account.status and no property covers ACs 3.1 and 3.2. The review must again give overall status BLOCKED with a critical discrepancy naming Requirement 3, and recognise that this is the second BLOCKED run on the same issue. On a second block the skill stops and asks the user rather than sending the author round the loop again, so the reply and the summary must escalate to the user, name the unresolved finding, and not proceed to tasks.md.",
+      "criteria": [
+        "Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+        "Overall status is BLOCKED",
+        "Raises a critical discrepancy naming Requirement 3 (ACs 3.1 and 3.2) as still having no design support",
+        "Recognises from the previous summary that this is the second BLOCKED run on the same issue",
+        "Stops and asks the user to decide, rather than only telling the author to fix design.md and re-run the review",
+        "Does not generate tasks.md"
+      ],
+      "files": [
+        "evals/files/quota-alerts-second-block/requirements.md",
+        "evals/files/quota-alerts-second-block/design.md",
+        "evals/files/quota-alerts-second-block/design-review-summary.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ],
+      "expected_files": [
+        "design-review-summary.md"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "CRITICAL-001",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** BLOCKED",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "Critical discrepancies: 0",
             "scope": "outputs"
           }
         ]
