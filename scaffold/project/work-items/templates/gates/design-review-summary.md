@@ -21,7 +21,7 @@
 
 ## Overall Status
 
-[APPROVED | APPROVED WITH MINOR ISSUES | BLOCKED]
+**Status:** [APPROVED | APPROVED WITH ISSUES | BLOCKED]
 
 **Summary:** [1-2 sentences about overall design quality and alignment]
 
@@ -91,19 +91,7 @@
 
 ## Recommendations
 
-**If BLOCKED:**
-1. [Specific actions needed to unblock]
-2. [Priority order for fixes]
-3. Design author must address critical issues and request re-review
-
-**If APPROVED WITH ISSUES:**
-1. [Which issues should be addressed before task creation]
-2. [Which can be deferred to implementation]
-
-**If APPROVED:**
-- All alignment and architecture checks passed
-- Ready to proceed with tasks.md generation
-- Next step: Generate implementation tasks
+[Numbered actions for the status above, most important first. BLOCKED: the fixes that unblock, then a re-run of this review. APPROVED WITH ISSUES: which issues to fix before tasks.md and which can wait for implementation. APPROVED: "None."]
 
 ---
 

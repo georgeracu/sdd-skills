@@ -1,0 +1,475 @@
+{
+  "iteration": "iteration-10",
+  "pack_hash": "ea4c43a7277c34d4eedeaeda9f7219f75614be830e8092586dacfa5766213dd6",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "n": 3
+      },
+      "time_seconds": {
+        "mean": 135.2807,
+        "stddev": 40.47,
+        "n": 3
+      },
+      "tokens": {
+        "mean": 351375.3334,
+        "stddev": 16645.3987,
+        "n": 3
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.9778,
+        "stddev": 0.0314,
+        "n": 3
+      },
+      "time_seconds": {
+        "mean": 139.1253,
+        "stddev": 37.7491,
+        "n": 3
+      },
+      "tokens": {
+        "mean": 331537.0,
+        "stddev": 20567.455,
+        "n": 3
+      }
+    },
+    "delta": {
+      "pass_rate": 0.0222,
+      "time_seconds": -3.8446,
+      "tokens": 19838.3334
+    }
+  },
+  "cases": {
+    "requirement-without-design-blocked": {
+      "old_skill": {
+        "passed": 30,
+        "failed": 0,
+        "total": 30,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Overall status is BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a critical discrepancy that names Requirement 3 (suspended accounts) as having no design coverage, citing ACs 3.1 and 3.2",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gives an actionable fix, such as a status check in the evaluator with a correctness property and a test, and names the design author as owner",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Confirms that Requirements 1, 2, 4 and 5 are covered rather than flagging them",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops the workflow: does not generate tasks.md and tells the author to fix design.md and re-run the review",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 30,
+        "failed": 0,
+        "total": 30,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Overall status is BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a critical discrepancy that names Requirement 3 (suspended accounts) as having no design coverage, citing ACs 3.1 and 3.2",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gives an actionable fix, such as a status check in the evaluator with a correctness property and a test, and names the design author as owner",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Confirms that Requirements 1, 2, 4 and 5 are covered rather than flagging them",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops the workflow: does not generate tasks.md and tells the author to fix design.md and re-run the review",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "synchronous-ses-call-blocked": {
+      "with_skill": {
+        "passed": 33,
+        "failed": 0,
+        "total": 33,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Overall status is BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a critical discrepancy that the design calls SES directly and synchronously from the ingest Lambda instead of using the Notification_Service and its SQS queue",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Cites ARCHITECTURE.md: callers pass a template id and payload and never a rendered email, and delivery is asynchronous",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Fixes it by routing the quota-threshold template id and payload through the Notification_Service, with the design author as owner",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not claim a requirements coverage gap, since every requirement is addressed",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops the workflow: does not generate tasks.md and asks for the design to be fixed and the review re-run",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 33,
+        "failed": 0,
+        "total": 33,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Overall status is BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a critical discrepancy that the design calls SES directly and synchronously from the ingest Lambda instead of using the Notification_Service and its SQS queue",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Cites ARCHITECTURE.md: callers pass a template id and payload and never a rendered email, and delivery is asynchronous",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Fixes it by routing the quota-threshold template id and payload through the Notification_Service, with the design author as owner",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not claim a requirements coverage gap, since every requirement is addressed",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops the workflow: does not generate tasks.md and asks for the design to be fixed and the review re-run",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "second-block-escalates": {
+      "old_skill": {
+        "passed": 28,
+        "failed": 2,
+        "total": 30,
+        "pass_rate": 0.9333,
+        "checks": [
+          {
+            "text": "Output includes: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Overall status is BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a critical discrepancy naming Requirement 3 (ACs 3.1 and 3.2) as still having no design support",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Recognises from the previous summary that this is the second BLOCKED run on the same issue",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops and asks the user to decide, rather than only telling the author to fix design.md and re-run the review",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not generate tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 30,
+        "failed": 0,
+        "total": 30,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Overall status is BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a critical discrepancy naming Requirement 3 (ACs 3.1 and 3.2) as still having no design support",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Recognises from the previous summary that this is the second BLOCKED run on the same issue",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops and asks the user to decide, rather than only telling the author to fix design.md and re-run the review",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not generate tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
