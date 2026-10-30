@@ -6,14 +6,14 @@ Account_Owners need advance notice before API usage reaches the Account's Quota.
 
 ## Glossary
 
-- **Account_Owner**: The user who manages an Account and receives account notifications.
-- **Account**: A paying customer with one Plan and one usage meter.
-- **Quota**: The usage limit supplied by an Account's Plan.
+- **Account_Owner**: The user who receives account-level notifications. Every Account has exactly one.
+- **Account**: A paying customer. Owns one or more API keys and exactly one Plan at any time.
+- **Quota**: The number of Metered_Events an Account may record in one Billing_Period, as fixed by its Plan.
 - **Usage_Meter**: The running count of Metered_Events for an Account in the current Billing_Period.
 - **Alert_Threshold**: A distinct integer percentage from 1 through 100 of Quota.
 - **Quota_Alert**: A notification sent when a Usage_Meter crosses an Alert_Threshold.
-- **Billing_Period**: One calendar month in UTC.
-- **Notification_Service**: The existing email notification service.
+- **Billing_Period**: One calendar month in UTC. Usage resets at the start of each Billing_Period.
+- **Notification_Service**: The existing component that emails Account_Owners. Accepts a template id and a payload; delivery is asynchronous through SQS and SES.
 - **Threshold_Set**: The one-to-five Alert_Threshold values configured for an Account.
 
 ## Requirements

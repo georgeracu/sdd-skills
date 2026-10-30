@@ -51,7 +51,7 @@ class QuotaAlertEvaluator(
 
 `ThresholdsHandler` lives in `api/handlers/`, `ThresholdService` and `QuotaAlertEvaluator` in `service/`, and the repositories in `repository/`, following the existing handler, service, repository layout. The evaluator returns immediately when `account.status` is `suspended` (Requirements 3.1, 3.2). Otherwise it computes `usageCount * 100 / quota` in integer arithmetic, which rounds down, so a threshold fires only when usage has fully reached it, and, for each Alert_Level at or below that percentage, issues a conditional `UpdateItem` adding the threshold to `firedThresholds` with the condition `attribute_not_exists(firedThresholds) OR NOT contains(firedThresholds, :threshold)`. Only a successful conditional write calls `NotificationService.send("quota-threshold", payload)`, which gives at most one alert per threshold per period (Requirements 2.2, 2.4). The ingest `ADD` now asks for `ReturnValues: ALL_NEW`, at no extra read, so the evaluator skips every threshold that is in the returned `firedThresholds` and writes only for the others. A `ConditionalCheckFailedException` means a concurrent increment fired that threshold first, so the evaluator sends nothing for it and the ingest call succeeds. Any other error on that write is logged and does not fail the ingest call; the threshold stays unfired, so the next increment at or above it tries again.
 
-`ThresholdService` throws `InvalidThresholds` and `AccountNotFound`, which the handler maps to the 400 and 404 `Problem` responses, as the `plan` handler does. `ThresholdService.replace` validates the whole set before it writes, so a rejected request writes nothing. An Account without a stored `thresholds` attribute is evaluated against the default set `{80, 100}` (Requirement 1.1).
+`ThresholdService` throws `InvalidThresholds` and `AccountNotFound`, which the handler maps to the 400 and 404 `Problem` responses, as the `plan` handler does. `ThresholdService.replace` validates the whole set before it writes, so a rejected request writes nothing. The handler reads the body through the `ThresholdSet` lens and maps a lens failure, such as a non-integer value, to `InvalidThresholds`, so that body also gets the 400 `invalid-thresholds` `Problem` and not the unhandled-error 500. An Account without a stored `thresholds` attribute is evaluated against the default set `{80, 100}` (Requirement 1.1).
 
 The evaluator maps `plan` to its Quota with the existing `Plan.quota` values (`starter` 10,000, `team` 250,000, `scale` 2,000,000), the same mapping the usage Lambda caches. When one increment crosses more than one Alert_Threshold, each crossed threshold gets its own conditional write and its own Quota_Alert.
 
@@ -77,7 +77,7 @@ Replacing the Threshold_Set leaves `firedThresholds` as it is: a value that stay
 
 `quota-threshold` payload: `accountId`, `thresholdPercent`, `metered`, `quota`, `billingPeriod` (Requirement 5.2).
 
-The `quota-threshold` template is added to the rendering Lambda and to the template list in ARCHITECTURE.md. Alert_Threshold, Threshold_Set and Quota_Alert are added to UBIQUITOUS_LANGUAGE.md.
+The `quota-threshold` template is added to the rendering Lambda and to the template list in ARCHITECTURE.md, and the `thresholds` attribute of `accounts` and the `firedThresholds` attribute of `usage-meters` are added to its table lists. Alert_Threshold, Threshold_Set and Quota_Alert are added to UBIQUITOUS_LANGUAGE.md.
 
 ## Correctness Properties
 
@@ -136,6 +136,7 @@ Both operations are added to `openapi.yaml`, with `ThresholdSet` as a new schema
 ## Testing Strategy
 
 - Unit tests for `ThresholdService` validation (count, duplicates, range, non-integer, and the stored set unchanged after a rejection) and for `QuotaAlertEvaluator` (first crossing, repeat crossing, suspended Account, lowered threshold, plan change).
+- Unit tests for a valid replacement, a read of a stored set in ascending order, evaluation against the default set when no `thresholds` attribute is stored, and a handler test that a body failing the `ThresholdSet` lens answers the 400 `invalid-thresholds` `Problem`.
 - Integration tests for the conditional `firedThresholds` write against DynamoDB Local, including the first alert of a Billing_Period, a new period's item, a failed send that leaves the threshold fired, and two concurrent increments that cross the same threshold and send one Quota_Alert.
 - Unit tests for the default Threshold_Set read, two thresholds crossed by one increment, the `quota-threshold` payload fields, and the 404 for an unknown Account on both operations.
 - Contract test that the generated types match `openapi.yaml`; CI already fails on a diff.
