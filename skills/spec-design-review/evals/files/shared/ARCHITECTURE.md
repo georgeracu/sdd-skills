@@ -4,7 +4,7 @@ Usage metering service for API customers. One repository, three deployable parts
 
 ## Backend (`backend/`)
 
-Kotlin 2.x on AWS Lambda behind API Gateway (HTTP API). One Lambda per resource, http4k handler pattern; every operation answers an unhandled error with a 500 `Problem`, which `openapi.yaml` does not list: `src/main/kotlin/<package>/api/handlers/` holds one handler per route, `service/` holds the domain services, `repository/` holds the DynamoDB access. Build and tests with `./gradlew build`.
+Kotlin 2.x on AWS Lambda behind API Gateway (HTTP API). One Lambda per resource, http4k handler pattern; every operation answers an unhandled error with a 500 `Problem`, which `openapi.yaml` does not list: `src/main/kotlin/<package>/api/handlers/` holds one handler per resource, which serves each of its routes, `service/` holds the domain services, `repository/` holds the DynamoDB access. Build and tests with `./gradlew build`.
 
 DynamoDB tables:
 

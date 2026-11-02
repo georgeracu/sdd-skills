@@ -1,0 +1,235 @@
+{
+  "iteration": "iteration-12",
+  "pack_hash": "7b377eecd1b0db54868ddce2325800852122a549b6c4459537ba5cfaa801f804",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.5952,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 210.3553,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 357953,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.5714,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 179.2353,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 369612,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "delta": {
+      "pass_rate": 0.0238,
+      "time_seconds": 31.12,
+      "tokens": -11659
+    }
+  },
+  "cases": {
+    "aligned-design-approved": {
+      "old_skill": {
+        "passed": 24,
+        "failed": 18,
+        "total": 42,
+        "pass_rate": 0.5714,
+        "checks": [
+          {
+            "text": "Output includes: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Major discrepancies: 0",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output includes: **Status:** APPROVED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: MAJOR-001",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: MINOR-001",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** APPROVED WITH",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Overall status is APPROVED, not BLOCKED and not APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Reports zero critical, major and minor discrepancies and covers all five requirements in the statistics",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Confirms the alignments that carry the design, such as ingest-time evaluation, Notification_Service delivery with the quota-threshold template and the thresholds sub-resource placed like plan",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not invent discrepancies or demand changes to a design that is aligned",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Says the work item may proceed to tasks.md generation",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 25,
+        "failed": 17,
+        "total": 42,
+        "pass_rate": 0.5952,
+        "checks": [
+          {
+            "text": "Output includes: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Major discrepancies: 0",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output includes: **Status:** APPROVED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: MAJOR-001",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: MINOR-001",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** APPROVED WITH",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Overall status is APPROVED, not BLOCKED and not APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Reports zero critical, major and minor discrepancies and covers all five requirements in the statistics",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Confirms the alignments that carry the design, such as ingest-time evaluation, Notification_Service delivery with the quota-threshold template and the thresholds sub-resource placed like plan",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not invent discrepancies or demand changes to a design that is aligned",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Says the work item may proceed to tasks.md generation",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}

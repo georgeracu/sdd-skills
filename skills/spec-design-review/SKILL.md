@@ -113,7 +113,7 @@ Check alignment across these six critical dimensions:
 
 ### Step 4: Classify Severity Levels
 
-Raise a discrepancy only when you can name its basis: an acceptance criterion, a statement in ARCHITECTURE.md, the glossary or the API contract, or a defect in design.md that would make the implementation wrong. Do not raise preferences, alternative designs, gaps that no source requires, or details that implementation decides, such as file layout, deployment units and test technique. Write the basis in each finding's Issue.
+Raise a discrepancy only when you can name its basis: an acceptance criterion, a statement in ARCHITECTURE.md, the glossary or the API contract, or a defect in design.md that would make the implementation wrong. Do not raise preferences, alternative designs, gaps that no source requires, or details that implementation decides, such as file layout, deployment units and test technique. Write the basis in each finding's Issue. This rule applies to every severity: do not raise a MINOR finding that has no basis.
 
 Assign severity to each discrepancy:
 
@@ -134,9 +134,8 @@ Assign severity to each discrepancy:
 
 **MINOR** - Can be noted and addressed during implementation
 - Glossary drift confined to prose
-- Missing performance targets that no requirement states
-- Incomplete test scenarios
-- Documentation gaps in the design
+- An acceptance criterion that the Testing Strategy names no test for
+- An update to ARCHITECTURE.md, the glossary or the API contract that the design needs and does not name
 
 ### Step 5: Generate Fix Suggestions
 
