@@ -1,0 +1,409 @@
+{
+  "iteration": "iteration-3",
+  "pack_hash": "ff25fc9a9115124c036a6f86a3653eda5b823afaf2002f9a8a0454f797849c70",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9281,
+        "stddev": 0.0114,
+        "n": 2
+      },
+      "time_seconds": {
+        "mean": 92.2027,
+        "stddev": 12.39,
+        "n": 2
+      },
+      "tokens": {
+        "mean": 273769.3333,
+        "stddev": 753.3334,
+        "n": 2
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.8343,
+        "stddev": 0.1051,
+        "n": 2
+      },
+      "time_seconds": {
+        "mean": 103.3547,
+        "stddev": 1.458,
+        "n": 2
+      },
+      "tokens": {
+        "mean": 295123.0,
+        "stddev": 18135.6667,
+        "n": 2
+      }
+    },
+    "delta": {
+      "pass_rate": 0.0938,
+      "time_seconds": -11.152,
+      "tokens": -21353.6667
+    }
+  },
+  "cases": {
+    "complete-tasks-approved": {
+      "with_skill": {
+        "passed": 44,
+        "failed": 4,
+        "total": 48,
+        "pass_rate": 0.9167,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** APPROVED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: spec-qa-review",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: ## Design Coverage",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ### CRITICAL-",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ### MAJOR-",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: task-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes task-review-summary.md with Status APPROVED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Reports zero CRITICAL and zero MAJOR issues",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The coverage matrix traces every acceptance criterion from 1.1 to 5.2 to at least one task, with no gap marked",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The design coverage table maps each design element to an implementing task",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The sequencing review confirms the OpenAPI task precedes the handler and the frontend task",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: All mandatory ending tasks (integration tests, E2E, documentation, final validation) are marked present",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Names sdd:spec-qa-review in plan mode as the next step",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Deletes discovery.md, as the review passed",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 35,
+        "failed": 13,
+        "total": 48,
+        "pass_rate": 0.7292,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** APPROVED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: spec-qa-review",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: ## Design Coverage",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ### CRITICAL-",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ### MAJOR-",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: task-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes task-review-summary.md with Status APPROVED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Reports zero CRITICAL and zero MAJOR issues",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The coverage matrix traces every acceptance criterion from 1.1 to 5.2 to at least one task, with no gap marked",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The design coverage table maps each design element to an implementing task",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The sequencing review confirms the OpenAPI task precedes the handler and the frontend task",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: All mandatory ending tasks (integration tests, E2E, documentation, final validation) are marked present",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Names sdd:spec-qa-review in plan mode as the next step",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Deletes discovery.md, as the review passed",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "frontend-before-contract": {
+      "with_skill": {
+        "passed": 31,
+        "failed": 2,
+        "total": 33,
+        "pass_rate": 0.9394,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: MAJOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: generate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ### CRITICAL-",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: task-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes task-review-summary.md with Status APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a MAJOR sequencing finding that the ThresholdSettings frontend task comes before the OpenAPI task and the handler",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gives the mechanism that the generated ThresholdSet types do not exist yet, so the frontend has nothing to import",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Proposes moving the frontend task after the OpenAPI, service and handler tasks",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Reports no CRITICAL issues and shows the coverage matrix fully covered",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 31,
+        "failed": 2,
+        "total": 33,
+        "pass_rate": 0.9394,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: MAJOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: generate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ### CRITICAL-",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: task-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes task-review-summary.md with Status APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a MAJOR sequencing finding that the ThresholdSettings frontend task comes before the OpenAPI task and the handler",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gives the mechanism that the generated ThresholdSet types do not exist yet, so the frontend has nothing to import",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Proposes moving the frontend task after the OpenAPI, service and handler tasks",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Reports no CRITICAL issues and shows the coverage matrix fully covered",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}

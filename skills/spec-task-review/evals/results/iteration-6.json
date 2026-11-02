@@ -1,0 +1,511 @@
+{
+  "iteration": "iteration-6",
+  "pack_hash": "53a370a372bbd3bc8acf42165a24682d3696b83719eea6c0bd22347431977c1b",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9293,
+        "stddev": 0.1,
+        "n": 3
+      },
+      "time_seconds": {
+        "mean": 114.895,
+        "stddev": 10.4811,
+        "n": 3
+      },
+      "tokens": {
+        "mean": 351853.0,
+        "stddev": 24772.0151,
+        "n": 3
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.7932,
+        "stddev": 0.0898,
+        "n": 3
+      },
+      "time_seconds": {
+        "mean": 115.6633,
+        "stddev": 22.2181,
+        "n": 3
+      },
+      "tokens": {
+        "mean": 283658.0,
+        "stddev": 23629.9917,
+        "n": 3
+      }
+    },
+    "delta": {
+      "pass_rate": 0.1361,
+      "time_seconds": -0.7683,
+      "tokens": 68195.0
+    }
+  },
+  "cases": {
+    "requirement-without-task-blocked": {
+      "with_skill": {
+        "passed": 39,
+        "failed": 0,
+        "total": 39,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: 2.4",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: ## Design Coverage",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** APPROVED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: task-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes task-review-summary.md with Status BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a CRITICAL finding that names acceptance criterion 2.4 (no alerts for a suspended Account) as having no task",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The coverage matrix marks AC 2.4 as uncovered and the other criteria as covered",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gives a specific fix to tasks.md, such as adding the suspended check and a test to the AlertEvaluator task and tracing 2.4",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: States that tasks.md must be fixed and the review re-run before implementation, and does not approve",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not invent further CRITICAL or MAJOR findings about sequencing or the ending tasks",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Keeps discovery.md, as the review is blocked",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 33,
+        "failed": 6,
+        "total": 39,
+        "pass_rate": 0.8462,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output includes: 2.4",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: ## Design Coverage",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** APPROVED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: task-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes task-review-summary.md with Status BLOCKED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a CRITICAL finding that names acceptance criterion 2.4 (no alerts for a suspended Account) as having no task",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The coverage matrix marks AC 2.4 as uncovered and the other criteria as covered",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gives a specific fix to tasks.md, such as adding the suspended check and a test to the AlertEvaluator task and tracing 2.4",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: States that tasks.md must be fixed and the review re-run before implementation, and does not approve",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not invent further CRITICAL or MAJOR findings about sequencing or the ending tasks",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Keeps discovery.md, as the review is blocked",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "oversized-task": {
+      "old_skill": {
+        "passed": 26,
+        "failed": 4,
+        "total": 30,
+        "pass_rate": 0.8667,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output includes: ### MAJOR-",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ### CRITICAL-",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: task-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes task-review-summary.md with Status APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a MAJOR scope finding on Task 3",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Names the components Task 3 spans, including the frontend ThresholdSettings component and at least one backend component",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Proposes splitting Task 3 into separate tasks by component or layer",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Reports no CRITICAL issues",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 30,
+        "failed": 0,
+        "total": 30,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: ### MAJOR-",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ### CRITICAL-",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: task-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes task-review-summary.md with Status APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Raises a MAJOR scope finding on Task 3",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Names the components Task 3 spans, including the frontend ThresholdSettings component and at least one backend component",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Proposes splitting Task 3 into separate tasks by component or layer",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Reports no CRITICAL issues",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "combined-tests-minor": {
+      "old_skill": {
+        "passed": 22,
+        "failed": 11,
+        "total": 33,
+        "pass_rate": 0.6667,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** APPROVED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ### CRITICAL-",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ### MAJOR-",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: task-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes task-review-summary.md with Status APPROVED",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Reports zero CRITICAL and zero MAJOR issues",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Marks the integration test and the end-to-end test ending tasks as present",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Treats the combined test task as at most a MINOR suggestion to split it",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Names sdd:spec-qa-review in plan mode as the next step",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 26,
+        "failed": 7,
+        "total": 33,
+        "pass_rate": 0.7879,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** APPROVED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ### CRITICAL-",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ### MAJOR-",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: task-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes task-review-summary.md with Status APPROVED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Reports zero CRITICAL and zero MAJOR issues",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Marks the integration test and the end-to-end test ending tasks as present",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Treats the combined test task as at most a MINOR suggestion to split it",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Names sdd:spec-qa-review in plan mode as the next step",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}

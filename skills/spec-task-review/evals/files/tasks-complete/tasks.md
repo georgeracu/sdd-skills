@@ -14,24 +14,23 @@ Each task traces to acceptance criteria through `_Requirements: N.N_` and to des
 - [ ] **2. Add the threshold data model and repository methods**
   - In `backend/src/main/kotlin/<package>/repository/` add an optional `thresholds` integer list to the `accounts` item model and a `firedThresholds` number set to the `usage-meters` item model (both edits to existing files)
   - Add `getThresholds`, `replaceThresholds` and `markFired(accountId, billingPeriod, threshold)`; `markFired` uses a conditional update and returns true only for the caller that added the value
-  - An absent `thresholds` attribute reads as `[80, 100]`
-  - Unit tests: default read, replace then read, `markFired` returns true once and false on repeat, a new Billing_Period starts empty
+  - Unit tests: an absent attribute reads as no stored set, replace then read, `markFired` returns true once and false on repeat, a new Billing_Period starts empty
   - _Requirements: 1.1, 2.3_
   - _Design: accounts.thresholds, usage-meters.firedThresholds_
 
 - [ ] **3. Implement ThresholdValidator and ThresholdService**
   - Create `service/ThresholdValidator.kt` and `service/ThresholdService.kt` (new files)
   - The validator rejects an empty list, more than five values, duplicates, non-integers and values below 1 or above 100, returning the first failing rule as a message
-  - `ThresholdService` reads through the repository and replaces only after validation passes
-  - Unit tests: one per rejection rule, a valid five-value list, a failed replace leaves the stored set unchanged
-  - _Requirements: 1.2, 1.3_
+  - `ThresholdService` reads through the repository, returning 80 and 100 when no Threshold_Set is stored, and replaces only after validation passes
+  - Unit tests: the default 80 and 100 when none is stored, one per rejection rule, a valid five-value list, a failed replace leaves the stored set unchanged
+  - _Requirements: 1.1, 1.2, 1.3_
   - _Design: ThresholdValidator, ThresholdService_
 
 - [ ] **4. Implement ThresholdsHandler**
   - Create `api/handlers/ThresholdsHandler.kt` (new file) with `GET` and `PUT` on `/accounts/{accountId}/thresholds` using the generated types
   - Return 400 with the standard `Problem` body carrying the validator message, and 404 with the standard `Problem` body for an unknown Account
-  - Register the route in the accounts Lambda router
-  - Handler unit tests: 200 read, 200 replace, 400 for a duplicate list, 404 for an unknown account id
+  - Register the route in the accounts Lambda router, beside the existing `plan` routes
+  - Handler unit tests: 200 read, 200 replace, 400 for a duplicate list, 404 for an unknown account id with no Threshold_Set written
   - _Requirements: 1.3, 4.1, 4.2_
   - _Design: ThresholdsHandler_
 
@@ -47,7 +46,7 @@ Each task traces to acceptance criteria through `_Requirements: N.N_` and to des
 
 - [ ] **7. Implement AlertEvaluator and hook it into ingest**
   - Create `service/AlertEvaluator.kt` (new file) and call it from `service/UsageIngestService.kt` immediately after the atomic increment
-  - Compute the usage percentage as `metered * 100 / quota` using the Plan Quota; for each stored Alert_Threshold at or below it, call `markFired`; for each threshold it returns true for, send one `quota-threshold` message through Notification_Service
+  - Compute the usage percentage as `metered * 100 / quota` using the Plan Quota from the `accounts` item; for each Alert_Threshold at or below it in the Threshold_Set read through `ThresholdService` (80 and 100 when none is stored), call `markFired`; for each threshold it returns true for, send one `quota-threshold` message through Notification_Service with `accountId`, `thresholdPercent`, `metered`, `quota` and `billingPeriod`
   - Skip sending for an Account whose `status` in the `accounts` item is `suspended`
   - Unit tests: crossing 80 sends one alert, a repeat increment sends none, crossing 80 and 100 in one increment sends two, a suspended Account sends none
   - _Requirements: 2.1, 2.2, 2.3, 2.4_
@@ -61,24 +60,28 @@ Each task traces to acceptance criteria through `_Requirements: N.N_` and to des
   - _Requirements: 5.1, 5.2_
   - _Design: ThresholdSettings component_
 
-- [ ] **9. Backend integration tests for the alert flow**
+- [ ] **9. Checkpoint: frontend build**
+  - Run `npm run build` and `npm test` in `frontend/`; fix failures before the integration tests
+  - _Requirements: 5.1_
+
+- [ ] **10. Backend integration tests for the alert flow**
   - Create `backend/src/test/kotlin/<package>/QuotaAlertIntegrationTest.kt` (new file) against local DynamoDB and a fake Notification_Service
   - Cases: an increment crossing 80 percent sends one `quota-threshold` message and a second increment sends none; a suspended Account sends none; a replaced Threshold_Set is the one evaluated on the next increment
   - Run `./gradlew build` and confirm all tests pass
   - _Requirements: 1.2, 2.2, 2.3, 2.4, 4.1_
 
-- [ ] **10. Playwright end-to-end test for the settings flow**
+- [ ] **11. Playwright end-to-end test for the settings flow**
   - Create `e2e/tests/threshold-settings.spec.ts` (new file) against the mock server, adding the `thresholds` routes to the mock
   - Scenarios: the Account_Owner opens settings and sees 80 and 100, replaces them with 50, 90 and 100 and sees them saved, enters a duplicate and sees the validation message with the values kept
   - Run with `npm test` in `e2e/`
   - _Requirements: 5.1, 5.2_
 
-- [ ] **11. Update documentation**
+- [ ] **12. Update documentation**
   - Create `docs/quota-alerts.md` (new file) describing the default thresholds, the `thresholds` sub-resource with request and response examples, and the alert email fields
-  - Add a link to it from the README documentation index
+  - Add a link to it under the Documentation heading of `README.md`
   - _Requirements: 1.1, 3.1, 4.1_
 
-- [ ] **12. Final validation**
+- [ ] **13. Final validation**
   - Run `./gradlew build` in `backend/`, `npm run build` and `npm test` in `frontend/`, and `npm test` in `e2e/`; all must pass with no generated-types diff
   - Confirm every acceptance criterion in `requirements.md` is traced by a completed task
   - _Requirements: 1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 2.4, 3.1, 4.1, 4.2, 5.1, 5.2_
