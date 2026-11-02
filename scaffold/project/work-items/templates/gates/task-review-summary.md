@@ -93,10 +93,8 @@
 
 ## Verdict
 
-[APPROVED / APPROVED WITH ISSUES / BLOCKED — with reasoning]
+[Reasoning for the status above, naming the findings that set it]
 
 ## Next Steps
 
-- **If APPROVED or APPROVED WITH ISSUES:** discovery.md deleted. Proceed to `sdd:spec-qa-review` plan mode.
-- **If APPROVED WITH ISSUES:** Address Major issues if possible, then proceed to plan mode.
-- **If BLOCKED:** Fix tasks.md per the issues above. Re-run `sdd:spec-task-review`. If blocked twice, escalate to user.
+[Numbered actions for the status above. APPROVED: discovery.md deleted; proceed to `sdd:spec-qa-review` plan mode. APPROVED WITH ISSUES: discovery.md deleted; the MAJOR issues to fix, then `sdd:spec-qa-review` plan mode. BLOCKED: the fixes to tasks.md, then a re-run of `sdd:spec-task-review`; if the previous summary was already BLOCKED, ask the user.]

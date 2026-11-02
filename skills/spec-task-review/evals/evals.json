@@ -5,31 +5,37 @@
       "id": 1,
       "slug": "complete-tasks-approved",
       "prompt": "Tasks for quota alerts are approved. Run the task review on this work item before we start building. requirements.md, design.md and tasks.md are in the working directory, with the shared project docs alongside.",
-      "expected_output": "The reply should run the task review and write task-review-summary.md for the quota alerts work item with Status APPROVED and no CRITICAL or MAJOR issues (zero or only MINOR suggestions, such as task-splitting advice). The coverage matrix should show all thirteen acceptance criteria (1.1 to 5.2) traced to at least one task, the design coverage table should map every design element (ThresholdSet schema, the GET and PUT thresholds endpoints, ThresholdValidator, ThresholdService, ThresholdsHandler, AlertEvaluator, the quota-threshold template, the ThresholdSettings component and the two data model changes) to tasks, and the sequencing review should record that the OpenAPI update and type regeneration come before the handler and the frontend, backend before frontend, and integration, end-to-end, documentation and final validation tasks come last. The mandatory ending tasks should all be marked present. The verdict should approve and point to sdd:spec-qa-review in plan mode as the next step. Existing-file paths that cannot be checked on disk because only the work item is supplied should not turn into a MAJOR finding.",
+      "expected_output": "The reply should run the task review and write task-review-summary.md for the quota alerts work item with Status APPROVED and no CRITICAL or MAJOR issues (zero or only MINOR suggestions, such as task-splitting advice). The coverage matrix should show all twelve acceptance criteria (1.1 to 5.2) traced to at least one task, the design coverage table should map every design element (ThresholdSet schema, the GET and PUT thresholds endpoints, ThresholdValidator, ThresholdService, ThresholdsHandler, AlertEvaluator, the quota-threshold template, the ThresholdSettings component and the two data model changes) to tasks, and the sequencing review should record that the OpenAPI update and type regeneration come before the handler and the frontend, backend before frontend, and integration, end-to-end, documentation and final validation tasks come last. The mandatory ending tasks should all be marked present. The verdict should approve and point to sdd:spec-qa-review in plan mode as the next step. Existing-file paths that cannot be checked on disk because only the work item is supplied should not turn into a MAJOR finding. As the review passes, discovery.md should be deleted from the work item.",
       "files": [
         "evals/files/tasks-complete/requirements.md",
         "evals/files/tasks-complete/design.md",
         "evals/files/tasks-complete/tasks.md",
+        "evals/files/tasks-complete/discovery.md",
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
         "evals/files/shared/ARCHITECTURE.md",
         "evals/files/shared/openapi.yaml"
       ],
       "expected_files": [
-        "01-quota-alerts/task-review-summary.md"
+        "task-review-summary.md"
       ],
       "criteria": [
-        "Writes task-review-summary.md under the work-item directory with Status APPROVED",
+        "Writes task-review-summary.md with Status APPROVED",
         "Reports zero CRITICAL and zero MAJOR issues",
         "The coverage matrix traces every acceptance criterion from 1.1 to 5.2 to at least one task, with no gap marked",
         "The design coverage table maps each design element to an implementing task",
         "The sequencing review confirms the OpenAPI task precedes the handler and the frontend task",
         "All mandatory ending tasks (integration tests, E2E, documentation, final validation) are marked present",
-        "Names sdd:spec-qa-review in plan mode as the next step"
+        "Names sdd:spec-qa-review in plan mode as the next step",
+        "Deletes discovery.md, as the review passed"
       ],
       "assertions": {
         "must_include": [
           "**Status:** APPROVED",
-          "spec-qa-review"
+          "spec-qa-review",
+          {
+            "text": "## Design Coverage",
+            "scope": "outputs"
+          }
         ],
         "must_not_include": [
           {
@@ -55,17 +61,18 @@
       "id": 2,
       "slug": "requirement-without-task-blocked",
       "prompt": "I've signed off tasks.md for quota alerts and want to move on to implementation. Can you run the task review first? The three work item documents are in the working directory.",
-      "expected_output": "The reply should write task-review-summary.md with Status BLOCKED, because one acceptance criterion has no implementing task and the skill rates missing requirement coverage CRITICAL. The finding must name acceptance criterion 2.4 (no Quota_Alerts for a suspended Account): the AlertEvaluator task traces only 2.1, 2.2 and 2.3 and never mentions the suspended status, and no other task covers it. The coverage matrix should mark AC 2.4 as uncovered while the other twelve criteria are covered, and the statistics should show one CRITICAL issue. The fix should be a specific change to tasks.md, such as adding the suspended-Account check and its unit test to the AlertEvaluator task and tracing 2.4 to it. The verdict should say the work is blocked until tasks.md is fixed and the review re-run. The reply must not approve it or tell the user to proceed to implementation. Sequencing and the ending tasks are sound and should not generate MAJOR findings.",
+      "expected_output": "The reply should write task-review-summary.md with Status BLOCKED, because one acceptance criterion has no implementing task and the skill rates missing requirement coverage CRITICAL. The finding must name acceptance criterion 2.4 (no Quota_Alerts for a suspended Account): the AlertEvaluator task traces only 2.1, 2.2 and 2.3 and never mentions the suspended status, and no other task covers it. The coverage matrix should mark AC 2.4 as uncovered while the other eleven criteria are covered, and the statistics should show one CRITICAL issue. The fix should be a specific change to tasks.md, such as adding the suspended-Account check and its unit test to the AlertEvaluator task and tracing 2.4 to it. The verdict should say the work is blocked until tasks.md is fixed and the review re-run. discovery.md must stay in the work item. The reply must not approve it or tell the user to proceed to implementation. Sequencing and the ending tasks are sound and should not generate MAJOR findings.",
       "files": [
         "evals/files/tasks-missing-suspended/requirements.md",
         "evals/files/tasks-missing-suspended/design.md",
         "evals/files/tasks-missing-suspended/tasks.md",
+        "evals/files/tasks-complete/discovery.md",
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
         "evals/files/shared/ARCHITECTURE.md",
         "evals/files/shared/openapi.yaml"
       ],
       "expected_files": [
-        "01-quota-alerts/task-review-summary.md"
+        "task-review-summary.md"
       ],
       "criteria": [
         "Writes task-review-summary.md with Status BLOCKED",
@@ -73,13 +80,18 @@
         "The coverage matrix marks AC 2.4 as uncovered and the other criteria as covered",
         "Gives a specific fix to tasks.md, such as adding the suspended check and a test to the AlertEvaluator task and tracing 2.4",
         "States that tasks.md must be fixed and the review re-run before implementation, and does not approve",
-        "Does not invent further CRITICAL or MAJOR findings about sequencing or the ending tasks"
+        "Does not invent further CRITICAL or MAJOR findings about sequencing or the ending tasks",
+        "Keeps discovery.md, as the review is blocked"
       ],
       "assertions": {
         "must_include": [
           "**Status:** BLOCKED",
           "2.4",
-          "CRITICAL"
+          "CRITICAL",
+          {
+            "text": "## Design Coverage",
+            "scope": "outputs"
+          }
         ],
         "must_not_include": [
           {
@@ -93,7 +105,7 @@
       "id": 3,
       "slug": "frontend-before-contract",
       "prompt": "tasks.md for quota alerts is approved and I'd like to start building. Run the task review on it. requirements.md, design.md and tasks.md are in the working directory.",
-      "expected_output": "The reply should write task-review-summary.md with Status APPROVED WITH ISSUES: every acceptance criterion and design element is covered, so there is no CRITICAL finding, but one MAJOR sequencing finding. In tasks.md the ThresholdSettings frontend task comes second, before the OpenAPI task (which adds the thresholds endpoints and the ThresholdSet schema and regenerates the types) and before ThresholdsHandler. The finding must give the mechanism: the frontend task imports the generated ThresholdSet type, which does not exist until the OpenAPI task has been run and scripts/generate-api-types.sh has regenerated the TypeScript types (types are generated from openapi.yaml, never hand-written), and it calls GET and PUT /accounts/{accountId}/thresholds, which have no handler to call yet, so the build fails and the component cannot be exercised. The fix should be to move the frontend task after the OpenAPI, service and handler tasks (and the checkpoint). The statistics should show one MAJOR and no CRITICAL, and the verdict should allow proceeding once the order is fixed, warning the user rather than blocking outright.",
+      "expected_output": "The reply should write task-review-summary.md with Status APPROVED WITH ISSUES: every acceptance criterion and design element is covered, so there is no CRITICAL finding, but one MAJOR sequencing finding. In tasks.md the ThresholdSettings frontend task comes second, before the OpenAPI task (which adds the thresholds endpoints and the ThresholdSet schema and regenerates the types) and before ThresholdsHandler. The finding must give the mechanism: the frontend task imports the generated ThresholdSet type, which does not exist until the OpenAPI task has been run and scripts/generate-api-types.sh has regenerated the TypeScript types (types are generated from openapi.yaml, never hand-written), so the build fails. The fix should be to move the frontend task after the OpenAPI, service and handler tasks (and the checkpoint). The statistics should show one MAJOR and no CRITICAL, and the verdict should allow proceeding once the order is fixed, warning the user rather than blocking outright.",
       "files": [
         "evals/files/tasks-frontend-first/requirements.md",
         "evals/files/tasks-frontend-first/design.md",
@@ -103,13 +115,12 @@
         "evals/files/shared/openapi.yaml"
       ],
       "expected_files": [
-        "01-quota-alerts/task-review-summary.md"
+        "task-review-summary.md"
       ],
       "criteria": [
         "Writes task-review-summary.md with Status APPROVED WITH ISSUES",
         "Raises a MAJOR sequencing finding that the ThresholdSettings frontend task comes before the OpenAPI task and the handler",
         "Gives the mechanism that the generated ThresholdSet types do not exist yet, so the frontend has nothing to import",
-        "Gives the mechanism that the thresholds endpoints have no handler yet, so there is nothing for the component to call",
         "Proposes moving the frontend task after the OpenAPI, service and handler tasks",
         "Reports no CRITICAL issues and shows the coverage matrix fully covered"
       ],
@@ -145,7 +156,7 @@
         "evals/files/shared/openapi.yaml"
       ],
       "expected_files": [
-        "01-quota-alerts/task-review-summary.md"
+        "task-review-summary.md"
       ],
       "criteria": [
         "Writes task-review-summary.md with Status APPROVED WITH ISSUES",
@@ -168,6 +179,145 @@
           },
           {
             "text": "### CRITICAL-",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "slug": "oversized-task",
+      "prompt": "tasks.md for quota alerts is approved. Run the task review before the subagents pick it up. requirements.md, design.md and tasks.md are in the working directory, with the shared project docs alongside.",
+      "expected_output": "The reply should write task-review-summary.md with Status APPROVED WITH ISSUES: every acceptance criterion and design element is covered and the order is sound, so there is no CRITICAL finding, but Task 3 is too large for one subagent session, which the skill rates MAJOR. Task 3 builds ThresholdValidator, ThresholdService, ThresholdsHandler and the ThresholdSettings frontend component in one task: four components across the service, handler and frontend layers, with their unit tests. The finding should name Task 3 and the components it spans, and the fix should be to split it into separate tasks (validator and service, handler, frontend component), keeping each with its unit tests. The statistics should show one MAJOR and no CRITICAL, and the verdict should warn and allow proceeding after the split.",
+      "files": [
+        "evals/files/tasks-oversized/requirements.md",
+        "evals/files/tasks-oversized/design.md",
+        "evals/files/tasks-oversized/tasks.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ],
+      "expected_files": [
+        "task-review-summary.md"
+      ],
+      "criteria": [
+        "Writes task-review-summary.md with Status APPROVED WITH ISSUES",
+        "Raises a MAJOR scope finding on Task 3",
+        "Names the components Task 3 spans, including the frontend ThresholdSettings component and at least one backend component",
+        "Proposes splitting Task 3 into separate tasks by component or layer",
+        "Reports no CRITICAL issues"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "**Status:** APPROVED WITH ISSUES",
+            "scope": "outputs"
+          },
+          {
+            "text": "### MAJOR-",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** BLOCKED",
+            "scope": "outputs"
+          },
+          {
+            "text": "### CRITICAL-",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "slug": "combined-tests-minor",
+      "prompt": "Run the task review on the quota alerts tasks before we start building. The three work item documents are in the working directory, with the shared project docs alongside.",
+      "expected_output": "The reply should write task-review-summary.md with Status APPROVED. Every acceptance criterion and design element is covered, the order is sound, and every ending task is present: Task 10 holds both the backend integration tests and the Playwright end-to-end test. Combining the two suites in one task is at most a MINOR finding (split it into two tasks for clarity), not a MAJOR one, because both suites are present and each is fully specified. The summary should show no CRITICAL and no MAJOR findings, and the verdict should approve and point to sdd:spec-qa-review in plan mode.",
+      "files": [
+        "evals/files/tasks-combined-tests/requirements.md",
+        "evals/files/tasks-combined-tests/design.md",
+        "evals/files/tasks-combined-tests/tasks.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ],
+      "expected_files": [
+        "task-review-summary.md"
+      ],
+      "criteria": [
+        "Writes task-review-summary.md with Status APPROVED",
+        "Reports zero CRITICAL and zero MAJOR issues",
+        "Marks the integration test and the end-to-end test ending tasks as present",
+        "Treats the combined test task as at most a MINOR suggestion to split it",
+        "Names sdd:spec-qa-review in plan mode as the next step"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "**Status:** APPROVED",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** APPROVED WITH ISSUES",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** BLOCKED",
+            "scope": "outputs"
+          },
+          {
+            "text": "### CRITICAL-",
+            "scope": "outputs"
+          },
+          {
+            "text": "### MAJOR-",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "slug": "second-block-escalates",
+      "prompt": "Re-run the task review for quota alerts; tasks.md was revised after the last review. requirements.md, design.md, tasks.md and the previous task-review-summary.md are in the working directory, with the shared project docs alongside.",
+      "expected_output": "The previous review blocked on CRITICAL-001: no task implements AC 2.4 (no Quota_Alerts for a suspended Account). The revised tasks.md changes only the wording of the documentation task; the AlertEvaluator task still traces 2.1, 2.2 and 2.3 and never checks the Account status. The review must again write Status BLOCKED with a CRITICAL finding naming AC 2.4, and recognise from the previous summary that this is the second BLOCKED run on the same issue. On a second block the skill stops and asks the user how to proceed rather than sending the author round the loop again, so the reply must escalate to the user, name the unresolved finding, and not proceed to sdd:spec-qa-review.",
+      "files": [
+        "evals/files/tasks-second-block/requirements.md",
+        "evals/files/tasks-second-block/design.md",
+        "evals/files/tasks-second-block/tasks.md",
+        "evals/files/tasks-second-block/task-review-summary.md",
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/shared/openapi.yaml"
+      ],
+      "expected_files": [
+        "task-review-summary.md"
+      ],
+      "criteria": [
+        "Writes task-review-summary.md with Status BLOCKED",
+        "Raises a CRITICAL finding naming AC 2.4 (suspended Account) as still having no implementing task",
+        "Recognises from the previous summary that this is the second BLOCKED run on the same issue",
+        "Stops and asks the user how to proceed, rather than only telling the author to fix tasks.md and re-run the review",
+        "Does not proceed to sdd:spec-qa-review"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "**Status:** BLOCKED",
+            "scope": "outputs"
+          },
+          {
+            "text": "2.4",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** APPROVED",
             "scope": "outputs"
           }
         ]
