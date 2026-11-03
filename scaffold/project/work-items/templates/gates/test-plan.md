@@ -7,8 +7,9 @@
   Never replace — only update. The Expected column is locked in plan mode.
   The Actual column and Gap Log are updated in review mode.
 
-  Severity scale (Gap Log): Critical | Important | Minor
-  (NOT CRITICAL/MAJOR/MINOR — that scale is for the gate review summaries.)
+  Severity scale (Gap Log): CRITICAL | MAJOR | MINOR
+  Status: PASSED | FAILED, set in review mode. Any open CRITICAL or MAJOR
+  gap gives FAILED; MINOR gaps alone give PASSED.
 
   Replace all [bracketed] placeholders with actual content.
   Remove these HTML comments when creating a real plan.
@@ -18,7 +19,8 @@
 
 **Created:** [YYYY-MM-DD]
 **Last Updated:** [YYYY-MM-DD]
-**Status:** [Draft | Active | Complete]
+**Stage:** [Draft | Active | Complete]
+**Status:** [PASSED | FAILED, set in review mode]
 
 ---
 
@@ -29,7 +31,8 @@
   ONLY for layers with no applicable test surface (e.g., pure infra spec
   has no Unit layer). Never silently skip.
 
-  Status: ✓ (meets expected) | ⚠ (partial) | ✗ (gap) | N/A
+  Status: ✓ every expected test present | ⚠ some present | ✗ none present,
+  or a listed test file absent | N/A no test surface, with the reason
 -->
 
 | Layer       | Expected                                  | Actual                                    | Status |
@@ -40,25 +43,20 @@
 | Performance | [Load assumptions, latency budgets]       | [Filled in review mode]                   |        |
 | Security    | [Auth, input validation, OWASP relevance] | [Filled in review mode]                   |        |
 
-**Unit Coverage Gate:** 85% — [Pass / Fail (actual: _%)]
+**Unit Coverage Gate:** 85% lines and branches — [Pass / Fail (actual: _% lines, _% branches)]
 
 ---
 
 ## Gap Log
 
 <!--
-  Severity: Critical | Important | Minor
-  - Critical: missing coverage for key user flows, or unit coverage < 85%
-  - Important: missing error paths, no performance assertions, incomplete security checks
-  - Minor: test quality issues, duplication, missing edge cases
-
   Status: Open | Fixed | Deferred
 -->
 
 | #   | Description                       | Severity  | Status | Opened       | Closed       |
 |-----|-----------------------------------|-----------|--------|--------------|--------------|
-| 1   | [Description of gap]              | Critical  | Open   | YYYY-MM-DD   |              |
-| 2   | [Description of gap]              | Important | Fixed  | YYYY-MM-DD   | YYYY-MM-DD   |
+| 1   | [Description of gap]              | CRITICAL  | Open   | YYYY-MM-DD   |              |
+| 2   | [Description of gap]              | MAJOR     | Fixed  | YYYY-MM-DD   | YYYY-MM-DD   |
 
 ---
 

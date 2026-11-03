@@ -4,8 +4,8 @@
     {
       "id": 1,
       "slug": "plan-mode-full-matrix",
-      "prompt": "The quota alerts spec is approved and the task review passed, but nothing has been built yet. Write the test plan for work item 01-quota-alerts. requirements.md and design.md are in the working directory along with the shared architecture, ubiquitous language and OpenAPI contract.",
-      "expected_output": "The reply should run in plan mode, since the spec exists and no implementation does, and write test-plan.md for the 01-quota-alerts work item. The file should hold the five-layer coverage matrix (Unit, Integration, E2E, Performance, Security) with the Expected column filled in specifically, naming the units and flows from the design, such as ThresholdSet validation, QuotaAlertEvaluator crossing, suspended-account and plan-change behaviour, the thresholds handler against DynamoDB Local, the fired-state write, the Playwright check through the mock server, the evaluation latency budget, and the unauthorised and unknown-Account cases. The Actual column should be left empty or as the template placeholder, since no tests exist, and the Unit Coverage Gate should state the 85% bar without a Pass or Fail result. No layer should be skipped, and no test case tables or requirement traceability matrix should be written because the skill produces a coverage analysis. Gap log severities, if any, should use Critical, Important and Minor only.",
+      "prompt": "The quota alerts spec is approved and the task review passed, but nothing has been built yet. Write the test plan for work item 01-quota-alerts. requirements.md and design.md are in the working directory along with the shared architecture, ubiquitous language and OpenAPI contract. Save test-plan.md to outputs/01-quota-alerts/test-plan.md.",
+      "expected_output": "The reply should run in plan mode, since the spec exists and no implementation does, and write test-plan.md for the 01-quota-alerts work item. The file should hold the five-layer coverage matrix (Unit, Integration, E2E, Performance, Security) with the Expected column filled in specifically, naming the units and flows from the design, such as ThresholdSet validation, QuotaAlertEvaluator crossing, suspended-account and plan-change behaviour, the thresholds handler against DynamoDB Local, the fired-state write, the Playwright check through the mock server, the evaluation latency budget, and the unauthorised and unknown-Account cases. The Actual column should be left empty or as the template placeholder, since no tests exist, and the Unit Coverage Gate should state the 85% bar without a Pass or Fail result. No layer should be skipped, and no test case tables or requirement traceability matrix should be written because the skill produces a coverage analysis. Gap log severities, if any, should use CRITICAL, MAJOR and MINOR only. The **Status:** line keeps its review-mode placeholder, since no review has run.",
       "criteria": [
         "Works in plan mode and writes test-plan.md under the 01-quota-alerts work-item directory in the outputs",
         "The coverage matrix has all five layers (Unit, Integration, E2E, Performance, Security), each with an Expected entry and none silently skipped",
@@ -13,7 +13,8 @@
         "The Actual column is empty or still a placeholder, and no Pass or Fail result is claimed for the Unit Coverage Gate",
         "The Unit Coverage Gate states the 85% bar",
         "Does not produce a per-requirement traceability matrix or a list of numbered test-case tables in place of the layer matrix",
-        "Any gap log entry uses only Critical, Important or Minor"
+        "Any gap log entry uses only CRITICAL, MAJOR or MINOR",
+        "Writes no PASSED or FAILED Status, since plan mode runs no gate"
       ],
       "files": [
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
@@ -76,6 +77,14 @@
           {
             "text": "| Medium |",
             "scope": "outputs"
+          },
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
           }
         ]
       }
@@ -83,16 +92,17 @@
     {
       "id": 2,
       "slug": "plan-mode-design-omits-layers",
-      "prompt": "Task review passed on 01-quota-alerts and nothing is implemented yet. Create the test plan for it. requirements.md and design.md are in the working directory with the shared project context. The design's testing section is short, so use your judgement on what is missing.",
-      "expected_output": "The reply should run in plan mode and write test-plan.md for 01-quota-alerts with all five layers present. The design's Testing Strategy names only unit, integration and Playwright tests and says nothing about performance or security, even though requirement 4.2 requires unauthorised and unknown-Account calls to leave the Threshold_Set unchanged and the evaluation runs on the ingest path. The plan should therefore still give the Security layer an Expected entry (unauthorised request rejected with the set unchanged, unknown Account, no sensitive data in the quota-threshold payload) and the Performance layer an Expected entry (evaluation cost on ingest, no extra read) or mark it clearly as a gap, and it should flag the omission from the design to the user as a gap rather than silently dropping either layer or marking it N/A without justification. Any gap raised uses the Critical, Important or Minor labels only, and the Actual column is left empty. The reply should not rewrite design.md.",
+      "prompt": "Task review passed on 01-quota-alerts and nothing is implemented yet. Create the test plan for it. requirements.md and design.md are in the working directory with the shared project context. The design's testing section is short, so use your judgement on what is missing. Save test-plan.md to outputs/01-quota-alerts/test-plan.md.",
+      "expected_output": "The reply should run in plan mode and write test-plan.md for 01-quota-alerts with all five layers present. The design's Testing Strategy names only unit, integration and Playwright tests and says nothing about performance or security, even though requirement 4.2 requires unauthorised and unknown-Account calls to leave the Threshold_Set unchanged and the evaluation runs on the ingest path. The plan should therefore still give the Security layer an Expected entry (unauthorised request rejected with the set unchanged, unknown Account, no sensitive data in the quota-threshold payload) and the Performance layer an Expected entry (evaluation cost on ingest, no extra read) or mark it clearly as a gap, and it should flag the omission from the design to the user as a gap rather than silently dropping either layer or marking it N/A without justification. Any gap raised uses the CRITICAL, MAJOR or MINOR labels only, and the Actual column is left empty. The reply should not rewrite design.md. The **Status:** line keeps its review-mode placeholder, since no review has run.",
       "criteria": [
         "Works in plan mode and writes test-plan.md under the 01-quota-alerts work-item directory in the outputs",
         "The matrix still contains the Security row with a specific Expected entry derived from the requirements (unauthorised or unknown-Account calls leave the Threshold_Set unchanged), not left blank or silently dropped",
         "The matrix still contains the Performance row, either with an Expected entry about the ingest path or flagged as a gap, and is not marked N/A without a justification",
         "The omission of security and performance from the design is flagged explicitly, in the plan, the gap log or the reply, as a gap",
-        "Gap severities use only Critical, Important or Minor",
+        "Gap severities use only CRITICAL, MAJOR or MINOR",
         "The Actual column is empty or a placeholder because no tests exist",
-        "Does not modify or regenerate design.md"
+        "Does not modify or regenerate design.md",
+        "Writes no PASSED or FAILED Status, since plan mode runs no gate"
       ],
       "files": [
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
@@ -135,6 +145,14 @@
           {
             "text": "P1",
             "scope": "outputs"
+          },
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
           }
         ]
       }
@@ -142,21 +160,22 @@
     {
       "id": 3,
       "slug": "review-mode-coverage-meets-bar",
-      "prompt": "01-quota-alerts is implemented and the implementation audit passed. Run the QA review. test-plan.md from the planning phase, the source, the tests and the JaCoCo coverage-report.txt are all in the working directory, with the spec documents and shared context.",
-      "expected_output": "The reply should run in review mode, since the implementation is present and test-plan.md already exists, and update that same test-plan.md rather than creating a new one or only reporting in the conversation. The Actual column should be filled in for all five layers from the tests present (ThresholdSetTest and QuotaAlertEvaluatorTest for Unit, ThresholdHandlerTest and FiredStateRepositoryTest for Integration, quota-alerts.spec.ts for E2E, EvaluatorBudgetTest for Performance, ThresholdAuthTest for Security) and every layer should come out as meeting its Expected entry. The coverage report shows 92% lines and 86% branches against the 85% bar, so the Unit Coverage Gate should read Pass with the actual figure. The Expected column should be preserved as written. Gap 1 in the log (no performance assertion) should be marked Fixed with a Closed date because EvaluatorBudgetTest now exists, and the Test Inventory should map the test files to what they cover. The conversation should carry a QA Gap Report in the skill's format with the Coverage Summary and no Critical action items. Severities use Critical, Important and Minor only.",
+      "prompt": "01-quota-alerts is implemented and the implementation audit passed. Run the QA review. test-plan.md from the planning phase, the source, the tests and the JaCoCo coverage-report.txt are all in the working directory, with the spec documents and shared context. Save the updated test-plan.md to outputs/01-quota-alerts/test-plan.md.",
+      "expected_output": "The reply should run in review mode, since the implementation is present and test-plan.md already exists, and update that same test-plan.md rather than creating a new one or only reporting in the conversation. The Actual column should be filled in for all five layers from the tests present (ThresholdSetTest and QuotaAlertEvaluatorTest for Unit, ThresholdHandlerTest and FiredStateRepositoryTest for Integration, quota-alerts.spec.ts for E2E, EvaluatorBudgetTest for Performance, ThresholdAuthTest for Security) and every layer should come out as meeting its Expected entry. The coverage report shows 92% lines and 86% branches against the 85% bar, so the Unit Coverage Gate should read Pass with the actual figure. The Expected column should be preserved as written. Gap 1 in the log (no performance assertion) should be marked Fixed with a Closed date because EvaluatorBudgetTest now exists, and the Test Inventory should map the test files to what they cover. The conversation should carry a QA Gap Report in the skill's format with the Coverage Summary and no CRITICAL or MAJOR action items. Severities use CRITICAL, MAJOR and MINOR only. The test plan's **Status:** line reads PASSED, and the reply hands on to sdd:spec-maintenance.",
       "criteria": [
+        "Writes test-plan.md with Status PASSED",
         "Works in review mode and updates test-plan.md in the outputs rather than creating a differently structured document",
         "The Actual column is filled in for all five layers, naming the tests found, and the Expected column is preserved unchanged",
         "The Unit Coverage Gate is marked Pass with the actual figure taken from the coverage report (92% lines, 86% branches)",
-        "Gap 1 is marked Fixed with a Closed date, citing EvaluatorBudgetTest, and no new Critical gap is invented",
+        "Gap 1 is marked Fixed with a Closed date, citing EvaluatorBudgetTest, and no new CRITICAL or MAJOR gap is invented",
         "The Test Inventory table lists the test files and what each covers",
-        "The conversation includes a QA Gap Report with the Coverage Summary table, a unit coverage line against the 85% gate, and an Action Items section with no Critical items",
-        "Severity labels are only Critical, Important or Minor"
+        "The conversation includes a QA Gap Report with the Coverage Summary table, a unit coverage line against the 85% gate, and an Action Items section with no CRITICAL or MAJOR items",
+        "Severity labels are only CRITICAL, MAJOR or MINOR"
       ],
       "files": [
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
         "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml",
+        "evals/files/review-impl/openapi.yaml",
         "evals/files/review-impl/requirements.md",
         "evals/files/review-impl/design.md",
         "evals/files/review-impl/ThresholdSet.kt",
@@ -177,6 +196,10 @@
       ],
       "assertions": {
         "must_include": [
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          },
           {
             "text": "Pass",
             "scope": "outputs"
@@ -207,6 +230,18 @@
           {
             "text": "P0",
             "scope": "outputs"
+          },
+          {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
+          },
+          {
+            "text": "| Important |",
+            "scope": "outputs"
+          },
+          {
+            "text": "| Critical |",
+            "scope": "outputs"
           }
         ]
       }
@@ -214,21 +249,22 @@
     {
       "id": 4,
       "slug": "review-mode-unit-coverage-below-bar",
-      "prompt": "01-quota-alerts is built and the implementation audit passed. Do the QA review and tell me whether we can move on. The plan, the code, the tests and coverage-report.txt are in the working directory with the spec and shared context.",
-      "expected_output": "The reply should run in review mode and update the existing test-plan.md, filling the Actual column for all five layers. The coverage report shows 56% lines and 38% branches overall, well under the 85% gate, so the Unit Coverage Gate should read Fail with the actual figure, the Unit row should be marked as a gap, and a Critical gap should be opened in the gap log and listed under Critical in the gap report, because the skill classes unit coverage below the gate as Critical. The Unit Actual entry should list only what exists (three ThresholdSetTest cases and two QuotaAlertEvaluatorTest cases) and name the planned cases that are missing, such as the suspended-account, plan-change, lowered-threshold and multi-threshold evaluator tests and the ThresholdSet duplicate, range and type rejections. The other layers have their planned tests and should not be marked as gaps. Because the gate fails, the reply should say the work item does not pass QA and that fix subagents should close the coverage gaps and review mode should be re-run, rather than proceeding to sdd:spec-maintenance. Severities use Critical, Important and Minor only.",
+      "prompt": "01-quota-alerts is built and the implementation audit passed. Do the QA review and tell me whether we can move on. The plan, the code, the tests and coverage-report.txt are in the working directory with the spec and shared context. Save the updated test-plan.md to outputs/01-quota-alerts/test-plan.md.",
+      "expected_output": "The reply should run in review mode and update the existing test-plan.md, filling the Actual column for all five layers. The coverage report shows 56% lines and 38% branches overall, well under the 85% gate, so the Unit Coverage Gate should read Fail with the actual figure, the Unit row should be marked as a gap, and a CRITICAL gap should be opened in the gap log and listed under CRITICAL in the gap report, because the skill classes unit coverage below the gate as CRITICAL. The Unit Actual entry should list only what exists (three ThresholdSetTest cases and two QuotaAlertEvaluatorTest cases) and name the planned cases that are missing, such as the suspended-account, plan-change, lowered-threshold and multi-threshold evaluator tests and the ThresholdSet duplicate, range and type rejections. The other layers have their planned tests and should not be marked as gaps. Because the gate fails, the reply should say the work item does not pass QA and that fix subagents should close the coverage gaps and review mode should be re-run, rather than proceeding to sdd:spec-maintenance. Severities use CRITICAL, MAJOR and MINOR only. The test plan's **Status:** line reads FAILED.",
       "criteria": [
+        "Writes test-plan.md with Status FAILED",
         "Works in review mode and updates test-plan.md in the outputs, filling the Actual column for all five layers",
         "The Unit Coverage Gate is marked Fail with the actual figure from the report (56% lines, 38% branches), not Pass",
-        "A Critical gap for unit coverage below the 85% gate is added to the gap log and listed under Critical in the gap report",
+        "A CRITICAL gap for unit coverage below the 85% gate is added to the gap log and listed under CRITICAL in the gap report",
         "The Unit Actual entry lists only the tests that exist and names the missing planned cases (for example suspended account, plan change, duplicate or out-of-range rejection)",
         "The Integration, E2E, Performance and Security layers are not marked as gaps, since their planned tests exist",
         "The reply states that the work item does not pass and does not hand on to sdd:spec-maintenance, pointing to fixing the coverage gaps and re-running review mode",
-        "Severity labels are only Critical, Important or Minor"
+        "Severity labels are only CRITICAL, MAJOR or MINOR"
       ],
       "files": [
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
         "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml",
+        "evals/files/review-impl/openapi.yaml",
         "evals/files/review-impl/requirements.md",
         "evals/files/review-impl/design.md",
         "evals/files/review-impl/ThresholdSet.kt",
@@ -250,11 +286,15 @@
       "assertions": {
         "must_include": [
           {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
+          },
+          {
             "text": "Fail",
             "scope": "outputs"
           },
           {
-            "text": "Critical",
+            "text": "CRITICAL",
             "scope": "outputs"
           },
           {
@@ -275,6 +315,18 @@
           {
             "text": "P0",
             "scope": "outputs"
+          },
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          },
+          {
+            "text": "| Important |",
+            "scope": "outputs"
+          },
+          {
+            "text": "| Critical |",
+            "scope": "outputs"
           }
         ]
       }
@@ -282,21 +334,23 @@
     {
       "id": 5,
       "slug": "review-mode-planned-test-missing",
-      "prompt": "Implementation of 01-quota-alerts is done and the audit passed. Run the QA review. test-plan.md, the source, whatever tests there are, and coverage-report.txt are in the working directory, along with the spec documents and shared context.",
-      "expected_output": "The reply should run in review mode and update the existing test-plan.md, filling the Actual column. Coverage is above the bar (92% lines, 86% branches), so the Unit Coverage Gate should read Pass. The plan's Security layer lists ThresholdAuthTest, but no such file exists in the code tree, and nothing else tests authorisation, so the Security Actual entry should say that no security tests exist, the row should be marked as a gap, and ThresholdAuthTest must not appear in the Test Inventory as if it existed. A new gap should be logged for the missing security coverage with severity Important (incomplete security checks), and the Important item should appear in the gap report. The other four layers meet their Expected entries, and Gap 1 (no performance assertion) should be marked Fixed because EvaluatorBudgetTest exists. The reply should not claim that the missing test passes or that coverage is complete. Severities use Critical, Important and Minor only.",
+      "prompt": "Implementation of 01-quota-alerts is done and the audit passed. Run the QA review. test-plan.md, the source, whatever tests there are, and coverage-report.txt are in the working directory, along with the spec documents and shared context. Save the updated test-plan.md to outputs/01-quota-alerts/test-plan.md.",
+      "expected_output": "The reply should run in review mode and update the existing test-plan.md, filling the Actual column. Coverage is above the bar (92% lines, 86% branches), so the Unit Coverage Gate should read Pass. The plan's Security layer lists ThresholdAuthTest, but no such file exists in the code tree, and nothing else tests authorisation, so the Security Actual entry should say that no security tests exist, the row should be marked as a gap, and ThresholdAuthTest must not appear in the Test Inventory as if it existed. A new gap should be logged for the missing security coverage with severity MAJOR, because a listed test file is absent and the layer is therefore marked ✗, and the MAJOR item should appear in the gap report. The other four layers meet their Expected entries, and Gap 1 (no performance assertion) should be marked Fixed because EvaluatorBudgetTest exists. The MAJOR gap fails the review, so the test plan's **Status:** line reads FAILED and the reply does not hand on to sdd:spec-maintenance. The reply should not claim that the missing test passes or that coverage is complete. Severities use CRITICAL, MAJOR and MINOR only.",
       "criteria": [
+        "Writes test-plan.md with Status FAILED",
         "Works in review mode and updates test-plan.md in the outputs, filling the Actual column",
-        "The Security Actual entry states that no security tests exist (ThresholdAuthTest is absent from the code tree) and the Security row is marked as a gap, not as meeting Expected",
+        "The Security Actual entry states that no security tests exist (ThresholdAuthTest is absent from the code tree) and the Security row is marked ✗, not as meeting Expected",
         "ThresholdAuthTest is not listed in the Test Inventory as an existing file",
-        "A new gap for the missing security tests is added to the gap log with severity Important and listed under Important in the gap report",
+        "A new gap for the missing security tests is added to the gap log with severity MAJOR and listed under MAJOR in the gap report",
         "The Unit Coverage Gate is marked Pass with the actual figure from the report",
         "Gap 1 is marked Fixed because EvaluatorBudgetTest exists, and the Performance row is not marked as a gap",
-        "Severity labels are only Critical, Important or Minor"
+        "Does not hand on to sdd:spec-maintenance, since the review failed",
+        "Severity labels are only CRITICAL, MAJOR or MINOR"
       ],
       "files": [
         "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
         "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml",
+        "evals/files/review-impl/openapi.yaml",
         "evals/files/review-impl/requirements.md",
         "evals/files/review-impl/design.md",
         "evals/files/review-impl/ThresholdSet.kt",
@@ -317,11 +371,15 @@
       "assertions": {
         "must_include": [
           {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
+          },
+          {
             "text": "Security",
             "scope": "outputs"
           },
           {
-            "text": "Important",
+            "text": "MAJOR",
             "scope": "outputs"
           },
           {
@@ -341,6 +399,254 @@
           },
           {
             "text": "P0",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          },
+          {
+            "text": "| Important |",
+            "scope": "outputs"
+          },
+          {
+            "text": "| Critical |",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "slug": "review-mode-security-partial-passes",
+      "prompt": "01-quota-alerts is implemented and the implementation audit passed. Run the QA review and tell me if we can move on. test-plan.md, the source, the tests and coverage-report.txt are in the working directory, with the spec documents and shared context. Save the updated test-plan.md to outputs/01-quota-alerts/test-plan.md.",
+      "expected_output": "The reply should run in review mode and update the existing test-plan.md, filling the Actual column for all five layers. Coverage is above the bar (92% lines, 86% branches), so the Unit Coverage Gate reads Pass. ThresholdAuthTest exists but holds only two of the three planned Security cases: the unauthenticated PUT and the other-Account caller are tested, and the planned check that the quota-threshold payload carries no owner email is missing from it. QuotaAlertEvaluatorTest still asserts the full payload, so no requirement is left untested. Because some but not all expected tests exist, the Security row is marked ⚠, not ✓ and not ✗, and a MINOR gap is logged naming the missing payload check. The other layers meet their Expected entries and Gap 1 is marked Fixed because EvaluatorBudgetTest exists. A MINOR gap alone does not fail the review, so the test plan's **Status:** line reads PASSED and the reply hands on to sdd:spec-maintenance. Severities use CRITICAL, MAJOR and MINOR only.",
+      "criteria": [
+        "Writes test-plan.md with Status PASSED",
+        "The Security row is marked ⚠ (partial), and its Actual entry names the two tests present and the missing owner-email payload check",
+        "A MINOR gap for the missing payload check is added to the gap log, and no CRITICAL or MAJOR gap is raised",
+        "The Unit Coverage Gate is marked Pass with the actual figure from the report",
+        "Gap 1 is marked Fixed because EvaluatorBudgetTest exists",
+        "Hands on to sdd:spec-maintenance as the next step",
+        "Severity labels are only CRITICAL, MAJOR or MINOR"
+      ],
+      "files": [
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/review-impl/openapi.yaml",
+        "evals/files/review-impl/requirements.md",
+        "evals/files/review-impl/design.md",
+        "evals/files/review-impl/ThresholdSet.kt",
+        "evals/files/review-impl/QuotaAlertEvaluator.kt",
+        "evals/files/review-impl/ThresholdHandler.kt",
+        "evals/files/review-security-partial/EvaluatorBudgetTest.kt",
+        "evals/files/review-security-partial/FiredStateRepositoryTest.kt",
+        "evals/files/review-security-partial/QuotaAlertEvaluatorTest.kt",
+        "evals/files/review-security-partial/ThresholdAuthTest.kt",
+        "evals/files/review-security-partial/ThresholdHandlerTest.kt",
+        "evals/files/review-security-partial/ThresholdSetTest.kt",
+        "evals/files/review-security-partial/coverage-report.txt",
+        "evals/files/review-security-partial/quota-alerts.spec.ts",
+        "evals/files/review-security-partial/test-plan.md"
+      ],
+      "expected_files": [
+        "01-quota-alerts/test-plan.md"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          },
+          {
+            "text": "MINOR",
+            "scope": "outputs"
+          },
+          {
+            "text": "⚠",
+            "scope": "outputs"
+          },
+          "spec-maintenance"
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
+          },
+          {
+            "text": "[Filled in review mode]",
+            "scope": "outputs"
+          },
+          {
+            "text": "| High |",
+            "scope": "outputs"
+          },
+          {
+            "text": "P0",
+            "scope": "outputs"
+          },
+          {
+            "text": "| Important |",
+            "scope": "outputs"
+          },
+          {
+            "text": "| Critical |",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "slug": "review-mode-branch-coverage-below-bar",
+      "prompt": "Implementation of 01-quota-alerts is done and the audit passed. Run the QA review. The plan, the code, the tests and coverage-report.txt are in the working directory with the spec and shared context. Save the updated test-plan.md to outputs/01-quota-alerts/test-plan.md.",
+      "expected_output": "The reply should run in review mode and update the existing test-plan.md, filling the Actual column for all five layers. Every planned test exists, but the coverage report shows 92% lines and 80% branches. The bar applies to line and branch coverage each, so the Unit Coverage Gate reads Fail with both figures, and a CRITICAL gap is logged for branch coverage below 85%. The CRITICAL gap fails the review, so the test plan's **Status:** line reads FAILED and the reply points to closing the branch-coverage gap and re-running review mode rather than handing on to sdd:spec-maintenance. Severities use CRITICAL, MAJOR and MINOR only.",
+      "criteria": [
+        "Writes test-plan.md with Status FAILED",
+        "The Unit Coverage Gate is marked Fail, citing 80% branch coverage against the 85% bar, and is not passed on the 92% line figure",
+        "A CRITICAL gap for branch coverage below 85% is added to the gap log",
+        "The other layers are not marked as gaps, since their planned tests exist",
+        "Does not hand on to sdd:spec-maintenance, and points to closing the coverage gap and re-running review mode",
+        "Severity labels are only CRITICAL, MAJOR or MINOR"
+      ],
+      "files": [
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/review-impl/openapi.yaml",
+        "evals/files/review-impl/requirements.md",
+        "evals/files/review-impl/design.md",
+        "evals/files/review-impl/ThresholdSet.kt",
+        "evals/files/review-impl/QuotaAlertEvaluator.kt",
+        "evals/files/review-impl/ThresholdHandler.kt",
+        "evals/files/review-branch-below-bar/EvaluatorBudgetTest.kt",
+        "evals/files/review-branch-below-bar/FiredStateRepositoryTest.kt",
+        "evals/files/review-branch-below-bar/QuotaAlertEvaluatorTest.kt",
+        "evals/files/review-branch-below-bar/ThresholdAuthTest.kt",
+        "evals/files/review-branch-below-bar/ThresholdHandlerTest.kt",
+        "evals/files/review-branch-below-bar/ThresholdSetTest.kt",
+        "evals/files/review-branch-below-bar/coverage-report.txt",
+        "evals/files/review-branch-below-bar/quota-alerts.spec.ts",
+        "evals/files/review-branch-below-bar/test-plan.md"
+      ],
+      "expected_files": [
+        "01-quota-alerts/test-plan.md"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
+          },
+          {
+            "text": "80%",
+            "scope": "outputs"
+          },
+          {
+            "text": "CRITICAL",
+            "scope": "outputs"
+          },
+          {
+            "text": "Fail",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          },
+          {
+            "text": "[Filled in review mode]",
+            "scope": "outputs"
+          },
+          {
+            "text": "| High |",
+            "scope": "outputs"
+          },
+          {
+            "text": "P0",
+            "scope": "outputs"
+          },
+          {
+            "text": "| Important |",
+            "scope": "outputs"
+          },
+          {
+            "text": "| Critical |",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "slug": "review-mode-second-fail-escalates",
+      "prompt": "Fix subagents worked on the coverage gaps for 01-quota-alerts. Re-run the QA review. test-plan.md from the last review, the source, the tests and coverage-report.txt are in the working directory with the spec and shared context. Save the updated test-plan.md to outputs/01-quota-alerts/test-plan.md.",
+      "expected_output": "The reply should run in review mode and update the existing test-plan.md. Its **Status:** line already reads FAILED from the previous review, with gap 2 (unit coverage 56% lines and 38% branches) open as CRITICAL. The tests and the coverage report are unchanged, so the gate still fails: the Unit Coverage Gate reads Fail, gap 2 stays open, and the **Status:** line reads FAILED. Because the previous review also failed, this is the second failure, so the reply stops and asks the user how to proceed, rather than dispatching fix subagents again or handing on to sdd:spec-maintenance. Severities use CRITICAL, MAJOR and MINOR only.",
+      "criteria": [
+        "Writes test-plan.md with Status FAILED",
+        "The Unit Coverage Gate is marked Fail with 56% lines and 38% branches, and gap 2 stays Open as CRITICAL",
+        "Recognises from the previous Status in test-plan.md that this is the second failed review",
+        "Stops and asks the user how to proceed, rather than only dispatching fix subagents and re-running review mode",
+        "Does not hand on to sdd:spec-maintenance",
+        "Severity labels are only CRITICAL, MAJOR or MINOR"
+      ],
+      "files": [
+        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
+        "evals/files/shared/ARCHITECTURE.md",
+        "evals/files/review-impl/openapi.yaml",
+        "evals/files/review-impl/requirements.md",
+        "evals/files/review-impl/design.md",
+        "evals/files/review-impl/ThresholdSet.kt",
+        "evals/files/review-impl/QuotaAlertEvaluator.kt",
+        "evals/files/review-impl/ThresholdHandler.kt",
+        "evals/files/review-second-fail/EvaluatorBudgetTest.kt",
+        "evals/files/review-second-fail/FiredStateRepositoryTest.kt",
+        "evals/files/review-second-fail/QuotaAlertEvaluatorTest.kt",
+        "evals/files/review-second-fail/ThresholdAuthTest.kt",
+        "evals/files/review-second-fail/ThresholdHandlerTest.kt",
+        "evals/files/review-second-fail/ThresholdSetTest.kt",
+        "evals/files/review-second-fail/coverage-report.txt",
+        "evals/files/review-second-fail/quota-alerts.spec.ts",
+        "evals/files/review-second-fail/test-plan.md"
+      ],
+      "expected_files": [
+        "01-quota-alerts/test-plan.md"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
+          },
+          {
+            "text": "56%",
+            "scope": "outputs"
+          },
+          {
+            "text": "CRITICAL",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          },
+          {
+            "text": "| High |",
+            "scope": "outputs"
+          },
+          {
+            "text": "P0",
+            "scope": "outputs"
+          },
+          {
+            "text": "| Important |",
+            "scope": "outputs"
+          },
+          {
+            "text": "| Critical |",
             "scope": "outputs"
           }
         ]

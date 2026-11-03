@@ -32,4 +32,10 @@ class ThresholdHandlerTest {
     @Test fun `unknown account returns 404`() {
         assertEquals(Status.NOT_FOUND, handler.get(Request(GET, "/accounts/acc_zzzzzzzzzzzz/thresholds")).status)
     }
+
+    @Test fun `PUT for an unknown account returns 404 and writes nothing`() {
+        val response = handler.replace(Request(PUT, "/accounts/acc_zzzzzzzzzzzz/thresholds").body("""{"thresholds":[50]}"""))
+        assertEquals(Status.NOT_FOUND, response.status)
+        assertEquals(null, accounts.find("acc_zzzzzzzzzzzz"))
+    }
 }

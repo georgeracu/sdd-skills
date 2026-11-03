@@ -1,157 +1,100 @@
 ---
 name: spec-qa-review
-description: Use in plan mode after sdd:spec-task-review passes to create test-plan.md before implementation. Use in review mode after sdd:spec-implementation-audit passes to audit test coverage against the plan. Finds gaps across unit, integration, E2E, performance, and security layers.
+description: "Use for plan mode, before implementation: write test-plan.md across unit, integration, E2E, performance and security, after sdd:spec-task-review passes. Use for review mode, after sdd:spec-implementation-audit passes: audit tests against the plan and gate on coverage."
 ---
 
 # QA Review
 
-## Overview
-
-Structured quality assurance across two lifecycle phases: planning (before implementation) and review (after implementation).
-
-**Core principle:** Test coverage gaps found before writing code cost nothing to fix. Gaps found after cost a lot.
+The output is `test-plan.md`, beside `requirements.md` in `project/work-items/{NN}-{name}/`. It is a coverage analysis: for each of the five layers below, what is tested against what is expected. Plan mode creates it; review mode updates it and never replaces it.
 
 ## Modes
 
-**Plan mode** — reads spec documents, fills the Expected column of the coverage matrix, creates `test-plan.md`.
-Trigger: spec exists (`requirements.md` / `design.md`), implementation has not started.
+**Plan mode** fills the Expected column. Run it when the spec exists and no implementation does.
 
-**Review mode** — reads existing tests + source code, fills the Actual column, diffs against Expected, produces gap report and updates `test-plan.md`.
-Trigger: implementation is present.
+**Review mode** fills the Actual column, compares it with Expected, updates the gap log and sets the Status. Run it when the implementation is present.
 
-**Force a mode:** "qa-review plan" / "qa-review review"
-**When ambiguous** (partial implementation): ask the user which mode to use.
-
-## IMPORTANT: What This Produces
-
-This skill does NOT produce a test specification document. It produces a **coverage analysis** using the 5-layer matrix below.
-
-Do NOT write test case tables, requirement traceability matrices, or property-based test lists.
-Write a coverage matrix that answers: "what IS tested / SHOULD be tested at each layer?"
+The user can force a mode ("qa-review plan" or "qa-review review"). When the implementation is partial, ask the user which mode to run.
 
 ## Coverage Matrix
 
 | Layer | What to analyse |
 |---|---|
-| **Unit** | Functions, components, edge cases, error paths. **Gate: ≥85% line/branch coverage** (project default; adjust in the template if your project sets a different bar). Mark N/A with justification for specs with no unit-testable code (e.g. pure infrastructure). |
-| **Integration** | Service boundaries, API contracts, data flow between layers |
-| **E2E** | User journeys, happy paths, critical failure paths |
-| **Performance** | Load assumptions, response time budgets, bundle/memory size |
-| **Security** | Auth boundaries, input validation, sensitive data exposure, OWASP Top 10 relevance |
+| Unit | Functions, components, edge cases, error paths. **Gate: line coverage and branch coverage each ≥85%; Fail when either is lower** (project default; adjust in the template if your project sets a different bar). Mark N/A with the reason for specs with no unit-testable code (e.g. pure infrastructure). |
+| Integration | Service boundaries, API contracts, data flow between layers |
+| E2E | User journeys, happy paths, critical failure paths |
+| Performance | Load assumptions, response time budgets, bundle/memory size |
+| Security | Auth boundaries, input validation, sensitive data exposure, OWASP Top 10 relevance |
 
-All five layers are analysed every pass. Do not skip a layer without marking it N/A.
+Analyse all five layers on every pass, and mark a layer N/A only with the reason. When time is short, still run the full matrix and note which layers need deeper follow-up.
 
-## Plan Mode Process
+Mark each layer's Status:
 
-1. Read `project/work-items/{NN}-{name}/requirements.md` (or `bugfix.md` for a bugfix work item) and `design.md`
-2. For each layer, determine what SHOULD be tested — be specific (name the functions, flows, and boundaries)
-3. Flag any layer with zero expected coverage as a gap immediately
-4. Create `project/work-items/{NN}-{name}/test-plan.md` with the Expected column populated
+- **✓** every expected test is present.
+- **⚠** some expected tests are present.
+- **✗** no expected test is present, or a test file the plan lists is absent.
+- **N/A** the layer has no test surface; give the reason.
 
-**File location is mandatory:** `project/work-items/{NN}-{name}/test-plan.md`, not anywhere else.
+An expected test that is absent from the code tree is missing, whatever `test-plan.md` says.
 
-## Review Mode Process
+## Plan Mode
 
-1. Read test files for the spec's implementation
-2. For each layer, document what IS tested
-3. Check unit test coverage report if available; if not, estimate from test count vs code paths
-4. Compare Actual vs Expected (if `test-plan.md` exists) or infer Expected from the codebase
-5. Update `test-plan.md` — fill Actual column, update gap log (mark Fixed gaps, add new ones)
-6. Output gap report in the conversation
+1. Read `requirements.md` (or `bugfix.md` for a bugfix work item) and `design.md`.
+2. For each layer, write the Expected entry: name the functions, flows and boundaries to test.
+3. When the requirements imply a layer that `design.md` omits, write the Expected entry from `requirements.md`, add a MAJOR gap row saying the design omits it, and name it in the reply. Do not edit `design.md`.
+4. Flag any layer with no expected coverage as a gap.
+5. Create `test-plan.md` with the Expected column filled and the Actual column empty.
 
-**Always update `test-plan.md` in Review mode.** A gap report that disappears from the conversation is not QA — it is noise. The persistent document is the point.
+## Review Mode
 
-## Test Plan Document
+1. Read the `**Status:**` line in `test-plan.md` before you change the file; the Gate section needs it.
+2. Read the test files for the implementation, and fill the Actual column with what each layer tests.
+3. Read the unit coverage report. If there is none, estimate from the test count against the code paths.
+4. Compare Actual with Expected, mark each layer's Status, and set the Unit Coverage Gate with both figures.
+5. Update the gap log and the Test Inventory, then set the `**Status:**` line.
+6. Write the gap report in the reply.
 
-**Location:** `project/work-items/{NN}-{name}/test-plan.md`
-Use `project/work-items/templates/gates/test-plan.md` as the structure when it exists; otherwise use the outline below.
-**Never replace — only update.** Created in Plan mode, updated in Review mode.
+Plan mode locks the Expected column. Review mode changes only the Actual and Status columns, the Unit Coverage Gate, the gap log, the Test Inventory and the `**Status:**` line. Close a fixed gap with Status Fixed and a Closed date, and write every action item as a gap-log row.
 
-```markdown
-# Test Plan — {Spec Name}
+## Severity and Status
 
-**Created:** YYYY-MM-DD
-**Last Updated:** YYYY-MM-DD
-**Status:** Draft | Active | Complete
+Use exactly these labels:
 
-## Coverage Matrix
+- **CRITICAL**: unit coverage below the gate, or no coverage for a key user flow.
+- **MAJOR**: a layer marked ✗, or (plan mode) a layer the design omits.
+- **MINOR**: a layer marked ⚠, test quality issues, duplication, missing edge cases.
 
-| Layer       | Expected | Actual | Status |
-|-------------|----------|--------|--------|
-| Unit        |          |        |        |
-| Integration |          |        |        |
-| E2E         |          |        |        |
-| Performance |          |        |        |
-| Security    |          |        |        |
+In review mode, set the `**Status:**` line to one value:
 
-**Unit Coverage Gate:** 85% — Pass / Fail (actual: _%)
+- **FAILED**: the gap log holds an open CRITICAL or MAJOR gap.
+- **PASSED**: otherwise. MINOR gaps alone do not fail the review.
 
-## Gap Log
+Plan mode writes the line as `**Status:** [PASSED | FAILED, set in review mode]`.
 
-| # | Description | Severity | Status | Opened | Closed |
-|---|-------------|----------|--------|--------|--------|
+## Output
 
-## Test Inventory
+Use `project/work-items/templates/gates/test-plan.md` as the structure. If it is absent, use these headings: a title, `**Created:**`, `**Last Updated:**`, `**Stage:** Draft | Active | Complete`, `**Status:** [PASSED | FAILED, set in review mode]`, then `## Coverage Matrix` (Layer, Expected, Actual, Status) followed by `**Unit Coverage Gate:**` with the line and branch figures, `## Gap Log` (#, Description, Severity, Status, Opened, Closed) and `## Test Inventory` (File, Covers).
 
-| File | Covers |
-|------|--------|
-```
-
-## Gap Report Format
-
-Output in conversation after every Review mode pass:
+After every review-mode pass, write this gap report in the reply:
 
 ```
 ## QA Gap Report: {NN}-{name}
 
-### Coverage Summary
-| Layer       | Expected | Actual   | Status  |
-|-------------|----------|----------|---------|
-| Unit        |          |          | ✓/⚠/✗  |
-| Integration |          |          | ✓/⚠/✗  |
-| E2E         |          |          | ✓/⚠/✗  |
-| Performance |          |          | ✓/⚠/✗  |
-| Security    |          |          | ✓/⚠/✗  |
+**Status:** PASSED | FAILED
 
-Unit coverage: X% (gate: 85%) ✓/✗
+### Coverage Summary
+| Layer | Expected | Actual | Status |
+(one row per layer, Status ✓, ⚠, ✗ or N/A)
+
+Unit coverage: X% lines, Y% branches (gate: 85% each) ✓/✗
 
 ### Action Items
-**Critical**
-- [ ] ...
-
-**Important**
-- [ ] ...
-
-**Minor**
-- [ ] ...
+**CRITICAL** / **MAJOR** / **MINOR**, each a checkbox list
 ```
 
-**Severity — use exactly these labels:**
-- **Critical** — missing coverage for key user flows, or unit coverage below 85% gate
-- **Important** — missing error paths, no performance assertions, incomplete security checks
-- **Minor** — test quality issues, duplication, missing edge cases
+## Gate
 
-Do NOT use High/Medium/Low, P0/P1/P2, or any other severity system. Use Critical/Important/Minor only.
+**Plan mode:** the next step is `subagent-driven-development` (documented in `sdd:spec-workflow`).
 
-Action items are also written to the gap log in `test-plan.md`.
+**Review mode, PASSED:** invoke `sdd:spec-maintenance`.
 
-## Common Mistakes
-
-**Never run a partial matrix.** A partial review is not a QA review — it is a guess.
-If time is constrained, run the full matrix and note which layers need deeper follow-up.
-
-**Never skip updating `test-plan.md` in Review mode.** The gap report in the conversation is ephemeral.
-The persistent document in `test-plan.md` is the deliverable.
-
-## SDD Pipeline Integration
-
-### Plan Mode
-
-**Triggered by:** `sdd:spec-task-review` passes.
-**Next step:** `subagent-driven-development` (documented in `sdd:spec-workflow`).
-
-### Review Mode
-
-**Triggered by:** `sdd:spec-implementation-audit` passes.
-**On pass:** Invoke `sdd:spec-maintenance`.
-**On fail:** Dispatch fix subagents for coverage gaps, re-run review mode. If fails twice, ask the user.
+**Review mode, FAILED:** if the `**Status:**` line read FAILED before this run, stop and ask the user how to proceed. Otherwise dispatch fix subagents for the open CRITICAL and MAJOR gaps, then re-run review mode.

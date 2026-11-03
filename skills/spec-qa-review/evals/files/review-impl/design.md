@@ -70,7 +70,7 @@ The `quota-threshold` payload carries `accountId`, `threshold`, `metered`, `quot
 |---|---|---|
 | Invalid threshold list | 400 | `threshold-set-invalid` |
 | Unknown account | 404 | `account-not-found` |
-| Notification publish fails | none | evaluator logs and leaves the threshold out of `fired` so the next increment retries |
+| Notification publish fails | none | the threshold is already in `fired`, so the alert is not retried in this Billing_Period; the exception reaches the ingest Lambda's error metric |
 
 ## Testing Strategy
 

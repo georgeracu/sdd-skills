@@ -1,0 +1,577 @@
+{
+  "iteration": "iteration-5",
+  "pack_hash": "a690e9892f2691e3d1c7f2635ea9346ee04726a19eb97ede04f17f0675b89fe6",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "n": 2
+      },
+      "time_seconds": {
+        "mean": 96.3407,
+        "stddev": 11.5537,
+        "n": 2
+      },
+      "tokens": {
+        "mean": 317938.1667,
+        "stddev": 12154.1666,
+        "n": 2
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.936,
+        "stddev": 0.0085,
+        "n": 2
+      },
+      "time_seconds": {
+        "mean": 75.069,
+        "stddev": 8.6837,
+        "n": 2
+      },
+      "tokens": {
+        "mean": 287040.3333,
+        "stddev": 10308.6666,
+        "n": 2
+      }
+    },
+    "delta": {
+      "pass_rate": 0.064,
+      "time_seconds": 21.2717,
+      "tokens": 30897.8334
+    }
+  },
+  "cases": {
+    "plan-mode-full-matrix": {
+      "with_skill": {
+        "passed": 69,
+        "failed": 0,
+        "total": 69,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: ## Coverage Matrix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Unit Coverage Gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: 85%",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Unit",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Integration",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | E2E",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Performance",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Security",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Traceability Matrix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Medium |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in plan mode and writes test-plan.md under the 01-quota-alerts work-item directory in the outputs",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The coverage matrix has all five layers (Unit, Integration, E2E, Performance, Security), each with an Expected entry and none silently skipped",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Expected entries are specific, naming components and flows from the design (for example ThresholdSet, QuotaAlertEvaluator, the thresholds handler, the fired-state write) rather than generic phrases",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Actual column is empty or still a placeholder, and no Pass or Fail result is claimed for the Unit Coverage Gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate states the 85% bar",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not produce a per-requirement traceability matrix or a list of numbered test-case tables in place of the layer matrix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Any gap log entry uses only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no PASSED or FAILED Status, since plan mode runs no gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 64,
+        "failed": 5,
+        "total": 69,
+        "pass_rate": 0.9275,
+        "checks": [
+          {
+            "text": "Output includes: ## Coverage Matrix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Unit Coverage Gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: 85%",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Unit",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Integration",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | E2E",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Performance",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Security",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Traceability Matrix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Medium |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in plan mode and writes test-plan.md under the 01-quota-alerts work-item directory in the outputs",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The coverage matrix has all five layers (Unit, Integration, E2E, Performance, Security), each with an Expected entry and none silently skipped",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Expected entries are specific, naming components and flows from the design (for example ThresholdSet, QuotaAlertEvaluator, the thresholds handler, the fired-state write) rather than generic phrases",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Actual column is empty or still a placeholder, and no Pass or Fail result is claimed for the Unit Coverage Gate",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate states the 85% bar",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not produce a per-requirement traceability matrix or a list of numbered test-case tables in place of the layer matrix",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Any gap log entry uses only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no PASSED or FAILED Status, since plan mode runs no gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "plan-mode-design-omits-layers": {
+      "with_skill": {
+        "passed": 54,
+        "failed": 0,
+        "total": 54,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: | Security",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Performance",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Gap Log",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Medium |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Low |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P1",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in plan mode and writes test-plan.md under the 01-quota-alerts work-item directory in the outputs",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The matrix still contains the Security row with a specific Expected entry derived from the requirements (unauthorised or unknown-Account calls leave the Threshold_Set unchanged), not left blank or silently dropped",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The matrix still contains the Performance row, either with an Expected entry about the ingest path or flagged as a gap, and is not marked N/A without a justification",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The omission of security and performance from the design is flagged explicitly, in the plan, the gap log or the reply, as a gap",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gap severities use only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Actual column is empty or a placeholder because no tests exist",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not modify or regenerate design.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no PASSED or FAILED Status, since plan mode runs no gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 51,
+        "failed": 3,
+        "total": 54,
+        "pass_rate": 0.9444,
+        "checks": [
+          {
+            "text": "Output includes: | Security",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Performance",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Gap Log",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Medium |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Low |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P1",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in plan mode and writes test-plan.md under the 01-quota-alerts work-item directory in the outputs",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The matrix still contains the Security row with a specific Expected entry derived from the requirements (unauthorised or unknown-Account calls leave the Threshold_Set unchanged), not left blank or silently dropped",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The matrix still contains the Performance row, either with an Expected entry about the ingest path or flagged as a gap, and is not marked N/A without a justification",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The omission of security and performance from the design is flagged explicitly, in the plan, the gap log or the reply, as a gap",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gap severities use only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Actual column is empty or a placeholder because no tests exist",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not modify or regenerate design.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no PASSED or FAILED Status, since plan mode runs no gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
