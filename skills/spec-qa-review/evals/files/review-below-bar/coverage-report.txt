@@ -8,5 +8,5 @@ TOTAL                                 44/79 (56%)    16/42 (38%)
 
 Uncovered: ThresholdSet.of (duplicate, range and type branches), QuotaAlertEvaluator (suspended, multi-threshold and lost-write branches)
 
-Tests: 15 passed, 0 failed, 0 skipped
+Tests: 16 passed, 0 failed, 0 skipped
 Playwright (npm test, mock server): 2 passed

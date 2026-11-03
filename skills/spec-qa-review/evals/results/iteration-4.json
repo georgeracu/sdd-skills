@@ -1,0 +1,2029 @@
+{
+  "iteration": "iteration-4",
+  "pack_hash": "42491893e85f9ecb469219fae8ea2e80739755c8788508a6f6146f47b624c34d",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9122,
+        "stddev": 0.0425,
+        "n": 8
+      },
+      "time_seconds": {
+        "mean": 125.6146,
+        "stddev": 18.2944,
+        "n": 8
+      },
+      "tokens": {
+        "mean": 439200.7917,
+        "stddev": 72626.4685,
+        "n": 8
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.7767,
+        "stddev": 0.0844,
+        "n": 8
+      },
+      "time_seconds": {
+        "mean": 115.4775,
+        "stddev": 29.3506,
+        "n": 8
+      },
+      "tokens": {
+        "mean": 389886.625,
+        "stddev": 79094.3451,
+        "n": 8
+      }
+    },
+    "delta": {
+      "pass_rate": 0.1355,
+      "time_seconds": 10.1371,
+      "tokens": 49314.1667
+    }
+  },
+  "cases": {
+    "plan-mode-full-matrix": {
+      "with_skill": {
+        "passed": 60,
+        "failed": 9,
+        "total": 69,
+        "pass_rate": 0.8696,
+        "checks": [
+          {
+            "text": "Output includes: ## Coverage Matrix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Unit Coverage Gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: 85%",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Unit",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Integration",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | E2E",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Performance",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Security",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Traceability Matrix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Medium |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in plan mode and writes test-plan.md under the 01-quota-alerts work-item directory in the outputs",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The coverage matrix has all five layers (Unit, Integration, E2E, Performance, Security), each with an Expected entry and none silently skipped",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Expected entries are specific, naming components and flows from the design (for example ThresholdSet, QuotaAlertEvaluator, the thresholds handler, the fired-state write) rather than generic phrases",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Actual column is empty or still a placeholder, and no Pass or Fail result is claimed for the Unit Coverage Gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate states the 85% bar",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not produce a per-requirement traceability matrix or a list of numbered test-case tables in place of the layer matrix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Any gap log entry uses only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no PASSED or FAILED Status, since plan mode runs no gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 64,
+        "failed": 5,
+        "total": 69,
+        "pass_rate": 0.9275,
+        "checks": [
+          {
+            "text": "Output includes: ## Coverage Matrix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Unit Coverage Gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: 85%",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Unit",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Integration",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | E2E",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Performance",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Security",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Traceability Matrix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Medium |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in plan mode and writes test-plan.md under the 01-quota-alerts work-item directory in the outputs",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The coverage matrix has all five layers (Unit, Integration, E2E, Performance, Security), each with an Expected entry and none silently skipped",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Expected entries are specific, naming components and flows from the design (for example ThresholdSet, QuotaAlertEvaluator, the thresholds handler, the fired-state write) rather than generic phrases",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Actual column is empty or still a placeholder, and no Pass or Fail result is claimed for the Unit Coverage Gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate states the 85% bar",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not produce a per-requirement traceability matrix or a list of numbered test-case tables in place of the layer matrix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Any gap log entry uses only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no PASSED or FAILED Status, since plan mode runs no gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "plan-mode-design-omits-layers": {
+      "with_skill": {
+        "passed": 49,
+        "failed": 5,
+        "total": 54,
+        "pass_rate": 0.9074,
+        "checks": [
+          {
+            "text": "Output includes: | Security",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Performance",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Gap Log",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Medium |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Low |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P1",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in plan mode and writes test-plan.md under the 01-quota-alerts work-item directory in the outputs",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The matrix still contains the Security row with a specific Expected entry derived from the requirements (unauthorised or unknown-Account calls leave the Threshold_Set unchanged), not left blank or silently dropped",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The matrix still contains the Performance row, either with an Expected entry about the ingest path or flagged as a gap, and is not marked N/A without a justification",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The omission of security and performance from the design is flagged explicitly, in the plan, the gap log or the reply, as a gap",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gap severities use only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Actual column is empty or a placeholder because no tests exist",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not modify or regenerate design.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no PASSED or FAILED Status, since plan mode runs no gate",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 45,
+        "failed": 9,
+        "total": 54,
+        "pass_rate": 0.8333,
+        "checks": [
+          {
+            "text": "Output includes: | Security",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: | Performance",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Gap Log",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Medium |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Low |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P1",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in plan mode and writes test-plan.md under the 01-quota-alerts work-item directory in the outputs",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The matrix still contains the Security row with a specific Expected entry derived from the requirements (unauthorised or unknown-Account calls leave the Threshold_Set unchanged), not left blank or silently dropped",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The matrix still contains the Performance row, either with an Expected entry about the ingest path or flagged as a gap, and is not marked N/A without a justification",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The omission of security and performance from the design is flagged explicitly, in the plan, the gap log or the reply, as a gap",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gap severities use only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Actual column is empty or a placeholder because no tests exist",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not modify or regenerate design.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes no PASSED or FAILED Status, since plan mode runs no gate",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "review-mode-coverage-meets-bar": {
+      "old_skill": {
+        "passed": 43,
+        "failed": 20,
+        "total": 63,
+        "pass_rate": 0.6825,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Pass",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Fixed",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output includes: EvaluatorBudgetTest",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: ThresholdAuthTest",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: QA Gap Report",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: [Filled in review mode]",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Important |",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Critical |",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes test-plan.md with Status PASSED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in review mode and updates test-plan.md in the outputs rather than creating a differently structured document",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Actual column is filled in for all five layers, naming the tests found, and the Expected column is preserved unchanged",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate is marked Pass with the actual figure taken from the coverage report (92% lines, 86% branches)",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gap 1 is marked Fixed with a Closed date, citing EvaluatorBudgetTest, and no new CRITICAL or MAJOR gap is invented",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Test Inventory table lists the test files and what each covers",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The conversation includes a QA Gap Report with the Coverage Summary table, a unit coverage line against the 85% gate, and an Action Items section with no CRITICAL or MAJOR items",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Severity labels are only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 62,
+        "failed": 1,
+        "total": 63,
+        "pass_rate": 0.9841,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Pass",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Fixed",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: EvaluatorBudgetTest",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: ThresholdAuthTest",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: QA Gap Report",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: [Filled in review mode]",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Important |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Critical |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes test-plan.md with Status PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in review mode and updates test-plan.md in the outputs rather than creating a differently structured document",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Actual column is filled in for all five layers, naming the tests found, and the Expected column is preserved unchanged",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate is marked Pass with the actual figure taken from the coverage report (92% lines, 86% branches)",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gap 1 is marked Fixed with a Closed date, citing EvaluatorBudgetTest, and no new CRITICAL or MAJOR gap is invented",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Test Inventory table lists the test files and what each covers",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The conversation includes a QA Gap Report with the Coverage Summary table, a unit coverage line against the 85% gate, and an Action Items section with no CRITICAL or MAJOR items",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Severity labels are only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "review-mode-unit-coverage-below-bar": {
+      "with_skill": {
+        "passed": 53,
+        "failed": 7,
+        "total": 60,
+        "pass_rate": 0.8833,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Fail",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: 56%",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: QA Gap Report",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: [Filled in review mode]",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Important |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Critical |",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes test-plan.md with Status FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in review mode and updates test-plan.md in the outputs, filling the Actual column for all five layers",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate is marked Fail with the actual figure from the report (56% lines, 38% branches), not Pass",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: A CRITICAL gap for unit coverage below the 85% gate is added to the gap log and listed under CRITICAL in the gap report",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Actual entry lists only the tests that exist and names the missing planned cases (for example suspended account, plan change, duplicate or out-of-range rejection)",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Integration, E2E, Performance and Security layers are not marked as gaps, since their planned tests exist",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The reply states that the work item does not pass and does not hand on to sdd:spec-maintenance, pointing to fixing the coverage gaps and re-running review mode",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Severity labels are only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 48,
+        "failed": 12,
+        "total": 60,
+        "pass_rate": 0.8,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Fail",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: 56%",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: QA Gap Report",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: [Filled in review mode]",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Important |",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Critical |",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes test-plan.md with Status FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in review mode and updates test-plan.md in the outputs, filling the Actual column for all five layers",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate is marked Fail with the actual figure from the report (56% lines, 38% branches), not Pass",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: A CRITICAL gap for unit coverage below the 85% gate is added to the gap log and listed under CRITICAL in the gap report",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Actual entry lists only the tests that exist and names the missing planned cases (for example suspended account, plan change, duplicate or out-of-range rejection)",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Integration, E2E, Performance and Security layers are not marked as gaps, since their planned tests exist",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The reply states that the work item does not pass and does not hand on to sdd:spec-maintenance, pointing to fixing the coverage gaps and re-running review mode",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Severity labels are only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "review-mode-planned-test-missing": {
+      "old_skill": {
+        "passed": 45,
+        "failed": 18,
+        "total": 63,
+        "pass_rate": 0.7143,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Security",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: MAJOR",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output includes: ThresholdAuthTest",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: QA Gap Report",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: [Filled in review mode]",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Important |",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Critical |",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes test-plan.md with Status FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in review mode and updates test-plan.md in the outputs, filling the Actual column",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Security Actual entry states that no security tests exist (ThresholdAuthTest is absent from the code tree) and the Security row is marked \u2717, not as meeting Expected",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: ThresholdAuthTest is not listed in the Test Inventory as an existing file",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: A new gap for the missing security tests is added to the gap log with severity MAJOR and listed under MAJOR in the gap report",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate is marked Pass with the actual figure from the report",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gap 1 is marked Fixed because EvaluatorBudgetTest exists, and the Performance row is not marked as a gap",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not hand on to sdd:spec-maintenance, since the review failed",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Severity labels are only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 61,
+        "failed": 2,
+        "total": 63,
+        "pass_rate": 0.9683,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Security",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: MAJOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: ThresholdAuthTest",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: QA Gap Report",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: [Filled in review mode]",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Important |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Critical |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes test-plan.md with Status FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Works in review mode and updates test-plan.md in the outputs, filling the Actual column",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Security Actual entry states that no security tests exist (ThresholdAuthTest is absent from the code tree) and the Security row is marked \u2717, not as meeting Expected",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: ThresholdAuthTest is not listed in the Test Inventory as an existing file",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: A new gap for the missing security tests is added to the gap log with severity MAJOR and listed under MAJOR in the gap report",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate is marked Pass with the actual figure from the report",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gap 1 is marked Fixed because EvaluatorBudgetTest exists, and the Performance row is not marked as a gap",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not hand on to sdd:spec-maintenance, since the review failed",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Severity labels are only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "review-mode-security-partial-passes": {
+      "old_skill": {
+        "passed": 36,
+        "failed": 18,
+        "total": 54,
+        "pass_rate": 0.6667,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: MINOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: \u26a0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: spec-maintenance",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: [Filled in review mode]",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Important |",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Critical |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes test-plan.md with Status PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Security row is marked \u26a0 (partial), and its Actual entry names the two tests present and the missing owner-email payload check",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: A MINOR gap for the missing payload check is added to the gap log, and no CRITICAL or MAJOR gap is raised",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate is marked Pass with the actual figure from the report",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gap 1 is marked Fixed because EvaluatorBudgetTest exists",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Hands on to sdd:spec-maintenance as the next step",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Severity labels are only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 48,
+        "failed": 6,
+        "total": 54,
+        "pass_rate": 0.8889,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: MINOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: \u26a0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: spec-maintenance",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: [Filled in review mode]",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Important |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Critical |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes test-plan.md with Status PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Security row is marked \u26a0 (partial), and its Actual entry names the two tests present and the missing owner-email payload check",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: A MINOR gap for the missing payload check is added to the gap log, and no CRITICAL or MAJOR gap is raised",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate is marked Pass with the actual figure from the report",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Gap 1 is marked Fixed because EvaluatorBudgetTest exists",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Hands on to sdd:spec-maintenance as the next step",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Severity labels are only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "review-mode-branch-coverage-below-bar": {
+      "old_skill": {
+        "passed": 38,
+        "failed": 13,
+        "total": 51,
+        "pass_rate": 0.7451,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: 80%",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Fail",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: [Filled in review mode]",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Important |",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Critical |",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes test-plan.md with Status FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate is marked Fail, citing 80% branch coverage against the 85% bar, and is not passed on the 92% line figure",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: A CRITICAL gap for branch coverage below 85% is added to the gap log",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The other layers are not marked as gaps, since their planned tests exist",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not hand on to sdd:spec-maintenance, and points to closing the coverage gap and re-running review mode",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Severity labels are only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 44,
+        "failed": 7,
+        "total": 51,
+        "pass_rate": 0.8627,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: 80%",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: Fail",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: [Filled in review mode]",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Important |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Critical |",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes test-plan.md with Status FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate is marked Fail, citing 80% branch coverage against the 85% bar, and is not passed on the 92% line figure",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: A CRITICAL gap for branch coverage below 85% is added to the gap log",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The other layers are not marked as gaps, since their planned tests exist",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not hand on to sdd:spec-maintenance, and points to closing the coverage gap and re-running review mode",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Severity labels are only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "review-mode-second-fail-escalates": {
+      "old_skill": {
+        "passed": 38,
+        "failed": 7,
+        "total": 45,
+        "pass_rate": 0.8444,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: 56%",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Important |",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Critical |",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes test-plan.md with Status FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate is marked Fail with 56% lines and 38% branches, and gap 2 stays Open as CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Recognises from the previous Status in test-plan.md that this is the second failed review",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops and asks the user how to proceed, rather than only dispatching fix subagents and re-running review mode",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not hand on to sdd:spec-maintenance",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Severity labels are only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 42,
+        "failed": 3,
+        "total": 45,
+        "pass_rate": 0.9333,
+        "checks": [
+          {
+            "text": "Output includes: **Status:** FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: 56%",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: **Status:** PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | High |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: P0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Important |",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: | Critical |",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: 01-quota-alerts/test-plan.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Writes test-plan.md with Status FAILED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The Unit Coverage Gate is marked Fail with 56% lines and 38% branches, and gap 2 stays Open as CRITICAL",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Recognises from the previous Status in test-plan.md that this is the second failed review",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops and asks the user how to proceed, rather than only dispatching fix subagents and re-running review mode",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not hand on to sdd:spec-maintenance",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Severity labels are only CRITICAL, MAJOR or MINOR",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
