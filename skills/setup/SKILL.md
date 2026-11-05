@@ -12,16 +12,7 @@ Prepare the current project for the `sdd:` skills. Explore first, then present w
 
 Look, and change nothing yet.
 
-**The scaffold source.** Find the `scaffold/` directory of the sdd-skills repository, in this order:
-
-1. `../../scaffold` relative to this `SKILL.md`, after resolving symlinks. This is present for a Claude Code plugin install, a clone of the repository and a symlinked install.
-2. Otherwise, download it into a temporary directory:
-
-   ```
-   tmp=$(mktemp -d)
-   curl -sL https://github.com/georgeracu/sdd-skills/archive/refs/heads/main.tar.gz \
-     | tar -xz -C "$tmp" --strip-components=2 sdd-skills-main/scaffold
-   ```
+**The scaffold source.** The scaffold ships inside this skill, in the `scaffold/` directory next to this `SKILL.md`, so it matches the installed version of the skills. If that directory is missing, stop and tell the user to reinstall the skills.
 
 **The scaffold target.** List which files under the scaffold's `project/work-items/` already exist in the project root, and which are missing.
 
@@ -33,7 +24,7 @@ Look, and change nothing yet.
 |---|---|---|
 | OpenAPI | `**/openapi.yaml`, `docs/apis/**/*.yaml` | discovery, spec generator, design review, implementation audit |
 | Architecture | `**/ARCHITECTURE.md`, `project/architecture/**`, `docs/architecture/**` | discovery, spec generator, design review, implementation audit |
-| Domain terms | `**/UBIQUITOUS_LANGUAGE.md` | discovery, spec generator |
+| Domain terms | `**/UBIQUITOUS_LANGUAGE.md` | discovery, spec generator, design review |
 
 ## 2. Present
 
@@ -51,7 +42,6 @@ Show the exact text you will add to `AGENTS.md`, and the list of files you will 
 
 1. Copy each missing scaffold file into the project root, keeping its path under `project/work-items/`. Never overwrite an existing file.
 2. Add the commands to `AGENTS.md` under a `## Build and test` heading. Create `AGENTS.md` if it does not exist. If the heading exists, add the missing lines under it rather than adding a second heading.
-3. Delete the temporary download directory, if you made one.
 
 ## 5. Done
 
