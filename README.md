@@ -1,3 +1,5 @@
+[![Docs](https://github.com/georgeracu/sdd-skills/actions/workflows/docs.yml/badge.svg)](https://github.com/georgeracu/sdd-skills/actions/workflows/docs.yml)
+
 # SDD Skills
 
 Agent skills for spec-driven development: EARS requirements, a reviewed design, traced tasks and an audited implementation, with quality gates that block and an audit trail that stays in the repository.
