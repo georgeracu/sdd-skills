@@ -1,0 +1,247 @@
+{
+  "iteration": "iteration-5",
+  "pack_hash": "13effab48bc05a42373d2cdb85b605dc31a268e409d6059a7352598d9e802318",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.8444,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 74.094,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 561096.3333,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.4444,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 60.6503,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 553811.3333,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "delta": {
+      "pass_rate": 0.4,
+      "time_seconds": 13.4437,
+      "tokens": 7285.0
+    }
+  },
+  "cases": {
+    "partial-replacement-modified": {
+      "old_skill": {
+        "passed": 20,
+        "failed": 25,
+        "total": 45,
+        "pass_rate": 0.4444,
+        "checks": [
+          {
+            "text": "Output includes: *(modified in work-item 04",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output includes: usage-archive",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ~~Task 1:",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ~~Task 3:",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ~~Writes one CSV",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: *(superseded by",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: SUPERSEDED",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/04-export-archive/spec-maintenance-report.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/02-usage-export/tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/02-usage-export/design.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Classifies Task 1 of 02-usage-export as Modified, because its loader and writer survive, and strikes through only the `exports` bucket name in it",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not strike through the whole of Task 1, Task 3 or any design bullet",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Annotates Task 3 and the design bullet that writes to the `exports` bucket as Modified, each with the `usage-archive` bucket given",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Classifies nothing as Superseded",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The report lists the impacts in 02-usage-export as MODIFIED and lists 03-profile-summary under No Impact",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 38,
+        "failed": 7,
+        "total": 45,
+        "pass_rate": 0.8444,
+        "checks": [
+          {
+            "text": "Output includes: *(modified in work-item 04",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: usage-archive",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ~~Task 1:",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ~~Task 3:",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ~~Writes one CSV",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: *(superseded by",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: SUPERSEDED",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/04-export-archive/spec-maintenance-report.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/02-usage-export/tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/02-usage-export/design.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Classifies Task 1 of 02-usage-export as Modified, because its loader and writer survive, and strikes through only the `exports` bucket name in it",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not strike through the whole of Task 1, Task 3 or any design bullet",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Annotates Task 3 and the design bullet that writes to the `exports` bucket as Modified, each with the `usage-archive` bucket given",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Classifies nothing as Superseded",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The report lists the impacts in 02-usage-export as MODIFIED and lists 03-profile-summary under No Impact",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}

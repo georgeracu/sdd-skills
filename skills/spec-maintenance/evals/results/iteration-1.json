@@ -1,0 +1,175 @@
+{
+  "iteration": "iteration-1",
+  "pack_hash": "8a44a4e0c4817b93c2cd420fab807f46ebecf58ccd47279403967ae3411e6ddc",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 38.8423,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 255862.6667,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.9259,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 38.1193,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 331583.3333,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "delta": {
+      "pass_rate": 0.0741,
+      "time_seconds": 0.723,
+      "tokens": -75720.6666
+    }
+  },
+  "cases": {
+    "skip-no-implemented-peers": {
+      "with_skill": {
+        "passed": 27,
+        "failed": 0,
+        "total": 27,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: finishing-a-development-branch",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ## Impacted Work Items",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: *(superseded by work-item 04)*",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: *(deprecated",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: States that no other implemented work item exists, because neither 01-quota-alerts nor 02-usage-export holds an implementation-audit.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Skips the skill instead of scanning the older work items for impacts",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not write a spec-maintenance-report.md, not even one that says nothing was impacted",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not edit or annotate any file in the older work items",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Hands over to finishing-a-development-branch as the next step",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 25,
+        "failed": 2,
+        "total": 27,
+        "pass_rate": 0.9259,
+        "checks": [
+          {
+            "text": "Output includes: finishing-a-development-branch",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: ## Impacted Work Items",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: *(superseded by work-item 04)*",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: *(deprecated",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: States that no other implemented work item exists, because neither 01-quota-alerts nor 02-usage-export holds an implementation-audit.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Skips the skill instead of scanning the older work items for impacts",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not write a spec-maintenance-report.md, not even one that says nothing was impacted",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Does not edit or annotate any file in the older work items",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Hands over to finishing-a-development-branch as the next step",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}

@@ -1,0 +1,457 @@
+{
+  "iteration": "iteration-6",
+  "pack_hash": "1b22c0036dd8696fd9baa7aa05f517ddffe959f67727e704a2c868819f6d0f7e",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9281,
+        "stddev": 0.0207,
+        "n": 2
+      },
+      "time_seconds": {
+        "mean": 139.1045,
+        "stddev": 29.0912,
+        "n": 2
+      },
+      "tokens": {
+        "mean": 749926.8333,
+        "stddev": 77204.5,
+        "n": 2
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.7279,
+        "stddev": 0.0869,
+        "n": 2
+      },
+      "time_seconds": {
+        "mean": 123.5932,
+        "stddev": 3.8698,
+        "n": 2
+      },
+      "tokens": {
+        "mean": 681946.5,
+        "stddev": 12970.8333,
+        "n": 2
+      }
+    },
+    "delta": {
+      "pass_rate": 0.2002,
+      "time_seconds": 15.5113,
+      "tokens": 67980.3333
+    }
+  },
+  "cases": {
+    "drift-warning-still-passes": {
+      "with_skill": {
+        "passed": 49,
+        "failed": 5,
+        "total": 54,
+        "pass_rate": 0.9074,
+        "checks": [
+          {
+            "text": "Output includes: ## Architectural Drift Warning",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: *(modified in work-item 04",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: finishing-a-development-branch",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: # ~~",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: *(superseded by",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/04-usage-counters/spec-maintenance-report.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/01-quota-alerts/design.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/01-quota-alerts/tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/02-usage-export/requirements.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/02-usage-export/design.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/02-usage-export/tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/03-usage-history/design.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/03-usage-history/tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Annotates the usage-meters references in all three older work items with the rename and a reference to work-item 04",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Uses the modified shape (old name struck through, new name given) rather than striking through whole lines, headings or files",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The report's impact table lists 01-quota-alerts, 02-usage-export and 03-usage-history with counts that total more than ten",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Fills the report's Architectural Drift Warning section and repeats the warning in the closing reply, because more than ten impacts land across several specs",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Treats the warning as informational: the skill still passes and the reply hands over to finishing-a-development-branch",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 44,
+        "failed": 10,
+        "total": 54,
+        "pass_rate": 0.8148,
+        "checks": [
+          {
+            "text": "Output includes: ## Architectural Drift Warning",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output includes: *(modified in work-item 04",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output includes: finishing-a-development-branch",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: # ~~",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: *(superseded by",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/04-usage-counters/spec-maintenance-report.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/01-quota-alerts/design.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/01-quota-alerts/tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/02-usage-export/requirements.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/02-usage-export/design.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/02-usage-export/tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/03-usage-history/design.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/03-usage-history/tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Annotates the usage-meters references in all three older work items with the rename and a reference to work-item 04",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Uses the modified shape (old name struck through, new name given) rather than striking through whole lines, headings or files",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The report's impact table lists 01-quota-alerts, 02-usage-export and 03-usage-history with counts that total more than ten",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Fills the report's Architectural Drift Warning section and repeats the warning in the closing reply, because more than ten impacts land across several specs",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Treats the warning as informational: the skill still passes and the reply hands over to finishing-a-development-branch",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "twelve-lines-six-items-no-warning": {
+      "old_skill": {
+        "passed": 25,
+        "failed": 14,
+        "total": 39,
+        "pass_rate": 0.641,
+        "checks": [
+          {
+            "text": "Output includes: *(modified in work-item 04",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output includes: finishing-a-development-branch",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Architectural Drift Warning",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: # ~~",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: *(superseded by",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/04-usage-counters/spec-maintenance-report.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/01-quota-alerts/tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/02-usage-export/tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Annotates all twelve usage-meters sub-item lines in 01-quota-alerts and 02-usage-export with the rename and a reference to work-item 04",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Strikes through only the table name, not whole lines, tasks, headings or files",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The report lists one Impact Details bullet per task, six in all, rather than one per annotated line",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The report has no Architectural Drift Warning section and the reply gives no drift warning, because six impacts is not over ten",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The reply hands over to finishing-a-development-branch",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 37,
+        "failed": 2,
+        "total": 39,
+        "pass_rate": 0.9487,
+        "checks": [
+          {
+            "text": "Output includes: *(modified in work-item 04",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: finishing-a-development-branch",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: Architectural Drift Warning",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: # ~~",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: *(superseded by",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/04-usage-counters/spec-maintenance-report.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/01-quota-alerts/tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: project/work-items/02-usage-export/tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Annotates all twelve usage-meters sub-item lines in 01-quota-alerts and 02-usage-export with the rename and a reference to work-item 04",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Strikes through only the table name, not whole lines, tasks, headings or files",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The report lists one Impact Details bullet per task, six in all, rather than one per annotated line",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The report has no Architectural Drift Warning section and the reply gives no drift warning, because six impacts is not over ten",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The reply hands over to finishing-a-development-branch",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
