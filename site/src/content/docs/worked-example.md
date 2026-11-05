@@ -39,7 +39,7 @@ The work spans a React component, a Kotlin Lambda service, a new DynamoDB audit 
 
 ### Step 6: no task review
 
-The [`spec-task-review`](/sdd-skills/skills/spec-task-review/) gate was not run on this feature, so there is no `task-review-summary.md`. One visible result: `brainstorm.md` is still present, because the gate deletes it on a pass.
+The [`spec-task-review`](/sdd-skills/skills/spec-task-review/) gate was not run on this feature, so there is no `task-review-summary.md`. One visible result: `brainstorm.md` is still present, because in that snapshot the gate deleted it on a pass. Today the gate deletes `discovery.md` when it returns APPROVED or APPROVED WITH ISSUES.
 
 ### Step 7: `test-plan.md`
 

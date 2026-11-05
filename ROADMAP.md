@@ -20,9 +20,9 @@ Nothing stops a work item from reaching `main` without its `implementation-audit
 
 `spec-qa-review` plans five layers: unit, integration, end-to-end, performance and security. No layer covers accessibility.
 
-### Proof that the design review blocks
+### Clean designs reach APPROVED
 
-The eval pack for `spec-design-review` checks that clean designs pass. The next step is a deliberately broken design that must return CRITICAL and block task generation. Related: [#37](https://github.com/georgeracu/sdd-skills/issues/37).
+The eval pack for `spec-design-review` already shows that broken designs return BLOCKED. The open gap is the other direction: a design with no real defect must reach APPROVED. The aligned clean-pass case now does, but the bugfix and prose-drift cases still return APPROVED WITH ISSUES. See [#37](https://github.com/georgeracu/sdd-skills/issues/37).
 
 ## Documentation site
 

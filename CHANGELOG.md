@@ -4,6 +4,10 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-05
+
+Breaking changes are marked **Breaking**. A gate's status values changed, so update anything that reads a `**Status:**` line.
+
 ### Added
 
 - Claude Code plugin `sdd` in the `georgeracu` marketplace: `claude plugin marketplace add georgeracu/sdd-skills`, then `claude plugin install sdd@georgeracu`.
@@ -14,12 +18,13 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ### Changed
 
+- **Breaking:** the scaffold moved from `scaffold/` to `skills/setup/scaffold/`, so every install route carries it. Run `/sdd:setup` instead of copying it by hand.
 - The five review skills share one verdict model: a single `**Status:**` line, a status that follows the highest severity, and a second blocking run that asks the user how to continue (#24).
-- `spec-design-review`: adds APPROVED WITH ISSUES, every finding names its source, identifier drift is MAJOR, and an unsupported latency criterion, a data exposure or an auth bypass is CRITICAL (#25).
+- **Breaking:** `spec-design-review` renames the status APPROVED WITH MINOR ISSUES to APPROVED WITH ISSUES. Every finding names its source, identifier drift is MAJOR, and an unsupported latency criterion, a data exposure or an auth bypass is CRITICAL (#25).
 - `spec-task-review`: a trace from a test task alone does not cover a criterion, sequencing names the artefact and the tasks that create and use it, and `discovery.md` is deleted on both passing verdicts (#26).
-- `spec-qa-review`: review mode sets PASSED or FAILED, unit coverage is gated on line and branch coverage at 85% each, and the severity scale is CRITICAL, MAJOR and MINOR (#27).
-- `spec-implementation-audit`: FAILED on any CRITICAL or MAJOR finding, evidence blocks hold the command and its verbatim output, only a ticked box completes a task, and the audit stops after writing a FAILED report (#28).
-- `spec-maintenance`: the peer set is every other work item with a PASSED audit, a run with no peers writes nothing, annotations take one shape, and the drift warning counts one impact per bullet (#29).
+- **Breaking:** `spec-qa-review` uses the `**Status:**` line for PASSED or FAILED, and moves the lifecycle value (Draft, Active, Complete) to a `**Stage:**` line. Unit coverage is gated on line and branch coverage at 85% each, and the severity scale is CRITICAL, MAJOR and MINOR (#27).
+- **Breaking:** `spec-implementation-audit` returns FAILED on any CRITICAL or MAJOR finding, where the earlier version did not say which severities fail, and stops after writing a FAILED report instead of fixing the findings. Evidence blocks hold the command and its verbatim output, and only a ticked box completes a task (#28).
+- **Breaking:** `spec-maintenance` counts a work item as implemented only when its `implementation-audit.md` says `**Status:** PASSED`, where any audit file counted before, and the current item's own audit no longer counts. A run with no such peers writes no report. Annotations take one shape, and the drift warning counts one impact per bullet (#29).
 - The README replaces "no promise of support" with a stability promise.
 
 ## [0.1.3] - 2026-10-20
@@ -59,7 +64,8 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 - Seven skills extracted from a private project: `spec-workflow`, `spec-generator`, `spec-design-review`, `spec-task-review`, `spec-qa-review`, `spec-implementation-audit` and `spec-maintenance`.
 
-[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/georgeracu/sdd-skills/compare/v0.1.3...v0.2.0
 [0.1.3]: https://github.com/georgeracu/sdd-skills/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/georgeracu/sdd-skills/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/georgeracu/sdd-skills/compare/v0.1.0...v0.1.1

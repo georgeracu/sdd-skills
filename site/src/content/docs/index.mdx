@@ -27,7 +27,7 @@ Then run `/sdd:setup` once in your project. It copies the work-item scaffold and
 
 ## The pipeline
 
-Seven skills take a feature from an agreed problem to an audited implementation. `spec-workflow` is the map of the steps, and `setup` runs once per project. Every step writes a file into the work item, `project/work-items/{NN}-{name}/`, so the record of what was agreed, reviewed and verified stays in the repository. The three gates block the next step: the design and task reviews on a CRITICAL finding, and the implementation audit on a CRITICAL or MAJOR finding.
+Seven skills take a feature from an agreed problem to an audited implementation. `spec-workflow` is the map of the steps, and `setup` runs once per project. Every `sdd:` step writes a file into the work item, `project/work-items/{NN}-{name}/`, so the record of what was agreed, reviewed and verified stays in the repository. The three gates block the next step: the design and task reviews on a CRITICAL finding, and the implementation audit on a CRITICAL or MAJOR finding.
 
 <Pipeline />
 
