@@ -1,0 +1,74 @@
+---
+title: SDD Skills
+description: Spec-driven development for coding agents, with quality gates that block and an audit trail that stays.
+template: splash
+hero:
+  tagline: Spec-driven development for coding agents, with quality gates that block and an audit trail that stays.
+  actions:
+    - text: Get started
+      link: /sdd-skills/getting-started/
+      icon: right-arrow
+    - text: See the worked example
+      link: /sdd-skills/worked-example/
+      variant: minimal
+---
+
+import Stars from '../../components/Stars.astro';
+import InstallTabs from '../../components/InstallTabs.astro';
+import Pipeline from '../../components/Pipeline.astro';
+
+<Stars />
+
+## Install
+
+<InstallTabs />
+
+Then run `/sdd:setup` once in your project. It copies the work-item scaffold and records your build and test commands in `AGENTS.md`.
+
+## The pipeline
+
+Seven skills take a feature from an agreed problem to an audited implementation. `spec-workflow` is the map of the steps, and `setup` runs once per project. Every `sdd:` step writes a file into the work item, `project/work-items/{NN}-{name}/`, so the record of what was agreed, reviewed and verified stays in the repository. The three gates block the next step: the design and task reviews on a CRITICAL finding, and the implementation audit on a CRITICAL or MAJOR finding.
+
+<Pipeline />
+
+Steps 8 and 12 hand off to the [superpowers](https://github.com/obra/superpowers) plugin. A bugfix runs a shorter path with no gates: `spec-generator` writes `bugfix.md`, `design.md` and `tasks.md`, and implementation follows. The [spec-workflow page](/sdd-skills/skills/spec-workflow/) has both tables and the rules that override superpowers' default order.
+
+## Who it's for
+
+Teams that need to show why the code does what it does. Each work item keeps its requirements in EARS notation, the design, the review verdicts, the test plan and an implementation audit backed by pasted build and test output. A reviewer, an auditor or the next engineer can read the decision trail without asking the agent that wrote it.
+
+Teams that want a gate to stop the agent, not only to advise it. The design review, the task review and the implementation audit each return a blocking status, and a second blocking run hands the decision back to a person.
+
+It is a poor fit for a quick prototype. The pipeline asks for your approval at every phase, and that costs time you may not want to spend on throwaway code.
+
+## How it compares
+
+All four tools write a spec before code. The differences are in what can stop the work and what happens after the code is written.
+
+| | SDD Skills | [Spec Kit](https://github.com/github/spec-kit) | [Kiro](https://kiro.dev/docs/specs/) | [OpenSpec](https://github.com/Fission-AI/OpenSpec) |
+|---|---|---|---|---|
+| Form | Agent skills (`SKILL.md`) | CLI and agent commands | IDE, CLI and web app | CLI and agent commands |
+| Spec format | EARS requirements, design, tasks | Spec, plan, tasks, checklists | EARS requirements, design, tasks | Proposal, design, tasks, spec deltas |
+| Blocking review gates | Design review and task review block on CRITICAL | `plan` stops on failed constitution checks; `analyze` only reports | You approve each phase; no automated review gate confirmed | Validation blocks malformed changes; verify does not block |
+| Audit after coding | Implementation audit, FAILED on CRITICAL or MAJOR | `converge` adds the gaps as new tasks | Optional property-based tests | `verify` grades findings, does not block |
+| Older specs | `spec-maintenance` annotates superseded specs | By team convention | Sync Files updates `tasks.md` | Deltas merge into the live specs |
+| Licence | MIT | MIT | Proprietary | MIT |
+
+Choose Spec Kit or OpenSpec if you want a CLI that works across many agents with less ceremony. Choose Kiro if you want specs built into the editor. Choose these skills if you want review verdicts and an audit kept as files, and gates that stop the agent. They need superpowers for implementation today, and they are tested mainly with Claude Code.
+
+## Read the series
+
+The series explains why each skill works the way it does. The posts describe the skills as they were when written, and each skill page here is current.
+
+1. [Beyond Kiro: Engineering Quality Gates for AI Agents](https://georgeracu.substack.com/p/beyond-kiro-engineering-quality-gates), 10 May 2026
+2. [Inside my Spec Generator: From a Half-Baked Brainstorm to Full Specs](https://georgeracu.substack.com/p/inside-my-spec-generator-from-a-half), 7 September 2026
+3. [How I Review Specs Against the Codebase](https://georgeracu.substack.com/p/how-i-review-specs-against-the-codebase), 16 September 2026
+4. [Inside Spec Task Review](https://georgeracu.substack.com/p/inside-spec-task-review), 27 September 2026
+5. [Inside Spec QA Review](https://georgeracu.substack.com/p/inside-spec-qa-review), 1 October 2026
+6. [Inside Spec Implementation Audit](https://georgeracu.substack.com/p/inside-spec-implementation-audit), 9 October 2026
+7. [How I Maintain My Old Specs When They Are Superseded](https://georgeracu.substack.com/p/how-i-maintain-my-old-specs-when), 17 October 2026
+8. [Inside Spec Workflow](https://georgeracu.substack.com/p/inside-spec-workflow), 20 October 2026
+
+## Follow the work
+
+New posts cover the skills as they change and the experiments behind each change. [Subscribe on Substack](https://georgeracu.substack.com/subscribe) to get them by email, or follow the [changelog feed](/sdd-skills/changelog.xml).

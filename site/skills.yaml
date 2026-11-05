@@ -1,0 +1,86 @@
+# One entry per skills/<name>/ folder. The sync script fails the build when the two disagree.
+# post: null means no post yet. example: files in examples/38-source-fidelity-and-accuracy-sla/.
+# example_note explains an empty or partial example list.
+# position replaces the pipeline header for skills that are not rows in spec-workflow's tables.
+
+groups:
+  - Start here
+  - Write the spec
+  - Gates
+  - Test
+  - Keep specs true
+
+skills:
+  setup:
+    group: Start here
+    order: 1
+    post: null
+    position: Runs once per project, before the pipeline. Copies the scaffold and records the build and test commands in AGENTS.md.
+    example: []
+    example_note: Spec 38 was written before this skill existed.
+
+  spec-workflow:
+    group: Start here
+    order: 2
+    post:
+      url: https://georgeracu.substack.com/p/inside-spec-workflow
+      date: 2026-10-20
+    position: A reference, not a pipeline step. It maps the order of the steps and the rules that override superpowers' default chaining.
+    example: [README.md]
+
+  spec-discovery:
+    group: Write the spec
+    order: 1
+    post: null
+    example: []
+    example_note: Spec 38 predates this skill. Its step 1 artefact, brainstorm.md, came from superpowers' brainstorming skill.
+
+  spec-generator:
+    group: Write the spec
+    order: 2
+    post:
+      url: https://georgeracu.substack.com/p/inside-my-spec-generator-from-a-half
+      date: 2026-09-07
+    example: [requirements.md, design.md, tasks.md]
+
+  spec-design-review:
+    group: Gates
+    order: 1
+    post:
+      url: https://georgeracu.substack.com/p/how-i-review-specs-against-the-codebase
+      date: 2026-09-16
+    example: [design-review-summary.md]
+
+  spec-task-review:
+    group: Gates
+    order: 2
+    post:
+      url: https://georgeracu.substack.com/p/inside-spec-task-review
+      date: 2026-09-27
+    example: []
+    example_note: This gate was not run on spec 38, so the example has no task-review-summary.md.
+
+  spec-implementation-audit:
+    group: Gates
+    order: 3
+    post:
+      url: https://georgeracu.substack.com/p/inside-spec-implementation-audit
+      date: 2026-10-09
+    example: [implementation-audit.md]
+
+  spec-qa-review:
+    group: Test
+    order: 1
+    post:
+      url: https://georgeracu.substack.com/p/inside-spec-qa-review
+      date: 2026-10-01
+    example: [test-plan.md, qa-review.md]
+    example_note: In spec 38 the review mode wrote a separate qa-review.md instead of updating test-plan.md.
+
+  spec-maintenance:
+    group: Keep specs true
+    order: 1
+    post:
+      url: https://georgeracu.substack.com/p/how-i-maintain-my-old-specs-when
+      date: 2026-10-17
+    example: [spec-maintenance-report.md]

@@ -1,0 +1,14 @@
+{
+  "name": "georgeracu",
+  "owner": { "name": "George Racu" },
+  "description": "George Racu's agent skills, as installable Claude Code plugins.",
+  "plugins": [
+    {
+      "name": "sdd",
+      "source": "./",
+      "description": "Spec-driven development skills with blocking quality gates and an audit trail.",
+      "category": "development",
+      "keywords": ["spec-driven-development", "sdd", "quality-gates"]
+    }
+  ]
+}

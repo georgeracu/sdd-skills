@@ -1,0 +1,72 @@
+# Changelog
+
+Every notable change to the skills is recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html). While the version is 0.x, a minor version can contain breaking changes and a patch version does not.
+
+## [Unreleased]
+
+## [0.2.0] - 2026-11-05
+
+Breaking changes are marked **Breaking**. A gate's status values changed, so update anything that reads a `**Status:**` line.
+
+### Added
+
+- Claude Code plugin `sdd` in the `georgeracu` marketplace: `claude plugin marketplace add georgeracu/sdd-skills`, then `claude plugin install sdd@georgeracu`.
+- `sdd:setup`, which copies the scaffold into a project, records the build and test commands in `AGENTS.md` and reports the optional inputs it found.
+- Documentation site at https://georgeracu.github.io/sdd-skills/, with a page for each skill, the worked example, this changelog and an RSS feed.
+- `ROADMAP.md` and `CONTRIBUTING.md`.
+- `spec-implementation-audit` checks every correctness property in `design.md` against the code that enforces it and the test that exercises it.
+
+### Changed
+
+- **Breaking:** the scaffold moved from `scaffold/` to `skills/setup/scaffold/`, so every install route carries it. Run `/sdd:setup` instead of copying it by hand.
+- The five review skills share one verdict model: a single `**Status:**` line, a status that follows the highest severity, and a second blocking run that asks the user how to continue (#24).
+- **Breaking:** `spec-design-review` renames the status APPROVED WITH MINOR ISSUES to APPROVED WITH ISSUES. Every finding names its source, identifier drift is MAJOR, and an unsupported latency criterion, a data exposure or an auth bypass is CRITICAL (#25).
+- `spec-task-review`: a trace from a test task alone does not cover a criterion, sequencing names the artefact and the tasks that create and use it, and `discovery.md` is deleted on both passing verdicts (#26).
+- **Breaking:** `spec-qa-review` uses the `**Status:**` line for PASSED or FAILED, and moves the lifecycle value (Draft, Active, Complete) to a `**Stage:**` line. Unit coverage is gated on line and branch coverage at 85% each, and the severity scale is CRITICAL, MAJOR and MINOR (#27).
+- **Breaking:** `spec-implementation-audit` returns FAILED on any CRITICAL or MAJOR finding, where the earlier version did not say which severities fail, and stops after writing a FAILED report instead of fixing the findings. Evidence blocks hold the command and its verbatim output, and only a ticked box completes a task (#28).
+- **Breaking:** `spec-maintenance` counts a work item as implemented only when its `implementation-audit.md` says `**Status:** PASSED`, where any audit file counted before, and the current item's own audit no longer counts. A run with no such peers writes no report. Annotations take one shape, and the drift warning counts one impact per bullet (#29).
+- The README replaces "no promise of support" with a stability promise.
+
+## [0.1.3] - 2026-10-20
+
+### Added
+
+- `sdd:spec-discovery`, which agrees the problem, scope and approach with the user and writes `discovery.md`. It replaces the dependency on superpowers' `brainstorming` skill for step 1.
+- `scaffold/`, the `project/work-items/` layout with process documents and templates, ready to copy into a project.
+- The spec 38 worked example in `examples/`, with a README that maps each artefact to the skill that produced it.
+- Eval packs for the five gate skills.
+
+### Changed
+
+- The skills are stack-neutral: they read the build, test and type-generation commands from `AGENTS.md` instead of assuming Gradle or npm.
+
+### Fixed
+
+- `spec-generator` creates `project/work-items/` when it is absent.
+- `spec-discovery` skips questions the user has already answered.
+
+## [0.1.2] - 2026-09-07
+
+### Changed
+
+- `spec-generator`: the bugfix template enumerates the neighbouring behaviours that must not change (#14), and the path after a BLOCKED design review drafts the fixes (#13).
+- The `spec-generator` eval pack grows to nine cases with per-case criteria.
+
+## [0.1.1] - 2026-09-07
+
+### Added
+
+- The first eval pack for `spec-generator`.
+
+## [0.1.0] - 2026-09-07
+
+### Added
+
+- Seven skills extracted from a private project: `spec-workflow`, `spec-generator`, `spec-design-review`, `spec-task-review`, `spec-qa-review`, `spec-implementation-audit` and `spec-maintenance`.
+
+[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/georgeracu/sdd-skills/compare/v0.1.3...v0.2.0
+[0.1.3]: https://github.com/georgeracu/sdd-skills/compare/v0.1.2...v0.1.3
+[0.1.2]: https://github.com/georgeracu/sdd-skills/compare/v0.1.1...v0.1.2
+[0.1.1]: https://github.com/georgeracu/sdd-skills/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/georgeracu/sdd-skills/releases/tag/v0.1.0

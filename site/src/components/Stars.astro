@@ -1,0 +1,20 @@
+<a class="stars" href="https://github.com/georgeracu/sdd-skills" data-stars>
+  <span aria-hidden="true">★</span> <span data-count>Star on GitHub</span>
+</a>
+
+<script>
+  const el = document.querySelector('[data-stars] [data-count]');
+  fetch('https://api.github.com/repos/georgeracu/sdd-skills')
+    .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+    .then((repo) => {
+      if (el && typeof repo.stargazers_count === 'number') {
+        el.textContent = `${repo.stargazers_count.toLocaleString('en-GB')} ${repo.stargazers_count === 1 ? 'star' : 'stars'} on GitHub`;
+      }
+    })
+    .catch(() => {});
+</script>
+
+<style>
+  .stars { display: inline-flex; gap: 0.4rem; align-items: center; padding: 0.3rem 0.8rem; border: 1px solid var(--sl-color-gray-5); border-radius: 999px; text-decoration: none; color: var(--sl-color-white); font-size: var(--sl-text-sm); }
+  .stars:hover { border-color: var(--sl-color-accent); }
+</style>
