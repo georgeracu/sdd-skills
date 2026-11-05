@@ -1,6 +1,6 @@
 # QA Review: Usage Digest
 
 **Mode:** review
-**Result:** pass
+**Status:** PASSED
 
 No findings.

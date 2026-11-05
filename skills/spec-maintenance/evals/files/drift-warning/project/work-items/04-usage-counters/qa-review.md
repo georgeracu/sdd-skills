@@ -1,6 +1,6 @@
 # QA Review: Usage Counters
 
 **Mode:** review
-**Result:** pass
+**Status:** PASSED
 
 No findings.

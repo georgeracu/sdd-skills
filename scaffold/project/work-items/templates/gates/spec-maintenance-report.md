@@ -19,6 +19,7 @@
 
 **Date:** [YYYY-MM-DD]
 **Triggered by:** work-item [NN]-[name]
+**Status:** PASSED
 
 ---
 
