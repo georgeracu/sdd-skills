@@ -20,11 +20,38 @@ const problems = [
   ...folders.filter((f) => !entries.includes(f)).map((f) => `skills/${f}/ has no entry in site/skills.yaml`),
   ...entries.filter((e) => !folders.includes(e)).map((e) => `site/skills.yaml entry "${e}" has no skills/${e}/SKILL.md`),
 ];
+
+function pipelineRows() {
+  const workflow = readFileSync(join(repo, 'skills/spec-workflow/SKILL.md'), 'utf8');
+  const rows = [];
+  for (const [heading, pipeline] of [['## Feature Pipeline', 'Feature'], ['## Bugfix Pipeline', 'Bugfix']]) {
+    if (!workflow.includes(`${heading}\n`)) {
+      problems.push(`skills/spec-workflow/SKILL.md has no "${heading}" heading`);
+      continue;
+    }
+    const section = workflow.split(`${heading}\n`)[1].split('\n## ')[0];
+    for (const line of section.split('\n').filter((l) => /^\|\s*\d+\s*\|/.test(l))) {
+      const [step, skill, output, next] = line.split('|').slice(1, -1).map((c) => c.trim());
+      const name = skill.match(/`sdd:([a-z-]+)`/)?.[1];
+      rows.push({ name, pipeline, step, skill: skill.replace(/`/g, ''), mode: skill.replace(/`sdd:[a-z-]+`/, '').trim(), output, next });
+    }
+  }
+  return rows;
+}
+
+const allRows = pipelineRows();
+const rows = allRows.filter((r) => r.name);
 for (const [name, entry] of Object.entries(config.skills)) {
   if (!config.groups.includes(entry.group)) problems.push(`${name}: group "${entry.group}" is not in groups`);
+  entry.example ??= [];
+  if (!Array.isArray(entry.example)) {
+    problems.push(`${name}: example must be a list`);
+    continue;
+  }
   for (const file of entry.example) {
     if (!existsSync(join(repo, exampleDir, file))) problems.push(`${name}: ${exampleDir}/${file} does not exist`);
   }
+  if (!rows.some((r) => r.name === name) && !entry.position) problems.push(`${name}: no spec-workflow pipeline row and no position`);
 }
 if (problems.length) {
   console.error(problems.map((p) => `sync-skills: ${p}`).join('\n'));
@@ -35,30 +62,31 @@ const skillLink = (name) => `${base}/skills/${name}/`;
 const linkSkills = (text) => text.replace(/`sdd:([a-z-]+)`/g, (m, n) => (folders.includes(n) ? `[${m}](${skillLink(n)})` : m));
 
 // SKILL.md bodies are written for agents, so a bare <placeholder> outside code would be read as an HTML tag.
+const escapeInline = (line) =>
+  line.split(/((`+)(?!`)[^\n]*?(?<!`)\2(?!`))/).map((s, i) => (i % 3 === 0 ? s.replace(/</g, '&lt;') : i % 3 === 1 ? s : '')).join('');
+
 function escapeOutsideCode(markdown) {
+  let fence = null;
   return markdown
-    .split(/(^```[\s\S]*?^```)/m)
-    .map((part, i) => (i % 2 ? part : part.split(/(`[^`\n]*`)/).map((s, j) => (j % 2 ? s : s.replace(/</g, '&lt;'))).join('')))
-    .join('');
+    .split('\n')
+    .map((line) => {
+      const marker = line.match(/^\s*(`{3,}|~{3,})/)?.[1];
+      if (fence) {
+        if (marker && marker[0] === fence[0] && marker.length >= fence.length && line.trim() === marker) fence = null;
+        return line;
+      }
+      if (marker) {
+        fence = marker;
+        return line;
+      }
+      return escapeInline(line);
+    })
+    .join('\n');
 }
 
 function splitFrontMatter(text) {
   const match = text.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   return { data: parse(match[1]), body: match[2] };
-}
-
-function pipelineRows() {
-  const workflow = readFileSync(join(repo, 'skills/spec-workflow/SKILL.md'), 'utf8');
-  const rows = [];
-  for (const [heading, pipeline] of [['## Feature Pipeline', 'Feature'], ['## Bugfix Pipeline', 'Bugfix']]) {
-    const section = workflow.split(heading)[1].split('\n## ')[0];
-    for (const line of section.split('\n').filter((l) => /^\|\s*\d+\s*\|/.test(l))) {
-      const [step, skill, output, next] = line.split('|').slice(1, -1).map((c) => c.trim());
-      const name = skill.match(/`sdd:([a-z-]+)`/)?.[1];
-      rows.push({ name, pipeline, step, skill: skill.replace(/`/g, ''), mode: skill.replace(/`sdd:[a-z-]+`/, '').trim(), output, next });
-    }
-  }
-  return rows;
 }
 
 const longDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
@@ -102,8 +130,6 @@ function footer(name, entry) {
   ].join('\n');
 }
 
-const allRows = pipelineRows();
-const rows = allRows.filter((r) => r.name);
 mkdirSync(join(site, 'src/data'), { recursive: true });
 writeFileSync(
   join(site, 'src/data/pipeline.json'),

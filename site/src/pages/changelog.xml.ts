@@ -4,11 +4,11 @@ import changelog from '../../../CHANGELOG.md?raw';
 
 export function GET(context: APIContext) {
   const page = new URL(`${import.meta.env.BASE_URL.replace(/\/$/, '')}/changelog/`, context.site).href;
-  const items = [...changelog.matchAll(/^## \[(\d+\.\d+\.\d+)\] - (\d{4}-\d{2}-\d{2})\n([\s\S]*?)(?=^## |^\[)/gm)].map(
+  const items = [...changelog.matchAll(/^## \[(\d+\.\d+\.\d+[^\]]*)\] - (\d{4}-\d{2}-\d{2})[^\n]*\n([\s\S]*?)(?=^## |^\[[^\]]+\]:|(?![\s\S]))/gm)].map(
     ([, version, date, body]) => ({
       title: `v${version}`,
       pubDate: new Date(date),
-      link: `${page}#${version.replace(/\./g, '')}---${date}`,
+      link: `${page}#${version.replace(/[^a-z0-9-]/gi, '')}---${date}`,
       description: body.trim().replace(/`/g, ''),
     }),
   );
