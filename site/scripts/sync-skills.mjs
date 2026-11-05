@@ -66,13 +66,16 @@ const longDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric'
 function header(name, entry, rows) {
   const mine = rows.filter((r) => r.name === name);
   if (!mine.length) return `:::note[Where it fits]\n${entry.position}\n:::\n`;
-  const table = mine.map((r) => `| ${r.pipeline} | ${r.step} | ${r.mode} | ${linkSkills(r.output)} | ${linkSkills(r.next)} |`);
+  const lines = mine.map((r) => {
+    const mode = r.mode.replace(/[()]/g, '');
+    return `- **${r.pipeline} pipeline, step ${r.step}${mode ? `, ${mode}` : ''}.** Writes ${linkSkills(r.output)}. Runs next: ${linkSkills(r.next)}.`;
+  });
   return [
-    '| Pipeline | Step | Mode | Writes | Runs next |',
-    '|---|---|---|---|---|',
-    ...table,
+    ':::note[Where it fits]',
+    ...lines,
     '',
     `Steps and outputs come from [\`sdd:spec-workflow\`](${skillLink('spec-workflow')}).`,
+    ':::',
     '',
   ].join('\n');
 }
