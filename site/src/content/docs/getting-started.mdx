@@ -1,0 +1,71 @@
+---
+title: Getting started
+description: Install the skills, prepare a project with sdd:setup and take a first work item through the pipeline.
+---
+
+import InstallTabs from '../../components/InstallTabs.astro';
+
+## 1. Install the skills
+
+<InstallTabs />
+
+In Claude Code 2.1.275 or later, one command also works: `/plugin install sdd --marketplace georgeracu/sdd-skills`.
+
+The plugin carries a version number, so an installed plugin changes only when you run `claude plugin update sdd@georgeracu` after a new release. For a manual copy, check out a tag, such as `v0.2.0`, before you copy the files. While the version is 0.x, a minor version can contain breaking changes. The [changelog](/sdd-skills/changelog/) marks them.
+
+## 2. Install superpowers for the full pipeline
+
+The full feature pipeline needs the [superpowers](https://github.com/obra/superpowers) plugin, or an equivalent, today. Step 8 uses its `subagent-driven-development` skill to implement the tasks, and step 12 uses `finishing-a-development-branch` to open the pull request. Every other step, including all the gates, is in this repository.
+
+Without superpowers, see [Run without superpowers](#run-without-superpowers) below.
+
+## 3. Prepare the project
+
+Run this once in the root of your project:
+
+```
+/sdd:setup
+```
+
+The skill looks at the project before it changes anything. Then it does three things, and asks for your approval before it writes:
+
+1. It copies the missing files of the scaffold into `project/work-items/`: the process documents and the templates the other skills read. It never overwrites a file that exists.
+2. It checks `AGENTS.md` for your build and test commands, and asks for them if they are missing. The skills read the commands from there instead of assuming a build tool.
+3. It reports which optional inputs it found: `openapi.yaml`, `ARCHITECTURE.md` and `UBIQUITOUS_LANGUAGE.md`. A missing input is not an error.
+
+The [setup page](/sdd-skills/skills/setup/) has the full skill.
+
+## 4. Take a first work item through the pipeline
+
+Start a feature with discovery:
+
+```
+/sdd:spec-discovery
+```
+
+Discovery agrees the work item's name, problem, scope and approach with you, one question at a time, and writes `discovery.md` into `project/work-items/{NN}-{name}/`. After you approve it, the agent continues through the pipeline. Each phase stops for your review, and each gate writes its verdict into the same directory:
+
+1. `spec-generator` writes `requirements.md`, then `design.md`.
+2. `spec-design-review` checks the design and writes `design-review-summary.md`. A BLOCKED verdict stops the pipeline until the design is fixed.
+3. `spec-generator` writes `tasks.md`, and `spec-task-review` checks it.
+4. `spec-qa-review` in plan mode writes `test-plan.md`.
+5. superpowers implements the tasks.
+6. `spec-implementation-audit` compares the code with the spec, using the build and test output as evidence.
+7. `spec-qa-review` in review mode checks the tests against the plan.
+8. `spec-maintenance` annotates older specs that the new work supersedes or changes.
+9. superpowers opens the pull request.
+
+The [spec-workflow page](/sdd-skills/skills/spec-workflow/) is the reference for the order and for what each step writes. The [worked example](/sdd-skills/worked-example/) shows every artefact from one real feature.
+
+For a bug, start with `/sdd:spec-generator` instead. It writes `bugfix.md`, `design.md` and `tasks.md`, with no gates.
+
+## Run without superpowers
+
+Without superpowers, the pipeline runs from discovery to the test plan, steps 1 to 7. Then:
+
+1. Implement the tasks in `tasks.md` yourself, or with any agent, and tick each box when its task is done.
+2. Run `/sdd:spec-implementation-audit`. It reads the spec documents and the code, however the code was written.
+3. Continue with `/sdd:spec-qa-review` in review mode and `/sdd:spec-maintenance`.
+4. Open the pull request yourself.
+
+Every review skill works from the documents in `project/work-items/`, so you can also run one gate on its own against a spec you wrote by hand.
