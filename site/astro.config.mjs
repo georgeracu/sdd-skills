@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightLinksValidator from 'starlight-links-validator';
+import lucode from 'lucode-starlight';
 import { parse } from 'yaml';
 
 const { groups, skills } = parse(readFileSync(new URL('./skills.yaml', import.meta.url), 'utf8'));
@@ -26,7 +27,7 @@ export default defineConfig({
       head: [
         { tag: 'link', attrs: { rel: 'alternate', type: 'application/rss+xml', title: 'SDD Skills changelog', href: '/sdd-skills/changelog.xml' } },
       ],
-      plugins: [starlightLinksValidator()],
+      plugins: [lucode(), starlightLinksValidator()],
       sidebar: [
         { label: 'Guides', items: [{ slug: 'getting-started' }, { slug: 'worked-example' }] },
         ...skillGroups,
