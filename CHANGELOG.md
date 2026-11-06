@@ -4,7 +4,7 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ## [Unreleased]
 
-## [0.3.0] - 2026-11-06
+## [0.3.0] - 2026-11-07
 
 ### Added
 
