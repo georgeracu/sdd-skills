@@ -6,7 +6,7 @@
     "node": ">=22.23.4"
   },
   "scripts": {
-    "sync": "node scripts/sync-skills.mjs",
+    "sync": "node scripts/sync-skills.mjs && node scripts/sync-evals.mjs",
     "predev": "npm run sync",
     "dev": "astro dev",
     "prebuild": "npm run sync",

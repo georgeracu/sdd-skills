@@ -12,7 +12,13 @@ const code = (s: string) => s.replace(/`([^`]+)`/g, '<code>$1</code>');
         <span class="step">{row.step}</span>
         <div>
           <strong>
-            {row.name ? <a href={`${base}/skills/${row.name}/`}>{row.skill.replace(' (gate)', '')}</a> : row.skill}
+            {row.name ? (
+              <a href={`${base}/skills/${row.name}/`}>{row.skill.replace(' (gate)', '')}</a>
+            ) : row.href ? (
+              <a href={row.href}>{row.skill}</a>
+            ) : (
+              row.skill
+            )}
           </strong>
           {row.gate && <span class="badge">Gate</span>}
           <p set:html={code(row.output)} />

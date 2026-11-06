@@ -27,11 +27,17 @@ export default defineConfig({
       head: [
         { tag: 'link', attrs: { rel: 'alternate', type: 'application/rss+xml', title: 'SDD Skills changelog', href: '/sdd-skills/changelog.xml' } },
       ],
-      plugins: [lucode(), starlightLinksValidator()],
+      plugins: [
+        lucode({
+          footerText:
+            'Built with [Starlight](https://starlight.astro.build/) and the [Lucode theme](https://lucas-labs.github.io/lucode-starlight-theme/) by [lucas-labs](https://github.com/lucas-labs), which is based on [starlight-theme-black](https://github.com/adrian-ub/starlight-theme-black) and inspired by the [shadcn/ui](https://ui.shadcn.com/) documentation theme.',
+        }),
+        starlightLinksValidator(),
+      ],
       sidebar: [
         { label: 'Guides', items: [{ slug: 'getting-started' }, { slug: 'worked-example' }] },
         ...skillGroups,
-        { label: 'Project', items: [{ slug: 'changelog' }, { slug: 'roadmap' }] },
+        { label: 'Project', items: [{ slug: 'evals' }, { slug: 'changelog' }, { slug: 'roadmap' }] },
       ],
     }),
   ],

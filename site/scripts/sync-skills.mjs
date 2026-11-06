@@ -9,6 +9,7 @@ const docs = join(site, 'src/content/docs');
 const base = '/sdd-skills';
 const github = 'https://github.com/georgeracu/sdd-skills/blob/main';
 const exampleDir = 'examples/38-source-fidelity-and-accuracy-sla';
+const superpowers = 'https://github.com/obra/superpowers/tree/main/skills';
 
 const config = parse(readFileSync(join(site, 'skills.yaml'), 'utf8'));
 
@@ -33,7 +34,9 @@ function pipelineRows() {
     for (const line of section.split('\n').filter((l) => /^\|\s*\d+\s*\|/.test(l))) {
       const [step, skill, output, next] = line.split('|').slice(1, -1).map((c) => c.trim());
       const name = skill.match(/`sdd:([a-z-]+)`/)?.[1];
-      rows.push({ name, pipeline, step, skill: skill.replace(/`/g, ''), mode: skill.replace(/`sdd:[a-z-]+`/, '').trim(), output, next });
+      const external = skill.match(/^`([a-z-]+)` \(superpowers\)$/)?.[1];
+      const href = external && `${superpowers}/${external}`;
+      rows.push({ name, href, pipeline, step, skill: skill.replace(/`/g, ''), mode: skill.replace(/`sdd:[a-z-]+`/, '').trim(), output, next });
     }
   }
   return rows;
@@ -115,6 +118,10 @@ function footer(name, entry) {
   const files = entry.example.map((f) => `- [\`${f}\`](${github}/${exampleDir}/${f})`);
   const example = [...files, ...(entry.example_note ? ['', entry.example_note] : []), '', `The [worked example](${base}/worked-example/) walks through every artefact.`];
   return [
+    '## Evals',
+    '',
+    `See [this skill's row on the Evals page](${base}/evals/#${name}).`,
+    '',
     '## The story behind this skill',
     '',
     story,
