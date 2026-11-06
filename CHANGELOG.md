@@ -4,6 +4,15 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ## [Unreleased]
 
+### Added
+
+- Evals page on the documentation site, generated from the committed results: the latest iteration for each skill, its baseline, the pass rates, the run-to-run spread and the checks that scored below the baseline. Each skill page links to its row.
+
+### Changed
+
+- The manual-copy install command leaves out each skill's `evals/` folder, which the skills do not need at run time.
+- The site's home page has a searchable title, a sourced Kiro column dated November 2026, links to the superpowers skills in steps 8 and 12, and a star count only from 50 stars. The theme credits are in the site footer.
+
 ## [0.2.0] - 2026-11-05
 
 Breaking changes are marked **Breaking**. A gate's status values changed, so update anything that reads a `**Status:**` line.

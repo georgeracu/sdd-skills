@@ -6,7 +6,7 @@ claude plugin install sdd@georgeracu`;
 const npx = `npx skills@latest add georgeracu/sdd-skills`;
 const manual = `git clone https://github.com/georgeracu/sdd-skills.git
 mkdir -p .claude/skills/sdd
-cp -R sdd-skills/skills/. .claude/skills/sdd/`;
+rsync -a --exclude evals sdd-skills/skills/ .claude/skills/sdd/`;
 ---
 
 <Tabs syncKey="install">

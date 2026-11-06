@@ -3,12 +3,15 @@
 </a>
 
 <script>
+  // Below this, a count reads as a weak signal, so the badge only invites a star.
+  const MIN_STARS = 50;
+
   const el = document.querySelector('[data-stars] [data-count]');
   fetch('https://api.github.com/repos/georgeracu/sdd-skills')
     .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
     .then((repo) => {
-      if (el && typeof repo.stargazers_count === 'number') {
-        el.textContent = `${repo.stargazers_count.toLocaleString('en-GB')} ${repo.stargazers_count === 1 ? 'star' : 'stars'} on GitHub`;
+      if (el && typeof repo.stargazers_count === 'number' && repo.stargazers_count >= MIN_STARS) {
+        el.textContent = `${repo.stargazers_count.toLocaleString('en-GB')} stars on GitHub`;
       }
     })
     .catch(() => {});
