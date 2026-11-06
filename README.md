@@ -26,7 +26,7 @@ Manual copy, which keeps the `sdd:` prefix the skills use to call each other:
 ```
 git clone https://github.com/georgeracu/sdd-skills.git
 mkdir -p .claude/skills/sdd
-rsync -a --exclude evals sdd-skills/skills/ .claude/skills/sdd/
+rsync -a --exclude .claude-plugin sdd-skills/skills/ .claude/skills/sdd/
 ```
 
 Choose one route per agent. Two routes install every skill twice.

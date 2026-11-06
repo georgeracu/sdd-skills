@@ -15,11 +15,11 @@
         "Says the work item may proceed to tasks.md generation"
       ],
       "files": [
-        "evals/files/quota-alerts-aligned/requirements.md",
-        "evals/files/quota-alerts-aligned/design.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/quota-alerts-aligned/requirements.md",
+        "files/quota-alerts-aligned/design.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "design-review-summary.md"
@@ -73,11 +73,11 @@
         "Stops the workflow: does not generate tasks.md and tells the author to fix design.md and re-run the review"
       ],
       "files": [
-        "evals/files/quota-alerts-missing-requirement/requirements.md",
-        "evals/files/quota-alerts-missing-requirement/design.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/quota-alerts-missing-requirement/requirements.md",
+        "files/quota-alerts-missing-requirement/design.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "design-review-summary.md"
@@ -115,11 +115,11 @@
         "Gives concrete rename fixes and allows continuation to tasks.md while recommending the major issues be fixed first"
       ],
       "files": [
-        "evals/files/quota-alerts-naming-drift/requirements.md",
-        "evals/files/quota-alerts-naming-drift/design.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/quota-alerts-naming-drift/requirements.md",
+        "files/quota-alerts-naming-drift/design.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "design-review-summary.md"
@@ -162,11 +162,11 @@
         "Stops the workflow: does not generate tasks.md and asks for the design to be fixed and the review re-run"
       ],
       "files": [
-        "evals/files/quota-alerts-sync-notify/requirements.md",
-        "evals/files/quota-alerts-sync-notify/design.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/quota-alerts-sync-notify/requirements.md",
+        "files/quota-alerts-sync-notify/design.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "design-review-summary.md"
@@ -204,11 +204,11 @@
         "Says the work item may proceed to tasks.md generation"
       ],
       "files": [
-        "evals/files/stale-quota-bugfix/bugfix.md",
-        "evals/files/stale-quota-bugfix/design.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/stale-quota-bugfix/bugfix.md",
+        "files/stale-quota-bugfix/design.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "design-review-summary.md"
@@ -258,11 +258,11 @@
         "Allows continuation to tasks.md generation"
       ],
       "files": [
-        "evals/files/quota-alerts-prose-drift/requirements.md",
-        "evals/files/quota-alerts-prose-drift/design.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/quota-alerts-prose-drift/requirements.md",
+        "files/quota-alerts-prose-drift/design.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "design-review-summary.md"
@@ -312,11 +312,11 @@
         "Stops the workflow: does not generate tasks.md and asks for the design to be fixed and the review re-run"
       ],
       "files": [
-        "evals/files/quota-alerts-latency/requirements.md",
-        "evals/files/quota-alerts-latency/design.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/quota-alerts-latency/requirements.md",
+        "files/quota-alerts-latency/design.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "design-review-summary.md"
@@ -358,11 +358,11 @@
         "Stops the workflow: does not generate tasks.md and asks for the design to be fixed and the review re-run"
       ],
       "files": [
-        "evals/files/quota-alerts-public-endpoint/requirements.md",
-        "evals/files/quota-alerts-public-endpoint/design.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/quota-alerts-public-endpoint/requirements.md",
+        "files/quota-alerts-public-endpoint/design.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "design-review-summary.md"
@@ -404,12 +404,12 @@
         "Does not generate tasks.md"
       ],
       "files": [
-        "evals/files/quota-alerts-second-block/requirements.md",
-        "evals/files/quota-alerts-second-block/design.md",
-        "evals/files/quota-alerts-second-block/design-review-summary.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/quota-alerts-second-block/requirements.md",
+        "files/quota-alerts-second-block/design.md",
+        "files/quota-alerts-second-block/design-review-summary.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "design-review-summary.md"

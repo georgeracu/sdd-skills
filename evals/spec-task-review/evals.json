@@ -7,13 +7,13 @@
       "prompt": "Tasks for quota alerts are approved. Run the task review on this work item before we start building. requirements.md, design.md and tasks.md are in the working directory, with the shared project docs alongside.",
       "expected_output": "The reply should run the task review and write task-review-summary.md for the quota alerts work item with Status APPROVED and no CRITICAL or MAJOR issues (zero or only MINOR suggestions, such as task-splitting advice). The coverage matrix should show all twelve acceptance criteria (1.1 to 5.2) traced to at least one task, the design coverage table should map every design element (ThresholdSet schema, the GET and PUT thresholds endpoints, ThresholdValidator, ThresholdService, ThresholdsHandler, AlertEvaluator, the quota-threshold template, the ThresholdSettings component and the two data model changes) to tasks, and the sequencing review should record that the OpenAPI update and type regeneration come before the handler and the frontend, backend before frontend, and integration, end-to-end, documentation and final validation tasks come last. The mandatory ending tasks should all be marked present. The verdict should approve and point to sdd:spec-qa-review in plan mode as the next step. Existing-file paths that cannot be checked on disk because only the work item is supplied should not turn into a MAJOR finding. As the review passes, discovery.md should be deleted from the work item.",
       "files": [
-        "evals/files/tasks-complete/requirements.md",
-        "evals/files/tasks-complete/design.md",
-        "evals/files/tasks-complete/tasks.md",
-        "evals/files/tasks-complete/discovery.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/tasks-complete/requirements.md",
+        "files/tasks-complete/design.md",
+        "files/tasks-complete/tasks.md",
+        "files/tasks-complete/discovery.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "task-review-summary.md"
@@ -63,13 +63,13 @@
       "prompt": "I've signed off tasks.md for quota alerts and want to move on to implementation. Can you run the task review first? The three work item documents are in the working directory.",
       "expected_output": "The reply should write task-review-summary.md with Status BLOCKED, because one acceptance criterion has no implementing task and the skill rates missing requirement coverage CRITICAL. The finding must name acceptance criterion 2.4 (no Quota_Alerts for a suspended Account): the AlertEvaluator task traces only 2.1, 2.2 and 2.3 and never mentions the suspended status, and no other task covers it. The coverage matrix should mark AC 2.4 as uncovered while the other eleven criteria are covered, and the statistics should show one CRITICAL issue. The fix should be a specific change to tasks.md, such as adding the suspended-Account check and its unit test to the AlertEvaluator task and tracing 2.4 to it. The verdict should say the work is blocked until tasks.md is fixed and the review re-run. discovery.md must stay in the work item. The reply must not approve it or tell the user to proceed to implementation. Sequencing and the ending tasks are sound and should not generate MAJOR findings.",
       "files": [
-        "evals/files/tasks-missing-suspended/requirements.md",
-        "evals/files/tasks-missing-suspended/design.md",
-        "evals/files/tasks-missing-suspended/tasks.md",
-        "evals/files/tasks-complete/discovery.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/tasks-missing-suspended/requirements.md",
+        "files/tasks-missing-suspended/design.md",
+        "files/tasks-missing-suspended/tasks.md",
+        "files/tasks-complete/discovery.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "task-review-summary.md"
@@ -107,12 +107,12 @@
       "prompt": "tasks.md for quota alerts is approved and I'd like to start building. Run the task review on it. requirements.md, design.md and tasks.md are in the working directory.",
       "expected_output": "The reply should write task-review-summary.md with Status APPROVED WITH ISSUES: every acceptance criterion and design element is covered, so there is no CRITICAL finding, but one MAJOR sequencing finding. In tasks.md the ThresholdSettings frontend task comes second, before the OpenAPI task (which adds the thresholds endpoints and the ThresholdSet schema and regenerates the types) and before ThresholdsHandler. The finding must give the mechanism: the frontend task imports the generated ThresholdSet type, which does not exist until the OpenAPI task has been run and scripts/generate-api-types.sh has regenerated the TypeScript types (types are generated from openapi.yaml, never hand-written), so the build fails. The fix should be to move the frontend task after the OpenAPI, service and handler tasks (and the checkpoint). The statistics should show one MAJOR and no CRITICAL, and the verdict should allow proceeding once the order is fixed, warning the user rather than blocking outright.",
       "files": [
-        "evals/files/tasks-frontend-first/requirements.md",
-        "evals/files/tasks-frontend-first/design.md",
-        "evals/files/tasks-frontend-first/tasks.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/tasks-frontend-first/requirements.md",
+        "files/tasks-frontend-first/design.md",
+        "files/tasks-frontend-first/tasks.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "task-review-summary.md"
@@ -148,12 +148,12 @@
       "prompt": "Please review tasks.md for the quota alerts work item before we hand it to the subagents. The work item documents are in the working directory.",
       "expected_output": "The reply should write task-review-summary.md with Status APPROVED WITH ISSUES: coverage and sequencing are sound, so there is no CRITICAL finding, but the ThresholdsHandler task is not implementable as written, which the skill rates MAJOR. The task tells the developer to map every failure through 'the existing ProblemMapper', a component that design.md does not define and that appears nowhere in the architecture or contract (only the Problem schema exists), and to 'add appropriate error handling for anything else', a vague instruction that gives a subagent nothing to act on. The finding should name the handler task, the undefined ProblemMapper and the vague error-handling phrase, and the fix should be to specify the behaviour concretely (build the standard Problem body for 400 and 404 directly, or add and define a mapper in the design) and to list the exact error cases. The statistics should show at least one MAJOR and no CRITICAL, and the verdict should warn and allow proceeding after the fix.",
       "files": [
-        "evals/files/tasks-undefined-component/requirements.md",
-        "evals/files/tasks-undefined-component/design.md",
-        "evals/files/tasks-undefined-component/tasks.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/tasks-undefined-component/requirements.md",
+        "files/tasks-undefined-component/design.md",
+        "files/tasks-undefined-component/tasks.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "task-review-summary.md"
@@ -190,12 +190,12 @@
       "prompt": "tasks.md for quota alerts is approved. Run the task review before the subagents pick it up. requirements.md, design.md and tasks.md are in the working directory, with the shared project docs alongside.",
       "expected_output": "The reply should write task-review-summary.md with Status APPROVED WITH ISSUES: every acceptance criterion and design element is covered and the order is sound, so there is no CRITICAL finding, but Task 3 is too large for one subagent session, which the skill rates MAJOR. Task 3 builds ThresholdValidator, ThresholdService, ThresholdsHandler and the ThresholdSettings frontend component in one task: four components across the service, handler and frontend layers, with their unit tests. The finding should name Task 3 and the components it spans, and the fix should be to split it into separate tasks (validator and service, handler, frontend component), keeping each with its unit tests. The statistics should show one MAJOR and no CRITICAL, and the verdict should warn and allow proceeding after the split.",
       "files": [
-        "evals/files/tasks-oversized/requirements.md",
-        "evals/files/tasks-oversized/design.md",
-        "evals/files/tasks-oversized/tasks.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/tasks-oversized/requirements.md",
+        "files/tasks-oversized/design.md",
+        "files/tasks-oversized/tasks.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "task-review-summary.md"
@@ -236,12 +236,12 @@
       "prompt": "Run the task review on the quota alerts tasks before we start building. The three work item documents are in the working directory, with the shared project docs alongside.",
       "expected_output": "The reply should write task-review-summary.md with Status APPROVED. Every acceptance criterion and design element is covered, the order is sound, and every ending task is present: Task 10 holds both the backend integration tests and the Playwright end-to-end test. Combining the two suites in one task is at most a MINOR finding (split it into two tasks for clarity), not a MAJOR one, because both suites are present and each is fully specified. The summary should show no CRITICAL and no MAJOR findings, and the verdict should approve and point to sdd:spec-qa-review in plan mode.",
       "files": [
-        "evals/files/tasks-combined-tests/requirements.md",
-        "evals/files/tasks-combined-tests/design.md",
-        "evals/files/tasks-combined-tests/tasks.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/tasks-combined-tests/requirements.md",
+        "files/tasks-combined-tests/design.md",
+        "files/tasks-combined-tests/tasks.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "task-review-summary.md"
@@ -286,13 +286,13 @@
       "prompt": "Re-run the task review for quota alerts; tasks.md was revised after the last review. requirements.md, design.md, tasks.md and the previous task-review-summary.md are in the working directory, with the shared project docs alongside.",
       "expected_output": "The previous review blocked on CRITICAL-001: no task implements AC 2.4 (no Quota_Alerts for a suspended Account). The revised tasks.md changes only the wording of the documentation task; the AlertEvaluator task still traces 2.1, 2.2 and 2.3 and never checks the Account status. The review must again write Status BLOCKED with a CRITICAL finding naming AC 2.4, and recognise from the previous summary that this is the second BLOCKED run on the same issue. On a second block the skill stops and asks the user how to proceed rather than sending the author round the loop again, so the reply must escalate to the user, name the unresolved finding, and not proceed to sdd:spec-qa-review.",
       "files": [
-        "evals/files/tasks-second-block/requirements.md",
-        "evals/files/tasks-second-block/design.md",
-        "evals/files/tasks-second-block/tasks.md",
-        "evals/files/tasks-second-block/task-review-summary.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/tasks-second-block/requirements.md",
+        "files/tasks-second-block/design.md",
+        "files/tasks-second-block/tasks.md",
+        "files/tasks-second-block/task-review-summary.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "task-review-summary.md"

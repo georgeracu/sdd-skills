@@ -4,6 +4,8 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-07
+
 ### Added
 
 - Evals page on the documentation site, generated from the committed results: the latest iteration for each skill, its baseline, the pass rates, the run-to-run spread and the checks that scored below the baseline. Each skill page links to its row.
@@ -13,7 +15,8 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ### Changed
 
-- The manual-copy install command leaves out each skill's `evals/` folder, which the skills do not need at run time.
+- The eval packs moved from `skills/<name>/evals/` to `evals/<name>/`, and the plugin root is now `skills/`. A plugin install or an `npx skills` install now copies only the skills, without the eval packs, the site or the examples. Run a pack with skill-eval v0.2.0 or later and `--pack evals/<name>`.
+- The manual-copy install command leaves out the plugin manifest in `skills/.claude-plugin/`.
 - The site's home page has a searchable title, a sourced Kiro column dated November 2026, links to the superpowers skills in steps 8 and 12, and a star count only from 50 stars. The theme credits are in the site footer.
 - GitHub's language bar no longer counts the Kotlin eval fixtures.
 
@@ -77,7 +80,8 @@ Breaking changes are marked **Breaking**. A gate's status values changed, so upd
 
 - Seven skills extracted from a private project: `spec-workflow`, `spec-generator`, `spec-design-review`, `spec-task-review`, `spec-qa-review`, `spec-implementation-audit` and `spec-maintenance`.
 
-[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/georgeracu/sdd-skills/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/georgeracu/sdd-skills/compare/v0.1.3...v0.2.0
 [0.1.3]: https://github.com/georgeracu/sdd-skills/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/georgeracu/sdd-skills/compare/v0.1.1...v0.1.2

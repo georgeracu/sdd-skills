@@ -31,9 +31,9 @@
         "Writes no requirements.md, design.md or tasks.md and does not invoke sdd:spec-generator"
       ],
       "files": [
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/fully-specified/project"
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/fully-specified/project"
       ]
     },
     {
@@ -48,8 +48,8 @@
         "Does not run a feature discovery interview"
       ],
       "files": [
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md"
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md"
       ]
     },
     {
@@ -64,7 +64,7 @@
         "Creates no directory and writes no discovery.md in this reply"
       ],
       "files": [
-        "evals/files/number-gaps/project"
+        "files/number-gaps/project"
       ]
     },
     {
@@ -81,9 +81,9 @@
         "Writes no requirements.md, design.md or tasks.md under the spec-discovery skill"
       ],
       "files": [
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/approval/project"
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/approval/project"
       ]
     },
     {
@@ -99,9 +99,9 @@
         "Writes no file, edits no file and creates no directory"
       ],
       "files": [
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/resume-draft/project"
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/resume-draft/project"
       ]
     }
   ]
