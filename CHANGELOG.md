@@ -7,11 +7,15 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 ### Added
 
 - Evals page on the documentation site, generated from the committed results: the latest iteration for each skill, its baseline, the pass rates, the run-to-run spread and the checks that scored below the baseline. Each skill page links to its row.
+- A release workflow. A pull request that changes the plugin manifest or `CHANGELOG.md` fails when the manifest version has no CHANGELOG section, and a `v*` tag that matches the manifest publishes a GitHub release with that section as the notes.
+- Issue forms for a bug report and for a skill that behaved unexpectedly.
+- A social preview image, also used as the site's `og:image`.
 
 ### Changed
 
 - The manual-copy install command leaves out each skill's `evals/` folder, which the skills do not need at run time.
 - The site's home page has a searchable title, a sourced Kiro column dated November 2026, links to the superpowers skills in steps 8 and 12, and a star count only from 50 stars. The theme credits are in the site footer.
+- GitHub's language bar no longer counts the Kotlin eval fixtures.
 
 ## [0.2.0] - 2026-11-05
 

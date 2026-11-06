@@ -1,0 +1,33 @@
+name: Bug report
+description: Something in the repository is broken, such as an install route, the site or a scaffold file.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected and what happened instead.
+    validations:
+      required: true
+  - type: dropdown
+    id: route
+    attributes:
+      label: Install route
+      options:
+        - Claude Code plugin
+        - npx skills add
+        - Manual copy
+        - Not installed (site or repository only)
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: "Plugin: the Version line from `claude plugin list`. npx skills add: the date you installed or last updated. Manual copy: the output of `git -C sdd-skills rev-parse --short HEAD`."
+  - type: textarea
+    id: output
+    attributes:
+      label: Error output
+      description: Paste any error message or command output.
+      render: text

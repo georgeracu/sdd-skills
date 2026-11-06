@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  pull_request:
+    paths:
+      - .claude-plugin/plugin.json
+      - CHANGELOG.md
+      - .github/workflows/release.yml
+  push:
+    tags: ['v*']
+
+env:
+  MANIFEST: .claude-plugin/plugin.json
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check the manifest version has a CHANGELOG section
+        run: |
+          version=$(jq -r .version "$MANIFEST")
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+          grep -q "^## \[$version\] - " CHANGELOG.md \
+            || { echo "::error::CHANGELOG.md has no section for $version from $MANIFEST"; exit 1; }
+      - name: Check the tag matches the manifest
+        if: github.event_name == 'push'
+        run: |
+          [ "$GITHUB_REF_NAME" = "v$VERSION" ] \
+            || { echo "::error::Tag $GITHUB_REF_NAME does not match version $VERSION in $MANIFEST"; exit 1; }
+      - name: Publish the release with the CHANGELOG notes
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          awk -v v="$VERSION" '/^## \[/ { on = index($0, "## [" v "]") == 1; next } /^\[.*\]: / { next } on' CHANGELOG.md > notes.md
+          gh release create "$GITHUB_REF_NAME" \
+            --title "$GITHUB_REF_NAME" \
+            --notes-file notes.md \
+            --verify-tag
