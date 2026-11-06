@@ -1,5 +1,6 @@
 name: Skill behaved unexpectedly
 description: A skill produced the wrong artefact, skipped a step, or passed a gate that it should have blocked.
+labels: [skill-behaviour]
 body:
   - type: input
     id: skill
