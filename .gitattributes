@@ -1,0 +1,2 @@
+# Eval fixtures are sample code for the agent to read, not the project's own code.
+**/evals/** linguist-vendored
