@@ -31,6 +31,15 @@ const points = (x) => `${x >= 0 ? '+' : '−'}${Math.abs(x * 100).toFixed(1)} po
 const escape = (text) => text.replace(/</g, '&lt;').replace(/\|/g, '\\|');
 const longDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 
+// Moving the packs to evals/<name>/ renamed every results file, so a pure rename does not count as a commit of the results.
+function committed(rel) {
+  let date;
+  for (const line of git('log', '--follow', '--format=%cs', '--name-status', '--', rel).split('\n')) {
+    if (/^\d{4}-\d{2}-\d{2}$/.test(line)) date = line;
+    else if (line && !line.startsWith('R100\t')) return date;
+  }
+}
+
 function latest(name) {
   const dir = join(repo, 'evals', name, 'results');
   if (!existsSync(dir)) return null;
@@ -64,7 +73,7 @@ function latest(name) {
     judge: field('judge_model'),
     runs: Number(field('runs_per_arm')),
     cases: Number(field('cases_total')),
-    date: git('log', '-1', '--follow', '--diff-filter=AM', '--format=%cs', '--', rel),
+    date: committed(rel),
   };
 }
 
