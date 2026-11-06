@@ -17,11 +17,11 @@
         "Writes no PASSED or FAILED Status, since plan mode runs no gate"
       ],
       "files": [
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml",
-        "evals/files/plan-quota-alerts/requirements.md",
-        "evals/files/plan-quota-alerts/design.md"
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml",
+        "files/plan-quota-alerts/requirements.md",
+        "files/plan-quota-alerts/design.md"
       ],
       "expected_files": [
         "01-quota-alerts/test-plan.md"
@@ -105,11 +105,11 @@
         "Writes no PASSED or FAILED Status, since plan mode runs no gate"
       ],
       "files": [
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml",
-        "evals/files/plan-thin-design/requirements.md",
-        "evals/files/plan-thin-design/design.md"
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml",
+        "files/plan-thin-design/requirements.md",
+        "files/plan-thin-design/design.md"
       ],
       "expected_files": [
         "01-quota-alerts/test-plan.md"
@@ -173,23 +173,23 @@
         "Severity labels are only CRITICAL, MAJOR or MINOR"
       ],
       "files": [
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/review-impl/openapi.yaml",
-        "evals/files/review-impl/requirements.md",
-        "evals/files/review-impl/design.md",
-        "evals/files/review-impl/ThresholdSet.kt",
-        "evals/files/review-impl/QuotaAlertEvaluator.kt",
-        "evals/files/review-impl/ThresholdHandler.kt",
-        "evals/files/review-meets-bar/EvaluatorBudgetTest.kt",
-        "evals/files/review-meets-bar/FiredStateRepositoryTest.kt",
-        "evals/files/review-meets-bar/QuotaAlertEvaluatorTest.kt",
-        "evals/files/review-meets-bar/ThresholdAuthTest.kt",
-        "evals/files/review-meets-bar/ThresholdHandlerTest.kt",
-        "evals/files/review-meets-bar/ThresholdSetTest.kt",
-        "evals/files/review-meets-bar/coverage-report.txt",
-        "evals/files/review-meets-bar/quota-alerts.spec.ts",
-        "evals/files/review-meets-bar/test-plan.md"
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/review-impl/openapi.yaml",
+        "files/review-impl/requirements.md",
+        "files/review-impl/design.md",
+        "files/review-impl/ThresholdSet.kt",
+        "files/review-impl/QuotaAlertEvaluator.kt",
+        "files/review-impl/ThresholdHandler.kt",
+        "files/review-meets-bar/EvaluatorBudgetTest.kt",
+        "files/review-meets-bar/FiredStateRepositoryTest.kt",
+        "files/review-meets-bar/QuotaAlertEvaluatorTest.kt",
+        "files/review-meets-bar/ThresholdAuthTest.kt",
+        "files/review-meets-bar/ThresholdHandlerTest.kt",
+        "files/review-meets-bar/ThresholdSetTest.kt",
+        "files/review-meets-bar/coverage-report.txt",
+        "files/review-meets-bar/quota-alerts.spec.ts",
+        "files/review-meets-bar/test-plan.md"
       ],
       "expected_files": [
         "01-quota-alerts/test-plan.md"
@@ -262,23 +262,23 @@
         "Severity labels are only CRITICAL, MAJOR or MINOR"
       ],
       "files": [
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/review-impl/openapi.yaml",
-        "evals/files/review-impl/requirements.md",
-        "evals/files/review-impl/design.md",
-        "evals/files/review-impl/ThresholdSet.kt",
-        "evals/files/review-impl/QuotaAlertEvaluator.kt",
-        "evals/files/review-impl/ThresholdHandler.kt",
-        "evals/files/review-below-bar/EvaluatorBudgetTest.kt",
-        "evals/files/review-below-bar/FiredStateRepositoryTest.kt",
-        "evals/files/review-below-bar/QuotaAlertEvaluatorTest.kt",
-        "evals/files/review-below-bar/ThresholdAuthTest.kt",
-        "evals/files/review-below-bar/ThresholdHandlerTest.kt",
-        "evals/files/review-below-bar/ThresholdSetTest.kt",
-        "evals/files/review-below-bar/coverage-report.txt",
-        "evals/files/review-below-bar/quota-alerts.spec.ts",
-        "evals/files/review-below-bar/test-plan.md"
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/review-impl/openapi.yaml",
+        "files/review-impl/requirements.md",
+        "files/review-impl/design.md",
+        "files/review-impl/ThresholdSet.kt",
+        "files/review-impl/QuotaAlertEvaluator.kt",
+        "files/review-impl/ThresholdHandler.kt",
+        "files/review-below-bar/EvaluatorBudgetTest.kt",
+        "files/review-below-bar/FiredStateRepositoryTest.kt",
+        "files/review-below-bar/QuotaAlertEvaluatorTest.kt",
+        "files/review-below-bar/ThresholdAuthTest.kt",
+        "files/review-below-bar/ThresholdHandlerTest.kt",
+        "files/review-below-bar/ThresholdSetTest.kt",
+        "files/review-below-bar/coverage-report.txt",
+        "files/review-below-bar/quota-alerts.spec.ts",
+        "files/review-below-bar/test-plan.md"
       ],
       "expected_files": [
         "01-quota-alerts/test-plan.md"
@@ -348,22 +348,22 @@
         "Severity labels are only CRITICAL, MAJOR or MINOR"
       ],
       "files": [
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/review-impl/openapi.yaml",
-        "evals/files/review-impl/requirements.md",
-        "evals/files/review-impl/design.md",
-        "evals/files/review-impl/ThresholdSet.kt",
-        "evals/files/review-impl/QuotaAlertEvaluator.kt",
-        "evals/files/review-impl/ThresholdHandler.kt",
-        "evals/files/review-missing-test/EvaluatorBudgetTest.kt",
-        "evals/files/review-missing-test/FiredStateRepositoryTest.kt",
-        "evals/files/review-missing-test/QuotaAlertEvaluatorTest.kt",
-        "evals/files/review-missing-test/ThresholdHandlerTest.kt",
-        "evals/files/review-missing-test/ThresholdSetTest.kt",
-        "evals/files/review-missing-test/coverage-report.txt",
-        "evals/files/review-missing-test/quota-alerts.spec.ts",
-        "evals/files/review-missing-test/test-plan.md"
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/review-impl/openapi.yaml",
+        "files/review-impl/requirements.md",
+        "files/review-impl/design.md",
+        "files/review-impl/ThresholdSet.kt",
+        "files/review-impl/QuotaAlertEvaluator.kt",
+        "files/review-impl/ThresholdHandler.kt",
+        "files/review-missing-test/EvaluatorBudgetTest.kt",
+        "files/review-missing-test/FiredStateRepositoryTest.kt",
+        "files/review-missing-test/QuotaAlertEvaluatorTest.kt",
+        "files/review-missing-test/ThresholdHandlerTest.kt",
+        "files/review-missing-test/ThresholdSetTest.kt",
+        "files/review-missing-test/coverage-report.txt",
+        "files/review-missing-test/quota-alerts.spec.ts",
+        "files/review-missing-test/test-plan.md"
       ],
       "expected_files": [
         "01-quota-alerts/test-plan.md"
@@ -431,23 +431,23 @@
         "Severity labels are only CRITICAL, MAJOR or MINOR"
       ],
       "files": [
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/review-impl/openapi.yaml",
-        "evals/files/review-impl/requirements.md",
-        "evals/files/review-impl/design.md",
-        "evals/files/review-impl/ThresholdSet.kt",
-        "evals/files/review-impl/QuotaAlertEvaluator.kt",
-        "evals/files/review-impl/ThresholdHandler.kt",
-        "evals/files/review-security-partial/EvaluatorBudgetTest.kt",
-        "evals/files/review-security-partial/FiredStateRepositoryTest.kt",
-        "evals/files/review-security-partial/QuotaAlertEvaluatorTest.kt",
-        "evals/files/review-security-partial/ThresholdAuthTest.kt",
-        "evals/files/review-security-partial/ThresholdHandlerTest.kt",
-        "evals/files/review-security-partial/ThresholdSetTest.kt",
-        "evals/files/review-security-partial/coverage-report.txt",
-        "evals/files/review-security-partial/quota-alerts.spec.ts",
-        "evals/files/review-security-partial/test-plan.md"
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/review-impl/openapi.yaml",
+        "files/review-impl/requirements.md",
+        "files/review-impl/design.md",
+        "files/review-impl/ThresholdSet.kt",
+        "files/review-impl/QuotaAlertEvaluator.kt",
+        "files/review-impl/ThresholdHandler.kt",
+        "files/review-security-partial/EvaluatorBudgetTest.kt",
+        "files/review-security-partial/FiredStateRepositoryTest.kt",
+        "files/review-security-partial/QuotaAlertEvaluatorTest.kt",
+        "files/review-security-partial/ThresholdAuthTest.kt",
+        "files/review-security-partial/ThresholdHandlerTest.kt",
+        "files/review-security-partial/ThresholdSetTest.kt",
+        "files/review-security-partial/coverage-report.txt",
+        "files/review-security-partial/quota-alerts.spec.ts",
+        "files/review-security-partial/test-plan.md"
       ],
       "expected_files": [
         "01-quota-alerts/test-plan.md"
@@ -510,23 +510,23 @@
         "Severity labels are only CRITICAL, MAJOR or MINOR"
       ],
       "files": [
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/review-impl/openapi.yaml",
-        "evals/files/review-impl/requirements.md",
-        "evals/files/review-impl/design.md",
-        "evals/files/review-impl/ThresholdSet.kt",
-        "evals/files/review-impl/QuotaAlertEvaluator.kt",
-        "evals/files/review-impl/ThresholdHandler.kt",
-        "evals/files/review-branch-below-bar/EvaluatorBudgetTest.kt",
-        "evals/files/review-branch-below-bar/FiredStateRepositoryTest.kt",
-        "evals/files/review-branch-below-bar/QuotaAlertEvaluatorTest.kt",
-        "evals/files/review-branch-below-bar/ThresholdAuthTest.kt",
-        "evals/files/review-branch-below-bar/ThresholdHandlerTest.kt",
-        "evals/files/review-branch-below-bar/ThresholdSetTest.kt",
-        "evals/files/review-branch-below-bar/coverage-report.txt",
-        "evals/files/review-branch-below-bar/quota-alerts.spec.ts",
-        "evals/files/review-branch-below-bar/test-plan.md"
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/review-impl/openapi.yaml",
+        "files/review-impl/requirements.md",
+        "files/review-impl/design.md",
+        "files/review-impl/ThresholdSet.kt",
+        "files/review-impl/QuotaAlertEvaluator.kt",
+        "files/review-impl/ThresholdHandler.kt",
+        "files/review-branch-below-bar/EvaluatorBudgetTest.kt",
+        "files/review-branch-below-bar/FiredStateRepositoryTest.kt",
+        "files/review-branch-below-bar/QuotaAlertEvaluatorTest.kt",
+        "files/review-branch-below-bar/ThresholdAuthTest.kt",
+        "files/review-branch-below-bar/ThresholdHandlerTest.kt",
+        "files/review-branch-below-bar/ThresholdSetTest.kt",
+        "files/review-branch-below-bar/coverage-report.txt",
+        "files/review-branch-below-bar/quota-alerts.spec.ts",
+        "files/review-branch-below-bar/test-plan.md"
       ],
       "expected_files": [
         "01-quota-alerts/test-plan.md"
@@ -592,23 +592,23 @@
         "Severity labels are only CRITICAL, MAJOR or MINOR"
       ],
       "files": [
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/review-impl/openapi.yaml",
-        "evals/files/review-impl/requirements.md",
-        "evals/files/review-impl/design.md",
-        "evals/files/review-impl/ThresholdSet.kt",
-        "evals/files/review-impl/QuotaAlertEvaluator.kt",
-        "evals/files/review-impl/ThresholdHandler.kt",
-        "evals/files/review-second-fail/EvaluatorBudgetTest.kt",
-        "evals/files/review-second-fail/FiredStateRepositoryTest.kt",
-        "evals/files/review-second-fail/QuotaAlertEvaluatorTest.kt",
-        "evals/files/review-second-fail/ThresholdAuthTest.kt",
-        "evals/files/review-second-fail/ThresholdHandlerTest.kt",
-        "evals/files/review-second-fail/ThresholdSetTest.kt",
-        "evals/files/review-second-fail/coverage-report.txt",
-        "evals/files/review-second-fail/quota-alerts.spec.ts",
-        "evals/files/review-second-fail/test-plan.md"
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/review-impl/openapi.yaml",
+        "files/review-impl/requirements.md",
+        "files/review-impl/design.md",
+        "files/review-impl/ThresholdSet.kt",
+        "files/review-impl/QuotaAlertEvaluator.kt",
+        "files/review-impl/ThresholdHandler.kt",
+        "files/review-second-fail/EvaluatorBudgetTest.kt",
+        "files/review-second-fail/FiredStateRepositoryTest.kt",
+        "files/review-second-fail/QuotaAlertEvaluatorTest.kt",
+        "files/review-second-fail/ThresholdAuthTest.kt",
+        "files/review-second-fail/ThresholdHandlerTest.kt",
+        "files/review-second-fail/ThresholdSetTest.kt",
+        "files/review-second-fail/coverage-report.txt",
+        "files/review-second-fail/quota-alerts.spec.ts",
+        "files/review-second-fail/test-plan.md"
       ],
       "expected_files": [
         "01-quota-alerts/test-plan.md"

@@ -32,7 +32,7 @@ const escape = (text) => text.replace(/</g, '&lt;').replace(/\|/g, '\\|');
 const longDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 
 function latest(name) {
-  const dir = join(repo, 'skills', name, 'evals', 'results');
+  const dir = join(repo, 'evals', name, 'results');
   if (!existsSync(dir)) return null;
   const files = readdirSync(dir).filter((f) => /^iteration-\d+\.json$/.test(f));
   if (!files.length) return null;
@@ -43,7 +43,7 @@ function latest(name) {
   const field = (key) => md.match(new RegExp(`^\\| ${key} \\| (.+?) \\|$`, 'm'))?.[1];
   const spread = md.match(/Run-to-run spread[^:]*: pass_rate ±([\d.]+)/)?.[1];
   const tests = md.match(/^\*\*What this iteration tests:\*\* (.+)$/m)?.[1];
-  const rel = `skills/${name}/evals/results/${file.replace(/\.json$/, '.md')}`;
+  const rel = `evals/${name}/results/${file.replace(/\.json$/, '.md')}`;
   const problems = [
     ['runner_model', field('runner_model')],
     ['judge_model', field('judge_model')],
@@ -64,7 +64,7 @@ function latest(name) {
     judge: field('judge_model'),
     runs: Number(field('runs_per_arm')),
     cases: Number(field('cases_total')),
-    date: git('log', '-1', '--format=%cs', '--', rel),
+    date: git('log', '-1', '--follow', '--diff-filter=AM', '--format=%cs', '--', rel),
   };
 }
 

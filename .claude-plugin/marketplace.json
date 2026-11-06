@@ -5,7 +5,7 @@
   "plugins": [
     {
       "name": "sdd",
-      "source": "./",
+      "source": "./skills",
       "description": "Spec-driven development skills with blocking quality gates and an audit trail.",
       "category": "development",
       "keywords": ["spec-driven-development", "sdd", "quality-gates"]

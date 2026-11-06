@@ -7,8 +7,8 @@
       "prompt": "Run spec maintenance for work item 04 at project/work-items/04-usage-digest; the other work items are alongside it in project/work-items and the shared domain documents are in shared/. Write every file you create or change under outputs/, keeping its project path: to annotate a file, copy it to outputs/project/work-items/<item>/<file> and edit the copy, and write any report to outputs/project/work-items/04-usage-digest/spec-maintenance-report.md.",
       "expected_output": "The reply should recognise that spec maintenance has nothing to do. Work item 04 has passed QA review, but the two older work items (01-quota-alerts and 02-usage-export) have no implementation-audit.md and so do not count as implemented, even though both mention things the digest changes (the Quota_Cache TTL, the export-nightly rule, the export-ready template). The reply should therefore skip the skill, say why, write no spec-maintenance-report.md, edit none of the older files, and hand over to finishing-a-development-branch.",
       "files": [
-        "evals/files/no-implemented-peers/project",
-        "evals/files/shared"
+        "files/no-implemented-peers/project",
+        "files/shared"
       ],
       "criteria": [
         "States that no other implemented work item exists, because neither 01-quota-alerts nor 02-usage-export holds an implementation-audit.md",
@@ -34,8 +34,8 @@
       "prompt": "Run spec maintenance for work item 04 at project/work-items/04-usage-digest; the other work items are alongside it in project/work-items and the shared domain documents are in shared/. Write every file you create or change under outputs/, keeping its project path: to annotate a file, copy it to outputs/project/work-items/<item>/<file> and edit the copy, and write any report to outputs/project/work-items/04-usage-digest/spec-maintenance-report.md.",
       "expected_output": "The reply should treat 02-usage-export and 03-profile-summary as implemented (both hold an implementation-audit.md) and 01-quota-alerts as not implemented, so it is not scanned even though its tasks.md mentions the export-nightly rule. The digest deletes the export-nightly EventBridge rule, so Task 4 of 02-usage-export is superseded entirely: that one line is struck through and annotated with a reference to work-item 04, in place and with no other reformatting. Nothing else in 02-usage-export is touched (its requirements and design never mention the rule), and 03-profile-summary is reported as having no impact. A spec-maintenance-report.md is written in the 04-usage-digest directory listing the single superseded impact, then the reply hands over to finishing-a-development-branch.",
       "files": [
-        "evals/files/superseded-task/project",
-        "evals/files/shared"
+        "files/superseded-task/project",
+        "files/shared"
       ],
       "expected_files": [
         "project/work-items/04-usage-digest/spec-maintenance-report.md",
@@ -85,8 +85,8 @@
       "prompt": "Run spec maintenance for work item 04 at project/work-items/04-usage-digest; the other work items are alongside it in project/work-items and the shared domain documents are in shared/. Write every file you create or change under outputs/, keeping its project path: to annotate a file, copy it to outputs/project/work-items/<item>/<file> and edit the copy, and write any report to outputs/project/work-items/04-usage-digest/spec-maintenance-report.md.",
       "expected_output": "The reply should find two impacts in the design.md of 02-usage-export, the only implemented work item that overlaps. The Quota_Cache TTL line is a modified property: the TTL changes from one hour to five minutes, so only the value is struck through and replaced, with an annotation naming work-item 04, and the rest of the bullet is kept. The bullet saying the Notification_Service sends the export-ready template is a deprecated approach, because the template still works but the digest is now the recommended route: that line receives an annotation containing the word deprecated and a pointer to work-item 04 and is not struck through. 01-quota-alerts is not implemented and is left alone, and 03-profile-summary has no impact. The spec-maintenance-report.md in the 04-usage-digest directory classifies one item as MODIFIED and one as DEPRECATED, and the reply hands over to finishing-a-development-branch.",
       "files": [
-        "evals/files/modified-and-deprecated/project",
-        "evals/files/shared"
+        "files/modified-and-deprecated/project",
+        "files/shared"
       ],
       "expected_files": [
         "project/work-items/04-usage-digest/spec-maintenance-report.md",
@@ -141,8 +141,8 @@
       "prompt": "Run spec maintenance for work item 04 at project/work-items/04-usage-counters; the other work items are alongside it in project/work-items and the shared domain documents are in shared/. Write every file you create or change under outputs/, keeping its project path: to annotate a file, copy it to outputs/project/work-items/<item>/<file> and edit the copy, and write any report to outputs/project/work-items/04-usage-counters/spec-maintenance-report.md.",
       "expected_output": "The reply should treat 01-quota-alerts, 02-usage-export and 03-usage-history as implemented (each holds an implementation-audit.md) and find that work item 04 replaces the usage-meters table with usage-counters. Every older line that names the usage-meters table is a modified detail (twelve lines across the three work items: five in 01, four in 02, three in 03), annotated in place with the table rename and a reference to work-item 04, with only the table name struck through and no whole line, heading or file struck through. The spec-maintenance-report.md in the 04-usage-counters directory tabulates the three work items with their impact counts and carries an architectural drift warning because more than ten impacts land across several specs. The skill still passes: the warning is informational, nothing blocks, and the reply hands over to finishing-a-development-branch.",
       "files": [
-        "evals/files/drift-warning/project",
-        "evals/files/shared"
+        "files/drift-warning/project",
+        "files/shared"
       ],
       "expected_files": [
         "project/work-items/04-usage-counters/spec-maintenance-report.md",
@@ -195,8 +195,8 @@
       "prompt": "Run spec maintenance for work item 04 at project/work-items/04-usage-digest; the other work items are alongside it in project/work-items and the shared domain documents are in shared/. Write every file you create or change under outputs/, keeping its project path: to annotate a file, copy it to outputs/project/work-items/<item>/<file> and edit the copy, and write any report to outputs/project/work-items/04-usage-digest/spec-maintenance-report.md.",
       "expected_output": "The reply should make the same two edits as in modified-and-deprecated-shapes, and every annotation should follow one shape: an opening *( , a verb from superseded by, modified in or deprecated, see, then work-item 04 with the bare number, then either )* or a comma and a short reason before )*. The Quota_Cache TTL annotation reads *(modified in work-item 04 ...)* and the export-ready annotation reads *(deprecated, see work-item 04 ...)*. No annotation uses an em-dash, the full directory name 04-usage-digest, or a verb outside the three.",
       "files": [
-        "evals/files/modified-and-deprecated/project",
-        "evals/files/shared"
+        "files/modified-and-deprecated/project",
+        "files/shared"
       ],
       "expected_files": [
         "project/work-items/04-usage-digest/spec-maintenance-report.md",
@@ -258,8 +258,8 @@
       "prompt": "Run spec maintenance for work item 04 at project/work-items/04-export-archive; the other work items are alongside it in project/work-items and the shared domain documents are in shared/. Write every file you create or change under outputs/, keeping its project path: to annotate a file, copy it to outputs/project/work-items/<item>/<file> and edit the copy, and write any report to outputs/project/work-items/04-export-archive/spec-maintenance-report.md.",
       "expected_output": "Work item 04 moves export storage from the `exports` bucket to the `usage-archive` bucket and keeps the loader and CSV writer. In 02-usage-export, Task 1 still describes a loader and writer that survive, so it is Modified, not Superseded: only the `exports` bucket name is struck through and `usage-archive` given, with a *(modified in work-item 04 ...)* annotation. Task 3 (lifecycle rule on the `exports` bucket) and the design bullet that writes to the `exports` bucket are Modified the same way. No line is struck through whole, and nothing is classified Superseded. 03-profile-summary is under No Impact and 01-quota-alerts is not a peer. The report in 04-export-archive lists three MODIFIED impacts and no SUPERSEDED, and the reply hands over to finishing-a-development-branch.",
       "files": [
-        "evals/files/partial-replacement/project",
-        "evals/files/shared"
+        "files/partial-replacement/project",
+        "files/shared"
       ],
       "expected_files": [
         "project/work-items/04-export-archive/spec-maintenance-report.md",
@@ -318,8 +318,8 @@
       "prompt": "Run spec maintenance for work item 04 at project/work-items/04-usage-counters; the other work items are alongside it in project/work-items and the shared domain documents are in shared/. Write every file you create or change under outputs/, keeping its project path: to annotate a file, copy it to outputs/project/work-items/<item>/<file> and edit the copy, and write any report to outputs/project/work-items/04-usage-counters/spec-maintenance-report.md.",
       "expected_output": "Work item 04 replaces the usage-meters table with usage-counters. The peers 01-quota-alerts and 02-usage-export each hold three tasks whose two sub-items name the usage-meters table, twelve lines in all. Each line is annotated in place with only the table name struck through, `usage-counters` given and a *(modified in work-item 04 ...)* annotation. The report counts one impact per task, so six impacts across two work items, which is not over ten: the report has no Architectural Drift Warning section and the reply gives no drift warning. The skill passes and hands over to finishing-a-development-branch.",
       "files": [
-        "evals/files/drift-below-bar/project",
-        "evals/files/shared"
+        "files/drift-below-bar/project",
+        "files/shared"
       ],
       "expected_files": [
         "project/work-items/04-usage-counters/spec-maintenance-report.md",

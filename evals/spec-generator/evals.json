@@ -7,10 +7,10 @@
       "prompt": "Start the spec for quota alerts. It's a feature, requirements-first. The approved discovery is already at project/work-items/01-quota-alerts/discovery.md and the rest of the project context (domain terms, architecture, API contract) is alongside it in the working directory. Write requirements.md in place in that work item; the copy you save under ./outputs/ keeps the same path, outputs/project/work-items/01-quota-alerts/requirements.md.",
       "expected_output": "The reply should produce a requirements document for quota alerts as the first document of the spec, in the existing 01-quota-alerts work-item directory beside the existing discovery.md, and stop there asking me to review it before any design work starts. The document should open with an introduction and a glossary, then state each requirement as a user story with numbered acceptance criteria in EARS form (WHEN, IF ... THEN, THE ... SHALL) whose subjects are glossary terms such as Account_Owner, Alert_Threshold and Notification_Service. It should carry the discovery's decisions through as requirements: default thresholds of 80% and 100%, one to five distinct percentages, one alert per threshold per billing period, evaluation on the ingest increment with the fired state kept on the usage-meters item, plan changes and lowered thresholds taking effect on the next increment, no alerts for suspended accounts, and the new quota-threshold notification template. It should also cover reading and replacing the threshold set through the API, following the existing plan sub-resource, with the error cases for an invalid list. The copy under outputs/ sits at project/work-items/01-quota-alerts/requirements.md and does not count as a new directory.",
       "files": [
-        "evals/files/quota-alerts/project",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/quota-alerts/project",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "project/work-items/01-quota-alerts/requirements.md"
@@ -33,11 +33,11 @@
       "prompt": "The design review for the usage export work item is in. Generate tasks.md now, I want to start implementation this afternoon. requirements.md, design.md and design-review-summary.md are all in the working directory.",
       "expected_output": "The reply should hold off on tasks.md because the design review came back BLOCKED, say plainly that no task list gets generated behind a blocked review, and set out the two critical findings in its own words: the export has no per-event data source, and the endpoint cannot select or validate a billing period. It should put the first decision to me, whether requirement 3 or the design gives way, propose the concrete design.md revisions for the second, fold in the two major findings on the http4k handler pattern and the suspended-account contradiction while it is there, and say the design review is re-run before tasks are generated.",
       "files": [
-        "evals/files/usage-export/requirements.md",
-        "evals/files/usage-export/design.md",
-        "evals/files/usage-export/design-review-summary.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/usage-export/requirements.md",
+        "files/usage-export/design.md",
+        "files/usage-export/design-review-summary.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "criteria": [
         "Does not generate tasks.md and says plainly that no task list is generated behind a BLOCKED design review",
@@ -54,10 +54,10 @@
       "prompt": "Bug #412 needs a spec before anyone touches the code: after a plan upgrade the usage endpoint keeps reporting quotaExceeded true for up to an hour. The report is in issue-412.md and the service is QuotaService.kt; domain terms and architecture are alongside. Make it work item 08.",
       "expected_output": "The reply should produce a bugfix requirements document as the first document of the spec, in a numbered directory for work item 08, and stop for my review before any design. The document should open with an introduction saying where the bug occurs and what it costs customers, then analyse it in three numbered sections: the current behaviour, covering the stale quota and quotaExceeded after an upgrade and the mirror-image downgrade case; the expected behaviour, that a plan change shows in the very next usage read; and the behaviour that must stay the same, that the quota is still cached for reads with no plan change in between, that ingest keeps recording during any window, and that the plan-changed notification keeps firing. Each line should be a WHEN ... THEN the system statement, numbered 1.x, 2.x and 3.x: the current-behaviour lines describe the defect without SHALL, the expected-behaviour lines use SHALL, and the unchanged-behaviour lines use SHALL CONTINUE TO.",
       "files": [
-        "evals/files/stale-quota/issue-412.md",
-        "evals/files/stale-quota/QuotaService.kt",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md"
+        "files/stale-quota/issue-412.md",
+        "files/stale-quota/QuotaService.kt",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md"
       ],
       "criteria": [
         "Writes a bugfix requirements document in a numbered directory for work item 08",
@@ -93,11 +93,11 @@
         "The assistant stops and asks for review without invoking sdd:spec-task-review."
       ],
       "files": [
-        "evals/files/plan-summary-approved/requirements.md",
-        "evals/files/plan-summary-approved/design.md",
-        "evals/files/plan-summary-approved/design-review-summary.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/plan-summary-approved/requirements.md",
+        "files/plan-summary-approved/design.md",
+        "files/plan-summary-approved/design-review-summary.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ]
     },
     {
@@ -113,10 +113,10 @@
         "Does not invoke sdd:spec-design-review; explains it will run after design approval."
       ],
       "files": [
-        "evals/files/quota-alerts-approved/requirements.md",
-        "evals/files/shared/UBIQUITOUS_LANGUAGE.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/quota-alerts-approved/requirements.md",
+        "files/shared/UBIQUITOUS_LANGUAGE.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ]
     },
     {
@@ -132,9 +132,9 @@
         "Testing strategy covers exploratory reproduction, fix verification, and preservation/regression checks, without invoking a review skill."
       ],
       "files": [
-        "evals/files/stale-quota-approved/bugfix.md",
-        "evals/files/stale-quota/QuotaService.kt",
-        "evals/files/shared/ARCHITECTURE.md"
+        "files/stale-quota-approved/bugfix.md",
+        "files/stale-quota/QuotaService.kt",
+        "files/shared/ARCHITECTURE.md"
       ]
     },
     {
@@ -149,9 +149,9 @@
         "Stops for user review and explains that requirements.md follows design approval and sdd:spec-design-review runs once both documents exist."
       ],
       "files": [
-        "evals/files/design-first-webhook/webhook-contract.md",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/design-first-webhook/webhook-contract.md",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ]
     },
     {
@@ -167,9 +167,9 @@
         "Stops for user review before beginning design work."
       ],
       "files": [
-        "evals/files/discovery-handoff/project",
-        "evals/files/shared/ARCHITECTURE.md",
-        "evals/files/shared/openapi.yaml"
+        "files/discovery-handoff/project",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
       ],
       "expected_files": [
         "project/work-items/06-invoice-reminders/requirements.md"
@@ -188,10 +188,10 @@
         "Keeps the mandatory ending tasks last: E2E tests under e2e/, documentation/knowledge-base update, and final full validation; stops for review without executing anything."
       ],
       "files": [
-        "evals/files/existing-spec-update/project/work-items/03-profile-summary/requirements.md",
-        "evals/files/existing-spec-update/project/work-items/03-profile-summary/design.md",
-        "evals/files/existing-spec-update/project/work-items/03-profile-summary/tasks.md",
-        "evals/files/shared/openapi.yaml"
+        "files/existing-spec-update/project/work-items/03-profile-summary/requirements.md",
+        "files/existing-spec-update/project/work-items/03-profile-summary/design.md",
+        "files/existing-spec-update/project/work-items/03-profile-summary/tasks.md",
+        "files/shared/openapi.yaml"
       ]
     }
   ]
