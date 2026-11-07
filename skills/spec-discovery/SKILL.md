@@ -1,6 +1,8 @@
 ---
 name: spec-discovery
 description: Use when starting a new feature, behaviour change or technical change in the SDD pipeline, before any spec exists. Agrees problem, scope, approach, decisions and constraints with the user one question at a time, writes discovery.md into the work item, and stops for the user's approval before handing off to sdd:spec-generator. Not for bug reports, and not for changing a spec that already exists.
+metadata:
+  sdd-kind: model-invoked
 ---
 
 # Spec Discovery

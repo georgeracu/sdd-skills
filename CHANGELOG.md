@@ -7,6 +7,8 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 ### Added
 
 - Contributor docs: `AGENTS.md` (with a `CLAUDE.md` that imports it) for the layout, changing a skill, running the evals, building the site and releasing, and `GLOSSARY.md` for the pipeline and eval terms. `CONTRIBUTING.md` points to them and to the two issue forms.
+- Each skill records its kind (user-invoked, model-invoked or reference) in `metadata.sdd-kind`. The site shows the kind on each skill page and as a sidebar badge, and the README pipeline table has a Kind column. `AGENTS.md` gives the rule for choosing a kind.
+- `setup` has `agents/openai.yaml`, so Codex leaves it out of its list of skills.
 
 ## [0.3.0] - 2026-11-07
 

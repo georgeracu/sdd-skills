@@ -27,10 +27,21 @@ A change to `skills/<name>/SKILL.md`, or to a file it reads, also needs:
 2. **A line in the `Unreleased` section of `CHANGELOG.md`.** Mark a breaking change with **Breaking**, such as a changed `**Status:**` value that other tools read.
 3. **`site/skills.yaml`**, when you add, rename or remove a skill, or change its pipeline position. The site build fails when a skill folder has no entry.
 4. **A symlink in `.claude/skills/sdd/` and in `.agents/skills/sdd/`**, when you add a skill.
+5. **A kind in the front matter**, when you add a skill. See [Choosing a kind](#choosing-a-kind).
 
 `setup` and `spec-workflow` have no eval pack. A change to either needs a manual check instead: run the changed skill in a scratch project and paste what it did into the pull request.
 
 Keep wording changes to the smallest unit that changes. The eval results and the site link to lines in these files.
+
+### Choosing a kind
+
+Every `SKILL.md` records its kind in `metadata.sdd-kind`. The site shows the kind as a badge, and the build fails when a skill has no kind. Choose the kind as follows:
+
+- **user-invoked**, when no skill, scaffold doc or pipeline instruction tells the agent to start the skill. Add `disable-model-invocation: true` for Claude Code and Copilot, and `agents/openai.yaml` with `policy.allow_implicit_invocation: false` for Codex.
+- **reference**, when the agent reads the skill for rules and the skill does no work of its own.
+- **model-invoked**, for all other skills. Add no invocation key.
+
+Before you mark a skill user-invoked, search for `sdd:<name>` in `skills/` and `evals/<name>/evals.json`. Claude Code blocks every call from the agent to a user-invoked skill, so each of those references stops working.
 
 ## Running the evals
 

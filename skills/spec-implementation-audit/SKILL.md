@@ -1,6 +1,8 @@
 ---
 name: spec-implementation-audit
 description: Implementation audit gate. Use when every task in a work item's tasks.md is done and before sdd:spec-qa-review review mode, or when re-running after a FAILED audit. Compares the code with requirements.md and design.md and writes implementation-audit.md.
+metadata:
+  sdd-kind: model-invoked
 ---
 
 # Spec Implementation Audit — Quality Gate

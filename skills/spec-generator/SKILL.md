@@ -1,7 +1,8 @@
 ---
 name: spec-generator
 description: 'Use when creating a feature spec or bugfix spec as part of the SDD pipeline. Generates structured specs under project/work-items/ following a three-phase workflow (requirements → design → tasks) with quality gates. Triggered after sdd:spec-discovery or directly for bugfixes.'
-user-invocable: true
+metadata:
+  sdd-kind: model-invoked
 ---
 
 # Spec Generator

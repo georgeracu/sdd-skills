@@ -1,6 +1,8 @@
 ---
 name: spec-task-review
 description: Use when tasks.md is approved and implementation is about to start, or when a BLOCKED task review needs a re-run after tasks.md was fixed. Checks requirement and design coverage, sequencing and implementability, then writes task-review-summary.md.
+metadata:
+  sdd-kind: model-invoked
 ---
 
 # Spec Task Review — Quality Gate
