@@ -56,7 +56,7 @@ Teams that need an audit trail and gates that block. Every work item keeps its r
 
 `spec-workflow` is the reference for this order and for the bugfix pipeline. Its kind is reference: the agent reads it, and it does no work of its own. The [worked example](https://georgeracu.github.io/sdd-skills/worked-example/) follows one real feature through every step.
 
-You start a user-invoked skill yourself, for example with `/sdd:setup`. The agent starts a model-invoked skill when the pipeline reaches it. Claude Code, GitHub Copilot CLI and VS Code read the `disable-model-invocation` key that marks a user-invoked skill. Codex reads `agents/openai.yaml` in the skill folder instead. Gemini CLI has no per-skill opt-out, so it can start `setup` on its own. A claude.ai upload or the Skills API rejects a skill that has this key, so remove the key from `setup` before you upload it.
+You start a user-invoked skill yourself, for example with `/sdd:setup`. The agent starts a model-invoked skill when the pipeline reaches it. Claude Code and GitHub Copilot CLI read the `disable-model-invocation` key that marks a user-invoked skill, and Codex reads `agents/openai.yaml` in the skill folder. Each of these agents leaves `setup` out of its list of skills, so it does not start `setup` from the description. The opt-out does not hide the files. When the skills are installed inside the project, for example with `npx skills add`, Codex and Copilot CLI can find `setup/SKILL.md` while they explore the project, and follow it. Gemini CLI has no per-skill opt-out. A claude.ai upload or the Skills API rejects a skill that has this key, so remove the key from `setup` before you upload it.
 
 ## Stability
 

@@ -58,13 +58,19 @@ for (const [name, entry] of Object.entries(config.skills)) {
 }
 const kinds = {
   'user-invoked': 'You start it with `/sdd:NAME`. The agent does not start it on its own.',
-  'model-invoked': 'The agent starts it when the pipeline reaches it. You can also start it with `/sdd:NAME`.',
+  'model-invoked': 'The agent starts it when the task or the pipeline calls for it. You can also start it with `/sdd:NAME`.',
   reference: 'The agent reads it for the pipeline order and its rules. It does no work of its own.',
 };
 const kindOf = {};
 for (const name of folders) {
-  const kind = splitFrontMatter(readFileSync(join(repo, 'skills', name, 'SKILL.md'), 'utf8')).data.metadata?.['sdd-kind'];
+  const { data } = splitFrontMatter(readFileSync(join(repo, 'skills', name, 'SKILL.md'), 'utf8'));
+  const kind = data.metadata?.['sdd-kind'];
   if (!kinds[kind]) problems.push(`skills/${name}/SKILL.md: metadata.sdd-kind must be one of ${Object.keys(kinds).join(', ')}`);
+  const userOnly = kind === 'user-invoked';
+  if ((data['disable-model-invocation'] === true) !== userOnly)
+    problems.push(`skills/${name}/SKILL.md: disable-model-invocation: true must be set exactly when the kind is user-invoked`);
+  if (existsSync(join(repo, 'skills', name, 'agents/openai.yaml')) !== userOnly)
+    problems.push(`skills/${name}/agents/openai.yaml must exist exactly when the kind is user-invoked`);
   kindOf[name] = kind;
 }
 if (problems.length) {
@@ -152,6 +158,7 @@ function footer(name, entry) {
 }
 
 mkdirSync(join(site, 'src/data'), { recursive: true });
+writeFileSync(join(site, 'src/data/kinds.json'), JSON.stringify(kindOf, null, 2));
 writeFileSync(
   join(site, 'src/data/pipeline.json'),
   JSON.stringify(allRows.filter((r) => r.pipeline === 'Feature').map((r) => ({ ...r, gate: r.mode.includes('(gate)') })), null, 2),

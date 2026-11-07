@@ -7,11 +7,8 @@ import { parse } from 'yaml';
 
 const { groups, skills } = parse(readFileSync(new URL('./skills.yaml', import.meta.url), 'utf8'));
 const variants = { 'user-invoked': 'caution', 'model-invoked': 'note', reference: 'default' };
-const badge = (name) => {
-  const skill = readFileSync(new URL(`../skills/${name}/SKILL.md`, import.meta.url), 'utf8');
-  const kind = parse(skill.split('\n---\n')[0].replace(/^---\n/, '')).metadata['sdd-kind'];
-  return { text: kind, variant: variants[kind] };
-};
+const kinds = JSON.parse(readFileSync(new URL('./src/data/kinds.json', import.meta.url), 'utf8'));
+const badge = (name) => ({ text: kinds[name], variant: variants[kinds[name]] });
 const skillGroups = groups.map((label) => ({
   label,
   items: Object.entries(skills)
