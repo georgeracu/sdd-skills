@@ -6,7 +6,7 @@ Issues are welcome. Use one of the two issue forms: [Bug report](https://github.
 
 `skills/<name>/SKILL.md` is the single source of truth for what a skill does. The documentation site generates its skill pages from these files, so do not edit `site/src/content/docs/skills/`.
 
-A behaviour change needs evidence from the skill's eval pack in `evals/<name>/`: a run before the change and a run after it, with the results committed. [AGENTS.md](AGENTS.md) describes the repository layout, how to run the evals and what to report before a paid run, and how to release. Open an issue before a large change, so that the approach can be agreed first. [SCOPE.md](SCOPE.md) says what the project will and will not do.
+A behaviour change needs evidence from the skill's eval pack in `evals/<name>/`: a run before the change and a run after it, with the results committed. [AGENTS.md](AGENTS.md) describes the repository layout, how to run the evals and what to report before a paid run, and how to release. Open an issue before a large change, so that the approach can be agreed first.
 
 ## Checks before a pull request
 

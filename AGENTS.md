@@ -1,6 +1,6 @@
 # AGENTS.md
 
-How this repository works, for a person or an agent about to change it. Terms in bold are defined in [GLOSSARY.md](GLOSSARY.md). What the project will and will not do is in [SCOPE.md](SCOPE.md).
+How this repository works, for a person or an agent about to change it. Terms in bold are defined in [GLOSSARY.md](GLOSSARY.md).
 
 ## Layout
 

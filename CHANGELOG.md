@@ -6,7 +6,7 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ### Added
 
-- Contributor docs: `AGENTS.md` (with a `CLAUDE.md` that imports it) for the layout, changing a skill, running the evals, building the site and releasing; `GLOSSARY.md` for the pipeline and eval terms; `SCOPE.md` and `.out-of-scope/` for what the project will and will not do. `CONTRIBUTING.md` points to them and to the two issue forms.
+- Contributor docs: `AGENTS.md` (with a `CLAUDE.md` that imports it) for the layout, changing a skill, running the evals, building the site and releasing, and `GLOSSARY.md` for the pipeline and eval terms. `CONTRIBUTING.md` points to them and to the two issue forms.
 
 ## [0.3.0] - 2026-11-07
 
