@@ -1,6 +1,8 @@
 ---
 name: spec-workflow
 description: Use when creating a feature, creating a spec, implementing a spec, starting a new work item, or any task involving the spec-driven development pipeline. Provides pipeline ordering and superpowers override rules.
+metadata:
+  sdd-kind: reference
 ---
 
 # SDD Workflow Reference

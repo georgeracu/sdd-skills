@@ -1,6 +1,8 @@
 ---
 name: spec-maintenance
 description: After sdd:spec-qa-review review mode passes, annotate older implemented work items that the new item supersedes, modifies or deprecates, and write spec-maintenance-report.md; skips when no other work item holds a PASSED implementation-audit.md.
+metadata:
+  sdd-kind: model-invoked
 ---
 
 # Spec Maintenance

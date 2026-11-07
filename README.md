@@ -39,22 +39,24 @@ Teams that need an audit trail and gates that block. Every work item keeps its r
 
 ## The pipeline
 
-| Step | Skill | Writes |
-|---|---|---|
-| Once | `setup` | Scaffold, `AGENTS.md` commands |
-| 1 | `spec-discovery` | `discovery.md` |
-| 2, 3 | `spec-generator` | `requirements.md`, `design.md` |
-| 4 | `spec-design-review` (gate) | `design-review-summary.md` |
-| 5 | `spec-generator` | `tasks.md` |
-| 6 | `spec-task-review` (gate) | `task-review-summary.md` |
-| 7 | `spec-qa-review` plan mode | `test-plan.md` |
-| 8 | superpowers `subagent-driven-development` | Implementation |
-| 9 | `spec-implementation-audit` (gate) | `implementation-audit.md` |
-| 10 | `spec-qa-review` review mode | Updated `test-plan.md` |
-| 11 | `spec-maintenance` | `spec-maintenance-report.md`, annotated older specs |
-| 12 | superpowers `finishing-a-development-branch` | Pull request |
+| Step | Skill | Kind | Writes |
+|---|---|---|---|
+| Once | `setup` | user-invoked | Scaffold, `AGENTS.md` commands |
+| 1 | `spec-discovery` | model-invoked | `discovery.md` |
+| 2, 3 | `spec-generator` | model-invoked | `requirements.md`, `design.md` |
+| 4 | `spec-design-review` (gate) | model-invoked | `design-review-summary.md` |
+| 5 | `spec-generator` | model-invoked | `tasks.md` |
+| 6 | `spec-task-review` (gate) | model-invoked | `task-review-summary.md` |
+| 7 | `spec-qa-review` plan mode | model-invoked | `test-plan.md` |
+| 8 | superpowers `subagent-driven-development` |  | Implementation |
+| 9 | `spec-implementation-audit` (gate) | model-invoked | `implementation-audit.md` |
+| 10 | `spec-qa-review` review mode | model-invoked | Updated `test-plan.md` |
+| 11 | `spec-maintenance` | model-invoked | `spec-maintenance-report.md`, annotated older specs |
+| 12 | superpowers `finishing-a-development-branch` |  | Pull request |
 
-`spec-workflow` is the reference for this order and for the bugfix pipeline. The [worked example](https://georgeracu.github.io/sdd-skills/worked-example/) follows one real feature through every step.
+`spec-workflow` is the reference for this order and for the bugfix pipeline. Its kind is reference: the agent reads it, and it does no work of its own. The [worked example](https://georgeracu.github.io/sdd-skills/worked-example/) follows one real feature through every step.
+
+You start a user-invoked skill yourself, for example with `/sdd:setup`. The agent starts a model-invoked skill when the pipeline reaches it. Claude Code, GitHub Copilot CLI and VS Code read the `disable-model-invocation` key that marks a user-invoked skill. Codex reads `agents/openai.yaml` in the skill folder instead. Gemini CLI has no per-skill opt-out, so it can start `setup` on its own. A claude.ai upload or the Skills API rejects a skill that has this key, so remove the key from `setup` before you upload it.
 
 ## Stability
 

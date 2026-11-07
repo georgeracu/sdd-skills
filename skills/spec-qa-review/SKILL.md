@@ -1,6 +1,8 @@
 ---
 name: spec-qa-review
 description: "Use for plan mode, before implementation: write test-plan.md across unit, integration, E2E, performance and security, after sdd:spec-task-review passes. Use for review mode, after sdd:spec-implementation-audit passes: audit tests against the plan and gate on coverage."
+metadata:
+  sdd-kind: model-invoked
 ---
 
 # QA Review

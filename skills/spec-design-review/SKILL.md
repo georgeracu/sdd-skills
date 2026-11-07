@@ -1,6 +1,8 @@
 ---
 name: spec-design-review
 description: Use after design.md is approved in the spec-generator pipeline and before tasks.md is written, or when asked to review or validate a design against requirements.md or bugfix.md. Writes design-review-summary.md and blocks task generation on critical findings.
+metadata:
+  sdd-kind: model-invoked
 ---
 
 # Spec Design Review - Quality Gate

@@ -56,6 +56,17 @@ for (const [name, entry] of Object.entries(config.skills)) {
   }
   if (!rows.some((r) => r.name === name) && !entry.position) problems.push(`${name}: no spec-workflow pipeline row and no position`);
 }
+const kinds = {
+  'user-invoked': 'You start it with `/sdd:NAME`. The agent does not start it on its own.',
+  'model-invoked': 'The agent starts it when the pipeline reaches it. You can also start it with `/sdd:NAME`.',
+  reference: 'The agent reads it for the pipeline order and its rules. It does no work of its own.',
+};
+const kindOf = {};
+for (const name of folders) {
+  const kind = splitFrontMatter(readFileSync(join(repo, 'skills', name, 'SKILL.md'), 'utf8')).data.metadata?.['sdd-kind'];
+  if (!kinds[kind]) problems.push(`skills/${name}/SKILL.md: metadata.sdd-kind must be one of ${Object.keys(kinds).join(', ')}`);
+  kindOf[name] = kind;
+}
 if (problems.length) {
   console.error(problems.map((p) => `sync-skills: ${p}`).join('\n'));
   process.exit(1);
@@ -95,14 +106,17 @@ function splitFrontMatter(text) {
 const longDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 
 function header(name, entry, rows) {
+  const kind = `**Kind: ${kindOf[name]}.** ${kinds[kindOf[name]].replace('NAME', name)}`;
   const mine = rows.filter((r) => r.name === name);
-  if (!mine.length) return `:::note[Where it fits]\n${entry.position}\n:::\n`;
+  if (!mine.length) return `:::note[Where it fits]\n${kind}\n\n${entry.position}\n:::\n`;
   const lines = mine.map((r) => {
     const mode = r.mode.replace(/[()]/g, '');
     return `- **${r.pipeline} pipeline, step ${r.step}${mode ? `, ${mode}` : ''}.** Writes ${linkSkills(r.output)}. Runs next: ${linkSkills(r.next)}.`;
   });
   return [
     ':::note[Where it fits]',
+    kind,
+    '',
     ...lines,
     '',
     `Steps and outputs come from [\`sdd:spec-workflow\`](${skillLink('spec-workflow')}).`,
