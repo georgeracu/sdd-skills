@@ -1,20 +1,12 @@
 # Contributing
 
-Issues are welcome. A good issue shows one observed problem: the skill, the input, what the agent did and what the skill text says it should have done. Paste the relevant part of the artefact the skill wrote.
+Issues are welcome. Use one of the two issue forms: [Bug report](https://github.com/georgeracu/sdd-skills/issues/new?template=bug-report.yml) for a broken install route, site page or scaffold file, and [Skill behaved unexpectedly](https://github.com/georgeracu/sdd-skills/issues/new?template=skill-behaviour.yml) for a skill that wrote the wrong artefact, skipped a step or passed a gate it should have blocked. A good issue shows one observed problem: the skill, the input, what the agent did and what the skill text says it should have done. Paste the relevant part of the artefact the skill wrote.
 
 ## Changing a skill
 
 `skills/<name>/SKILL.md` is the single source of truth for what a skill does. The documentation site generates its skill pages from these files, so do not edit `site/src/content/docs/skills/`.
 
-A behaviour change needs evidence from the skill's eval pack in `evals/<name>/`: a run before the change and a run after it, with the results committed under `evals/<name>/results/`. Open an issue before a large change, so that the approach can be agreed first.
-
-The packs live outside `skills/` so that no install copies them. Run them with [skill-eval](https://github.com/bareword/skill-eval) v0.2.0 or later and pass the pack with `--pack`:
-
-```
-skill-eval iterate --skill skills/<name> --pack evals/<name> --model <model>
-```
-
-Input files in a pack are relative to the pack and must be under its `files/` folder. The workspace is `evals/<name>-workspace/`, which git ignores.
+A behaviour change needs evidence from the skill's eval pack in `evals/<name>/`: a run before the change and a run after it, with the results committed. [AGENTS.md](AGENTS.md) describes the repository layout, how to run the evals and what to report before a paid run, and how to release. Open an issue before a large change, so that the approach can be agreed first. [SCOPE.md](SCOPE.md) says what the project will and will not do.
 
 ## Checks before a pull request
 
