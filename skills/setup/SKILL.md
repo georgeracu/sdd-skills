@@ -51,4 +51,4 @@ Tell the user:
 
 - What you copied and what you left alone.
 - That the next step for a feature is `/sdd:spec-discovery`, and for a bug report `/sdd:spec-generator`.
-- That `/sdd:spec-workflow` describes the whole pipeline, and that implementation and branch close-out need the superpowers plugin or an equivalent.
+- That `/sdd:spec-workflow` describes the whole pipeline, and that branch close-out and bugfix implementation need the superpowers plugin or an equivalent.

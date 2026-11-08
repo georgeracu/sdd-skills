@@ -31,11 +31,11 @@ Then run `/sdd:setup` once in your project. It copies the work-item scaffold and
 
 ## The pipeline
 
-Seven skills take a feature from an agreed problem to an audited implementation. `spec-workflow` is the map of the steps, and `setup` runs once per project. Every `sdd:` step writes a file into the work item, `project/work-items/{NN}-{name}/`, so the record of what was agreed, reviewed and verified stays in the repository. The three gates block the next step: the design and task reviews on a CRITICAL finding, and the implementation audit on a CRITICAL or MAJOR finding.
+Eight skills take a feature from an agreed problem to an audited implementation. `spec-workflow` is the map of the steps, and `setup` runs once per project. Every `sdd:` step writes a file into the work item, `project/work-items/{NN}-{name}/`, so the record of what was agreed, reviewed and verified stays in the repository. The three gates block the next step: the design and task reviews on a CRITICAL finding, and the implementation audit on a CRITICAL or MAJOR finding.
 
 <Pipeline />
 
-Steps 8 and 12 hand off to the [superpowers](https://github.com/obra/superpowers) plugin. A bugfix runs a shorter path with no gates: `spec-generator` writes `bugfix.md`, `design.md` and `tasks.md`, and implementation follows. The [spec-workflow page](/sdd-skills/skills/spec-workflow/) has both tables and the rules that override superpowers' default order.
+Step 12 hands off to the [superpowers](https://github.com/obra/superpowers) plugin, which is also an alternative for step 8. A bugfix runs a shorter path with no gates: `spec-generator` writes `bugfix.md`, `design.md` and `tasks.md`, and implementation follows. The [spec-workflow page](/sdd-skills/skills/spec-workflow/) has both tables and the rules that override superpowers' default order.
 
 ## Who it's for
 
@@ -58,7 +58,7 @@ All four tools write a spec before code. The differences are in what can stop th
 | Older specs | `spec-maintenance` annotates superseded specs | By team convention | [Sync Files](https://kiro.dev/docs/specs/quick-spec/) regenerates tasks after a requirements edit | Deltas merge into the live specs |
 | Licence | MIT | [MIT](https://github.com/github/spec-kit/blob/main/LICENSE) | [Proprietary, under the AWS Customer Agreement](https://kiro.dev/license/) | [MIT](https://github.com/Fission-AI/OpenSpec/blob/main/LICENSE) |
 
-Choose Spec Kit or OpenSpec if you want a CLI that works across many agents with less ceremony. Choose Kiro if you want specs built into the editor. Choose these skills if you want review verdicts and an audit kept as files, and gates that stop the agent. They need superpowers for implementation today, and they are tested mainly with Claude Code. The [Evals page](/sdd-skills/evals/) shows how each skill scores against a baseline run.
+Choose Spec Kit or OpenSpec if you want a CLI that works across many agents with less ceremony. Choose Kiro if you want specs built into the editor. Choose these skills if you want review verdicts and an audit kept as files, and gates that stop the agent. They need superpowers only to open the pull request, and they are tested mainly with Claude Code. The [Evals page](/sdd-skills/evals/) shows how each skill scores against a baseline run.
 
 ## Read the series
 

@@ -19,8 +19,8 @@ Pipeline map for Spec-Driven Development. This skill is a reference — it docum
 | 4 | `sdd:spec-design-review` (gate) | `design-review-summary.md` | Phase 3 on pass |
 | 5 | `sdd:spec-generator` Phase 3 | `tasks.md` | `sdd:spec-task-review` |
 | 6 | `sdd:spec-task-review` (gate) | `task-review-summary.md` | `sdd:spec-qa-review` plan mode on pass |
-| 7 | `sdd:spec-qa-review` plan mode | `test-plan.md` | `subagent-driven-development` |
-| 8 | `subagent-driven-development` (superpowers) | Implementation | `sdd:spec-implementation-audit` |
+| 7 | `sdd:spec-qa-review` plan mode | `test-plan.md` | `sdd:spec-implement` |
+| 8 | `sdd:spec-implement` | Implementation, one commit per task | `sdd:spec-implementation-audit` |
 | 9 | `sdd:spec-implementation-audit` (gate) | `implementation-audit.md` | `sdd:spec-qa-review` review mode on pass |
 | 10 | `sdd:spec-qa-review` review mode | Updated `test-plan.md` | `sdd:spec-maintenance` on pass |
 | 11 | `sdd:spec-maintenance` | Updated previous specs, `spec-maintenance-report.md` | `finishing-a-development-branch` |
@@ -36,12 +36,14 @@ Pipeline map for Spec-Driven Development. This skill is a reference — it docum
 
 No quality gate skills for bugfixes. User still reviews each phase document interactively.
 
+Step 8 can use superpowers' `subagent-driven-development` instead of `sdd:spec-implement`. The override rules below then apply to it.
+
 ## Superpowers Override Rules
 
 These rules take precedence over default superpowers skill chaining:
 
 - For SDD features use `sdd:spec-discovery`, not `brainstorming`. After either: invoke `sdd:spec-generator` (NOT `writing-plans`)
-- After `subagent-driven-development`: invoke `sdd:spec-implementation-audit` (NOT `finishing-a-development-branch`)
+- After `sdd:spec-implement` or `subagent-driven-development` in a feature: invoke `sdd:spec-implementation-audit` (NOT `finishing-a-development-branch`)
 - After `sdd:spec-qa-review` review mode passes: invoke `sdd:spec-maintenance`
 - After `sdd:spec-maintenance`: invoke `finishing-a-development-branch`
 

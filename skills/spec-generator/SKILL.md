@@ -425,7 +425,7 @@ Before finalizing each document, verify against the checklists in [references/qu
 
 ## Step 8: Execution Support
 
-When the user asks to implement tasks:
+When the user asks to implement a feature work item's tasks, invoke `sdd:spec-implement`. The rules below apply when the user implements tasks without it, and to bugfix work items:
 
 1.  Tasks can be executed **one at a time** or **all at once** (only incomplete required tasks).
 2.  **Post-Task Validation & Commit**: After completing every top-level task (e.g., Task 1, Task 2):

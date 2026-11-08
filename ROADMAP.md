@@ -24,6 +24,10 @@ Nothing stops a work item from reaching `main` without its `implementation-audit
 
 The eval pack for `spec-design-review` already shows that broken designs return BLOCKED. The open gap is the other direction: a design with no real defect must reach APPROVED. The aligned clean-pass case now does, but the bugfix and prose-drift cases still return APPROVED WITH ISSUES. See [#37](https://github.com/georgeracu/sdd-skills/issues/37).
 
+### Audit findings as tasks
+
+When `spec-implementation-audit` returns FAILED, the caller fixes the findings by hand or with its own subagents. `spec-implement` could take the findings as its task list and fix them under the same verify and two-strike rules.
+
 ## Documentation site
 
 ### A Japanese locale

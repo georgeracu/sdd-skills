@@ -31,7 +31,7 @@ rsync -a --exclude .claude-plugin sdd-skills/skills/ .claude/skills/sdd/
 
 Choose one route per agent. Two routes install every skill twice.
 
-Then run `/sdd:setup` once in your project. It copies the work-item scaffold, records your build and test commands in `AGENTS.md` and reports the optional inputs it found. The full feature pipeline also needs the [superpowers](https://github.com/obra/superpowers) plugin for implementation and branch close-out; [Getting started](https://georgeracu.github.io/sdd-skills/getting-started/) describes the path without it.
+Then run `/sdd:setup` once in your project. It copies the work-item scaffold, records your build and test commands in `AGENTS.md` and reports the optional inputs it found. The feature pipeline runs from discovery through the implementation audit with these skills alone. The last step, which opens the pull request, uses the [superpowers](https://github.com/obra/superpowers) plugin or your own close-out; [Getting started](https://georgeracu.github.io/sdd-skills/getting-started/) describes both.
 
 ## Who it's for
 
@@ -48,7 +48,7 @@ Teams that need an audit trail and gates that block. Every work item keeps its r
 | 5 | `spec-generator` | model-invoked | `tasks.md` |
 | 6 | `spec-task-review` (gate) | model-invoked | `task-review-summary.md` |
 | 7 | `spec-qa-review` plan mode | model-invoked | `test-plan.md` |
-| 8 | superpowers `subagent-driven-development` |  | Implementation |
+| 8 | `spec-implement` | model-invoked | Implementation, one commit per task |
 | 9 | `spec-implementation-audit` (gate) | model-invoked | `implementation-audit.md` |
 | 10 | `spec-qa-review` review mode | model-invoked | Updated `test-plan.md` |
 | 11 | `spec-maintenance` | model-invoked | `spec-maintenance-report.md`, annotated older specs |

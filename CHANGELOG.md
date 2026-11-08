@@ -9,6 +9,14 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 - Contributor docs: `AGENTS.md` (with a `CLAUDE.md` that imports it) for the layout, changing a skill, running the evals, building the site and releasing, and `GLOSSARY.md` for the pipeline and eval terms. `CONTRIBUTING.md` points to them and to the two issue forms.
 - Each skill records its kind (user-invoked, model-invoked or reference) in `metadata.sdd-kind`. The site shows the kind on each skill page and as a sidebar badge, and the README pipeline table has a Kind column. `AGENTS.md` gives the rule for choosing a kind.
 - `setup` has `agents/openai.yaml`, so Codex leaves it out of its list of skills.
+- `sdd:spec-implement`, step 8 of the feature pipeline. It checks that the gates and the test plan are in place, runs each task of `tasks.md` in a fresh subagent in task order, verifies it with the `AGENTS.md` build and test commands, and makes one commit per task with the tick in it. On a second failure of a task it stops and asks. It then hands over to `sdd:spec-implementation-audit`. A feature no longer needs superpowers before step 12.
+- An eval pack for `spec-implement`. Its cases run a build and tests, so it needs skill-eval v0.3.0 or later, which reads the pack's `runner-settings.json`.
+
+### Changed
+
+- `spec-qa-review` plan mode, `spec-workflow` step 8 and `spec-implementation-audit` now name `sdd:spec-implement` as the implementation step. `subagent-driven-development` stays as an alternative, with the same override rules. No existing eval pack checks these next-step lines.
+- `spec-generator` Step 8 starts with a line that invokes `sdd:spec-implement` for a feature work item. Its execution rules stay for bugfix work items and for implementation without the skill.
+- The README, the getting-started page, the scaffold docs and the templates say that superpowers is needed only to open the pull request at step 12, and for bugfix implementation.
 
 ## [0.3.0] - 2026-11-07
 
