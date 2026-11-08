@@ -4,6 +4,8 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-08
+
 ### Added
 
 - Contributor docs: `AGENTS.md` (with a `CLAUDE.md` that imports it) for the layout, changing a skill, running the evals, building the site and releasing, and `GLOSSARY.md` for the pipeline and eval terms. `CONTRIBUTING.md` points to them and to the two issue forms.
@@ -94,7 +96,8 @@ Breaking changes are marked **Breaking**. A gate's status values changed, so upd
 
 - Seven skills extracted from a private project: `spec-workflow`, `spec-generator`, `spec-design-review`, `spec-task-review`, `spec-qa-review`, `spec-implementation-audit` and `spec-maintenance`.
 
-[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/georgeracu/sdd-skills/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/georgeracu/sdd-skills/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/georgeracu/sdd-skills/compare/v0.1.3...v0.2.0
 [0.1.3]: https://github.com/georgeracu/sdd-skills/compare/v0.1.2...v0.1.3
