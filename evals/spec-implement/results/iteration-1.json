@@ -1,0 +1,721 @@
+{
+  "iteration": "iteration-1",
+  "pack_hash": "7a6493cd6b9e33a268f115246814e7d8892381f3d17555add02629593cb949f8",
+  "baseline": "without_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.7136,
+        "stddev": 0.2937,
+        "n": 4
+      },
+      "time_seconds": {
+        "mean": 152.4853,
+        "stddev": 50.6714,
+        "n": 4
+      },
+      "tokens": {
+        "mean": 2042246.0833,
+        "stddev": 546832.4317,
+        "n": 4
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.6603,
+        "stddev": 0.3067,
+        "n": 4
+      },
+      "time_seconds": {
+        "mean": 126.905,
+        "stddev": 21.9028,
+        "n": 4
+      },
+      "tokens": {
+        "mean": 1762040.9167,
+        "stddev": 429313.1023,
+        "n": 4
+      }
+    },
+    "delta": {
+      "pass_rate": 0.0533,
+      "time_seconds": 25.5803,
+      "tokens": 280205.1666
+    }
+  },
+  "cases": {
+    "small-green": {
+      "with_skill": {
+        "passed": 39,
+        "failed": 3,
+        "total": 42,
+        "pass_rate": 0.9286,
+        "checks": [
+          {
+            "text": "Output includes: - [x] 1.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: - [x] 2.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: - [x] 3.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: OK",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: - [ ] ",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: FAILED (",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: log.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/tasks.md has tasks 1, 2 and 3 ticked as - [x], and the Implementation row of the Status Summary shows the work complete (for example Complete and 3/3)",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/log.txt shows a passing test run (OK) that includes tests for count_words and for the command line, including the missing-file case with exit code 2",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The git log in outputs/log.txt has a separate commit for each task after the base commit (task 3 may be a commit with only its tick), not one commit for all the work",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Commit messages follow the AGENTS.md format feat(spec-01): task N <title>",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The work stays in the files the tasks name (textstats/count.py, textstats/__main__.py, tests/test_count.py, tests/test_cli.py, tasks.md), or the reply names any other file and why",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply names the implementation audit (sdd:spec-implementation-audit) as the next step",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "without_skill": {
+        "passed": 39,
+        "failed": 3,
+        "total": 42,
+        "pass_rate": 0.9286,
+        "checks": [
+          {
+            "text": "Output includes: - [x] 1.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: - [x] 2.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: - [x] 3.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: OK",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: - [ ] ",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: FAILED (",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: log.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/tasks.md has tasks 1, 2 and 3 ticked as - [x], and the Implementation row of the Status Summary shows the work complete (for example Complete and 3/3)",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/log.txt shows a passing test run (OK) that includes tests for count_words and for the command line, including the missing-file case with exit code 2",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The git log in outputs/log.txt has a separate commit for each task after the base commit (task 3 may be a commit with only its tick), not one commit for all the work",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Commit messages follow the AGENTS.md format feat(spec-01): task N <title>",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The work stays in the files the tasks name (textstats/count.py, textstats/__main__.py, tests/test_count.py, tests/test_cli.py, tasks.md), or the reply names any other file and why",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply names the implementation audit (sdd:spec-implementation-audit) as the next step",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "impossible-test": {
+      "without_skill": {
+        "passed": 22,
+        "failed": 17,
+        "total": 39,
+        "pass_rate": 0.5641,
+        "checks": [
+          {
+            "text": "Output includes: - [ ] 1.",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Output includes: - [ ] 2.",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: - [x] 1.",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: expectedFailure",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: skipTest",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: log.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/tasks.md has task 1 and task 2 still unticked (- [ ] 1. and - [ ] 2.)",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The git log in outputs/log.txt has no commit after the base commit",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: tests/test_ratio.py is not changed, weakened or deleted, and no test is skipped or marked as an expected failure",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The reply shows that task 1 was tried a second time with the failure output of the first attempt and then stopped, rather than stopping after one attempt or trying again and again",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Task 2 (percent) is not started",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply names task 1 as failed, pastes or quotes the failing assertion, and asks the user how to proceed",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 28,
+        "failed": 11,
+        "total": 39,
+        "pass_rate": 0.7179,
+        "checks": [
+          {
+            "text": "Output includes: - [ ] 1.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output includes: - [ ] 2.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: - [x] 1.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: expectedFailure",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: skipTest",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: log.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/tasks.md has task 1 and task 2 still unticked (- [ ] 1. and - [ ] 2.)",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The git log in outputs/log.txt has no commit after the base commit",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: tests/test_ratio.py is not changed, weakened or deleted, and no test is skipped or marked as an expected failure",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The reply shows that task 1 was tried a second time with the failure output of the first attempt and then stopped, rather than stopping after one attempt or trying again and again",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Task 2 (percent) is not started",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply names task 1 as failed, pastes or quotes the failing assertion, and asks the user how to proceed",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "missing-test-plan": {
+      "with_skill": {
+        "passed": 7,
+        "failed": 23,
+        "total": 30,
+        "pass_rate": 0.2333,
+        "checks": [
+          {
+            "text": "Output includes: test-plan.md",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output includes: plan mode",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: - [x]",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: log.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: No task is implemented: no textstats/count.py, textstats/__main__.py or test file is written",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/tasks.md has no ticked task",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The git log in outputs/log.txt has no commit after the base commit",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The reply names test-plan.md as missing",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The reply names the QA review in plan mode (sdd:spec-qa-review plan mode) as the step to run before implementation",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "without_skill": {
+        "passed": 6,
+        "failed": 24,
+        "total": 30,
+        "pass_rate": 0.2,
+        "checks": [
+          {
+            "text": "Output includes: test-plan.md",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output includes: plan mode",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: - [x]",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: log.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: No task is implemented: no textstats/count.py, textstats/__main__.py or test file is written",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/tasks.md has no ticked task",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The git log in outputs/log.txt has no commit after the base commit",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The reply names test-plan.md as missing",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The reply names the QA review in plan mode (sdd:spec-qa-review plan mode) as the step to run before implementation",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "dependency-order": {
+      "without_skill": {
+        "passed": 37,
+        "failed": 2,
+        "total": 39,
+        "pass_rate": 0.9487,
+        "checks": [
+          {
+            "text": "Output includes: - [x] 2.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: - [x] 3.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: - [x] 4.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: OK",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: - [ ] ",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: FAILED (",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: log.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Task 1 is not redone: textstats/count.py and tests/test_count.py are not rewritten and no commit is for task 1",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The git log in outputs/log.txt shows the task 2 (tokenize) commit before the task 3 (top_words) commit, each its own commit",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: textstats/top.py imports tokenize from textstats.tokens instead of reimplementing tokenising",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/tasks.md has tasks 1 to 4 ticked, and the Implementation row of the Status Summary shows 4/4 or complete",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/log.txt shows a passing test run (OK) that includes tests for tokenize and for the alphabetical tie-break in top_words",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 38,
+        "failed": 1,
+        "total": 39,
+        "pass_rate": 0.9744,
+        "checks": [
+          {
+            "text": "Output includes: - [x] 2.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: - [x] 3.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: - [x] 4.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: OK",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: - [ ] ",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: FAILED (",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: log.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Task 1 is not redone: textstats/count.py and tests/test_count.py are not rewritten and no commit is for task 1",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The git log in outputs/log.txt shows the task 2 (tokenize) commit before the task 3 (top_words) commit, each its own commit",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: textstats/top.py imports tokenize from textstats.tokens instead of reimplementing tokenising",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/tasks.md has tasks 1 to 4 ticked, and the Implementation row of the Status Summary shows 4/4 or complete",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/log.txt shows a passing test run (OK) that includes tests for tokenize and for the alphabetical tie-break in top_words",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
