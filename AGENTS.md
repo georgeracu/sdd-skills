@@ -45,10 +45,10 @@ Before you mark a skill user-invoked, search for `sdd:<name>` in `skills/` and `
 
 ## Running the evals
 
-The packs run with [skill-eval](https://github.com/bareword/skill-eval) v0.2.0 or later. It needs Python 3.10 or later and the `claude` CLI. Install it from a checkout:
+The packs run with [skill-eval](https://github.com/bareword/skill-eval) v0.3.0 or later, because the `spec-implement` pack sets a `runner-settings.json` that earlier versions do not read. skill-eval needs Python 3.10 or later and the `claude` CLI. Install it from a checkout:
 
 ```bash
-git clone --branch v0.2.0 https://github.com/bareword/skill-eval.git ../skill-eval
+git clone --branch v0.3.0 https://github.com/bareword/skill-eval.git ../skill-eval
 python3 -m venv ../skill-eval/.venv
 ../skill-eval/.venv/bin/pip install -e ../skill-eval
 ```
