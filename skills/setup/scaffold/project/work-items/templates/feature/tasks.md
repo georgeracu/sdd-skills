@@ -2,7 +2,7 @@
   Tasks Document Template (SDD Feature Pipeline)
 
   Produced by: sdd:spec-generator Phase 3
-  Consumed by: sdd:spec-task-review, subagent-driven-development,
+  Consumed by: sdd:spec-task-review, sdd:spec-implement,
                sdd:spec-implementation-audit
 
   Replace all [bracketed] placeholders with actual content.

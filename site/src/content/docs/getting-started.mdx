@@ -15,7 +15,7 @@ The plugin carries a version number, so an installed plugin changes only when yo
 
 ## 2. Install superpowers for the full pipeline
 
-The full feature pipeline needs the [superpowers](https://github.com/obra/superpowers) plugin, or an equivalent, today. Step 8 uses its `subagent-driven-development` skill to implement the tasks, and step 12 uses `finishing-a-development-branch` to open the pull request. Every other step, including all the gates, is in this repository.
+Steps 1 to 11 of the feature pipeline, including the implementation in step 8 and all the gates, are in this repository. Step 12 uses the `finishing-a-development-branch` skill from the [superpowers](https://github.com/obra/superpowers) plugin to open the pull request. Superpowers' `subagent-driven-development` is also an alternative to `spec-implement` for step 8, and the bugfix pipeline uses it.
 
 Without superpowers, see [Run without superpowers](#run-without-superpowers) below.
 
@@ -61,11 +61,10 @@ For a bug, start with `/sdd:spec-generator` instead. It writes `bugfix.md`, `des
 
 ## Run without superpowers
 
-Without superpowers, the pipeline runs from discovery to the test plan, steps 1 to 7. Then:
+Without superpowers, the feature pipeline runs from discovery to `spec-maintenance`, steps 1 to 11. Then open the pull request yourself.
 
-1. Implement the tasks in `tasks.md` yourself, or with any agent, and tick each box when its task is done.
-2. Run `/sdd:spec-implementation-audit`. It reads the spec documents and the code, however the code was written.
-3. Continue with `/sdd:spec-qa-review` in review mode and `/sdd:spec-maintenance`.
-4. Open the pull request yourself.
+You can also implement the tasks in `tasks.md` yourself, or with any agent, and tick each box when its task is done. Then run `/sdd:spec-implementation-audit`. It reads the spec documents and the code, however the code was written.
+
+For a bugfix without superpowers, implement the tasks from `tasks.md` yourself and open the pull request.
 
 Every review skill works from the documents in `project/work-items/`, so you can also run one gate on its own against a spec you wrote by hand.

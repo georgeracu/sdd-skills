@@ -1,6 +1,6 @@
 # Superpowers Integration
 
-SDD wraps two superpowers skills (`subagent-driven-development`, `finishing-a-development-branch`) but doesn't modify them. The integration happens through explicit override rules in `sdd:spec-workflow`; step 1 is `sdd:spec-discovery`, which replaces superpowers' `brainstorming` for SDD features.
+SDD can use two superpowers skills (`subagent-driven-development`, `finishing-a-development-branch`) but doesn't modify them. In the feature pipeline, `sdd:spec-implement` is the default implementation step and `subagent-driven-development` is the alternative; the bugfix pipeline uses `subagent-driven-development`. The integration happens through explicit override rules in `sdd:spec-workflow`; step 1 is `sdd:spec-discovery`, which replaces superpowers' `brainstorming` for SDD features.
 
 ## The two handoff gaps
 
@@ -16,7 +16,7 @@ The `sdd:spec-workflow` skill documents these overrides. Its description is writ
 ## Full override rules
 
 - For SDD features use `sdd:spec-discovery`, not `brainstorming`. After either → `sdd:spec-generator` (NOT `writing-plans`)
-- After `subagent-driven-development` → `sdd:spec-implementation-audit` (NOT `finishing-a-development-branch`)
+- After `sdd:spec-implement` or `subagent-driven-development` in a feature → `sdd:spec-implementation-audit` (NOT `finishing-a-development-branch`)
 - After `sdd:spec-qa-review` review mode passes → `sdd:spec-maintenance`
 - After `sdd:spec-maintenance` → `finishing-a-development-branch`
 
@@ -39,4 +39,4 @@ The override pattern (a reference skill that loads via description triggers) is 
 
 ## What this means for the pipeline
 
-The pipeline has the right number of artefacts and gates because superpowers handles the bookend tasks (implementation, PR creation) and `sdd:spec-discovery` opens the pipeline while SDD owns the spec-shaped middle. Neither side has to know much about the other beyond the override rules.
+The pipeline has the right number of artefacts and gates because superpowers handles the bookend tasks it is used for (implementation when you choose it, PR creation) and `sdd:spec-discovery` opens the pipeline while SDD owns the spec-shaped middle. Neither side has to know much about the other beyond the override rules.

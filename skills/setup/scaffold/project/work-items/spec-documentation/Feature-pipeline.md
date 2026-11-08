@@ -28,7 +28,7 @@ spec-task-review (GATE) ──► task-review-summary.md
 spec-qa-review (plan mode) ──► test-plan.md
     │
     ▼
-subagent-driven-development ──► implementation
+spec-implement ──► implementation, one commit per task
     │
     ▼
 spec-implementation-audit (GATE) ──► implementation-audit.md
@@ -93,9 +93,11 @@ Produces `test-plan.md` with a 5-layer coverage matrix (Unit, Integration, E2E, 
 
 Unit coverage gate: ≥85% line/branch.
 
-### 8. subagent-driven-development (superpowers)
+### 8. spec-implement
 
-Implementation phase. Tasks from `tasks.md` are dispatched to subagents. Checkboxes are updated as work completes.
+Implementation phase. Each unticked task in `tasks.md` runs in its own subagent, test-first where `test-plan.md` names tests. The build and test commands from `AGENTS.md` verify each task, which is then ticked and committed. A task that fails twice stops the step and asks the user.
+
+Superpowers' `subagent-driven-development` is an alternative for this step. See `Superpowers-integration.md`.
 
 ### 9. spec-implementation-audit (GATE)
 

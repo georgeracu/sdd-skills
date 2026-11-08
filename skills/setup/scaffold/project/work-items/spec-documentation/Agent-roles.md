@@ -18,8 +18,8 @@ Eleven personas. Each has a primary mandatory skill (the one that bootstraps the
 | 4 | Data Architect | `data-architect` | `sdd:spec-generator` (Phase 2 — Data Models) |
 | 5 | Security Architect | `security-architect` | `sdd:spec-generator` (Phase 2 — Security Architecture), `sdd:spec-design-review` |
 | 6 | Enterprise Architect | `enterprise-architect` | `sdd:spec-maintenance` |
-| 7 | Senior Backend Engineer | `senior-backend-engineer` | `backend-dev`, `subagent-driven-development`, `test-driven-development` |
-| 8 | Senior Frontend Engineer | `senior-frontend-engineer` | `frontend-dev`, `frontend-design`, `subagent-driven-development`, `test-driven-development` |
+| 7 | Senior Backend Engineer | `senior-backend-engineer` | `backend-dev`, `sdd:spec-implement`, `test-driven-development` |
+| 8 | Senior Frontend Engineer | `senior-frontend-engineer` | `frontend-dev`, `frontend-design`, `sdd:spec-implement`, `test-driven-development` |
 | 9 | Senior QA Engineer | `senior-qa-engineer` | `sdd:spec-qa-review`, `qa-review` |
 | 10 | Senior Content Writer | `senior-content-writer` | `strategic-tech-writing`, `diataxis`, `tech-docs` |
 | 11 | Senior Market Researcher | `senior-market-researcher` | `sdd:spec-discovery` (advisor), market-research domain skills |
@@ -118,7 +118,7 @@ The 12-step feature pipeline from [Feature-pipeline.md](Feature-pipeline.md), wi
 
 **PO owns the WHAT.** Requirements (user stories, AC, glossary) are the PO's authorship. Tech Lead reviews but does not write requirements. This keeps the customer-value framing distinct from the implementation framing.
 
-**Engineers are subagents during implementation.** Backend and Frontend Engineers run under the `subagent-driven-development` pattern dispatched by the Tech Lead. The Tech Lead does not write production code.
+**Engineers are subagents during implementation.** Backend and Frontend Engineers run as the per-task subagents that `sdd:spec-implement` dispatches for the Tech Lead (or under `subagent-driven-development`). The Tech Lead does not write production code.
 
 ---
 

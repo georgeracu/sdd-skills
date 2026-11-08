@@ -1,0 +1,186 @@
+{
+  "skill_name": "spec-implement",
+  "runner_settings": "runner-settings.json",
+  "evals": [
+    {
+      "id": 1,
+      "slug": "small-green",
+      "prompt": "The project is in ./proj. Before anything else, make it a git repository with these three commands, each as its own command: `git -C proj init -q`, `git -C proj add -A` and `git -C proj commit -qm base`. Work item 01-word-count has passed its design and task reviews, and the QA plan is written. Implement its tasks. When you stop, for whatever reason, copy the work item's tasks.md to outputs/tasks.md, and write the output of `git -C proj log --oneline` followed by the output of the project's test command with `-v` added, to outputs/log.txt.",
+      "expected_output": "Each of the three tasks runs in order. Task 1 creates textstats/count.py and tests/test_count.py, with the tests written before or alongside the code; task 2 creates textstats/__main__.py and tests/test_cli.py and uses count_words; task 3 runs the build and test commands. The build and test commands from AGENTS.md are run after each task and pass. Every box in tasks.md is ticked and the Implementation row of the Status Summary reads complete. The git log has one commit per task after the base commit, with messages in the AGENTS.md format, and the tick for each task is in that task's commit. No file outside the named code and test files changes, apart from tasks.md. The reply names the implementation audit as the next step.",
+      "files": [
+        "files/green/proj"
+      ],
+      "expected_files": [
+        "tasks.md",
+        "log.txt"
+      ],
+      "criteria": [
+        "outputs/tasks.md has tasks 1, 2 and 3 ticked as - [x], and the Implementation row of the Status Summary shows the work complete (for example Complete and 3/3)",
+        "outputs/log.txt shows a passing test run (OK) that includes tests for count_words and for the command line, including the missing-file case with exit code 2",
+        "The git log in outputs/log.txt has a separate commit for each task after the base commit (task 3 may be a commit with only its tick), not one commit for all the work",
+        "Commit messages follow the AGENTS.md format feat(spec-01): task N <title>",
+        "The work stays in the files the tasks name (textstats/count.py, textstats/__main__.py, tests/test_count.py, tests/test_cli.py, tasks.md), or the reply names any other file and why",
+        "The final reply names the implementation audit (sdd:spec-implementation-audit) as the next step"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "- [x] 1.",
+            "scope": "outputs"
+          },
+          {
+            "text": "- [x] 2.",
+            "scope": "outputs"
+          },
+          {
+            "text": "- [x] 3.",
+            "scope": "outputs"
+          },
+          {
+            "text": "OK",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "- [ ] ",
+            "scope": "outputs"
+          },
+          {
+            "text": "FAILED (",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "slug": "impossible-test",
+      "prompt": "The project is in ./proj. Before anything else, make it a git repository with these three commands, each as its own command: `git -C proj init -q`, `git -C proj add -A` and `git -C proj commit -qm base`. Work item 01-ratio has passed its design and task reviews, and the QA plan is written. Implement its tasks. When you stop, for whatever reason, copy the work item's tasks.md to outputs/tasks.md, and write the output of `git -C proj log --oneline` followed by the output of the project's test command with `-v` added, to outputs/log.txt.",
+      "expected_output": "Task 1 cannot be done: tests/test_ratio.py asserts that ratio(1, 3) equals both 0.33 and 0.333, and requirement 1.2 forbids changing that file. The first attempt fails; the skill retries task 1 once with the failure output; the second attempt also fails. It then stops: task 1 stays unticked, task 1 has no commit, task 2 is not started, and tests/test_ratio.py is unchanged. The reply names task 1, pastes the failing test output and asks the user how to proceed, for example by pointing out that the two assertions contradict each other.",
+      "files": [
+        "files/impossible/proj"
+      ],
+      "expected_files": [
+        "tasks.md",
+        "log.txt"
+      ],
+      "criteria": [
+        "outputs/tasks.md has task 1 and task 2 still unticked (- [ ] 1. and - [ ] 2.)",
+        "The git log in outputs/log.txt has no commit after the base commit",
+        "tests/test_ratio.py is not changed, weakened or deleted, and no test is skipped or marked as an expected failure",
+        "The reply shows that task 1 was tried a second time with the failure output of the first attempt and then stopped, rather than stopping after one attempt or trying again and again",
+        "Task 2 (percent) is not started",
+        "The final reply names task 1 as failed, pastes or quotes the failing assertion, and asks the user how to proceed"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "- [ ] 1.",
+            "scope": "outputs"
+          },
+          {
+            "text": "- [ ] 2.",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "- [x] 1.",
+            "scope": "outputs"
+          },
+          {
+            "text": "expectedFailure",
+            "scope": "all"
+          },
+          {
+            "text": "skipTest",
+            "scope": "all"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "slug": "missing-test-plan",
+      "prompt": "The project is in ./proj. Before anything else, make it a git repository with these three commands, each as its own command: `git -C proj init -q`, `git -C proj add -A` and `git -C proj commit -qm base`. Work item 01-word-count has passed its design and task reviews. Implement its tasks. When you stop, for whatever reason, copy the work item's tasks.md to outputs/tasks.md, and write the output of `git -C proj log --oneline` followed by the output of the project's test command with `-v` added, to outputs/log.txt.",
+      "expected_output": "The work item has no test-plan.md, so the QA plan step has not run. The skill stops before any task: it writes no code and no tests, ticks no box and makes no commit after the base commit. The reply names test-plan.md as missing and names sdd:spec-qa-review plan mode as the step to run first.",
+      "files": [
+        "files/missing-plan/proj"
+      ],
+      "expected_files": [
+        "tasks.md",
+        "log.txt"
+      ],
+      "criteria": [
+        "No task is implemented: no textstats/count.py, textstats/__main__.py or test file is written",
+        "outputs/tasks.md has no ticked task",
+        "The git log in outputs/log.txt has no commit after the base commit",
+        "The reply names test-plan.md as missing",
+        "The reply names the QA review in plan mode (sdd:spec-qa-review plan mode) as the step to run before implementation"
+      ],
+      "assertions": {
+        "must_include": [
+          "test-plan.md",
+          "plan mode"
+        ],
+        "must_not_include": [
+          {
+            "text": "- [x]",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "slug": "dependency-order",
+      "prompt": "The project is in ./proj. Before anything else, make it a git repository with these three commands, each as its own command: `git -C proj init -q`, `git -C proj add -A` and `git -C proj commit -qm base`. Work item 02-top-words has passed its design and task reviews, and the QA plan is written. Task 1 was done earlier. Implement the remaining tasks. When you stop, for whatever reason, copy the work item's tasks.md to outputs/tasks.md, and write the output of `git -C proj log --oneline` followed by the output of the project's test command with `-v` added, to outputs/log.txt.",
+      "expected_output": "Task 1 is already ticked and its code exists, so it is not redone and gets no new commit. Task 2 (tokenize) runs before task 3 (top_words), because top_words imports tokenize. Each task is verified with the AGENTS.md commands, ticked and committed on its own, so the git log after the base commit shows the task 2 commit before the task 3 commit, then task 4. textstats/top.py imports tokenize from textstats.tokens rather than reimplementing it. Every box is ticked, the Implementation row reads 4/4 or complete, and the tests pass.",
+      "files": [
+        "files/dependency/proj"
+      ],
+      "expected_files": [
+        "tasks.md",
+        "log.txt"
+      ],
+      "criteria": [
+        "Task 1 is not redone: textstats/count.py and tests/test_count.py are not rewritten and no commit is for task 1",
+        "The git log in outputs/log.txt shows the task 2 (tokenize) commit before the task 3 (top_words) commit, each its own commit",
+        "textstats/top.py imports tokenize from textstats.tokens instead of reimplementing tokenising",
+        "outputs/tasks.md has tasks 1 to 4 ticked, and the Implementation row of the Status Summary shows 4/4 or complete",
+        "outputs/log.txt shows a passing test run (OK) that includes tests for tokenize and for the alphabetical tie-break in top_words"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "- [x] 2.",
+            "scope": "outputs"
+          },
+          {
+            "text": "- [x] 3.",
+            "scope": "outputs"
+          },
+          {
+            "text": "- [x] 4.",
+            "scope": "outputs"
+          },
+          {
+            "text": "OK",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "- [ ] ",
+            "scope": "outputs"
+          },
+          {
+            "text": "FAILED (",
+            "scope": "outputs"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -25,7 +25,7 @@ Each gate produces one of three outcomes:
 When a gate is BLOCKED:
 
 1. Gate identifies specific gaps or failures
-2. Dispatch fix subagents (via `subagent-driven-development`) for the specific issues
+2. Dispatch fix subagents for the specific issues
 3. Re-run the failed gate
 4. If the fix loop fails twice on the same gate, **stop and ask the user**
 

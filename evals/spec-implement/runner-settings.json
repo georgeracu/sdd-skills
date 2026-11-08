@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m compileall *)",
+      "Bash(python3 -m unittest *)",
+      "Bash(git *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)"
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": false,
+    "allowUnsandboxedCommands": true,
+    "failIfUnavailable": true
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": false
+  }
+}

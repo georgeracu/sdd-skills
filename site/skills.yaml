@@ -8,6 +8,7 @@ groups:
   - Write the spec
   - Gates
   - Test
+  - Implement
   - Keep specs true
 
 skills:
@@ -76,6 +77,13 @@ skills:
       date: 2026-10-01
     example: [test-plan.md, qa-review.md]
     example_note: In spec 38 the review mode wrote a separate qa-review.md instead of updating test-plan.md.
+
+  spec-implement:
+    group: Implement
+    order: 1
+    post: null
+    example: []
+    example_note: Spec 38 was implemented before this skill existed.
 
   spec-maintenance:
     group: Keep specs true

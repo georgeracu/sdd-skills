@@ -7,7 +7,7 @@ metadata:
 
 # Spec Implementation Audit — Quality Gate
 
-**Workflow Position:** Runs AFTER `subagent-driven-development` completes all tasks and BEFORE `sdd:spec-qa-review` review mode.
+**Workflow Position:** Runs AFTER `sdd:spec-implement` (or `subagent-driven-development`) completes all tasks and BEFORE `sdd:spec-qa-review` review mode.
 
 ## Prerequisites
 
@@ -101,5 +101,5 @@ Write `project/work-items/{NN}-{name}/implementation-audit.md` from `project/wor
 
 Set the one `**Status:**` line from the findings. Its value is exactly `PASSED` or `FAILED`, with nothing after it. Every `NOT RUN` evidence block is a MAJOR finding. A naming or style issue is a MINOR finding.
 
-- **FAILED** on any CRITICAL or MAJOR finding. Stop once the report is written: the audit does not fix findings, tick tasks or re-run itself. The caller dispatches fix subagents for the specific gaps via `subagent-driven-development`, then re-runs this audit. If the `implementation-audit.md` already in the work item directory had `**Status:** FAILED` before this audit, the caller asks the user instead of dispatching again.
+- **FAILED** on any CRITICAL or MAJOR finding. Stop once the report is written: the audit does not fix findings, tick tasks or re-run itself. The caller dispatches fix subagents for the specific gaps, then re-runs this audit. If the `implementation-audit.md` already in the work item directory had `**Status:** FAILED` before this audit, the caller asks the user instead of dispatching again.
 - **PASSED** on MINOR findings only, or none. Invoke `sdd:spec-qa-review` in review mode.

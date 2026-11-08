@@ -120,4 +120,4 @@
 ## Next Steps
 
 - **If PASSED:** Proceed to `sdd:spec-qa-review` review mode.
-- **If FAILED:** Dispatch fix subagents for the discrepancies above via `subagent-driven-development`. Re-run this audit. If it fails twice, escalate to user.
+- **If FAILED:** Dispatch fix subagents for the discrepancies above. Re-run this audit. If it fails twice, escalate to user.

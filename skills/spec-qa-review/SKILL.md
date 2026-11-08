@@ -95,7 +95,7 @@ Unit coverage: X% lines, Y% branches (gate: 85% each) ✓/✗
 
 ## Gate
 
-**Plan mode:** the next step is `subagent-driven-development` (documented in `sdd:spec-workflow`).
+**Plan mode:** invoke `sdd:spec-implement`. `sdd:spec-workflow` documents `subagent-driven-development` as the alternative.
 
 **Review mode, PASSED:** invoke `sdd:spec-maintenance`.
 
