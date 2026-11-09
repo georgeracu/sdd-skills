@@ -40,7 +40,7 @@ spec-qa-review (review mode) ──► updated test-plan.md
 spec-maintenance ──► spec-maintenance-report.md (+ annotations on older specs)
     │
     ▼
-finishing-a-development-branch ──► PR
+spec-finish ──► pr.md, PR
 ```
 
 ## Steps
@@ -123,9 +123,9 @@ Produces `spec-maintenance-report.md`.
 
 This skill always passes — stale spec annotations are informational, not blocking.
 
-### 12. finishing-a-development-branch (superpowers)
+### 12. spec-finish
 
-Creates the PR.
+Checks that every gate has passed, that the work-item folder is committed and that the build and tests pass. Writes `pr.md` in the work item, commits it and opens the PR with `gh` or `glab` when one is available. It never merges and never force-pushes. Superpowers' `finishing-a-development-branch` is an alternative that does not check the gates.
 
 ## What the user reviews
 

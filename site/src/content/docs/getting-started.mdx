@@ -13,9 +13,9 @@ In Claude Code 2.1.275 or later, one command also works: `/plugin install sdd --
 
 The plugin carries a version number, so an installed plugin changes only when you run `claude plugin update sdd@georgeracu` after a new release. For a manual copy, check out a tag, such as `v0.2.0`, before you copy the files. While the version is 0.x, a minor version can contain breaking changes. The [changelog](/sdd-skills/changelog/) marks them.
 
-## 2. Install superpowers for the full pipeline
+## 2. Install superpowers for bugfix implementation
 
-Steps 1 to 11 of the feature pipeline, including the implementation in step 8 and all the gates, are in this repository. Step 12 uses the `finishing-a-development-branch` skill from the [superpowers](https://github.com/obra/superpowers) plugin to open the pull request. Superpowers' `subagent-driven-development` is also an alternative to `spec-implement` for step 8, and the bugfix pipeline uses it.
+Every step of the feature pipeline, from discovery to the pull request in step 12, is in this repository. The bugfix pipeline implements its tasks with the `subagent-driven-development` skill from the [superpowers](https://github.com/obra/superpowers) plugin. That skill is also an alternative to `spec-implement` for step 8, and superpowers' `finishing-a-development-branch` is an alternative to `spec-finish` for step 12.
 
 Without superpowers, see [Run without superpowers](#run-without-superpowers) below.
 
@@ -49,22 +49,22 @@ Discovery agrees the work item's name, problem, scope and approach with you, one
 2. `spec-design-review` checks the design and writes `design-review-summary.md`. A BLOCKED verdict stops the pipeline until the design is fixed.
 3. `spec-generator` writes `tasks.md`, and `spec-task-review` checks it.
 4. `spec-qa-review` in plan mode writes `test-plan.md`.
-5. superpowers implements the tasks.
+5. `spec-implement` implements the tasks, one commit per task.
 6. `spec-implementation-audit` compares the code with the spec, using the build and test output as evidence.
 7. `spec-qa-review` in review mode checks the tests against the plan.
 8. `spec-maintenance` annotates older specs that the new work supersedes or changes.
-9. superpowers opens the pull request.
+9. `spec-finish` checks every gate, writes `pr.md` and opens the pull request.
 
 The [spec-workflow page](/sdd-skills/skills/spec-workflow/) is the reference for the order and for what each step writes. The [worked example](/sdd-skills/worked-example/) shows every artefact from one real feature.
 
-For a bug, start with `/sdd:spec-generator` instead. It writes `bugfix.md`, `design.md` and `tasks.md`, with no gates.
+For a bug, start with `/sdd:spec-generator` instead. It writes `bugfix.md`, `design.md` and `tasks.md`, with no gates. After the implementation, `spec-finish` opens the pull request.
 
 ## Run without superpowers
 
-Without superpowers, the feature pipeline runs from discovery to `spec-maintenance`, steps 1 to 11. Then open the pull request yourself.
+The feature pipeline needs no superpowers skill.
 
 You can also implement the tasks in `tasks.md` yourself, or with any agent, and tick each box when its task is done. Then run `/sdd:spec-implementation-audit`. It reads the spec documents and the code, however the code was written.
 
-For a bugfix without superpowers, implement the tasks from `tasks.md` yourself and open the pull request.
+For a bugfix without superpowers, implement the tasks from `tasks.md` yourself, then run `/sdd:spec-finish`.
 
 Every review skill works from the documents in `project/work-items/`, so you can also run one gate on its own against a spec you wrote by hand.

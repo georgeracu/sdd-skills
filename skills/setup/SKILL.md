@@ -20,6 +20,8 @@ Look, and change nothing yet.
 
 **AGENTS.md.** Check whether `AGENTS.md` exists at the project root. If it does, look for the command that builds the project and the command that runs its tests. A command counts as present only when it is written out, for example `./gradlew build` or `npm test`.
 
+**The merge check.** Check whether `.github/workflows/sdd-work-item-check.yml` exists, and whether the `origin` remote is on GitHub.
+
 **Optional inputs.** Check for each of these:
 
 | Input | Where to look | Read by |
@@ -30,20 +32,22 @@ Look, and change nothing yet.
 
 ## 2. Present
 
-Report the findings in three short sections, one at a time, and lead each with what you recommend.
+Report the findings in four short sections, one at a time, and lead each with what you recommend.
 
 1. **Scaffold.** The files you will copy, and the files you will leave alone because they exist. Recommend copying every missing file.
 2. **AGENTS.md.** If both commands are present, quote them and move on. If `AGENTS.md` is missing, or either command is missing, ask the user for the missing command. Ask one question at a time. Also ask for a type-generation command, and accept "none".
 3. **Optional inputs.** For each input, the path you found, or "not found". A missing input is not an error: the skills record it as a note in the spec. Do not offer to create these files.
+4. **Merge check.** Skip this section when the workflow file exists. Otherwise ask whether to install `scaffold/workflows/sdd-work-item-check.yml` as `.github/workflows/sdd-work-item-check.yml`. Say what it does: it fails a pull request that changes a feature work item without a PASSED `implementation-audit.md`, or a bugfix work item without its three files. Say that a work item written before the project adopted the pipeline has no audit, so a pull request that changes it fails. Recommend it when the remote is on GitHub. It is a GitHub Actions workflow, so it does nothing on another host.
 
 ## 3. Confirm
 
-Show the exact text you will add to `AGENTS.md`, and the list of files you will copy. Wait for the user's approval.
+Show the exact text you will add to `AGENTS.md`, and the list of files you will copy, including the workflow file when the user said yes. Wait for the user's approval.
 
 ## 4. Write
 
 1. Copy each missing scaffold file into the project root, keeping its path under `project/work-items/`. Never overwrite an existing file.
-2. Add the commands to `AGENTS.md` under a `## Build and test` heading. Create `AGENTS.md` if it does not exist. If the heading exists, add the missing lines under it rather than adding a second heading.
+2. When the user said yes to the merge check, copy `scaffold/workflows/sdd-work-item-check.yml` to `.github/workflows/sdd-work-item-check.yml`. Never overwrite an existing file.
+3. Add the commands to `AGENTS.md` under a `## Build and test` heading. Create `AGENTS.md` if it does not exist. If the heading exists, add the missing lines under it rather than adding a second heading.
 
 ## 5. Done
 
@@ -51,4 +55,4 @@ Tell the user:
 
 - What you copied and what you left alone.
 - That the next step for a feature is `/sdd:spec-discovery`, and for a bug report `/sdd:spec-generator`.
-- That `/sdd:spec-workflow` describes the whole pipeline, and that branch close-out and bugfix implementation need the superpowers plugin or an equivalent.
+- That `/sdd:spec-workflow` describes the whole pipeline, and that bugfix implementation needs the superpowers plugin or an equivalent.

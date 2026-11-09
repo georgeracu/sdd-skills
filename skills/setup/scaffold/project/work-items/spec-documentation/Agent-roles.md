@@ -98,7 +98,7 @@ The 12-step feature pipeline from [Feature-pipeline.md](Feature-pipeline.md), wi
 | 9 | `implementation-audit.md` gate | Tech Lead (verdict) | Senior QA Engineer (evidence), Senior Backend/Frontend (discrepancy triage) |
 | 10 | `spec-qa-review` review mode | Senior QA Engineer | Tech Lead |
 | 11 | `spec-maintenance` | Enterprise Architect | Application Architect (when designs annotated), Senior PO (when requirements deprecated) |
-| 12 | `finishing-a-development-branch` | Tech Lead | Senior Content Writer (changelog and knowledge-base updates) |
+| 12 | `spec-finish` | Tech Lead | Senior Content Writer (changelog and knowledge-base updates) |
 
 ## Per-step ownership — bugfix pipeline
 
@@ -141,7 +141,7 @@ Senior QA ─── test-plan.md ───► Tech Lead dispatches Backend + Fro
 Engineers ─── implementation ───► Tech Lead opens implementation-audit
 Tech Lead ─── PASSED audit ───► Senior QA runs spec-qa-review (review mode)
 Senior QA ─── coverage report ───► Enterprise Architect runs spec-maintenance
-Enterprise Architect ─── maintenance-report ───► Tech Lead runs finishing-a-development-branch
+Enterprise Architect ─── maintenance-report ───► Tech Lead runs spec-finish
 Tech Lead ─── PR ───► Board
 
 [BUGFIX PIPELINE]

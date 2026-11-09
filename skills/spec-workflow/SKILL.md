@@ -23,20 +23,20 @@ Pipeline map for Spec-Driven Development. This skill is a reference — it docum
 | 8 | `sdd:spec-implement` | Implementation, one commit per task | `sdd:spec-implementation-audit` |
 | 9 | `sdd:spec-implementation-audit` (gate) | `implementation-audit.md` | `sdd:spec-qa-review` review mode on pass |
 | 10 | `sdd:spec-qa-review` review mode | Updated `test-plan.md` | `sdd:spec-maintenance` on pass |
-| 11 | `sdd:spec-maintenance` | Updated previous specs, `spec-maintenance-report.md` | `finishing-a-development-branch` |
-| 12 | `finishing-a-development-branch` (superpowers) | PR | Done |
+| 11 | `sdd:spec-maintenance` | Updated previous specs, `spec-maintenance-report.md` | `sdd:spec-finish` |
+| 12 | `sdd:spec-finish` | `pr.md`, PR | Done |
 
 ## Bugfix Pipeline
 
 | Step | Skill | Output | Next |
 |------|-------|--------|------|
 | 1 | `sdd:spec-generator` bugfix | `bugfix.md`, `design.md`, `tasks.md` | `subagent-driven-development` |
-| 2 | `subagent-driven-development` (superpowers) | Implementation | `finishing-a-development-branch` |
-| 3 | `finishing-a-development-branch` (superpowers) | PR | Done |
+| 2 | `subagent-driven-development` (superpowers) | Implementation | `sdd:spec-finish` |
+| 3 | `sdd:spec-finish` | `pr.md`, PR | Done |
 
 No quality gate skills for bugfixes. User still reviews each phase document interactively.
 
-Step 8 can use superpowers' `subagent-driven-development` instead of `sdd:spec-implement`. The override rules below then apply to it.
+Step 8 can use superpowers' `subagent-driven-development` instead of `sdd:spec-implement`. The override rules below then apply to it. Step 12 of the feature pipeline and step 3 of the bugfix pipeline can use superpowers' `finishing-a-development-branch` instead of `sdd:spec-finish`, which does not check the gates.
 
 ## Superpowers Override Rules
 
@@ -45,9 +45,8 @@ These rules take precedence over default superpowers skill chaining:
 - For SDD features use `sdd:spec-discovery`, not `brainstorming`. After either: invoke `sdd:spec-generator` (NOT `writing-plans`)
 - After `sdd:spec-implement` or `subagent-driven-development` in a feature: invoke `sdd:spec-implementation-audit` (NOT `finishing-a-development-branch`)
 - After `sdd:spec-qa-review` review mode passes: invoke `sdd:spec-maintenance`
-- After `sdd:spec-maintenance`: invoke `finishing-a-development-branch`
-
-**Exception:** Bugfix pipeline follows default chaining — `subagent-driven-development` → `finishing-a-development-branch` directly.
+- After `sdd:spec-maintenance`: invoke `sdd:spec-finish`
+- After `subagent-driven-development` in a bugfix: invoke `sdd:spec-finish` (NOT `finishing-a-development-branch`). A bugfix has no audit and no maintenance step.
 
 ## Gate Failure Behaviour
 

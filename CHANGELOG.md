@@ -4,6 +4,17 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ## [Unreleased]
 
+### Added
+
+- `sdd:spec-finish`, step 12 of the feature pipeline and step 3 of the bugfix pipeline. It checks the exact `**Status:**` line of every gate, recomputes the `spec-maintenance` peer rule when there is no maintenance report, stops when the tree has uncommitted files, and runs the `AGENTS.md` build and test commands. Then it writes and commits `pr.md` in the work item, with the gate table, the test evidence and the commit it ran on, and opens the pull request with `gh` or `glab` when one is available. It never merges, never force-pushes and never pushes to the default branch.
+- An optional GitHub Actions merge check, `sdd-work-item-check.yml`, that `/sdd:setup` offers to install. It fails a pull request that changes a feature work item without a PASSED `implementation-audit.md`, or a bugfix work item without `bugfix.md`, `design.md` and `tasks.md`. This was the roadmap item "The audit travels with the work item on merge".
+- An eval pack for `spec-finish`.
+
+### Changed
+
+- `spec-maintenance`, `spec-workflow`, the scaffold docs and the maintenance report template hand over to `sdd:spec-finish` instead of superpowers' `finishing-a-development-branch`, which stays as an alternative. The bugfix pipeline now ends with `sdd:spec-finish` too. A feature no longer needs superpowers at all.
+- The `spec-maintenance` eval pack expects the hand-over to `sdd:spec-finish`.
+
 ## [0.4.0] - 2026-11-08
 
 ### Added
