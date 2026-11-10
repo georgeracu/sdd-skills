@@ -56,7 +56,7 @@ Standard implementation phase. Same as feature pipeline.
 
 ### 3. spec-finish
 
-Checks that `bugfix.md`, `design.md` and `tasks.md` exist, that the work-item folder is committed and that the build and tests pass. Writes `pr.md` in the work item and opens the PR. A bugfix has no maintenance step, because bug fixes rarely supersede other specs.
+Checks that `bugfix.md`, `design.md` and `tasks.md` exist, commits any uncommitted file in the work-item folder, and checks that the build and tests pass. Writes `pr.md` in the work item and opens the PR. A bugfix has no maintenance step, because bug fixes rarely supersede other specs.
 
 ## When to use the bugfix pipeline
 

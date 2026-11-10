@@ -125,7 +125,7 @@ This skill always passes — stale spec annotations are informational, not block
 
 ### 12. spec-finish
 
-Checks that every gate has passed, that the work-item folder is committed and that the build and tests pass. Writes `pr.md` in the work item, commits it and opens the PR with `gh` or `glab` when one is available. It never merges and never force-pushes. Superpowers' `finishing-a-development-branch` is an alternative that does not check the gates.
+Checks that every gate has passed, commits the gate reports and maintenance annotations, and checks that the build and tests pass. Stops when any other file is uncommitted. Writes `pr.md` in the work item, commits it and opens the PR with `gh` or `glab` when one is available. It never merges and never force-pushes. Superpowers' `finishing-a-development-branch` is an alternative that does not check the gates.
 
 ## What the user reviews
 

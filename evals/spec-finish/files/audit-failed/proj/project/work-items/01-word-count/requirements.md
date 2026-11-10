@@ -1,4 +1,4 @@
-# Requirements: Word count
+# Requirements Document
 
 ## Introduction
 

@@ -36,7 +36,7 @@ Pipeline map for Spec-Driven Development. This skill is a reference — it docum
 
 No quality gate skills for bugfixes. User still reviews each phase document interactively.
 
-Step 8 can use superpowers' `subagent-driven-development` instead of `sdd:spec-implement`. The override rules below then apply to it. Step 12 of the feature pipeline and step 3 of the bugfix pipeline can use superpowers' `finishing-a-development-branch` instead of `sdd:spec-finish`, which does not check the gates.
+Step 8 can use superpowers' `subagent-driven-development` instead of `sdd:spec-implement`. The override rules below then apply to it. Step 12 of the feature pipeline and step 3 of the bugfix pipeline can use superpowers' `finishing-a-development-branch` instead of `sdd:spec-finish`. That superpowers skill does not check the gates.
 
 ## Superpowers Override Rules
 
