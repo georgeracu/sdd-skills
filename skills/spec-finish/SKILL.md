@@ -70,10 +70,11 @@ When `pr.md` already exists, replace it. Commit it on its own: `docs(spec-{NN}):
 **Never merge, never force-push and never push to the default branch.**
 
 1. Read the URL of the `origin` remote. When there is no remote, tell the user where `pr.md` is and stop.
-2. Make the body: the text of `pr.md` with each relative link changed to the full URL of the file on the branch. On GitHub that is `https://github.com/{owner}/{repo}/blob/{branch}/project/work-items/{NN}-{name}/{file}`, and on GitLab `https://{host}/{group}/{project}/-/blob/{branch}/project/work-items/{NN}-{name}/{file}`. A relative link in a pull request body resolves against the pull request page and does not work. Do not write the body to a file in the project.
-3. When the URL is on GitHub and `gh auth status` succeeds, run `git push -u origin HEAD`, then `gh pr create --base <default branch> --title "<title line without #>" --body "<body>"`.
-4. When the URL is on GitLab and `glab auth status` succeeds, run `git push -u origin HEAD`, then `glab mr create --yes --target-branch <default branch> --title "<title line without #>" --description "<body>"`.
-5. Otherwise, or when a push or a create command fails, stop. Tell the user where `pr.md` is, and paste the output of the command that failed.
+2. Make the body: the text of `pr.md` with each relative link changed to the full URL of the file on the branch. On GitHub that is `https://github.com/{owner}/{repo}/blob/{branch}/project/work-items/{NN}-{name}/{file}`, and on GitLab `https://{host}/{group}/{project}/-/blob/{branch}/project/work-items/{NN}-{name}/{file}`. A relative link in a pull request body resolves against the pull request page and does not work.
+3. Pass the body on standard input, in a quoted heredoc: the create command ends with `<<'EOF'`, the body follows on its own lines, and `EOF` is the last line. Do not write the body to a file, and do not pass it in a quoted argument. A multi-line argument that holds `#` headings needs an extra approval in some agents.
+4. When the URL is on GitHub and `gh auth status` succeeds, run `git push -u origin HEAD`, then `gh pr create --base <default branch> --title "<title line without #>" --body-file - <<'EOF'`.
+5. When the URL is on GitLab and `glab auth status` succeeds, run `git push -u origin HEAD`, then `glab mr create --yes --target-branch <default branch> --title "<title line without #>" --description-file - <<'EOF'`.
+6. Otherwise, or when a push or a create command fails, stop. Tell the user where `pr.md` is, and paste the output of the command that failed.
 
 When a pull request for the branch already exists, the create command fails. Then push, and tell the user to update the description from `pr.md`.
 
