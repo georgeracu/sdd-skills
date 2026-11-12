@@ -9,13 +9,13 @@ metadata:
 
 After a spec is fully implemented and QA-reviewed, check whether it invalidates or changes anything in previously implemented specs.
 
-**Workflow Position:** Runs AFTER `sdd:spec-qa-review` review mode passes and BEFORE `finishing-a-development-branch`.
+**Workflow Position:** Runs AFTER `sdd:spec-qa-review` review mode passes and BEFORE `sdd:spec-finish`.
 
 ## Peer Set
 
 The peer set is every directory in `project/work-items/` other than the current item that holds an `implementation-audit.md` with `**Status:** PASSED`. The current item's own audit does not count. A work item with no audit, or with an audit of any other status, is not a peer.
 
-If the peer set is empty, skip this skill: write no report, edit no file, say that no implemented peer exists, and invoke `finishing-a-development-branch`. A skipped run counts as a pass.
+If the peer set is empty, skip this skill: write no report, edit no file, say that no implemented peer exists, and invoke `sdd:spec-finish`. A skipped run counts as a pass.
 
 ## Process
 
@@ -115,6 +115,6 @@ No previously implemented specs were impacted by this implementation.
 
 ## Severity
 
-Result: always PASSED. Stale specs are informational. After the report, invoke `finishing-a-development-branch`.
+Result: always PASSED. Stale specs are informational. After the report, invoke `sdd:spec-finish`.
 
 Count one impact per Impact Details bullet, however many lines it annotates. A task with its sub-items, one acceptance criterion or one design bullet is one bullet. If the count is over 10 across two or more work items, fill the report's `## Architectural Drift Warning` section and repeat the warning in the closing reply. Otherwise leave that section out of the report.

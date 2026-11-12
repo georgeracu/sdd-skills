@@ -11,7 +11,7 @@ spec-generator (bugfix mode) ──► bugfix.md, design.md, tasks.md
 subagent-driven-development ──► implementation
     │
     ▼
-finishing-a-development-branch ──► PR
+spec-finish ──► pr.md, PR
 ```
 
 ## Why no gates?
@@ -54,9 +54,9 @@ User reviews each document and approves before the next is generated.
 
 Standard implementation phase. Same as feature pipeline.
 
-### 3. finishing-a-development-branch (superpowers)
+### 3. spec-finish
 
-Creates the PR. No maintenance step — bug fixes rarely supersede other specs.
+Checks that `bugfix.md`, `design.md` and `tasks.md` exist, commits any uncommitted file in the work-item folder, and checks that the build and tests pass. Writes `pr.md` in the work item and opens the PR. A bugfix has no maintenance step, because bug fixes rarely supersede other specs.
 
 ## When to use the bugfix pipeline
 

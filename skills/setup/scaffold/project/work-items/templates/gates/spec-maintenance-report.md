@@ -95,4 +95,4 @@ Work items analysed but not impacted:
 
 ## Next Step
 
-Proceed to `finishing-a-development-branch`.
+Proceed to `sdd:spec-finish`.

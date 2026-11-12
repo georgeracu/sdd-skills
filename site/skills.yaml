@@ -10,6 +10,7 @@ groups:
   - Test
   - Implement
   - Keep specs true
+  - Finish
 
 skills:
   setup:
@@ -92,3 +93,10 @@ skills:
       url: https://georgeracu.substack.com/p/how-i-maintain-my-old-specs-when
       date: 2026-10-17
     example: [spec-maintenance-report.md]
+
+  spec-finish:
+    group: Finish
+    order: 1
+    post: null
+    example: []
+    example_note: Spec 38 was finished before this skill existed.

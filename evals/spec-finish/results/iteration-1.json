@@ -1,0 +1,673 @@
+{
+  "iteration": "iteration-1",
+  "pack_hash": "387fc7c5fd3fdd8d1a1654ca1c4f1aefa188e24b898ff015862bd6531b446823",
+  "baseline": "without_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "n": 6
+      },
+      "time_seconds": {
+        "mean": 39.3534,
+        "stddev": 13.5528,
+        "n": 6
+      },
+      "tokens": {
+        "mean": 715168.6667,
+        "stddev": 240380.0867,
+        "n": 6
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.45,
+        "stddev": 0.2179,
+        "n": 6
+      },
+      "time_seconds": {
+        "mean": 43.0387,
+        "stddev": 9.3564,
+        "n": 6
+      },
+      "tokens": {
+        "mean": 716264.6667,
+        "stddev": 161360.9301,
+        "n": 6
+      }
+    },
+    "delta": {
+      "pass_rate": 0.55,
+      "time_seconds": -3.6853,
+      "tokens": -1096.0
+    }
+  },
+  "cases": {
+    "complete-feature": {
+      "without_skill": {
+        "passed": 6,
+        "failed": 24,
+        "total": 30,
+        "pass_rate": 0.2,
+        "checks": [
+          {
+            "text": "Output includes: pr.md",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: spec 01: Requirements Document",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: git.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md has a title line that names spec 01 and word-count, not the template heading Requirements Document",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/work-item/pr.md exists and links to requirements.md, design.md and tasks.md with relative links",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md has a table of the gates with their status: design review APPROVED WITH ISSUES, task review APPROVED, implementation audit PASSED, test plan PASSED, and spec maintenance shown as skipped or not needed because no other work item is implemented",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md quotes test evidence from a run (6 tests, OK) and a commit SHA",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md has a section for reviewers that names the MAJOR design-review finding about files that are not UTF-8",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt shows a commit after the base commit that adds pr.md and nothing else, and an empty status after the log",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply says that no remote exists or that the pull request could not be opened, and says where pr.md is; it does not claim a pull request was opened",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 30,
+        "failed": 0,
+        "total": 30,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output does not include: spec 01: Requirements Document",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: git.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md has a title line that names spec 01 and word-count, not the template heading Requirements Document",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/work-item/pr.md exists and links to requirements.md, design.md and tasks.md with relative links",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md has a table of the gates with their status: design review APPROVED WITH ISSUES, task review APPROVED, implementation audit PASSED, test plan PASSED, and spec maintenance shown as skipped or not needed because no other work item is implemented",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md quotes test evidence from a run (6 tests, OK) and a commit SHA",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md has a section for reviewers that names the MAJOR design-review finding about files that are not UTF-8",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt shows a commit after the base commit that adds pr.md and nothing else, and an empty status after the log",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply says that no remote exists or that the pull request could not be opened, and says where pr.md is; it does not claim a pull request was opened",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "missing-audit": {
+      "with_skill": {
+        "passed": 18,
+        "failed": 0,
+        "total": 18,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output does not include: pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: git.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply says the implementation audit is missing and names the implementation audit (sdd:spec-implementation-audit) as the step to run",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/work-item has no pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt shows only the base commit, so the run made no commit",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The reply does not treat the test plan's placeholder Status line as a pass",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "without_skill": {
+        "passed": 9,
+        "failed": 9,
+        "total": 18,
+        "pass_rate": 0.5,
+        "checks": [
+          {
+            "text": "Output does not include: pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: git.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply says the implementation audit is missing and names the implementation audit (sdd:spec-implementation-audit) as the step to run",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/work-item has no pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt shows only the base commit, so the run made no commit",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The reply does not treat the test plan's placeholder Status line as a pass",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "audit-failed": {
+      "without_skill": {
+        "passed": 14,
+        "failed": 4,
+        "total": 18,
+        "pass_rate": 0.7778,
+        "checks": [
+          {
+            "text": "Output does not include: pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: git.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply says the implementation audit status is FAILED and that the pull request is not opened",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply names at least one of the two MAJOR findings, or says the findings must be fixed and the audit run again",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/work-item has no pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt shows only the base commit",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 18,
+        "failed": 0,
+        "total": 18,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output does not include: pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: git.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply says the implementation audit status is FAILED and that the pull request is not opened",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply names at least one of the two MAJOR findings, or says the findings must be fixed and the audit run again",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/work-item has no pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt shows only the base commit",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "uncommitted-gate-reports": {
+      "without_skill": {
+        "passed": 6,
+        "failed": 12,
+        "total": 18,
+        "pass_rate": 0.3333,
+        "checks": [
+          {
+            "text": "Output includes: pr.md",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: git.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt shows a commit after the base commit that holds test-plan.md and implementation-audit.md, and a later commit that adds pr.md",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt ends with an empty status, so nothing is left uncommitted",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/work-item/pr.md exists and shows the implementation audit and the test plan as PASSED",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply says where pr.md is and does not claim a pull request was opened",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 18,
+        "failed": 0,
+        "total": 18,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: git.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt shows a commit after the base commit that holds test-plan.md and implementation-audit.md, and a later commit that adds pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt ends with an empty status, so nothing is left uncommitted",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/work-item/pr.md exists and shows the implementation audit and the test plan as PASSED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply says where pr.md is and does not claim a pull request was opened",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "complete-bugfix": {
+      "with_skill": {
+        "passed": 27,
+        "failed": 0,
+        "total": 27,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Output includes: bugfix.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: git.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/work-item/pr.md exists and links to bugfix.md, design.md and tasks.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md does not ask for or list feature gates (design review, task review, implementation audit) as missing for this bugfix",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md quotes test evidence from a run (6 tests, OK)",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md tells reviewers that task 3 in tasks.md is not ticked",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt shows a commit after the base commit that adds pr.md and nothing else",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply says where pr.md is and does not claim a pull request was opened",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      },
+      "without_skill": {
+        "passed": 6,
+        "failed": 21,
+        "total": 27,
+        "pass_rate": 0.2222,
+        "checks": [
+          {
+            "text": "Output includes: pr.md",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Output includes: bugfix.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: git.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/work-item/pr.md exists and links to bugfix.md, design.md and tasks.md",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md does not ask for or list feature gates (design review, task review, implementation audit) as missing for this bugfix",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md quotes test evidence from a run (6 tests, OK)",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: pr.md tells reviewers that task 3 in tasks.md is not ticked",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt shows a commit after the base commit that adds pr.md and nothing else",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply says where pr.md is and does not claim a pull request was opened",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    },
+    "stray-file": {
+      "without_skill": {
+        "passed": 12,
+        "failed": 6,
+        "total": 18,
+        "pass_rate": 0.6667,
+        "checks": [
+          {
+            "text": "Output does not include: pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: git.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply names README.md as an uncommitted or modified file and says the pull request is not opened because of it",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt shows only the base commit, and its status lists README.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/work-item has no pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply asks the user to commit, stash or remove README.md, and does not commit it",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 18,
+        "failed": 0,
+        "total": 18,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output does not include: pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Run produced file: git.txt",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply names README.md as an uncommitted or modified file and says the pull request is not opened because of it",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/git.txt shows only the base commit, and its status lists README.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: outputs/work-item has no pr.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: The final reply asks the user to commit, stash or remove README.md, and does not commit it",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}

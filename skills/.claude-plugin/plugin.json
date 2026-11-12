@@ -1,6 +1,6 @@
 {
   "name": "sdd",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Spec-driven development skills: EARS requirements, design, blocking review gates, traced tasks, implementation audit, QA review and spec maintenance.",
   "author": { "name": "George Racu" },
   "homepage": "https://georgeracu.github.io/sdd-skills/",

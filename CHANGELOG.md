@@ -4,6 +4,19 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-11-12
+
+### Added
+
+- `sdd:spec-finish`, step 12 of the feature pipeline and step 3 of the bugfix pipeline. It checks the exact `**Status:**` line of every gate, recomputes the `spec-maintenance` peer rule when there is no maintenance report, commits the gate reports and maintenance annotations that the pipeline left uncommitted, stops when any other file is uncommitted, and runs the `AGENTS.md` build and test commands. Then it writes and commits `pr.md` in the work item, with the gate table, the test evidence and the commit it ran on, and opens the pull request with `gh` or `glab` when one is available, with links in the body that point to the files on the branch. It never merges, never force-pushes and never pushes to the default branch.
+- An optional GitHub Actions merge check, `sdd-work-item-check.yml`, that `/sdd:setup` offers to install. It fails a pull request that changes a feature work item without a PASSED `implementation-audit.md`, or a bugfix work item without `bugfix.md`, `design.md` and `tasks.md`. This was the roadmap item "The audit travels with the work item on merge".
+- An eval pack for `spec-finish`.
+
+### Changed
+
+- `spec-maintenance`, `spec-workflow`, the scaffold docs and the maintenance report template hand over to `sdd:spec-finish` instead of superpowers' `finishing-a-development-branch`, which stays as an alternative. The bugfix pipeline now ends with `sdd:spec-finish` too. A feature no longer needs superpowers at all.
+- The `spec-maintenance` eval pack expects the hand-over to `sdd:spec-finish`.
+
 ## [0.4.0] - 2026-11-08
 
 ### Added
@@ -96,7 +109,8 @@ Breaking changes are marked **Breaking**. A gate's status values changed, so upd
 
 - Seven skills extracted from a private project: `spec-workflow`, `spec-generator`, `spec-design-review`, `spec-task-review`, `spec-qa-review`, `spec-implementation-audit` and `spec-maintenance`.
 
-[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/georgeracu/sdd-skills/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/georgeracu/sdd-skills/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/georgeracu/sdd-skills/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/georgeracu/sdd-skills/compare/v0.1.3...v0.2.0

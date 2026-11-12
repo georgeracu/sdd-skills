@@ -1,0 +1,67 @@
+# Installed by /sdd:setup. Fails a pull request that changes a work item in
+# project/work-items/NN-name/ before the work item is complete:
+#   - a feature (requirements.md) needs implementation-audit.md with **Status:** PASSED
+#   - a bugfix (bugfix.md) needs bugfix.md, design.md and tasks.md
+#   - any other NN-name folder fails, because it is not a work item
+# Folders named after a ticket, such as ABC-123, and templates/ and
+# spec-documentation/ are not checked. A work item written before you adopted
+# the pipeline has no audit, so a pull request that changes it fails.
+name: SDD work-item check
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  work-items:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check each changed work item
+        run: |
+          status() {
+            grep -m1 '^\*\*Status:\*\*' "$1" | tr -d '\r' \
+              | sed -E 's/^\*\*Status:\*\*[[:space:]]*//; s/[[:space:]]*$//'
+          }
+
+          folders=$(git diff --name-only HEAD^1 HEAD \
+            | grep -E '^project/work-items/[0-9]+-[^/]+/' \
+            | cut -d/ -f1-3 | sort -u)
+
+          if [ -z "$folders" ]; then
+            echo "No work item changed."
+            exit 0
+          fi
+
+          failed=0
+          for dir in $folders; do
+            [ -d "$dir" ] || { echo "SKIP  $dir: removed"; continue; }
+            if [ -f "$dir/requirements.md" ]; then
+              audit="$dir/implementation-audit.md"
+              if [ ! -f "$audit" ]; then
+                echo "FAIL  $dir: feature has no implementation-audit.md"; failed=1
+              elif [ "$(status "$audit")" != "PASSED" ]; then
+                echo "FAIL  $dir: implementation-audit.md status is '$(status "$audit")', not PASSED"; failed=1
+              else
+                echo "PASS  $dir: audit PASSED"
+              fi
+            elif [ -f "$dir/bugfix.md" ]; then
+              missing=""
+              for f in design.md tasks.md; do
+                [ -f "$dir/$f" ] || missing="$missing $f"
+              done
+              if [ -n "$missing" ]; then
+                echo "FAIL  $dir: bugfix is missing$missing"; failed=1
+              else
+                echo "PASS  $dir: bugfix files present"
+              fi
+            else
+              echo "FAIL  $dir: neither requirements.md nor bugfix.md, so not a work item"; failed=1
+            fi
+          done
+          exit $failed

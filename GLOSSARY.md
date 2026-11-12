@@ -68,7 +68,7 @@ When a gate fails twice on the same work item, stop and ask the user instead of 
 
 ### Override rule
 
-A rule in `spec-workflow` that replaces the default chaining of the superpowers skills inside the feature pipeline. For example, when step 8 uses `subagent-driven-development`, the pipeline then invokes `sdd:spec-implementation-audit`, not `finishing-a-development-branch`. The bugfix pipeline follows the default chaining.
+A rule in `spec-workflow` that replaces the default chaining of the superpowers skills inside the feature pipeline. For example, when step 8 uses `subagent-driven-development`, the pipeline then invokes `sdd:spec-implementation-audit`, not `finishing-a-development-branch`. In the bugfix pipeline, `subagent-driven-development` hands over to `sdd:spec-finish`.
 
 ### Plan mode
 
