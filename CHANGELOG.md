@@ -4,6 +4,10 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ## [Unreleased]
 
+### Changed
+
+- The `spec-design-review` eval pack's bugfix case names the repository methods behind the plan-change transaction and gives the cache-miss share of the `accounts` table peak.
+
 ## [0.5.0] - 2026-11-12
 
 ### Added

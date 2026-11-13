@@ -1,0 +1,223 @@
+{
+  "iteration": "iteration-19",
+  "pack_hash": "34ab762a96b44dcb809074fa20f26b94feefd8341b5c44bdb7c65cc8ebec59bc",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.6795,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 195.9447,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 437365.1667,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.8077,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 230.6687,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 409680.3333,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "delta": {
+      "pass_rate": -0.1282,
+      "time_seconds": -34.724,
+      "tokens": 27684.8334
+    }
+  },
+  "cases": {
+    "prose-only-drift-minor": {
+      "old_skill": {
+        "passed": 63,
+        "failed": 15,
+        "total": 78,
+        "pass_rate": 0.8077,
+        "checks": [
+          {
+            "text": "Output includes: MINOR-001",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 6
+          },
+          {
+            "text": "Output includes: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output includes: Major discrepancies: 0",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output includes: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 6
+          },
+          {
+            "text": "Output does not include: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output does not include: MAJOR-001",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Overall status is APPROVED WITH ISSUES, not BLOCKED and not plain APPROVED",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Raises the prose drift (account administrator, alert level, usage counter) against Account_Owner, Alert_Threshold and Usage_Meter as MINOR",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Raises no critical or major discrepancy, and does not class the prose drift as an identifier or data-model inconsistency",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Confirms the identifiers (QuotaAlertEvaluator, firedThresholds, metered, the thresholds sub-resource) match the glossary and the existing model",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Allows continuation to tasks.md generation",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 53,
+        "failed": 25,
+        "total": 78,
+        "pass_rate": 0.6795,
+        "checks": [
+          {
+            "text": "Output includes: MINOR-001",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 6
+          },
+          {
+            "text": "Output includes: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 5,
+            "total": 6
+          },
+          {
+            "text": "Output includes: Major discrepancies: 0",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 6
+          },
+          {
+            "text": "Output includes: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 6
+          },
+          {
+            "text": "Output does not include: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 5,
+            "total": 6
+          },
+          {
+            "text": "Output does not include: MAJOR-001",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 6
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 5,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item (01-quota-alerts) rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 5,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Overall status is APPROVED WITH ISSUES, not BLOCKED and not plain APPROVED",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Raises the prose drift (account administrator, alert level, usage counter) against Account_Owner, Alert_Threshold and Usage_Meter as MINOR",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Raises no critical or major discrepancy, and does not class the prose drift as an identifier or data-model inconsistency",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Confirms the identifiers (QuotaAlertEvaluator, firedThresholds, metered, the thresholds sub-resource) match the glossary and the existing model",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Allows continuation to tasks.md generation",
+            "occurrence": 0,
+            "passed": 5,
+            "total": 6
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
