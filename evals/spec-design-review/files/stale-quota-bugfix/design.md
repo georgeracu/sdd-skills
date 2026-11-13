@@ -31,15 +31,23 @@ class QuotaService(
         val metered = meter?.metered ?: 0
         return UsageSummary(accountId, billingPeriod, metered, quota, metered > quota)
     }
+
+    private fun loadAndCache(accountId: String, billingPeriod: String, planVersion: Long): Int  // accounts.find, then cache.put
+}
+
+class AccountRepository {
+    fun find(accountId: String): Account  // strongly consistent
+    fun planUpdate(accountId: String, plan: Plan): TransactWriteItem  // Update on the accounts item
 }
 
 class UsageMeterRepository {
     fun find(accountId: String, billingPeriod: String): UsageMeter?  // strongly consistent
     fun increment(accountId: String, billingPeriod: String)  // retries TransactionConflictException
+    fun planVersionBump(accountId: String, billingPeriod: String): TransactWriteItem  // ADD planVersion :one
 }
 
 class PlanService {
-    fun changePlan(accountId: String, plan: Plan): Account  // one TransactWriteItems call, then the plan-changed notification
+    fun changePlan(accountId: String, plan: Plan): Account  // one TransactWriteItems call of accounts.planUpdate and meters.planVersionBump, then the plan-changed notification
 }
 
 class QuotaCache {
@@ -50,11 +58,11 @@ class QuotaCache {
 
 `QuotaCache.get` returns `null` when the entry is older than one hour or was stored under a different Billing_Period or `planVersion`. `PlanService.changePlan` emits the `plan-changed` notification after the transaction commits, as it does today after the save; the `usage-meters` update creates the item if the period has none.
 
-Both reads in `usageFor` are strongly consistent. A strongly consistent read costs twice the read units; `usage-meters` is on on-demand capacity, so this is a per-read cost and not a capacity limit, and the `accounts` table on provisioned capacity is read only on a cache miss, as today; each miss now costs twice the read units. ARCHITECTURE.md sets that table's read capacity at twice the peak eventually consistent load, and a miss happens at most once per Account per container per hour, so the doubled miss reads stay inside that margin. The reads are strongly consistent for these reasons: `meters.find` so that the next Usage_Read sees a committed bump, and the `accounts` read in `loadAndCache` so that a read which sees the new `planVersion` also loads the new Plan. The transaction makes the Plan and the version visible together, so no read can cache the old Quota under the new version.
+Both reads in `usageFor` are strongly consistent. A strongly consistent read costs twice the read units; `usage-meters` is on on-demand capacity, so this is a per-read cost and not a capacity limit, and the `accounts` table on provisioned capacity is read only on a cache miss, as today; each miss now costs twice the read units. ARCHITECTURE.md sets that table's read capacity at twice the peak eventually consistent load. Cache-miss reads are under 2% of that peak in the last 30 days of CloudWatch metrics, and `getAccount` and the ingest authentication read make the rest; a miss happens once per Account per container per hour, plus once per Plan_Change on that Account. Doubling the miss reads adds under 2% to a peak that has a 100% margin. The reads are strongly consistent for these reasons: `meters.find` so that the next Usage_Read sees a committed bump, and the `accounts` read in `loadAndCache` so that a read which sees the new `planVersion` also loads the new Plan. The transaction makes the Plan and the version visible together, so no read can cache the old Quota under the new version.
 
 An ingest `ADD metered` that meets the transaction on the same item fails with `TransactionConflictException`. `UsageMeterRepository.increment` catches that exception and retries the `ADD` up to five times with jittered backoff, so the increment is delayed by milliseconds and not lost (Requirement 3.2); if all five fail, `increment` throws `IngestUnavailable`, which the ingest handler maps to 503, the status it answers to a throttled increment, and the client retries; a Plan_Change is rare and holds the item only for the length of one transaction. DynamoDB does not fail a `GetItem` on an item in an ongoing transaction, whether the read is eventually or strongly consistent; it returns the last committed value. So neither the ingest authentication read of the `accounts` item nor the two reads in `usageFor` need a retry.
 
-IAM authorises each write inside `TransactWriteItems` by its own action, so the `plan` Lambda's role gains `dynamodb:UpdateItem` on `usage-meters` beside the `dynamodb:UpdateItem` on `accounts` it already holds. DynamoDB has no IAM action named `TransactWriteItems`; a policy can single out a transactional write only through the `dynamodb:EnclosingOperation` condition key, which this role does not use.
+IAM authorises each write inside `TransactWriteItems` by its own action, so the `plan` Lambda's role gains `dynamodb:UpdateItem` on `usage-meters` beside the `dynamodb:UpdateItem` on `accounts` it already holds. DynamoDB has no IAM action named `TransactWriteItems`: the actions table for Amazon DynamoDB in the AWS Service Authorization Reference lists none, and the DynamoDB Developer Guide states that a `TransactWriteItems` call is authorised by the actions of the writes it contains. A policy can single out a transactional write only through the `dynamodb:EnclosingOperation` condition key, which this role does not use.
 
 ## Data Models
 
@@ -72,7 +80,7 @@ The `usage-meters` entry in ARCHITECTURE.md gains `planVersion` and names a seco
 ## Correctness Properties
 
 - _For any_ Plan_Change followed by a Usage_Read, the Usage_Read SHALL report the new Plan's Quota. **Validates: Requirements 2.1**
-- _For any_ Plan_Change followed by a Usage_Read, `quotaExceeded` SHALL equal `metered > newQuota`. **Validates: Requirements 2.2, 1.2, 1.3**
+- _For any_ Plan_Change followed by a Usage_Read, `quotaExceeded` SHALL equal `metered > newQuota`. **Validates: Requirements 2.2** (resolves defects 1.2 and 1.3)
 - _For any_ Account with no Plan_Change between two Usage_Read calls in one Billing_Period inside the TTL, the second SHALL be served from the Quota_Cache. **Validates: Requirements 3.1**
 - _For any_ Plan_Change concurrent with ingest increments, every increment SHALL either be recorded or be rejected to the client with 503, never silently dropped. **Validates: Requirements 3.2**
 - _For any_ Plan_Change, the `plan-changed` notification SHALL still be emitted exactly once. **Validates: Requirements 3.3**
