@@ -44,7 +44,7 @@ Read ARCHITECTURE.md, the project glossary and the API contract, then the existi
 
 ### Step 3: Perform Comprehensive Review
 
-Check alignment across these six critical dimensions:
+Check alignment across these seven critical dimensions:
 
 #### 3.1 Requirements Coverage
 
@@ -113,6 +113,16 @@ Check alignment across these six critical dimensions:
 - Test file locations follow existing conventions
 - Mock/stub patterns match existing test infrastructure
 
+#### 3.7 Glossary Terms in Prose
+
+**Check:** The prose of design.md names each glossary concept with its glossary term.
+
+**Validation:**
+- Read the project glossary and the glossary in requirements.md or bugfix.md
+- Read every sentence of design.md prose, the Overview included, and find each place that names a glossary concept with a different word, such as "subscription" for Plan
+- Do not flag a glossary term written in lower case, in the plural, without the underscore or shortened to its last word, such as "billing period" for Billing_Period or "threshold" for Alert_Threshold. Do not flag a word for a related thing that the concept produces or uses, such as a message for the event that causes it
+- In each finding, quote the prose word and name the glossary term and the glossary that defines it
+
 ### Step 4: Classify Severity Levels
 
 Raise a discrepancy only when you can name its basis: an acceptance criterion, a statement in ARCHITECTURE.md, the glossary or the API contract, or a defect in design.md that would make the implementation wrong. Do not raise preferences, alternative designs, gaps that no source requires, or details that implementation decides, such as file layout, deployment units and test technique. Write the basis in each finding's Issue. This rule applies to every severity: do not raise a MINOR finding that has no basis.
@@ -135,7 +145,7 @@ Assign severity to each discrepancy:
 - Best practice violations
 
 **MINOR** - Can be noted and addressed during implementation
-- Glossary drift confined to prose
+- Glossary drift confined to prose (check 3.7)
 - An acceptance criterion that the Testing Strategy names no test for
 - An update to ARCHITECTURE.md, the glossary or the API contract that the design needs and does not name
 
