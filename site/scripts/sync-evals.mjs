@@ -58,7 +58,7 @@ function latest(name) {
     ['judge_model', field('judge_model')],
     ['runs_per_arm', field('runs_per_arm')],
     ['cases_total', field('cases_total')],
-    ['run-to-run spread', spread],
+    ['cases_included', field('cases_included')],
   ].filter(([, v]) => v === undefined);
   if (problems.length) {
     console.error(`sync-evals: ${rel} has no ${problems.map(([k]) => k).join(', ')}`);
@@ -68,11 +68,13 @@ function latest(name) {
     json,
     rel,
     tests,
-    spread: Number(spread),
+    // One run an arm measures no spread, and skill-eval then writes no spread line.
+    spread: spread === undefined ? null : Number(spread),
     runner: field('runner_model'),
     judge: field('judge_model'),
     runs: Number(field('runs_per_arm')),
     cases: Number(field('cases_total')),
+    included: Number(field('cases_included')),
     date: committed(rel),
   };
 }
@@ -107,21 +109,29 @@ for (const name of names) {
   const withSkill = s.with_skill.pass_rate.mean;
   const baseline = s[r.json.baseline].pass_rate.mean;
   const delta = withSkill - baseline;
-  spreads.push(r.spread);
+  if (r.spread !== null) spreads.push(r.spread);
+  const spread = r.spread === null ? 'not measured' : `±${(r.spread * 100).toFixed(1)} points`;
   const iteration = r.json.iteration.replace('iteration-', '');
   rows.push(
-    `| [${name}](#${name}) | ${arms[r.json.baseline] ?? r.json.baseline} | ${pct(withSkill)} | ${pct(baseline)} | ${points(delta)} | ±${(r.spread * 100).toFixed(1)} points |`,
+    `| [${name}](#${name}) | ${arms[r.json.baseline] ?? r.json.baseline} | ${pct(withSkill)} | ${pct(baseline)} | ${points(delta)} | ${spread} |`,
   );
-  const within = Math.abs(delta) <= r.spread;
+  const reading =
+    r.spread === null
+      ? `This iteration ran one run an arm, so it measured no run-to-run spread to compare the difference with.`
+      : `The run-to-run spread in this iteration was ${spread}, so the difference is ${Math.abs(delta) <= r.spread ? 'within the spread and is not a signal on its own' : 'larger than the spread'}.`;
+  const scope =
+    r.included === r.cases
+      ? `${r.cases} cases`
+      : `${r.included} of ${r.cases} cases scored, the others left out as incomplete or inconclusive`;
   const lost = regressions(r);
   sections.push(
     [
       `## ${name}`,
       '',
-      `Iteration ${iteration}, committed ${longDate(r.date)}. ${r.cases} cases, ${r.runs} runs an arm. Runner model \`${r.runner}\`, judge model \`${r.judge}\`.`,
+      `Iteration ${iteration}, committed ${longDate(r.date)}. ${scope}, ${r.runs} ${r.runs === 1 ? 'run' : 'runs'} an arm. Runner model \`${r.runner}\`, judge model \`${r.judge}\`.`,
       ...(r.tests ? ['', `What this iteration tests: ${escape(r.tests)}`] : []),
       '',
-      `With the skill, ${pct(withSkill)} of checks passed. ${against[r.json.baseline] ?? r.json.baseline}, ${pct(baseline)} passed, a difference of ${points(delta)}. The run-to-run spread in this iteration was ±${(r.spread * 100).toFixed(1)} points, so the difference is ${within ? 'within the spread and is not a signal on its own' : 'larger than the spread'}.`,
+      `With the skill, ${pct(withSkill)} of checks passed. ${against[r.json.baseline] ?? r.json.baseline}, ${pct(baseline)} passed, a difference of ${points(delta)}. ${reading}`,
       '',
       lost.length ? `Checks where the skill arm scored below the baseline:\n\n${lost.join('\n')}` : 'No check scored below the baseline.',
       '',

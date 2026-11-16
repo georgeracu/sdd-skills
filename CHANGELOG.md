@@ -7,6 +7,8 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 ### Changed
 
 - The `spec-design-review` eval pack's bugfix case names the repository methods behind the plan-change transaction and gives the cache-miss share of the `accounts` table peak.
+- Each `spec-discovery` eval case prompt names the work it serves, so a user-level instruction to check that first no longer stops the run before the skill loads. Iteration 4 runs the pack on skill-eval 0.4.0, which records whether each run loaded the skill.
+- The Evals page accepts an iteration with one run an arm, which has no run-to-run spread, and counts only the cases that the iteration scored.
 
 ## [0.5.0] - 2026-11-12
 
