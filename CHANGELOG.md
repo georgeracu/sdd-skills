@@ -4,6 +4,10 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ## [Unreleased]
 
+### Added
+
+- `sdd:spec-design-review` check 3.7 reads the prose of design.md against the glossaries and raises a different word for a glossary term as the MINOR "Glossary drift confined to prose". It does not flag a glossary term in lower case, in the plural or without the underscore, or a word that a glossary definition uses.
+
 ### Changed
 
 - The `spec-design-review` eval pack's bugfix case names the repository methods behind the plan-change transaction and gives the cache-miss share of the `accounts` table peak.

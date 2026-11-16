@@ -119,8 +119,8 @@ Check alignment across these seven critical dimensions:
 
 **Validation:**
 - Read the project glossary and the glossary in requirements.md or bugfix.md
-- Read every sentence of design.md prose, the Overview included, and find each place that names a glossary concept with a different word, such as "subscription" for Plan
-- Do not flag a glossary term written in lower case, in the plural, without the underscore or shortened to its last word, such as "billing period" for Billing_Period or "threshold" for Alert_Threshold. Do not flag a word for a related thing that the concept produces or uses, such as a message for the event that causes it
+- Read every sentence of design.md prose, the Overview included, and find each place that names a glossary concept with a different word that the glossary term could replace with no change in meaning, such as "subscription" for Plan
+- Do not flag a glossary term written in lower case, in the plural, without the underscore or shortened to its last word, such as "billing period" for Billing_Period or "threshold" for Alert_Threshold. Do not flag a word that a glossary definition itself uses, such as "email" when the glossary defines a service that emails a user
 - In each finding, quote the prose word and name the glossary term and the glossary that defines it
 
 ### Step 4: Classify Severity Levels
