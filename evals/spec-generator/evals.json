@@ -140,16 +140,17 @@
     {
       "id": 7,
       "slug": "design-first-feature",
-      "prompt": "Start a new webhook receiver feature using a design-first workflow. The external provider's fixed payload and HTTP contract are in webhook-contract.md; shared architecture and the existing OpenAPI contract are alongside it. Write the design first.",
-      "expected_output": "The reply should create design.md as the first document in a new sequentially numbered work-item directory, using the external webhook-contract.md as a binding constraint. The design must preserve the exact payload fields and 204/400 response behavior, define idempotency by event_id, align the receiver with the existing architecture and API patterns, and stop for user review. It should explicitly say that requirements.md will be derived from the approved design, and that sdd:spec-design-review runs once both documents exist. No requirements.md should be created in this first turn.",
+      "prompt": "Start the spec for the Acme Billing webhook receiver. It is a feature using the design-first workflow. The provider's fixed payload and HTTP contract are in webhook-contract.md, and the decisions on status values and on resolving invoice_id to an account are settled in webhook-decisions.md, so no clarifying questions are needed. Shared architecture and the existing OpenAPI contract are available for context. Write the design first, in the work item for this feature; the copy you save under ./outputs/ keeps the same path as the work item.",
+      "expected_output": "The reply should create design.md as the first document in a new sequentially numbered work-item directory, using the external webhook-contract.md as a binding constraint. The design must preserve the exact payload fields and 204/400 response behavior, define idempotency by event_id, carry through the settled status actions and the invoice-accounts lookup from webhook-decisions.md, align the receiver with the existing architecture and API patterns, and stop for user review. It should explicitly say that requirements.md will be derived from the approved design, and that sdd:spec-design-review runs once both documents exist. No requirements.md should be created in this first turn. The copy under outputs/ sits at the same path as the work item and does not count as an extra directory.",
       "criteria": [
-        "Creates only design.md first in a new sequentially numbered work-item directory; no requirements.md is generated.",
+        "Creates only design.md first in a new sequentially numbered work-item directory; no requirements.md is generated; the outputs/ copy at the same path is expected and is not an extra directory.",
         "Treats webhook-contract.md as authoritative, preserving payload fields, 204 success, 400 malformed-input behavior, retries, and event_id idempotency.",
         "Aligns the design with the supplied architecture and OpenAPI context and is implementation-ready.",
         "Stops for user review and explains that requirements.md follows design approval and sdd:spec-design-review runs once both documents exist."
       ],
       "files": [
         "files/design-first-webhook/webhook-contract.md",
+        "files/design-first-webhook/webhook-decisions.md",
         "files/shared/ARCHITECTURE.md",
         "files/shared/openapi.yaml"
       ]
