@@ -11,6 +11,7 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 ### Changed
 
 - The `spec-generator` eval pack's `design-first-feature` case is rewritten so that one turn can answer it, with a new settled-decisions input. Iteration 8 runs that case alone, 3 runs an arm, and scores 9/12 with the skill and 4/12 without it, where iteration 3 scored 0/12 in both arms.
+- The `spec-design-review` eval pack's `bugfix-design-approved` case reviews a smaller bugfix: a Billing_Period with no `usage-meters` item reads as `metered` 0 instead of failing, with one code path and no write. Iteration 30 runs that case alone, 6 runs an arm against the `main` skill, and reaches APPROVED in 5 of 6 runs with the skill and 6 of 6 with the snapshot.
 
 ## [0.5.1] - 2026-11-17
 

@@ -1,0 +1,223 @@
+{
+  "iteration": "iteration-30",
+  "pack_hash": "796f0a72e9236e64d5c333e16dc0c6470f6c4dde924bc752cd2bc30d8a72e6b4",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9744,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 54.1872,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 199450.1667,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 48.8077,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 182454.6667,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "delta": {
+      "pass_rate": -0.0256,
+      "time_seconds": 5.3795,
+      "tokens": 16995.5
+    }
+  },
+  "cases": {
+    "bugfix-design-approved": {
+      "with_skill": {
+        "passed": 76,
+        "failed": 2,
+        "total": 78,
+        "pass_rate": 0.9744,
+        "checks": [
+          {
+            "text": "Output includes: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output includes: bugfix.md",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output includes: **Status:** APPROVED",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output does not include: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output does not include: MAJOR-001",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output does not include: **Status:** APPROVED WITH",
+            "occurrence": 0,
+            "passed": 5,
+            "total": 6
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the 05-empty-period-usage-bugfix work item",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Lists bugfix.md, not requirements.md, among the documents reviewed",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Checks coverage of the expected behaviour (2.1, 2.2) and of the unchanged-behaviour items (3.1, 3.2, 3.3), confirming each is protected",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Overall status is APPROVED, with no critical or major discrepancies raised against a sound design",
+            "occurrence": 0,
+            "passed": 5,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Confirms the fix fits ARCHITECTURE.md, including that the cache and the accounts table load are preserved and no API change is needed",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Says the work item may proceed to tasks.md generation",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 78,
+        "failed": 0,
+        "total": 78,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output includes: bugfix.md",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output includes: **Status:** APPROVED",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output does not include: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output does not include: MAJOR-001",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Output does not include: **Status:** APPROVED WITH",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the 05-empty-period-usage-bugfix work item",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Lists bugfix.md, not requirements.md, among the documents reviewed",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Checks coverage of the expected behaviour (2.1, 2.2) and of the unchanged-behaviour items (3.1, 3.2, 3.3), confirming each is protected",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Overall status is APPROVED, with no critical or major discrepancies raised against a sound design",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Confirms the fix fits ARCHITECTURE.md, including that the cache and the accounts table load are preserved and no API change is needed",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          },
+          {
+            "text": "Meets criterion: Says the work item may proceed to tasks.md generation",
+            "occurrence": 0,
+            "passed": 6,
+            "total": 6
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
