@@ -1,0 +1,151 @@
+{
+  "iteration": "iteration-23",
+  "pack_hash": "c77bf4439e4c8602cf18ccd00fe707cdf23728b6719a7b585fef1de12309628a",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.75,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 207.74,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 381270.75,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 264.6003,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 457826.25,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "delta": {
+      "pass_rate": -0.25,
+      "time_seconds": -56.8603,
+      "tokens": -76555.5
+    }
+  },
+  "cases": {
+    "prose-only-drift-minor": {
+      "old_skill": {
+        "passed": 28,
+        "failed": 0,
+        "total": 28,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: MINOR-001",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 4
+          },
+          {
+            "text": "Output includes: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 4
+          },
+          {
+            "text": "Output includes: Major discrepancies: 0",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 4
+          },
+          {
+            "text": "Output includes: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 4
+          },
+          {
+            "text": "Output does not include: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 4
+          },
+          {
+            "text": "Output does not include: MAJOR-001",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 4
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 4,
+            "total": 4
+          }
+        ]
+      },
+      "with_skill": {
+        "passed": 21,
+        "failed": 7,
+        "total": 28,
+        "pass_rate": 0.75,
+        "checks": [
+          {
+            "text": "Output includes: MINOR-001",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 4
+          },
+          {
+            "text": "Output includes: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 4
+          },
+          {
+            "text": "Output includes: Major discrepancies: 0",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 4
+          },
+          {
+            "text": "Output includes: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 4
+          },
+          {
+            "text": "Output does not include: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 4
+          },
+          {
+            "text": "Output does not include: MAJOR-001",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 4
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 4
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
