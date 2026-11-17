@@ -2,7 +2,7 @@
 name: spec-finish
 description: Use when the user asks to finish, close out or open the pull request for a work item in project/work-items/{NN}-{name}/, or when sdd:spec-maintenance or a bugfix implementation hands over. Checks that every gate has passed, commits the gate reports the pipeline left uncommitted, runs the AGENTS.md build and test commands, writes pr.md in the work item, and opens the pull request with gh or glab when one is available. Never merges and never force-pushes.
 metadata:
-  sdd-kind: model-invoked
+  sdd-kind: background
 ---
 
 # Spec Finish
