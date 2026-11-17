@@ -1,0 +1,33 @@
+name: Skill structure
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - name: Install the site dependencies
+        working-directory: site
+        run: npm ci
+      - name: Test the skill structure check
+        working-directory: site
+        run: npm test
+      - name: Check each skill folder
+        working-directory: site
+        run: npm run check
+      - name: Install the Claude Code CLI
+        run: npm install --global @anthropic-ai/claude-code@2.1.325
+      - name: Validate the marketplace and the plugin
+        run: |
+          claude plugin validate . --strict \
+            && claude plugin validate skills --strict

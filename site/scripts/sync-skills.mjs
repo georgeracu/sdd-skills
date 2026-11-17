@@ -1,7 +1,8 @@
-import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
+import { mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse, stringify } from 'yaml';
+import { checkSkills, kinds, splitFrontMatter } from './skill-structure.mjs';
 
 const site = join(dirname(fileURLToPath(import.meta.url)), '..');
 const repo = join(site, '..');
@@ -13,14 +14,8 @@ const superpowers = 'https://github.com/obra/superpowers/tree/main/skills';
 
 const config = parse(readFileSync(join(site, 'skills.yaml'), 'utf8'));
 
-const folders = readdirSync(join(repo, 'skills'), { withFileTypes: true })
-  .filter((d) => d.isDirectory() && existsSync(join(repo, 'skills', d.name, 'SKILL.md')))
-  .map((d) => d.name);
 const entries = Object.keys(config.skills);
-const problems = [
-  ...folders.filter((f) => !entries.includes(f)).map((f) => `skills/${f}/ has no entry in site/skills.yaml`),
-  ...entries.filter((e) => !folders.includes(e)).map((e) => `site/skills.yaml entry "${e}" has no skills/${e}/SKILL.md`),
-];
+const { folders, kindOf, problems } = checkSkills(repo, entries);
 
 function pipelineRows() {
   const workflow = readFileSync(join(repo, 'skills/spec-workflow/SKILL.md'), 'utf8');
@@ -56,23 +51,6 @@ for (const [name, entry] of Object.entries(config.skills)) {
   }
   if (!rows.some((r) => r.name === name) && !entry.position) problems.push(`${name}: no spec-workflow pipeline row and no position`);
 }
-const kinds = {
-  'user-invoked': 'You start it with `/sdd:NAME`. The agent does not start it on its own.',
-  'model-invoked': 'The agent starts it when the task or the pipeline calls for it. You can also start it with `/sdd:NAME`.',
-  reference: 'The agent reads it for the pipeline order and its rules. It does no work of its own.',
-};
-const kindOf = {};
-for (const name of folders) {
-  const { data } = splitFrontMatter(readFileSync(join(repo, 'skills', name, 'SKILL.md'), 'utf8'));
-  const kind = data.metadata?.['sdd-kind'];
-  if (!kinds[kind]) problems.push(`skills/${name}/SKILL.md: metadata.sdd-kind must be one of ${Object.keys(kinds).join(', ')}`);
-  const userOnly = kind === 'user-invoked';
-  if ((data['disable-model-invocation'] === true) !== userOnly)
-    problems.push(`skills/${name}/SKILL.md: disable-model-invocation: true must be set exactly when the kind is user-invoked`);
-  if (existsSync(join(repo, 'skills', name, 'agents/openai.yaml')) !== userOnly)
-    problems.push(`skills/${name}/agents/openai.yaml must exist exactly when the kind is user-invoked`);
-  kindOf[name] = kind;
-}
 if (problems.length) {
   console.error(problems.map((p) => `sync-skills: ${p}`).join('\n'));
   process.exit(1);
@@ -102,11 +80,6 @@ function escapeOutsideCode(markdown) {
       return escapeInline(line);
     })
     .join('\n');
-}
-
-function splitFrontMatter(text) {
-  const match = text.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
-  return { data: parse(match[1]), body: match[2] };
 }
 
 const longDate = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
