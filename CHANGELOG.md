@@ -4,6 +4,8 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-11-17
+
 ### Added
 
 - `sdd:spec-design-review` check 3.7 reads the prose of design.md against the glossaries and raises a different word for a glossary term as the MINOR "Glossary drift confined to prose". It does not flag a glossary term in lower case, in the plural or without the underscore, or a word that a glossary definition uses.
@@ -119,7 +121,8 @@ Breaking changes are marked **Breaking**. A gate's status values changed, so upd
 
 - Seven skills extracted from a private project: `spec-workflow`, `spec-generator`, `spec-design-review`, `spec-task-review`, `spec-qa-review`, `spec-implementation-audit` and `spec-maintenance`.
 
-[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/georgeracu/sdd-skills/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/georgeracu/sdd-skills/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/georgeracu/sdd-skills/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/georgeracu/sdd-skills/compare/v0.2.0...v0.3.0
