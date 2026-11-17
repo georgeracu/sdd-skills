@@ -1,0 +1,115 @@
+{
+  "iteration": "iteration-8",
+  "pack_hash": "18f78e36711b7825ba8a352519c53283e578024d73e244fc7ed54b18f88a673b",
+  "baseline": "without_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.75,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 174.337,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 630914.6667,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.3333,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 150.709,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 417956.3333,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "delta": {
+      "pass_rate": 0.4167,
+      "time_seconds": 23.628,
+      "tokens": 212958.3334
+    }
+  },
+  "cases": {
+    "design-first-feature": {
+      "with_skill": {
+        "passed": 9,
+        "failed": 3,
+        "total": 12,
+        "pass_rate": 0.75,
+        "checks": [
+          {
+            "text": "Meets criterion: Creates only design.md first in a new sequentially numbered work-item directory; no requirements.md is generated; the outputs/ copy at the same path is expected and is not an extra directory.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Treats webhook-contract.md as authoritative, preserving payload fields, 204 success, 400 malformed-input behavior, retries, and event_id idempotency.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Aligns the design with the supplied architecture and OpenAPI context and is implementation-ready.",
+            "occurrence": 0,
+            "passed": 3,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops for user review and explains that requirements.md follows design approval and sdd:spec-design-review runs once both documents exist.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      },
+      "without_skill": {
+        "passed": 4,
+        "failed": 8,
+        "total": 12,
+        "pass_rate": 0.3333,
+        "checks": [
+          {
+            "text": "Meets criterion: Creates only design.md first in a new sequentially numbered work-item directory; no requirements.md is generated; the outputs/ copy at the same path is expected and is not an extra directory.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Treats webhook-contract.md as authoritative, preserving payload fields, 204 success, 400 malformed-input behavior, retries, and event_id idempotency.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Aligns the design with the supplied architecture and OpenAPI context and is implementation-ready.",
+            "occurrence": 0,
+            "passed": 2,
+            "total": 3
+          },
+          {
+            "text": "Meets criterion: Stops for user review and explains that requirements.md follows design approval and sdd:spec-design-review runs once both documents exist.",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 3
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
