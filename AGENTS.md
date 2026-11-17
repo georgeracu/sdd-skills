@@ -112,6 +112,8 @@ claude plugin validate skills --strict
 
 The first command checks the marketplace, and the second checks the plugin.
 
+The `Skill structure` workflow runs on every pull request. It runs `npm test` and `npm run check` in `site/`, which fail with a message naming the skill when a `SKILL.md` has no valid front matter, has a missing or unknown `metadata.sdd-kind`, or has no entry in `site/skills.yaml`, and then runs both `claude plugin validate` commands. The build runs the same structure check, which lives in `site/scripts/skill-structure.mjs`.
+
 ## Releasing
 
 The version lives only in `skills/.claude-plugin/plugin.json`. To release version `X.Y.Z`:

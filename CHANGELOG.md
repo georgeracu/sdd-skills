@@ -4,6 +4,10 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ## [Unreleased]
 
+### Added
+
+- A `Skill structure` workflow that runs on every pull request. It fails with a message that names the skill when a `SKILL.md` has no valid front matter, has a missing or unknown `metadata.sdd-kind`, or has no entry in `site/skills.yaml`, and it runs `claude plugin validate` against the marketplace and the plugin.
+
 ## [0.5.1] - 2026-11-17
 
 ### Added

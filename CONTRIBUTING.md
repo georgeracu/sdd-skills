@@ -11,7 +11,7 @@ A behaviour change needs evidence from the skill's eval pack in `evals/<name>/`:
 ## Checks before a pull request
 
 1. Run `npm ci` and `npm run build` in `site/`. The build fails on a broken link, and on a skill folder with no entry in `site/skills.yaml`.
-2. Run `claude plugin validate . --strict` and `claude plugin validate skills --strict` if you changed `.claude-plugin/`, `skills/.claude-plugin/` or added a skill.
+2. Run `npm run check` in `site/` if you want the skill structure result before you push. The `Skill structure` workflow runs it on every pull request, together with `claude plugin validate . --strict` and `claude plugin validate skills --strict`.
 3. Add a line to the `Unreleased` section of `CHANGELOG.md`.
 
 ## Writing style
