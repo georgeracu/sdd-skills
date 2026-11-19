@@ -1,0 +1,55 @@
+diff --git a/backend/src/main/kotlin/com/example/metering/digest/UsageDigestBuilder.kt b/backend/src/main/kotlin/com/example/metering/digest/UsageDigestBuilder.kt
+new file mode 100644
+--- /dev/null
++++ b/backend/src/main/kotlin/com/example/metering/digest/UsageDigestBuilder.kt
+@@ -0,0 +1,21 @@
++package com.example.metering.digest
++
++import com.example.metering.quota.QuotaCache
++import com.example.metering.usage.UsageMeterRepository
++import com.example.billing.invoice.InvoiceRepository
++
++/** Builds the Usage_Digest payload for one Account. */
++class UsageDigestBuilder(
++    private val usageMeters: UsageMeterRepository,
++    private val quotas: QuotaCache,
++    private val invoices: InvoiceRepository,
++) {
++    fun build(accountId: String): UsageDigest? {
++        val used = usageMeters.currentPeriod(accountId)
++        if (used == 0L) return null
++        val quota = quotas.quotaFor(accountId)
++        return UsageDigest(accountId, used, quota, used * 100 / quota)
++    }
++}
++
++data class UsageDigest(val accountId: String, val used: Long, val quota: Long, val percentOfQuota: Long, val openInvoiceAmount: Long)
+diff --git a/backend/src/main/kotlin/com/example/metering/digest/UsageDigestJob.kt b/backend/src/main/kotlin/com/example/metering/digest/UsageDigestJob.kt
+new file mode 100644
+--- /dev/null
++++ b/backend/src/main/kotlin/com/example/metering/digest/UsageDigestJob.kt
+@@ -0,0 +1,24 @@
++package com.example.metering.digest
++
++import com.example.metering.account.AccountRepository
++import com.example.notifications.NotificationService
++
++/** Sends one Usage_Digest per active Account every Monday at 08:00 UTC. */
++class UsageDigestJob(
++    private val accounts: AccountRepository,
++    private val builder: UsageDigestBuilder,
++    private val notifications: NotificationService,
++) {
++    fun run() {
++        accounts.active().forEach { account ->
++            val digest = builder.build(account.id) ?: return@forEach
++            notifications.send("usage-digest", account.ownerEmail, digest.toPayload())
++        }
++    }
++}
++
++private fun UsageDigest.toPayload() = mapOf(
++    "used" to used.toString(),
++    "quota" to quota.toString(),
++    "percentOfQuota" to percentOfQuota.toString(),
++)

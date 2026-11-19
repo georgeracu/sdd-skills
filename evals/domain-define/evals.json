@@ -1,0 +1,242 @@
+{
+  "skill_name": "domain-define",
+  "evals": [
+    {
+      "id": 1,
+      "slug": "skip-all-terms-existing",
+      "prompt": "Use the sdd:domain-define skill. Discovery for work item 05 at project/work-items/05-quota-banner is approved; the domain model is in project/domain and the architecture notes are in shared/. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "Every entry in the Terms section of discovery.md (Account_Owner, Usage_Meter, Quota) is marked existing and matches a glossary heading with the same meaning, so the skill skips. It writes nothing under outputs/, asks no question, says \"Domain terms unchanged\" and hands over to sdd:spec-generator with the work-item path project/work-items/05-quota-banner/.",
+      "files": [
+        "files/skip-all-terms-existing/project",
+        "files/shared"
+      ],
+      "criteria": [
+        "Recognises that Account_Owner, Usage_Meter and Quota are all existing glossary terms used with their glossary meaning",
+        "Asks the user no question",
+        "Writes no file and copies no file under outputs/, including no CHANGELOG.md entry",
+        "Says that the domain terms are unchanged",
+        "Hands over to sdd:spec-generator for project/work-items/05-quota-banner/ (naming it as the next step counts, including when the run says the skill is not available in its session)"
+      ],
+      "assertions": {
+        "must_include": [
+          "Domain terms unchanged",
+          "sdd:spec-generator"
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** proposed",
+            "scope": "outputs"
+          },
+          {
+            "text": "work-item 05",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "slug": "synonym-recommends-existing",
+      "prompt": "Use the sdd:domain-define skill. Discovery for work item 05 at project/work-items/05-plan-change-email is approved; the domain model is in project/domain and the architecture notes are in shared/. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "Discovery marks Customer_Contact as a new term, but the glossary already has the concept as Account_Owner, whose Avoid list includes Customer Contact. The reply asks exactly one question, with lettered options, recommending Account_Owner first and saying that Customer Contact is a word the glossary avoids. It writes no file in this reply, because the user has not answered.",
+      "files": [
+        "files/synonym-recommends-existing/project",
+        "files/shared"
+      ],
+      "criteria": [
+        "Identifies Customer_Contact as a synonym of the existing term Account_Owner, not as a new concept",
+        "Points out that Customer Contact is in Account_Owner's Avoid list",
+        "Asks exactly one question, with lettered options and Account_Owner as the first, recommended option",
+        "Does not ask about Plan, which is an existing term used with its glossary meaning",
+        "Writes no file under outputs/ and does not add a Customer_Contact entry anywhere",
+        "Does not invoke sdd:spec-generator in this reply"
+      ],
+      "assertions": {
+        "must_include": [
+          "Account_Owner",
+          "(a)"
+        ],
+        "must_not_include": [
+          {
+            "text": "### Customer_Contact",
+            "scope": "outputs"
+          },
+          {
+            "text": "work-item 05",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "slug": "one-word-two-meanings",
+      "prompt": "Use the sdd:domain-define skill. Discovery for work item 06 at project/work-items/06-team-sign-in is approved; the domain model is in project/domain and the architecture notes are in shared/. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "Discovery uses Account for a person's sign-in to the Dashboard, while the glossary defines Account as a paying customer. The project has one context (no context-map.md). The reply asks one question about the conflict, recommending first that both meanings stay in the one context under two different words (Account keeps its glossary meaning, and the sign-in gets a new word such as User or Member), with two separate contexts as a later option. It writes no file, creates no context-map.md and no second glossary.",
+      "files": [
+        "files/one-word-two-meanings/project",
+        "files/shared"
+      ],
+      "criteria": [
+        "Identifies that discovery's Account conflicts with the glossary's Account (a paying customer)",
+        "Asks exactly one question, with lettered options",
+        "The first, recommended option keeps one context and gives the sign-in meaning a different word, leaving Account's glossary meaning unchanged",
+        "Offers two contexts only as a non-recommended option, or not at all",
+        "Does not redefine Account in the glossary",
+        "Writes no file under outputs/, and creates no context-map.md and no second glossary.md"
+      ],
+      "assertions": {
+        "must_include": [
+          "(a)"
+        ],
+        "must_not_include": [
+          {
+            "text": "## Relationships",
+            "scope": "outputs"
+          },
+          {
+            "text": "a person's sign-in",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "slug": "new-term-written-proposed",
+      "prompt": "Use the sdd:domain-define skill. Discovery for work item 04 at project/work-items/04-usage-digest is approved; the domain model is in project/domain and the architecture notes are in shared/. The team has already agreed both new terms, so do not ask about them. Usage_Digest: \"The weekly email that tells an Account_Owner how much of the Quota the Account has used in the current Billing_Period.\" Avoid: Weekly Report, Usage Email. We chose Usage_Digest over Weekly Report because nobody can request it the way they request a report. Account_Admin: \"A user who can change an Account's settings, including switching the Usage_Digest off.\" Avoid: Admin User. Both belong to the project's single context. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "The reply asks no question, because the prompt settles both terms. It writes outputs/project/domain/glossary.md with two new entries, Account_Admin and Usage_Digest, each with the given definition, its Avoid list, **Status:** proposed and **Since:** work-item 04, in alphabetical order among the existing terms, leaving every existing entry unchanged. It appends a CHANGELOG.md entry headed with a date and work-item 04, one line per term, giving the reason Usage_Digest was chosen over Weekly Report. It creates no context-map.md and no canvas, sets no term to agreed, and hands over to sdd:spec-generator.",
+      "files": [
+        "files/new-term-written-proposed/project",
+        "files/shared"
+      ],
+      "expected_files": [
+        "project/domain/glossary.md",
+        "project/domain/CHANGELOG.md"
+      ],
+      "criteria": [
+        "Asks no question, because the prompt gives name, definition, words to avoid and context for both terms",
+        "Adds ### Usage_Digest and ### Account_Admin entries with the given definitions and Avoid lists",
+        "Both new entries have **Status:** proposed and **Since:** work-item 04; neither is agreed",
+        "Leaves every existing glossary entry unchanged and keeps the entries in alphabetical order",
+        "Appends a CHANGELOG.md entry for work-item 04 that records both terms and the reason for choosing Usage_Digest over Weekly Report",
+        "Creates no context-map.md and no canvas.md",
+        "Hands over to sdd:spec-generator for project/work-items/04-usage-digest/ (naming it as the next step counts, including when the run says the skill is not available in its session)"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "### Usage_Digest",
+            "scope": "outputs"
+          },
+          {
+            "text": "### Account_Admin",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Since:** work-item 04",
+            "scope": "outputs"
+          },
+          {
+            "text": "Weekly Report",
+            "scope": "outputs"
+          },
+          "sdd:spec-generator"
+        ],
+        "must_not_include": [
+          {
+            "text": "## Relationships",
+            "scope": "outputs"
+          },
+          {
+            "text": "# Canvas",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "slug": "no-tactical-vocabulary",
+      "prompt": "Use the sdd:domain-define skill. Discovery for work item 07 at project/work-items/07-notification-settings is approved; the domain model is in project/domain and the architecture notes are in shared/. The new term is agreed, so do not ask about it: Notification_Preference, \"Whether an Account receives one kind of email.\" Avoid: Email Setting. It belongs to the project's single context. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "A simple settings feature needs one new glossary term and nothing else. The reply adds a Notification_Preference entry with **Status:** proposed and **Since:** work-item 07 and a CHANGELOG.md entry. It adds no other term (no Email_Template, Settings_Page or similar), and writes no aggregate, entity, value object, repository or invariant, no context-map.md and no canvas.md. It hands over to sdd:spec-generator.",
+      "files": [
+        "files/no-tactical-vocabulary/project",
+        "files/shared"
+      ],
+      "expected_files": [
+        "project/domain/glossary.md",
+        "project/domain/CHANGELOG.md"
+      ],
+      "criteria": [
+        "Adds exactly one new glossary entry, Notification_Preference, with the given definition and Avoid list",
+        "The entry has **Status:** proposed and **Since:** work-item 07",
+        "Adds no term for technical or UI concepts such as a settings page, an email template or a toggle",
+        "Writes no aggregate, entity, value object, repository or invariant anywhere",
+        "Creates no context-map.md and no canvas.md",
+        "Hands over to sdd:spec-generator (naming it as the next step counts, including when the run says the skill is not available in its session)"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "### Notification_Preference",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Since:** work-item 07",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "Aggregate",
+            "scope": "outputs"
+          },
+          {
+            "text": "Value Object",
+            "scope": "outputs"
+          },
+          {
+            "text": "## Relationships",
+            "scope": "outputs"
+          },
+          {
+            "text": "# Canvas",
+            "scope": "outputs"
+          },
+          {
+            "text": "### Email_Template",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "slug": "technical-change-writes-nothing",
+      "prompt": "Use the sdd:domain-define skill. Add a retry with exponential backoff to the SQS client that Notification_Service uses, with at most five attempts. The domain model is in project/domain and the architecture notes are in shared/. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "The request is a purely technical change: it adds or changes no business term, context or relationship. The reply says there is no domain change and why, in one or two sentences, asks no question, writes nothing under outputs/ and does not invoke sdd:spec-generator.",
+      "files": [
+        "files/technical-change-writes-nothing/project",
+        "files/shared"
+      ],
+      "criteria": [
+        "Says that the request changes no domain term, context or relationship",
+        "Asks the user no question",
+        "Writes no file under outputs/, and adds no term such as Retry, Backoff or SQS_Client",
+        "Does not invoke or hand over to sdd:spec-generator"
+      ],
+      "assertions": {
+        "must_include": [
+          "No domain change"
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** proposed",
+            "scope": "outputs"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+{
+  "skill_name": "domain-maintenance",
+  "evals": [
+    {
+      "id": 1,
+      "slug": "skip-no-domain-dir",
+      "prompt": "Use the sdd:domain-maintenance skill for work item 04 at project/work-items/04-usage-digest; sdd:spec-maintenance has passed. The project is not a git repository: the work item's changes are in changes.diff, and the code is under backend/. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy, and write the report to outputs/project/work-items/04-usage-digest/domain-maintenance-report.md.",
+      "expected_output": "The project has no project/domain/ directory, only an older UBIQUITOUS_LANGUAGE.md at the root, so the skill skips. It writes no domain-maintenance-report.md, creates no project/domain/ file, leaves UBIQUITOUS_LANGUAGE.md alone, says the project has no domain model, and hands over to sdd:spec-finish.",
+      "files": [
+        "files/skip-no-domain-dir/project",
+        "files/skip-no-domain-dir/backend",
+        "files/skip-no-domain-dir/changes.diff",
+        "files/skip-no-domain-dir/UBIQUITOUS_LANGUAGE.md"
+      ],
+      "criteria": [
+        "States that the project has no domain model because project/domain/ does not exist",
+        "Writes no domain-maintenance-report.md, not even one that says there is nothing to do",
+        "Creates no file under project/domain/ and does not edit or copy UBIQUITOUS_LANGUAGE.md",
+        "Hands over to sdd:spec-finish (naming it as the next step counts, including when the run says the skill is not available in its session)"
+      ],
+      "assertions": {
+        "must_include": [
+          "sdd:spec-finish"
+        ],
+        "must_not_include": [
+          {
+            "text": "# Domain Maintenance Report",
+            "scope": "outputs"
+          },
+          {
+            "text": "# Glossary",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "slug": "clean-promotes-proposed",
+      "prompt": "Use the sdd:domain-maintenance skill for work item 04 at project/work-items/04-usage-digest; sdd:spec-maintenance has passed. The project is not a git repository: the work item's changes are in changes.diff, and the code is under backend/. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy, and write the report to outputs/project/work-items/04-usage-digest/domain-maintenance-report.md.",
+      "expected_output": "Work item 04 proposed Usage_Digest in the Metering glossary, and its requirements, design and code use it. The new code depends only on Metering itself and on Notifications, which the context map allows (Notifications is upstream of Metering through an Open Host Service), and uses no avoided word. The skill sets Usage_Digest to **Status:** agreed, changing nothing else in the entry, appends a CHANGELOG.md entry headed with a date and 'work-item 04, maintenance', and writes a report with **Status:** PASSED, Usage_Digest under Domain Changes and 'No findings.'. It hands over to sdd:spec-finish.",
+      "files": [
+        "files/clean-promotes-proposed/project",
+        "files/clean-promotes-proposed/backend",
+        "files/clean-promotes-proposed/changes.diff"
+      ],
+      "expected_files": [
+        "project/work-items/04-usage-digest/domain-maintenance-report.md",
+        "project/domain/metering/glossary.md",
+        "project/domain/CHANGELOG.md"
+      ],
+      "criteria": [
+        "Sets the Usage_Digest entry to **Status:** agreed and leaves its definition, Avoid list and Since line unchanged",
+        "Changes no other glossary entry and edits neither context-map.md nor billing/glossary.md",
+        "Does not report the UsageDigestJob dependency on NotificationService as an unmapped dependency, because the Notifications to Metering row allows it",
+        "Appends a CHANGELOG.md entry for work-item 04 maintenance that records Usage_Digest as agreed",
+        "Writes the report with **Status:** PASSED, Usage_Digest under Domain Changes and No findings under Findings",
+        "Hands over to sdd:spec-finish (naming it as the next step counts, including when the run says the skill is not available in its session)"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          },
+          {
+            "text": "work-item 04, maintenance",
+            "scope": "outputs"
+          },
+          {
+            "text": "No findings.",
+            "scope": "outputs"
+          },
+          "sdd:spec-finish"
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "slug": "alias-in-new-code-major",
+      "prompt": "Use the sdd:domain-maintenance skill for work item 04 at project/work-items/04-usage-digest; sdd:spec-maintenance has passed. The project is not a git repository: the work item's changes are in changes.diff, and the code is under backend/. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy, and write the report to outputs/project/work-items/04-usage-digest/domain-maintenance-report.md.",
+      "expected_output": "The work item adds WeeklyReportSender.kt and calls it from UsageDigestJob, and its tasks.md names it. Weekly Report is in Usage_Digest's Avoid list, so each use is a D3 finding with severity MAJOR, with file and line. MAJOR does not block: the report has **Status:** PASSED, Usage_Digest is promoted to agreed, the closing reply repeats the MAJOR finding, and the skill hands over to sdd:spec-finish. The skill does not rename the class itself.",
+      "files": [
+        "files/alias-in-new-code-major/project",
+        "files/alias-in-new-code-major/backend",
+        "files/alias-in-new-code-major/changes.diff"
+      ],
+      "expected_files": [
+        "project/work-items/04-usage-digest/domain-maintenance-report.md",
+        "project/domain/metering/glossary.md"
+      ],
+      "criteria": [
+        "Reports WeeklyReportSender (in WeeklyReportSender.kt and its use in UsageDigestJob.kt) as an avoided word in new code, severity MAJOR, naming Usage_Digest as the term to use",
+        "Gives the file and line of each finding",
+        "Writes **Status:** PASSED, because MAJOR findings do not block this gate",
+        "Still promotes Usage_Digest to agreed, because the specs and code use it",
+        "Does not edit, rename or copy any Kotlin file",
+        "Repeats the MAJOR finding in the closing reply and hands over to sdd:spec-finish"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "MAJOR",
+            "scope": "outputs"
+          },
+          {
+            "text": "WeeklyReportSender",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          },
+          "sdd:spec-finish"
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "slug": "alias-in-old-code-minor",
+      "prompt": "Use the sdd:domain-maintenance skill for work item 04 at project/work-items/04-usage-digest; sdd:spec-maintenance has passed. The project is not a git repository: the work item's changes are in changes.diff, and the code is under backend/. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy, and write the report to outputs/project/work-items/04-usage-digest/domain-maintenance-report.md.",
+      "expected_output": "The only use of an avoided word is UsageCountMigration.kt (Usage Count is avoided under Usage_Meter), a file the work item did not change: it is absent from changes.diff. That is at most a MINOR finding, never MAJOR, and the skill may also leave it out of a work-item report because the file is outside the work item's changes. The work item's own code is clean. Report **Status:** PASSED, Usage_Digest promoted, hand over to sdd:spec-finish.",
+      "files": [
+        "files/alias-in-old-code-minor/project",
+        "files/alias-in-old-code-minor/backend",
+        "files/alias-in-old-code-minor/changes.diff"
+      ],
+      "expected_files": [
+        "project/work-items/04-usage-digest/domain-maintenance-report.md"
+      ],
+      "criteria": [
+        "Uses changes.diff to tell the work item's added lines from older code",
+        "Does not report UsageCountMigration as MAJOR or CRITICAL; reporting it as MINOR, or not at all because the work item did not change it, both pass",
+        "Reports no finding against the work item's own files",
+        "Writes **Status:** PASSED and promotes Usage_Digest to agreed",
+        "Hands over to sdd:spec-finish (naming it as the next step counts, including when the run says the skill is not available in its session)"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          },
+          "sdd:spec-finish"
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "slug": "unmapped-dependency-fails",
+      "prompt": "Use the sdd:domain-maintenance skill for work item 04 at project/work-items/04-usage-digest; sdd:spec-maintenance has passed. The project is not a git repository: the work item's changes are in changes.diff, and the code is under backend/. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy, and write the report to outputs/project/work-items/04-usage-digest/domain-maintenance-report.md.",
+      "expected_output": "UsageDigestBuilder, in com.example.metering, now imports com.example.billing.invoice.InvoiceRepository, and design.md says the digest reads the open Invoice amount from Billing. The context map lets Billing depend on Metering (Metering is upstream) but has no row that lets Metering depend on Billing. That is a D2 CRITICAL finding: the report has **Status:** FAILED, nothing under project/domain/ changes (Usage_Digest stays proposed, no CHANGELOG entry), and the reply asks the user one question with lettered options, such as adding a Billing to Metering row with a pattern and message, or removing the dependency from the design. It does not hand over to sdd:spec-finish.",
+      "files": [
+        "files/unmapped-dependency-fails/project",
+        "files/unmapped-dependency-fails/backend",
+        "files/unmapped-dependency-fails/changes.diff"
+      ],
+      "expected_files": [
+        "project/work-items/04-usage-digest/domain-maintenance-report.md"
+      ],
+      "criteria": [
+        "Identifies the import of com.example.billing.invoice.InvoiceRepository in UsageDigestBuilder as Metering depending on Billing",
+        "Uses the Code location column and the Relationships table to conclude that no row allows this direction",
+        "Records it as a CRITICAL finding and writes **Status:** FAILED",
+        "Changes nothing under project/domain/: Usage_Digest stays proposed and CHANGELOG.md gets no entry",
+        "Asks the user one question with lettered options, the recommended one first, covering at least adding a relationship row and removing the dependency",
+        "Does not invoke or hand over to sdd:spec-finish"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "CRITICAL",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
+          },
+          "(a)"
+        ],
+        "must_not_include": [
+          {
+            "text": "work-item 04, maintenance",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "slug": "rename-deprecates-old",
+      "prompt": "Use the sdd:domain-maintenance skill for work item 04 at project/work-items/04-usage-digest; sdd:spec-maintenance has passed. The project is not a git repository: the work item's changes are in changes.diff, and the code is under backend/. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy, and write the report to outputs/project/work-items/04-usage-digest/domain-maintenance-report.md.",
+      "expected_output": "The work item's CHANGELOG.md entry records that Usage_Digest replaces Usage_Report, and Usage Report is in Usage_Digest's Avoid list while the Usage_Report entry is still agreed. The scanner reports that pair as alias-is-term, but because the rename is recorded for this work item it is not a finding. The skill sets Usage_Digest to agreed and deprecates Usage_Report: the entry is kept, its definition is struck through, 'Use Usage_Digest.' is added, and its Status line reads deprecated with the annotation *(deprecated, see work-item 04)*. The report is PASSED with both changes listed, and the skill hands over to sdd:spec-finish.",
+      "files": [
+        "files/rename-deprecates-old/project",
+        "files/rename-deprecates-old/backend",
+        "files/rename-deprecates-old/changes.diff"
+      ],
+      "expected_files": [
+        "project/work-items/04-usage-digest/domain-maintenance-report.md",
+        "project/domain/metering/glossary.md",
+        "project/domain/CHANGELOG.md"
+      ],
+      "criteria": [
+        "Does not report the Usage Report alias and the Usage_Report heading as a glossary contradiction, because this work item records the rename",
+        "Keeps the ### Usage_Report entry rather than deleting it",
+        "Strikes through the Usage_Report definition and adds a pointer to Usage_Digest",
+        "Sets the Usage_Report Status line to deprecated with the annotation *(deprecated, see work-item 04)*",
+        "Sets Usage_Digest to agreed",
+        "Writes **Status:** PASSED and lists both the agreement and the deprecation under Domain Changes",
+        "Hands over to sdd:spec-finish (naming it as the next step counts, including when the run says the skill is not available in its session)"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "### Usage_Report",
+            "scope": "outputs"
+          },
+          {
+            "text": "*(deprecated, see work-item 04)*",
+            "scope": "outputs"
+          },
+          {
+            "text": "~~A weekly email that lists",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
+          },
+          {
+            "text": "*(deprecated —",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "slug": "undefined-term-major",
+      "prompt": "Use the sdd:domain-maintenance skill for work item 04 at project/work-items/04-usage-digest; sdd:spec-maintenance has passed. The project is not a git repository: the work item's changes are in changes.diff, and the code is under backend/. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy, and write the report to outputs/project/work-items/04-usage-digest/domain-maintenance-report.md.",
+      "expected_output": "requirements.md and design.md use Spike_Alert as a business name, but no glossary defines it and this work item's CHANGELOG.md entry does not propose it. That is a D4 MAJOR finding. Technical words in the design (EventBridge, SQS queue, Quota_Cache, retries) are not findings. The report is PASSED, Usage_Digest is promoted, Spike_Alert is not added to any glossary, and the reply repeats the finding and hands over to sdd:spec-finish.",
+      "files": [
+        "files/undefined-term-major/project",
+        "files/undefined-term-major/backend",
+        "files/undefined-term-major/changes.diff"
+      ],
+      "expected_files": [
+        "project/work-items/04-usage-digest/domain-maintenance-report.md"
+      ],
+      "criteria": [
+        "Reports Spike_Alert as a term used in the specs that no glossary defines, severity MAJOR",
+        "Does not report technical words such as EventBridge, SQS queue, retry or cache as undefined terms",
+        "Does not add Spike_Alert, or any other term, to a glossary",
+        "Writes **Status:** PASSED and promotes Usage_Digest to agreed",
+        "Repeats the MAJOR finding in the closing reply and hands over to sdd:spec-finish"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "Spike_Alert",
+            "scope": "outputs"
+          },
+          {
+            "text": "MAJOR",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** PASSED",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "### Spike_Alert",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** FAILED",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "slug": "repo-mode-reports-without-edits",
+      "prompt": "Use the sdd:domain-maintenance skill to run a domain drift check across the whole repository. The domain model is in project/domain, the specs are in project/work-items and the code is under backend/. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy, and write the drift report to outputs/project/domain/drift-report.md.",
+      "expected_output": "Repo mode scans every spec and all code. It writes outputs/project/domain/drift-report.md with **Triggered by:** repo check and no Domain Changes section. Findings: Overage_Fee is an agreed Billing term that nothing uses (a rot candidate, MINOR, proposed for deprecation); UsageCountMigration uses the avoided word Usage Count; StatementMailer uses the avoided word Statement (Invoice's Avoid list). It changes no glossary, no context map, no CHANGELOG.md and no code: Usage_Digest stays proposed. The reply summarises the counts per check, recommends what to fix first, and does not hand over to sdd:spec-finish.",
+      "files": [
+        "files/repo-mode-reports-without-edits/project",
+        "files/repo-mode-reports-without-edits/backend",
+        "files/repo-mode-reports-without-edits/changes.diff"
+      ],
+      "expected_files": [
+        "project/domain/drift-report.md"
+      ],
+      "criteria": [
+        "Writes project/domain/drift-report.md with **Triggered by:** repo check",
+        "Reports Overage_Fee as an unused agreed term and proposes deprecating it, without deprecating it",
+        "Reports UsageCountMigration (Usage Count, avoided under Usage_Meter) and StatementMailer (Statement, avoided under Invoice)",
+        "Changes no glossary.md, context-map.md, CHANGELOG.md or Kotlin file; Usage_Digest stays proposed",
+        "Summarises the findings per check in the reply and recommends which to fix first",
+        "Does not invoke or hand over to sdd:spec-finish"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "Overage_Fee",
+            "scope": "outputs"
+          },
+          {
+            "text": "UsageCountMigration",
+            "scope": "outputs"
+          },
+          {
+            "text": "StatementMailer",
+            "scope": "outputs"
+          },
+          {
+            "text": "repo check",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "# Glossary:",
+            "scope": "outputs"
+          },
+          {
+            "text": "## Domain Changes",
+            "scope": "outputs"
+          },
+          {
+            "text": "# Domain Changelog",
+            "scope": "outputs"
+          }
+        ]
+      }
+    }
+  ]
+}
