@@ -28,7 +28,7 @@ Look, and change nothing yet.
 |---|---|---|
 | OpenAPI | `**/openapi.yaml`, `docs/apis/**/*.yaml` | discovery, spec generator, design review, implementation audit |
 | Architecture | `**/ARCHITECTURE.md`, `project/architecture/**`, `docs/architecture/**` | discovery, spec generator, design review, implementation audit |
-| Domain terms | `**/UBIQUITOUS_LANGUAGE.md` | discovery, spec generator, design review |
+| Domain terms | `project/domain/**`, then `**/UBIQUITOUS_LANGUAGE.md` | discovery, spec generator, design review |
 
 ## 2. Present
 
@@ -56,3 +56,4 @@ Tell the user:
 - What you copied and what you left alone.
 - That the next step for a feature is `/sdd:spec-discovery`, and for a bug report `/sdd:spec-generator`.
 - That `/sdd:spec-workflow` describes the whole pipeline, and that bugfix implementation needs the superpowers plugin or an equivalent.
+- When neither `project/domain/` nor `**/UBIQUITOUS_LANGUAGE.md` exists, that `/sdd:domain-map` sets up a domain model.
