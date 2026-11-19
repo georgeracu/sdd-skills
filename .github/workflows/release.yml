@@ -3,14 +3,14 @@ name: Release
 on:
   pull_request:
     paths:
-      - skills/.claude-plugin/plugin.json
+      - plugins/sdd/.claude-plugin/plugin.json
       - CHANGELOG.md
       - .github/workflows/release.yml
   push:
     tags: ['v*']
 
 env:
-  MANIFEST: skills/.claude-plugin/plugin.json
+  MANIFEST: plugins/sdd/.claude-plugin/plugin.json
 
 jobs:
   release:

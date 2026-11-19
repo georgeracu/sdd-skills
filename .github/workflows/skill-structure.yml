@@ -30,4 +30,4 @@ jobs:
       - name: Validate the marketplace and the plugin
         run: |
           claude plugin validate . --strict \
-            && claude plugin validate skills --strict
+            && claude plugin validate plugins/sdd --strict

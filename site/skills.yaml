@@ -1,4 +1,4 @@
-# One entry per skills/<name>/ folder. The sync script fails the build when the two disagree.
+# One entry per plugins/sdd/skills/<name>/ folder. The sync script fails the build when the two disagree.
 # post: null means no post yet. example: files in examples/38-source-fidelity-and-accuracy-sla/.
 # example_note explains an empty or partial example list.
 # position replaces the pipeline header for skills that are not rows in spec-workflow's tables.

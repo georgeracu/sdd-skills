@@ -6,6 +6,5 @@
   "homepage": "https://georgeracu.github.io/sdd-skills/",
   "repository": "https://github.com/georgeracu/sdd-skills",
   "license": "MIT",
-  "skills": ["./"],
   "keywords": ["spec-driven-development", "sdd", "ears", "quality-gates", "skills"]
 }
