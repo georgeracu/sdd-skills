@@ -14,15 +14,17 @@ When the test exists, check D2 by running the project's test command from `AGENT
 
 Fails when code in one context depends on another context with no `context-map.md` row that allows it. A row lets the downstream context depend on the upstream one; `Shared Kernel` and `Partnership` allow both directions. Contexts with no `Code location` (external systems) are ignored. Code locations must not nest: `com.acme` and `com.acme.billing` cannot both be contexts.
 
-Dependency, Gradle Kotlin DSL (use 1.3.0 or the current 1.x release):
+Dependency, Gradle Kotlin DSL (the build below ran with ArchUnit 1.5.1, the current 1.x release; use the current 1.x release):
 
 ```kotlin
 dependencies {
-    testImplementation("com.tngtech.archunit:archunit-junit5:1.3.0")
+    testImplementation("com.tngtech.archunit:archunit-junit5:1.5.1")
 }
 
 tasks.test {
-    systemProperty("contextMap", rootProject.file("project/domain/context-map.md").path)
+    val contextMap = rootProject.file("project/domain/context-map.md")
+    inputs.file(contextMap)
+    systemProperty("contextMap", contextMap.path)
 }
 ```
 
@@ -164,7 +166,7 @@ class ContextMap(val contexts: List<BoundedContext>, val relationships: List<Rel
 }
 ```
 
-This template has not been compiled as part of drafting the skill. Compile it in a scratch project before you ship it, and add an eval case that runs it.
+The template compiled and ran in a scratch project with Kotlin 2.4.21, Gradle 9.9.1, JDK 21, JUnit 5.14.4 and ArchUnit 1.5.1: it passed with a Metering to Billing row and failed for Billing with the `because` message when the row was removed. The `inputs.file` line matters, because without it Gradle reports the test as up to date after the map changes and skips it. No eval case runs the template.
 
 ## Mapping terms to code
 
