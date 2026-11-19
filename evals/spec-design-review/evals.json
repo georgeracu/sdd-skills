@@ -432,6 +432,87 @@
           }
         ]
       }
+    },
+    {
+      "id": 10,
+      "slug": "domain-noun-not-in-glossary-major",
+      "prompt": "Review the design for the quota alerts work item (01-quota-alerts). Its requirements.md and design.md are in the working directory, with the project's domain model under project/domain, the architecture and the API contract alongside.",
+      "expected_output": "The design is sound and consistent with the architecture and the API contract. The project has a domain model in project/domain/, and the design uses the business noun Alert_Threshold throughout while the metering glossary does not define it and the design does not propose it: it proposes only Threshold_Set and Quota_Alert. A business noun that is neither a glossary term nor proposed is MAJOR, so the status is APPROVED WITH ISSUES, with MAJOR-001 naming Alert_Threshold and recommending that the design propose it or use a glossary term. Nothing is critical.",
+      "criteria": [
+        "Writes design-review-summary.md for the work item rather than only replying in chat",
+        "Overall status is APPROVED WITH ISSUES, not BLOCKED and not plain APPROVED",
+        "Reports no critical discrepancies",
+        "Raises a MAJOR discrepancy that names Alert_Threshold as a business noun that is neither in the domain glossary nor proposed by the design",
+        "Does not raise a discrepancy against Threshold_Set or Quota_Alert, which the design proposes",
+        "Allows continuation to tasks.md while recommending that the major issue be fixed first"
+      ],
+      "files": [
+        "files/domain-noun-not-in-glossary/requirements.md",
+        "files/domain-noun-not-in-glossary/design.md",
+        "files/domain-noun-not-in-glossary/project",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
+      ],
+      "expected_files": [
+        "design-review-summary.md"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "MAJOR-001",
+            "scope": "outputs"
+          },
+          {
+            "text": "Critical discrepancies: 0",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** APPROVED WITH ISSUES",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "CRITICAL-001",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "slug": "cross-context-call-without-row-blocked",
+      "prompt": "Review the design for the quota alerts work item (01-quota-alerts). Its requirements.md and design.md are in the working directory, with the project's domain model under project/domain, the architecture and the API contract alongside.",
+      "expected_output": "The design is otherwise sound, and every business noun it uses is a glossary term or proposed. The project has a context map in project/domain/context-map.md with three contexts and one relationship: Notifications upstream of Metering. The design has the Metering evaluator call com.example.billing.InvoiceFlagger, a call into the Billing context, and the map has no row between Metering and Billing. A cross-context call with no context-map row is CRITICAL, so the status is BLOCKED, with CRITICAL-001 naming the call and recommending that the design drop it or that a relationship row be agreed first. The call to Notification_Service is allowed by the Notifications to Metering row and raises nothing.",
+      "criteria": [
+        "Writes design-review-summary.md for the work item rather than only replying in chat",
+        "Overall status is BLOCKED",
+        "Raises a CRITICAL discrepancy for the call from the evaluator to com.example.billing.InvoiceFlagger, with the missing context-map row between Metering and Billing as its basis",
+        "Does not raise a discrepancy against the call to Notification_Service, because the context map has a Notifications to Metering row",
+        "Does not allow continuation to tasks.md and says what must change before the design is reviewed again"
+      ],
+      "files": [
+        "files/cross-context-call/requirements.md",
+        "files/cross-context-call/design.md",
+        "files/cross-context-call/project",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
+      ],
+      "expected_files": [
+        "design-review-summary.md"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "CRITICAL-001",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Status:** BLOCKED",
+            "scope": "outputs"
+          }
+        ]
+      }
     }
   ]
 }
