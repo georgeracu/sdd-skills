@@ -8,7 +8,7 @@ Every AI classification answer must cite the municipal rule it draws from and ca
 
 ## Files and the skill that produced each
 
-Step numbers follow the twelve-step feature pipeline documented in `skills/spec-workflow`.
+Step numbers follow the twelve-step feature pipeline documented in `plugins/sdd/skills/spec-workflow`.
 
 | File | Produced by | Step | Written |
 |---|---|---|---|
