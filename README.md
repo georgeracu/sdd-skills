@@ -24,7 +24,7 @@ claude plugin install sdd@georgeracu
 
 Cursor, Kiro, VS Code and ChatGPT are untested. `copilot plugin install georgeracu/sdd-skills:plugins/sdd` is also untested.
 
-**Any other Agent Skills client** can use `npx skills`. It lists all eleven skills from this repository, and I have not run them in those clients, such as Gemini CLI, pi or Grok Build.
+**Any other Agent Skills client** can use `npx skills`. It lists all fourteen skills from this repository, and I have not run them in those clients, such as Gemini CLI, pi or Grok Build.
 
 ```
 npx skills@latest add georgeracu/sdd-skills
@@ -67,7 +67,17 @@ Teams that need an audit trail and gates that block. Every work item keeps its r
 
 `spec-workflow` is the reference for this order and for the bugfix pipeline. Its kind is reference: the agent reads it, and it does no work of its own. The [worked example](https://georgeracu.com/sdd-skills/worked-example/) follows one real feature through every step.
 
-You start a user-invoked skill yourself, for example with `/sdd:spec-setup`. The agent starts a model-invoked skill when the pipeline reaches it. Claude Code reads the `disable-model-invocation` key that marks a user-invoked skill, and Codex reads `agents/openai.yaml` in the skill folder. Each of these agents leaves `spec-setup` out of its list of skills, so it does not start `spec-setup` from the description. Copilot CLI documents the key, but its effect is not yet tested here. The opt-out does not hide the files. When the skills are installed inside the project, for example with `npx skills add`, Codex and Copilot CLI can find `spec-setup/SKILL.md` while they explore the project, and follow it. Gemini CLI has no per-skill opt-out. A claude.ai upload or the Skills API rejects a skill that has this key, so remove the key from `spec-setup` before you upload it. The Agent Skills reference validator, `skills-ref`, reports the key as an unexpected field, and Codex CLI 0.170.0 and Copilot CLI 1.0.107 load the skill anyway.
+You start a user-invoked skill yourself, for example with `/sdd:spec-setup`. The agent starts a model-invoked skill when the pipeline reaches it. Claude Code reads the `disable-model-invocation` key that marks a user-invoked skill, and Codex reads `agents/openai.yaml` in the skill folder. I tested the opt-out in Codex CLI 0.170.0 and Copilot CLI 1.0.114, with three fresh sessions for each prompt and client. Given "Prepare this project for spec-driven development", Copilot CLI never started `spec-setup`: it started `spec-workflow` each time. Codex CLI read `spec-setup/SKILL.md` from the plugin folder in one session, because `spec-workflow` points to it, and in the first run of this test it did so in all three. Asked to call `spec-setup` by name, the Copilot CLI skill tool refuses with "cannot be invoked by the model because disable-model-invocation is enabled". So the opt-out stops a client from starting the skill from its description, but it does not hide the files: an agent that reads the plugin folder can still follow `spec-setup/SKILL.md`. Codex CLI has no skill tool to probe, so the test shows what it did and not why. The same prompt started `domain-map` in two of the three Codex sessions. "Set up the domain model for this repository" started `domain-map` and "Rename Customer to Account_Holder in the glossary" started `domain-define`, in all three sessions of both clients. Gemini CLI has no per-skill opt-out. A claude.ai upload or the Skills API rejects a skill that has this key, so remove the key from `spec-setup` before you upload it. The Agent Skills reference validator, `skills-ref`, reports the key as an unexpected field, and Codex CLI 0.170.0 and Copilot CLI 1.0.107 load the skill anyway.
+
+## Domain skills
+
+| Skill | Kind | Writes |
+|---|---|---|
+| `domain-map` | model-invoked | First `project/domain/**`, imports of older glossaries |
+| `domain-define` | model-invoked | New terms in `project/domain/**`, as proposed |
+| `domain-maintenance` | model-invoked | `domain-maintenance-report.md`, promotions and deprecations in `project/domain/**` |
+
+They keep a domain model in `project/domain/`, and the pipeline does not start them yet.
 
 ## Stability
 

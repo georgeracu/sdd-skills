@@ -1,0 +1,255 @@
+{
+  "skill_name": "domain-map",
+  "evals": [
+    {
+      "id": 1,
+      "slug": "single-context-recommended",
+      "prompt": "Use the sdd:domain-map skill to set up the domain model for this project. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "The project is one Gradle module with one root package, com.example.metering, and no older glossary. The reply skips the empty import section in one line and presents the contexts section: it recommends the single-context layout (project/domain/glossary.md and CHANGELOG.md, no context-map.md), says plainly that one context is normal for a service like this, and gives the evidence. It invents no second context from the packages usage, quota and digest. It waits for the user's answer and writes nothing.",
+      "files": [
+        "files/single-context-recommended/README.md",
+        "files/single-context-recommended/backend",
+        "files/single-context-recommended/settings.gradle.kts"
+      ],
+      "criteria": [
+        "Says in one line that there is no older glossary to import",
+        "Recommends a single context, with the single-context layout and no context-map.md",
+        "Does not propose the usage, quota or digest packages as separate bounded contexts",
+        "Presents only this section and waits for the user's answer; does not present relationships or canvases yet",
+        "Writes no file under outputs/ and creates no project/domain/ file in this reply"
+      ],
+      "assertions": {
+        "must_not_include": [
+          {
+            "text": "# Glossary",
+            "scope": "outputs"
+          },
+          {
+            "text": "# Context Map",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "slug": "import-ubiquitous-language",
+      "prompt": "Use the sdd:domain-map skill. Earlier you explored this project and presented your findings, and I accepted each section as a whole: import UBIQUITOUS_LANGUAGE.md, one context named Metering, no relationships and no canvas. You then listed the files you would write: project/domain/glossary.md and project/domain/CHANGELOG.md. My reply: approved. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "The reply writes project/domain/glossary.md with all six terms from UBIQUITOUS_LANGUAGE.md (Account, Account_Owner, Metered_Event, Plan, Quota, Usage_Meter) in alphabetical order, each with its definition, an Avoid line from the table's aliases, **Status:** agreed and **Since:** import. The group headings (Usage, Accounts) do not become contexts, and the example dialogue is not imported. It writes CHANGELOG.md with an entry headed by a date and domain-map that records the import, and turns the two flagged ambiguities into open questions there, because there is no canvas. It writes no context-map.md and leaves UBIQUITOUS_LANGUAGE.md unchanged, then tells the user the older file can go once the other skills read project/domain/.",
+      "files": [
+        "files/import-ubiquitous-language/README.md",
+        "files/import-ubiquitous-language/UBIQUITOUS_LANGUAGE.md",
+        "files/import-ubiquitous-language/backend",
+        "files/import-ubiquitous-language/settings.gradle.kts"
+      ],
+      "expected_files": [
+        "project/domain/glossary.md",
+        "project/domain/CHANGELOG.md"
+      ],
+      "criteria": [
+        "The glossary has an entry for each of Account, Account_Owner, Metered_Event, Plan, Quota and Usage_Meter, in alphabetical order",
+        "Each imported entry has an Avoid line taken from the Aliases to avoid column, **Status:** agreed and **Since:** import",
+        "Creates no context per group heading and writes no context-map.md or canvas.md",
+        "Does not import the example dialogue",
+        "Records both flagged ambiguities (usage, period) as open questions in CHANGELOG.md",
+        "Leaves UBIQUITOUS_LANGUAGE.md unchanged and does not copy it to outputs/",
+        "Tells the user when the older file can be deleted"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "### Account_Owner",
+            "scope": "outputs"
+          },
+          {
+            "text": "### Metered_Event",
+            "scope": "outputs"
+          },
+          {
+            "text": "### Usage_Meter",
+            "scope": "outputs"
+          },
+          {
+            "text": "**Since:** import",
+            "scope": "outputs"
+          },
+          {
+            "text": "domain-map",
+            "scope": "outputs"
+          }
+        ],
+        "must_not_include": [
+          {
+            "text": "# Context Map",
+            "scope": "outputs"
+          },
+          {
+            "text": "Domain expert",
+            "scope": "outputs"
+          },
+          {
+            "text": "## Example dialogue",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "slug": "evidence-graded",
+      "prompt": "Use the sdd:domain-map skill to set up the domain model for this repository. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "There is no older glossary, so the import section is skipped in one line. The contexts section recommends two contexts, Metering (com.example.metering) and Billing (com.example.billing), each graded strong: each is its own Gradle module and package with its own language, shown by Metering's Account (API keys and a Plan) and Billing's BillingAccount (legal name, VAT number, payment method). The reporting area mentioned in the README has no code and is at most raised as a speculative question, never recommended. The reply waits for the user and writes nothing.",
+      "files": [
+        "files/evidence-graded/README.md",
+        "files/evidence-graded/billing",
+        "files/evidence-graded/metering",
+        "files/evidence-graded/settings.gradle.kts"
+      ],
+      "criteria": [
+        "Recommends Metering and Billing as contexts, with their code locations",
+        "Grades both as strong and gives evidence for each, such as the separate modules and the different meanings of account",
+        "Does not recommend a Reporting context; mentioning it as speculative or as a question is fine",
+        "Gives a classification (core, supporting or generic) for each recommended context",
+        "Presents only this section and waits for the user's answer",
+        "Writes no file under outputs/ and creates no project/domain/ file in this reply"
+      ],
+      "assertions": {
+        "must_include": [
+          "Metering",
+          "Billing",
+          "strong"
+        ],
+        "must_not_include": [
+          {
+            "text": "# Context Map",
+            "scope": "outputs"
+          },
+          {
+            "text": "# Glossary",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "slug": "bet-scope-limits-map",
+      "prompt": "Use the sdd:domain-map skill for the bet in pitches/invoice-pdf.md. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "The scope is the bet, which touches Billing only: Invoice PDFs, not emailed, no change to usage counting. The reply maps Billing and its direct neighbour Metering (Billing consumes UsageRecorded from Metering). It leaves Notifications out of the proposed contexts, because Billing does not depend on it and the pitch rules it out, even though the repository has a notifications module. It waits for the user and writes nothing.",
+      "files": [
+        "files/bet-scope-limits-map/README.md",
+        "files/bet-scope-limits-map/billing",
+        "files/bet-scope-limits-map/metering",
+        "files/bet-scope-limits-map/notifications",
+        "files/bet-scope-limits-map/pitches",
+        "files/bet-scope-limits-map/settings.gradle.kts"
+      ],
+      "criteria": [
+        "Reads pitches/invoice-pdf.md and takes the bet as the scope",
+        "Proposes Billing, and Metering only as Billing's upstream neighbour",
+        "Does not propose Notifications as a context in this map; noting that it is out of scope is fine",
+        "Presents only this section and waits for the user's answer",
+        "Writes no file under outputs/ and creates no project/domain/ file in this reply"
+      ],
+      "assertions": {
+        "must_include": [
+          "Billing",
+          "Metering"
+        ],
+        "must_not_include": [
+          {
+            "text": "# Context Map",
+            "scope": "outputs"
+          },
+          {
+            "text": "# Glossary",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "slug": "rerun-preserves-existing",
+      "prompt": "Use the sdd:domain-map skill. Earlier you explored this project and presented your findings, and I accepted each section as a whole: import docs/finance/UBIQUITOUS_LANGUAGE.md into the existing single-context glossary at project/domain/glossary.md. You then listed the files you would change: project/domain/glossary.md and project/domain/CHANGELOG.md. My reply: approved. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "The older file defines Quota as a per-second request limit, which conflicts with the existing glossary's Quota (Metered_Events per Billing_Period). The reply does not change the existing Quota entry, its definition or its Avoid list, and raises the conflict with the user as a question instead. It adds Overage_Fee with its definition, Avoid: Excess Charge, **Status:** agreed and **Since:** import. It appends a new CHANGELOG.md entry and keeps the existing 2026-09-02 entry word for word. It leaves the older file unchanged.",
+      "files": [
+        "files/rerun-preserves-existing/README.md",
+        "files/rerun-preserves-existing/backend",
+        "files/rerun-preserves-existing/docs",
+        "files/rerun-preserves-existing/project",
+        "files/rerun-preserves-existing/settings.gradle.kts"
+      ],
+      "expected_files": [
+        "project/domain/glossary.md",
+        "project/domain/CHANGELOG.md"
+      ],
+      "criteria": [
+        "Keeps the existing Quota entry exactly as it was, including its definition and Avoid list",
+        "Does not add a second Quota entry",
+        "Raises the conflicting Quota definition with the user, as a question or an open item in the reply",
+        "Adds an Overage_Fee entry with Avoid: Excess Charge, **Status:** agreed and **Since:** import",
+        "Appends a new CHANGELOG.md entry and keeps the existing 2026-09-02 entry unchanged",
+        "Leaves docs/finance/UBIQUITOUS_LANGUAGE.md unchanged"
+      ],
+      "assertions": {
+        "must_include": [
+          {
+            "text": "### Overage_Fee",
+            "scope": "outputs"
+          },
+          {
+            "text": "The number of Metered_Events an Account may record in one Billing_Period, as fixed by its Plan.",
+            "scope": "outputs"
+          },
+          {
+            "text": "## 2026-09-02, domain-map",
+            "scope": "outputs"
+          },
+          "Quota"
+        ],
+        "must_not_include": [
+          {
+            "text": "requests per second",
+            "scope": "outputs"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "slug": "unnamed-request-starts-mapping",
+      "prompt": "Set up the domain model for this repository. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "The request does not name a skill, and the skill still starts, because the request is for the whole domain model. There is no older glossary, so the import section is skipped in one line. The contexts section recommends two contexts, Metering (com.example.metering) and Billing (com.example.billing), each graded strong from its own Gradle module and package. The reply waits for the user and writes nothing.",
+      "files": [
+        "files/evidence-graded/README.md",
+        "files/evidence-graded/billing",
+        "files/evidence-graded/metering",
+        "files/evidence-graded/settings.gradle.kts"
+      ],
+      "criteria": [
+        "Explores the repository and presents the contexts section instead of asking what to set up or writing a model at once",
+        "Recommends Metering and Billing as contexts, graded strong, with evidence for each",
+        "Presents only this section and waits for the user's answer",
+        "Writes no file under outputs/ and creates no project/domain/ file in this reply"
+      ],
+      "assertions": {
+        "must_include": [
+          "Metering",
+          "Billing",
+          "strong"
+        ],
+        "must_not_include": [
+          {
+            "text": "# Context Map",
+            "scope": "outputs"
+          },
+          {
+            "text": "# Glossary",
+            "scope": "outputs"
+          }
+        ]
+      }
+    }
+  ]
+}

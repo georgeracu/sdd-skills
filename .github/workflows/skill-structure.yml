@@ -31,3 +31,10 @@ jobs:
         run: |
           claude plugin validate . --strict \
             && claude plugin validate plugins/sdd --strict
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.10'
+      - name: Test the domain skill scripts
+        run: |
+          python3 -m unittest discover -s tests/domain-maintenance
+          python3 -m unittest discover -s tests/domain-formats
