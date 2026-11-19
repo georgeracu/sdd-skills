@@ -100,8 +100,11 @@ Before generating any document, read relevant project documentation to ensure ac
 
 3. **Domain Terminology**: Use correct domain language throughout specs:
    ```bash
+   Glob pattern: project/domain/**
    Glob pattern: **/UBIQUITOUS_LANGUAGE.md
    ```
+
+   When `project/domain/` exists, read it and not the older file, use its glossary terms, and never use a word from an `Avoid:` list as a name.
 
 4. **Existing Specs**: Review completed specs for content quality and style reference:
    ```bash
