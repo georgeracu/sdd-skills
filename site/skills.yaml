@@ -37,6 +37,14 @@ skills:
     example: []
     example_note: Spec 38 predates this skill. Its step 1 artefact, brainstorm.md, came from superpowers' brainstorming skill.
 
+  domain-map:
+    group: Start here
+    order: 3
+    post: null
+    position: Runs once per project, per bet or per service split, before the pipeline. Imports an older glossary and writes the first domain model in project/domain/.
+    example: []
+    example_note: Spec 38 predates the domain skills.
+
   spec-generator:
     group: Write the spec
     order: 2
@@ -44,6 +52,14 @@ skills:
       url: https://georgeracu.substack.com/p/inside-my-spec-generator-from-a-half
       date: 2026-09-07
     example: [requirements.md, design.md, tasks.md]
+
+  domain-define:
+    group: Write the spec
+    order: 3
+    post: null
+    position: Runs on request, or after discovery when a work item adds or changes a business term. Not yet started automatically.
+    example: []
+    example_note: Spec 38 predates the domain skills.
 
   spec-design-review:
     group: Gates
@@ -93,6 +109,14 @@ skills:
       url: https://georgeracu.substack.com/p/how-i-maintain-my-old-specs-when
       date: 2026-10-17
     example: [spec-maintenance-report.md]
+
+  domain-maintenance:
+    group: Keep specs true
+    order: 2
+    post: null
+    position: Runs on request after spec-maintenance, or as a repo-wide drift check. Not yet started automatically.
+    example: []
+    example_note: Spec 38 predates the domain skills.
 
   spec-finish:
     group: Finish
