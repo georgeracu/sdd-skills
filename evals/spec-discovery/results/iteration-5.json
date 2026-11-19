@@ -1,0 +1,151 @@
+{
+  "iteration": "iteration-5",
+  "pack_hash": "c0eaf330a0a84ba9280b3f9a2393b28f55f57b3dbca7b10651097edff1b0aeac",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 51.078,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 234807,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "time_seconds": {
+        "mean": 46.177,
+        "stddev": 0.0,
+        "n": 1
+      },
+      "tokens": {
+        "mean": 160206,
+        "stddev": 0.0,
+        "n": 1
+      }
+    },
+    "delta": {
+      "pass_rate": 0.0,
+      "time_seconds": 4.901,
+      "tokens": 74601
+    }
+  },
+  "cases": {
+    "domain-model-terms-reused": {
+      "with_skill": {
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Meets criterion: Writes project/work-items/03-usage-digest/discovery.md and asks no further question",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Terms lists Account_Owner and Usage_Meter as existing, and lists Account_Admin and Usage_Digest as new",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Does not list Usage_Counter, Usage Counter or Counter as a term of its own, new or existing",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Names the running count with the glossary term Usage_Meter in Decisions or Edge and failure states",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: The Sources consulted line names project/domain, and the Sources unavailable line does not say that a glossary or domain model is missing",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Writes no file under project/domain/",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Stops with the message: `discovery.md` is written to `project/work-items/03-usage-digest/discovery.md`. Review it and reply \"approved\", or tell me what to change. I will not start the spec until you approve.",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Meets criterion: Writes project/work-items/03-usage-digest/discovery.md and asks no further question",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Terms lists Account_Owner and Usage_Meter as existing, and lists Account_Admin and Usage_Digest as new",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Does not list Usage_Counter, Usage Counter or Counter as a term of its own, new or existing",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Names the running count with the glossary term Usage_Meter in Decisions or Edge and failure states",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: The Sources consulted line names project/domain, and the Sources unavailable line does not say that a glossary or domain model is missing",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Writes no file under project/domain/",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Stops with the message: `discovery.md` is written to `project/work-items/03-usage-digest/discovery.md`. Review it and reply \"approved\", or tell me what to change. I will not start the spec until you approve.",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}
