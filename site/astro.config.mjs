@@ -20,6 +20,7 @@ const skillGroups = groups.map((label) => ({
 export default defineConfig({
   site: 'https://georgeracu.github.io',
   base: '/sdd-skills',
+  redirects: { '/skills/setup': '/sdd-skills/skills/spec-setup/' },
   integrations: [
     starlight({
       title: 'SDD Skills',

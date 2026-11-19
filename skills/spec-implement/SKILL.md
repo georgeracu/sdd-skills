@@ -25,7 +25,7 @@ Read these before any task starts. When one check fails, stop, name the step to 
 | `task-review-summary.md` exists and its `**Status:**` is not BLOCKED | `sdd:spec-task-review` |
 | `task-review-summary.md` has no open sequencing finding, that is no MAJOR finding under Sequencing Review or an Issues Found entry about task order | fix the order in `tasks.md`, then `sdd:spec-task-review` |
 | `test-plan.md` exists | `sdd:spec-qa-review` plan mode |
-| `AGENTS.md` names a build command and a test command | `sdd:setup`, or ask the user for the commands |
+| `AGENTS.md` names a build command and a test command | `sdd:spec-setup`, or ask the user for the commands |
 | the project is a git repository, and `git status --porcelain` succeeds and prints nothing | ask the user to create the repository, or to commit or stash their changes |
 
 ## 2. Build the Task Order

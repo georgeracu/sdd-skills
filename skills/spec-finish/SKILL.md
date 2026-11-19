@@ -48,7 +48,7 @@ A peer is another folder in `project/work-items/` that holds an `implementation-
 
 ## 4. Run the Build and Tests
 
-Run the build command and the test command from `AGENTS.md`. When `AGENTS.md` names no build or test command, stop and name `sdd:setup`. When a command fails, stop and paste its output. Keep the summary line of the test output, such as the count of tests run, for `pr.md`.
+Run the build command and the test command from `AGENTS.md`. When `AGENTS.md` names no build or test command, stop and name `sdd:spec-setup`. When a command fails, stop and paste its output. Keep the summary line of the test output, such as the count of tests run, for `pr.md`.
 
 ## 5. Write `pr.md`
 

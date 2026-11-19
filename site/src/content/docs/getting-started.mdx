@@ -1,6 +1,6 @@
 ---
 title: Getting started
-description: Install the skills, prepare a project with sdd:setup and take a first work item through the pipeline.
+description: Install the skills, prepare a project with sdd:spec-setup and take a first work item through the pipeline.
 ---
 
 import InstallTabs from '../../components/InstallTabs.astro';
@@ -24,7 +24,7 @@ Without superpowers, see [Run without superpowers](#run-without-superpowers) bel
 Run this once in the root of your project:
 
 ```
-/sdd:setup
+/sdd:spec-setup
 ```
 
 The skill looks at the project before it changes anything. Then it does three things, and asks for your approval before it writes:
@@ -33,7 +33,7 @@ The skill looks at the project before it changes anything. Then it does three th
 2. It checks `AGENTS.md` for your build and test commands, and asks for them if they are missing. The skills read the commands from there instead of assuming a build tool.
 3. It reports which optional inputs it found: `openapi.yaml`, `ARCHITECTURE.md` and `UBIQUITOUS_LANGUAGE.md`. A missing input is not an error.
 
-The [setup page](/sdd-skills/skills/setup/) has the full skill.
+The [spec-setup page](/sdd-skills/skills/spec-setup/) has the full skill.
 
 ## 4. Take a first work item through the pipeline
 
