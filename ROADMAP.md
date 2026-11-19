@@ -8,9 +8,9 @@ These are candidates, not commitments. Each one names the gap in the current ski
 
 `design.md` already states correctness properties, and `spec-generator` can add optional property-based test tasks, but no skill turns those properties into tests and runs them. A skill between the QA plan and implementation would make the properties executable.
 
-### Start the domain skills from the pipeline
+### Start the domain skills outside Claude Code
 
-The domain skills run on request only. A hook and a trigger section in `spec-workflow` would start them from file state. See [#76](https://github.com/georgeracu/sdd-skills/issues/76).
+The plugin hook starts `domain-define` and `domain-maintenance` in Claude Code only. Codex CLI 0.170.0 and Copilot CLI 1.0.114 did not run it, so in those clients an agent has only the Triggers section of `spec-workflow`, and no eval measures whether it follows that section.
 
 ### Cumulative drift detection
 

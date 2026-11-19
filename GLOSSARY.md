@@ -40,8 +40,9 @@ The outcome of one skill run, written as a single `**Status:**` line in the docu
 | `spec-task-review` | BLOCKED | APPROVED WITH ISSUES | APPROVED | APPROVED |
 | `spec-implementation-audit` | FAILED | FAILED | PASSED | PASSED |
 | `spec-qa-review`, review mode | FAILED | FAILED | PASSED | PASSED |
+| `domain-maintenance` | FAILED | PASSED | PASSED | PASSED |
 
-`spec-qa-review` counts open gaps in its gap log. `spec-maintenance` always writes **PASSED**, because stale specs are informational.
+`spec-qa-review` counts open gaps in its gap log. `domain-maintenance` reports MAJOR and MINOR findings and does not block on them. `spec-maintenance` always writes **PASSED**, because stale specs are informational.
 
 The status values are:
 
@@ -77,6 +78,26 @@ The `spec-qa-review` mode that runs when the spec exists and no implementation d
 ### Review mode
 
 The `spec-qa-review` mode that runs when the implementation is present. It fills the Actual column, compares it with Expected, updates the gap log and sets the status. It updates `test-plan.md` and never replaces it.
+
+## Domain terms
+
+These terms come from the domain skills and the formats they share in `references/formats.md`.
+
+### Domain term
+
+A word that the business uses for one concept, defined once in a `glossary.md` under `project/domain/`. An entry has a definition, an `Avoid:` list of words the team does not use for it, a `Status:` of proposed, agreed or deprecated, and a `Since:` value. The pipeline skills read these entries as the project's vocabulary.
+
+### Bounded context
+
+A part of the system in which every domain term has one meaning. A project with two or more contexts keeps one `glossary.md` for each context, and each context has a row in the Contexts table of `context-map.md`. `sdd:domain-map` finds them.
+
+### Context map
+
+The file `project/domain/context-map.md`. Its Contexts table lists each bounded context and where its code lives. Its Relationships table lists which context depends on which, with the pattern and the messages that cross the boundary. A row allows the downstream code to depend on the upstream code, and a dependency with no row is a finding in `sdd:spec-design-review` and `sdd:domain-maintenance`.
+
+### Trigger
+
+A rule that starts a domain skill from the state of a file, such as an approved `discovery.md` that marks a term as new. In Claude Code the plugin hook in `plugins/sdd/hooks/` applies the triggers. `spec-workflow` lists them for agents in other clients. No trigger does anything in a project without `project/domain/`.
 
 ## Eval terms
 

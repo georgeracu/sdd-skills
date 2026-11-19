@@ -77,7 +77,7 @@ You start a user-invoked skill yourself, for example with `/sdd:spec-setup`. The
 | `domain-define` | model-invoked | New terms in `project/domain/**`, as proposed |
 | `domain-maintenance` | model-invoked | `domain-maintenance-report.md`, promotions and deprecations in `project/domain/**` |
 
-They keep a domain model in `project/domain/`, and the pipeline does not start them yet.
+They keep a domain model in `project/domain/`. `domain-map` starts when you ask for the model as a whole. In Claude Code, the plugin hook starts `domain-define` after you approve a discovery that marks a term as new, and `domain-maintenance` after `spec-maintenance` writes its report. It also checks each `glossary.md` and `context-map.md` that an agent writes, and points out avoided words in code. A project without `project/domain/` sees none of this. The `spec-workflow` skill lists the same triggers for agents that do not run the hook. I started Codex CLI 0.170.0 and Copilot CLI 1.0.114 with the plugin and a log on the hook, and neither ran it. The hook is untested in other clients.
 
 ## Stability
 
