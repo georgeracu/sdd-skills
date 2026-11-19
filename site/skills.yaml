@@ -13,7 +13,7 @@ groups:
   - Finish
 
 skills:
-  setup:
+  spec-setup:
     group: Start here
     order: 1
     post: null

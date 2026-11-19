@@ -1,5 +1,5 @@
 ---
-name: setup
+name: spec-setup
 description: Run once per project to prepare it for the SDD pipeline. Copies the scaffold into project/work-items/, checks AGENTS.md for the build and test commands and asks for them when missing, and reports which optional inputs the other skills will find.
 disable-model-invocation: true
 metadata:

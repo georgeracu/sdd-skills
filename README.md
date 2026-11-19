@@ -31,7 +31,7 @@ rsync -a --exclude .claude-plugin sdd-skills/skills/ .claude/skills/sdd/
 
 Choose one route per agent. Two routes install every skill twice.
 
-Then run `/sdd:setup` once in your project. It copies the work-item scaffold, records your build and test commands in `AGENTS.md` and reports the optional inputs it found. The feature pipeline runs from discovery to the pull request with these skills alone. The bugfix pipeline implements its tasks with the [superpowers](https://github.com/obra/superpowers) plugin or by hand; [Getting started](https://georgeracu.github.io/sdd-skills/getting-started/) describes both.
+Then run `/sdd:spec-setup` once in your project. It copies the work-item scaffold, records your build and test commands in `AGENTS.md` and reports the optional inputs it found. The feature pipeline runs from discovery to the pull request with these skills alone. The bugfix pipeline implements its tasks with the [superpowers](https://github.com/obra/superpowers) plugin or by hand; [Getting started](https://georgeracu.github.io/sdd-skills/getting-started/) describes both.
 
 ## Who it's for
 
@@ -41,7 +41,7 @@ Teams that need an audit trail and gates that block. Every work item keeps its r
 
 | Step | Skill | Kind | Writes |
 |---|---|---|---|
-| Once | `setup` | user-invoked | Scaffold, `AGENTS.md` commands |
+| Once | `spec-setup` | user-invoked | Scaffold, `AGENTS.md` commands |
 | 1 | `spec-discovery` | model-invoked | `discovery.md` |
 | 2, 3 | `spec-generator` | model-invoked | `requirements.md`, `design.md` |
 | 4 | `spec-design-review` (gate) | model-invoked | `design-review-summary.md` |
@@ -56,7 +56,7 @@ Teams that need an audit trail and gates that block. Every work item keeps its r
 
 `spec-workflow` is the reference for this order and for the bugfix pipeline. Its kind is reference: the agent reads it, and it does no work of its own. The [worked example](https://georgeracu.github.io/sdd-skills/worked-example/) follows one real feature through every step.
 
-You start a user-invoked skill yourself, for example with `/sdd:setup`. The agent starts a model-invoked skill when the pipeline reaches it. Claude Code and GitHub Copilot CLI read the `disable-model-invocation` key that marks a user-invoked skill, and Codex reads `agents/openai.yaml` in the skill folder. Each of these agents leaves `setup` out of its list of skills, so it does not start `setup` from the description. The opt-out does not hide the files. When the skills are installed inside the project, for example with `npx skills add`, Codex and Copilot CLI can find `setup/SKILL.md` while they explore the project, and follow it. Gemini CLI has no per-skill opt-out. A claude.ai upload or the Skills API rejects a skill that has this key, so remove the key from `setup` before you upload it.
+You start a user-invoked skill yourself, for example with `/sdd:spec-setup`. The agent starts a model-invoked skill when the pipeline reaches it. Claude Code and GitHub Copilot CLI read the `disable-model-invocation` key that marks a user-invoked skill, and Codex reads `agents/openai.yaml` in the skill folder. Each of these agents leaves `spec-setup` out of its list of skills, so it does not start `spec-setup` from the description. The opt-out does not hide the files. When the skills are installed inside the project, for example with `npx skills add`, Codex and Copilot CLI can find `spec-setup/SKILL.md` while they explore the project, and follow it. Gemini CLI has no per-skill opt-out. A claude.ai upload or the Skills API rejects a skill that has this key, so remove the key from `spec-setup` before you upload it.
 
 ## Stability
 

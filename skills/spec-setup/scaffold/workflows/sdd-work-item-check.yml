@@ -1,4 +1,4 @@
-# Installed by /sdd:setup. Fails a pull request that changes a work item in
+# Installed by /sdd:spec-setup. Fails a pull request that changes a work item in
 # project/work-items/NN-name/ before the work item is complete:
 #   - a feature (requirements.md) needs implementation-audit.md with **Status:** PASSED
 #   - a bugfix (bugfix.md) needs bugfix.md, design.md and tasks.md

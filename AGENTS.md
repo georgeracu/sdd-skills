@@ -6,7 +6,7 @@ How this repository works, for a person or an agent about to change it. Terms in
 
 | Path | What it holds |
 |---|---|
-| `skills/<name>/SKILL.md` | The skills. Each `SKILL.md` is the single source of truth for what that skill does. Some skills also have a `references/` folder, and `setup` has the `scaffold/` it copies into a project. |
+| `skills/<name>/SKILL.md` | The skills. Each `SKILL.md` is the single source of truth for what that skill does. Some skills also have a `references/` folder, and `spec-setup` has the `scaffold/` it copies into a project. |
 | `skills/.claude-plugin/plugin.json` | The Claude Code plugin manifest. It holds the only copy of the version. `skills/` is the plugin root, so an install copies only the skills. |
 | `.claude-plugin/marketplace.json` | The marketplace entry. Its plugin source is `./skills`, and it has no version of its own. |
 | `evals/<name>/` | The **eval pack** for one skill: `evals.json`, the input files under `files/`, and the committed results under `results/`. The packs live outside `skills/` so that no install copies them. |
@@ -29,7 +29,7 @@ A change to `skills/<name>/SKILL.md`, or to a file it reads, also needs:
 4. **A symlink in `.claude/skills/sdd/` and in `.agents/skills/sdd/`**, when you add a skill.
 5. **A kind in the front matter**, when you add a skill. See [Choosing a kind](#choosing-a-kind).
 
-`setup` and `spec-workflow` have no eval pack. A change to either needs a manual check instead: run the changed skill in a scratch project and paste what it did into the pull request.
+`spec-setup` and `spec-workflow` have no eval pack. A change to either needs a manual check instead: run the changed skill in a scratch project and paste what it did into the pull request.
 
 Keep wording changes to the smallest unit that changes. The eval results and the site link to lines in these files.
 
