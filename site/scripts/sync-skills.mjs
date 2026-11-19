@@ -2,7 +2,7 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse, stringify } from 'yaml';
-import { checkSkills, kinds, splitFrontMatter } from './skill-structure.mjs';
+import { checkSkills, kinds, skillsDir, splitFrontMatter } from './skill-structure.mjs';
 
 const site = join(dirname(fileURLToPath(import.meta.url)), '..');
 const repo = join(site, '..');
@@ -18,11 +18,11 @@ const entries = Object.keys(config.skills);
 const { folders, kindOf, problems } = checkSkills(repo, entries);
 
 function pipelineRows() {
-  const workflow = readFileSync(join(repo, 'skills/spec-workflow/SKILL.md'), 'utf8');
+  const workflow = readFileSync(join(repo, skillsDir, 'spec-workflow/SKILL.md'), 'utf8');
   const rows = [];
   for (const [heading, pipeline] of [['## Feature Pipeline', 'Feature'], ['## Bugfix Pipeline', 'Bugfix']]) {
     if (!workflow.includes(`${heading}\n`)) {
-      problems.push(`skills/spec-workflow/SKILL.md has no "${heading}" heading`);
+      problems.push(`${skillsDir}/spec-workflow/SKILL.md has no "${heading}" heading`);
       continue;
     }
     const section = workflow.split(`${heading}\n`)[1].split('\n## ')[0];
@@ -125,7 +125,7 @@ function footer(name, entry) {
     '',
     '## Source',
     '',
-    `[View SKILL.md on GitHub](${github}/skills/${name}/SKILL.md)`,
+    `[View SKILL.md on GitHub](${github}/${skillsDir}/${name}/SKILL.md)`,
     '',
   ].join('\n');
 }
@@ -141,13 +141,13 @@ rmSync(skillsOut, { recursive: true, force: true });
 mkdirSync(skillsOut, { recursive: true });
 
 for (const [name, entry] of Object.entries(config.skills)) {
-  const { data, body } = splitFrontMatter(readFileSync(join(repo, 'skills', name, 'SKILL.md'), 'utf8'));
+  const { data, body } = splitFrontMatter(readFileSync(join(repo, skillsDir, name, 'SKILL.md'), 'utf8'));
   const content = escapeOutsideCode(body.replace(/^\s*# .*\n/, ''))
-    .replace(/\]\((?!https?:|#|\/)([^)]+)\)/g, `](${github}/skills/${name}/$1)`);
+    .replace(/\]\((?!https?:|#|\/)([^)]+)\)/g, `](${github}/${skillsDir}/${name}/$1)`);
   const front = stringify({
     title: data.name,
     description: data.description,
-    editUrl: `https://github.com/georgeracu/sdd-skills/edit/main/skills/${name}/SKILL.md`,
+    editUrl: `https://github.com/georgeracu/sdd-skills/edit/main/${skillsDir}/${name}/SKILL.md`,
   });
   writeFileSync(
     join(skillsOut, `${name}.md`),

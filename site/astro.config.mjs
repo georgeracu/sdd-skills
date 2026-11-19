@@ -18,7 +18,7 @@ const skillGroups = groups.map((label) => ({
 }));
 
 export default defineConfig({
-  site: 'https://georgeracu.github.io',
+  site: 'https://georgeracu.com',
   base: '/sdd-skills',
   redirects: { '/skills/setup': '/sdd-skills/skills/spec-setup/' },
   integrations: [
@@ -30,7 +30,7 @@ export default defineConfig({
       editLink: { baseUrl: 'https://github.com/georgeracu/sdd-skills/edit/main/site/' },
       head: [
         { tag: 'link', attrs: { rel: 'alternate', type: 'application/rss+xml', title: 'SDD Skills changelog', href: '/sdd-skills/changelog.xml' } },
-        { tag: 'meta', attrs: { property: 'og:image', content: 'https://georgeracu.github.io/sdd-skills/social-preview.png' } },
+        { tag: 'meta', attrs: { property: 'og:image', content: 'https://georgeracu.com/sdd-skills/social-preview.png' } },
         { tag: 'meta', attrs: { property: 'og:image:alt', content: 'SDD Skills: the twelve pipeline steps, with the design review, task review and implementation audit marked as gates.' } },
       ],
       plugins: [

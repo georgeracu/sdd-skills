@@ -3,16 +3,17 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { after, test } from 'node:test';
-import { checkSkills } from './skill-structure.mjs';
+import { checkSkills, skillsDir } from './skill-structure.mjs';
 
 const roots = [];
 function repoWith(skills) {
   const repo = mkdtempSync(join(tmpdir(), 'skill-structure-'));
   roots.push(repo);
-  mkdirSync(join(repo, 'skills/.claude-plugin'), { recursive: true });
+  mkdirSync(join(repo, 'plugins/sdd/.claude-plugin'), { recursive: true });
+  mkdirSync(join(repo, skillsDir), { recursive: true });
   for (const [name, skillMd] of Object.entries(skills)) {
-    mkdirSync(join(repo, 'skills', name));
-    if (skillMd !== null) writeFileSync(join(repo, 'skills', name, 'SKILL.md'), skillMd);
+    mkdirSync(join(repo, skillsDir, name));
+    if (skillMd !== null) writeFileSync(join(repo, skillsDir, name, 'SKILL.md'), skillMd);
   }
   return repo;
 }
@@ -26,18 +27,18 @@ test('a well-formed skill passes', () => {
 });
 
 test('a folder with no SKILL.md is named', () => {
-  assert.deepEqual(problemsOf({ demo: null }), ['skills/demo/ has no SKILL.md', 'site/skills.yaml entry "demo" has no skills/demo/SKILL.md']);
+  assert.deepEqual(problemsOf({ demo: null }), ['plugins/sdd/skills/demo/ has no SKILL.md', 'site/skills.yaml entry "demo" has no plugins/sdd/skills/demo/SKILL.md']);
 });
 
 test('a SKILL.md without front matter is named', () => {
-  assert.deepEqual(problemsOf({ demo: '# Demo\n' }), ['skills/demo/SKILL.md: front matter is missing or is not valid YAML']);
+  assert.deepEqual(problemsOf({ demo: '# Demo\n' }), ['plugins/sdd/skills/demo/SKILL.md: front matter is missing or is not valid YAML']);
 });
 
 test('front matter that is not valid YAML is named', () => {
-  assert.deepEqual(problemsOf({ demo: '---\nname: [unclosed\n---\n' }), ['skills/demo/SKILL.md: front matter is missing or is not valid YAML']);
+  assert.deepEqual(problemsOf({ demo: '---\nname: [unclosed\n---\n' }), ['plugins/sdd/skills/demo/SKILL.md: front matter is missing or is not valid YAML']);
 });
 
-const kindProblem = 'skills/demo/SKILL.md: metadata.sdd-kind must be one of user-invoked, model-invoked, reference';
+const kindProblem = 'plugins/sdd/skills/demo/SKILL.md: metadata.sdd-kind must be one of user-invoked, model-invoked, reference';
 
 test('a missing metadata.sdd-kind is named', () => {
   assert.deepEqual(problemsOf({ demo: '---\nname: demo\n---\n' }), [kindProblem]);
@@ -48,16 +49,16 @@ test('an invalid metadata.sdd-kind is named', () => {
 });
 
 test('a skill with no entry in site/skills.yaml is named', () => {
-  assert.deepEqual(problemsOf({ demo: skillMd('reference') }, []), ['skills/demo/ has no entry in site/skills.yaml']);
+  assert.deepEqual(problemsOf({ demo: skillMd('reference') }, []), ['plugins/sdd/skills/demo/ has no entry in site/skills.yaml']);
 });
 
 test('an entry with no skill folder is named', () => {
-  assert.deepEqual(problemsOf({}, ['ghost']), ['site/skills.yaml entry "ghost" has no skills/ghost/SKILL.md']);
+  assert.deepEqual(problemsOf({}, ['ghost']), ['site/skills.yaml entry "ghost" has no plugins/sdd/skills/ghost/SKILL.md']);
 });
 
 test('a user-invoked skill must disable model invocation and ship agents/openai.yaml', () => {
   assert.deepEqual(problemsOf({ demo: skillMd('user-invoked') }), [
-    'skills/demo/SKILL.md: disable-model-invocation: true must be set exactly when the kind is user-invoked',
-    'skills/demo/agents/openai.yaml must exist exactly when the kind is user-invoked',
+    'plugins/sdd/skills/demo/SKILL.md: disable-model-invocation: true must be set exactly when the kind is user-invoked',
+    'plugins/sdd/skills/demo/agents/openai.yaml must exist exactly when the kind is user-invoked',
   ]);
 });

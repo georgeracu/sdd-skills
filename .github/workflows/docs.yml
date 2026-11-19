@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - site/**
-      - skills/**
+      - plugins/**
       - evals/**
       - examples/**
       - CHANGELOG.md
@@ -14,7 +14,7 @@ on:
   pull_request:
     paths:
       - site/**
-      - skills/**
+      - plugins/**
       - evals/**
       - examples/**
       - CHANGELOG.md

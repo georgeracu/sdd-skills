@@ -3,14 +3,16 @@ name: Release
 on:
   pull_request:
     paths:
-      - skills/.claude-plugin/plugin.json
+      - plugins/sdd/.claude-plugin/plugin.json
+      - plugins/sdd/plugin.json
       - CHANGELOG.md
       - .github/workflows/release.yml
   push:
     tags: ['v*']
 
 env:
-  MANIFEST: skills/.claude-plugin/plugin.json
+  MANIFEST: plugins/sdd/.claude-plugin/plugin.json
+  AGENT_MANIFEST: plugins/sdd/plugin.json
 
 jobs:
   release:
@@ -19,6 +21,10 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v7
+      - name: Check the two manifests have the same version
+        run: |
+          [ "$(jq -r .version "$MANIFEST")" = "$(jq -r .version "$AGENT_MANIFEST")" ] \
+            || { echo "::error::$MANIFEST and $AGENT_MANIFEST have different versions"; exit 1; }
       - name: Check the manifest version has a CHANGELOG section
         run: |
           version=$(jq -r .version "$MANIFEST")

@@ -3,20 +3,33 @@ import { Code, Tabs, TabItem } from '@astrojs/starlight/components';
 
 const plugin = `claude plugin marketplace add georgeracu/sdd-skills
 claude plugin install sdd@georgeracu`;
+const codex = `git clone https://github.com/georgeracu/sdd-skills.git
+codex plugin marketplace add ./sdd-skills
+codex plugin add sdd@georgeracu`;
+const copilot = `git clone https://github.com/georgeracu/sdd-skills.git
+copilot --plugin-dir ./sdd-skills/plugins/sdd`;
 const npx = `npx skills@latest add georgeracu/sdd-skills`;
 const manual = `git clone https://github.com/georgeracu/sdd-skills.git
 mkdir -p .claude/skills/sdd
-rsync -a --exclude .claude-plugin sdd-skills/skills/ .claude/skills/sdd/`;
+rsync -a sdd-skills/plugins/sdd/skills/ .claude/skills/sdd/`;
 ---
 
 <Tabs syncKey="install">
   <TabItem label="Claude Code plugin">
     <Code code={plugin} lang="sh" />
-    <p>Recommended for Claude Code. The skills install as <code>/sdd:spec-workflow</code>, <code>/sdd:spec-setup</code> and so on.</p>
+    <p>Recommended for Claude Code, and the route that the evals test. The skills install as <code>/sdd:spec-workflow</code>, <code>/sdd:spec-setup</code> and so on.</p>
+  </TabItem>
+  <TabItem label="Codex CLI">
+    <Code code={codex} lang="sh" />
+    <p>Smoke-tested with Codex CLI 0.170.0. The skills keep the <code>sdd:</code> prefix, and Codex does not offer <code>spec-setup</code> for automatic use.</p>
+  </TabItem>
+  <TabItem label="Copilot CLI">
+    <Code code={copilot} lang="sh" />
+    <p>Smoke-tested with GitHub Copilot CLI 1.0.107, for one session. The skills appear under their bare names, such as <code>spec-discovery</code>. Cursor, Kiro, VS Code and ChatGPT are untested.</p>
   </TabItem>
   <TabItem label="npx skills add">
     <Code code={npx} lang="sh" />
-    <p>For other agents, such as Codex or Cursor. This route installs each skill under its bare name, such as <code>spec-generator</code>, without the <code>sdd:</code> prefix that the skills use to call each other.</p>
+    <p>For other Agent Skills clients, such as Gemini CLI or pi, which I have not run. This route installs each skill under its bare name, such as <code>spec-generator</code>, without the <code>sdd:</code> prefix that the skills use to call each other.</p>
   </TabItem>
   <TabItem label="Manual copy">
     <Code code={manual} lang="sh" />

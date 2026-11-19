@@ -6,22 +6,23 @@ How this repository works, for a person or an agent about to change it. Terms in
 
 | Path | What it holds |
 |---|---|
-| `skills/<name>/SKILL.md` | The skills. Each `SKILL.md` is the single source of truth for what that skill does. Some skills also have a `references/` folder, and `spec-setup` has the `scaffold/` it copies into a project. |
-| `skills/.claude-plugin/plugin.json` | The Claude Code plugin manifest. It holds the only copy of the version. `skills/` is the plugin root, so an install copies only the skills. |
-| `.claude-plugin/marketplace.json` | The marketplace entry. Its plugin source is `./skills`, and it has no version of its own. |
-| `evals/<name>/` | The **eval pack** for one skill: `evals.json`, the input files under `files/`, and the committed results under `results/`. The packs live outside `skills/` so that no install copies them. |
-| `.claude/skills/sdd/`, `.agents/skills/sdd/` | Real directories that hold one symlink per skill, pointing to `skills/<name>`, so an agent opening this repository can use the skills on the repository itself. |
+| `plugins/sdd/skills/<name>/SKILL.md` | The skills. Each `SKILL.md` is the single source of truth for what that skill does. Some skills also have a `references/` folder, and `spec-setup` has the `scaffold/` it copies into a project. |
+| `plugins/sdd/.claude-plugin/plugin.json` | The Claude Code plugin manifest. |
+| `plugins/sdd/plugin.json` | The Agent Plugins 1.0 manifest. Its `version` must equal the one in the Claude Code manifest. See [Releasing](#releasing). |
+| `.claude-plugin/marketplace.json` | The marketplace entry. Its plugin source is `./plugins/sdd`, which is the plugin root, so an install copies the plugin and not the site or the evals. It has no version of its own. |
+| `evals/<name>/` | The **eval pack** for one skill: `evals.json`, the input files under `files/`, and the committed results under `results/`. The packs live outside `plugins/sdd/` so that no install copies them. |
+| `.claude/skills/sdd/`, `.agents/skills/sdd/` | Real directories that hold one symlink per skill, pointing to `plugins/sdd/skills/<name>`, so an agent opening this repository can use the skills on the repository itself. |
 | `examples/38-source-fidelity-and-accuracy-sla/` | A real **work item** that went through the pipeline. The site's worked example uses it. |
 | `site/` | The documentation site (Astro and Starlight). Its skill pages and its Evals page are generated, so do not edit `site/src/content/docs/skills/` or `site/src/content/docs/evals.md`. |
 | `ROADMAP.md`, `CHANGELOG.md` | Candidate work, and the record of each release. The site renders both. |
 
 ### The `sdd:` namespace
 
-The skills call each other by their namespaced names, such as `sdd:spec-generator` and `sdd:spec-design-review`. The plugin name `sdd` gives that prefix to a plugin install, and the manual copy into `.claude/skills/sdd/` keeps it. Write every cross-reference between skills with the `sdd:` prefix, or the call does not resolve. The superpowers skills that the pipeline names, `subagent-driven-development` for bugfix implementation and `finishing-a-development-branch` as an alternative for the last step, have no prefix.
+The skills call each other by their namespaced names, such as `sdd:spec-generator` and `sdd:spec-design-review`. The plugin name `sdd` gives that prefix to a plugin install, and the manual copy into `.claude/skills/sdd/` keeps it. Of the Agent Plugins clients tested, Codex CLI keeps the prefix and Copilot CLI lists the bare names; the README has the versions. Write every cross-reference between skills with the `sdd:` prefix, or the call does not resolve. The superpowers skills that the pipeline names, `subagent-driven-development` for bugfix implementation and `finishing-a-development-branch` as an alternative for the last step, have no prefix.
 
 ## Changing a skill
 
-A change to `skills/<name>/SKILL.md`, or to a file it reads, also needs:
+A change to `plugins/sdd/skills/<name>/SKILL.md`, or to a file it reads, also needs:
 
 1. **Evidence from the skill's eval pack**, for a change in behaviour: an **iteration** before the change and one after it, with both results committed under `evals/<name>/results/`. See [Running the evals](#running-the-evals).
 2. **A line in the `Unreleased` section of `CHANGELOG.md`.** Mark a breaking change with **Breaking**, such as a changed `**Status:**` value that other tools read.
@@ -41,7 +42,7 @@ Every `SKILL.md` records its kind in `metadata.sdd-kind`. The site shows the kin
 - **reference**, when the agent reads the skill for rules and the skill does no work of its own.
 - **model-invoked**, for all other skills. Add no invocation key.
 
-Before you mark a skill user-invoked, search for `sdd:<name>` in `skills/` and `evals/<name>/evals.json`. Claude Code blocks every call from the agent to a user-invoked skill, so each of those references stops working.
+Before you mark a skill user-invoked, search for `sdd:<name>` in `plugins/sdd/skills/` and `evals/<name>/evals.json`. Claude Code blocks every call from the agent to a user-invoked skill, so each of those references stops working.
 
 ## Running the evals
 
@@ -58,8 +59,8 @@ The commands below assume `skill-eval` is on your `PATH`, for example after `exp
 Every command takes the skill and its pack. `validate` and `preflight` take the skill path as a positional argument; the other commands take `--skill`.
 
 ```bash
-skill-eval validate skills/<name> --pack evals/<name>
-skill-eval preflight skills/<name> --pack evals/<name>
+skill-eval validate plugins/sdd/skills/<name> --pack evals/<name>
+skill-eval preflight plugins/sdd/skills/<name> --pack evals/<name>
 ```
 
 `validate` checks `evals.json`. `preflight` reports the pack state as JSON, including the next iteration number, and creates the workspace `evals/<name>-workspace/`, which git ignores.
@@ -72,8 +73,10 @@ Each iteration runs every case in two **arms**: one with the skill, and a **base
 - `--baseline snapshot` runs the baseline with an earlier copy of the skill. It measures whether a change helped. Take the snapshot **before** you edit the skill:
 
   ```bash
-  skill-eval snapshot --skill skills/<name> --pack evals/<name>
+  skill-eval snapshot --skill plugins/sdd/skills/<name> --pack evals/<name>
   ```
+
+  A snapshot taken before the skills moved from `skills/` to `plugins/sdd/skills/` points at the old path. Take it again after that release.
 
 ### Before a paid run
 
@@ -87,7 +90,7 @@ Each iteration runs every case in two **arms**: one with the skill, and a **base
 Then run:
 
 ```bash
-skill-eval iterate --skill skills/<name> --pack evals/<name> --model <model> --runs <n> \
+skill-eval iterate --skill plugins/sdd/skills/<name> --pack evals/<name> --model <model> --runs <n> \
   --baseline none --note "<what this iteration tests>"
 ```
 
@@ -101,13 +104,13 @@ npm ci
 npm run build
 ```
 
-`npm run build` first runs `npm run sync`, which generates the skill pages from `skills/*/SKILL.md` and the Evals page from `evals/*/results/`. The build fails on a broken link, and on a skill folder with no entry in `site/skills.yaml`. The Evals page dates each result from git history, so the build refuses to run in a shallow clone. Use `npm run dev` to preview locally.
+`npm run build` first runs `npm run sync`, which generates the skill pages from `plugins/sdd/skills/*/SKILL.md` and the Evals page from `evals/*/results/`. The build fails on a broken link, and on a skill folder with no entry in `site/skills.yaml`. The Evals page dates each result from git history, so the build refuses to run in a shallow clone. Use `npm run dev` to preview locally.
 
-Check both manifests after a change to either, or after you add a skill:
+Check the marketplace and the plugin after a change to either, or after you add a skill:
 
 ```bash
 claude plugin validate . --strict
-claude plugin validate skills --strict
+claude plugin validate plugins/sdd --strict
 ```
 
 The first command checks the marketplace, and the second checks the plugin.
@@ -116,12 +119,12 @@ The `Skill structure` workflow runs on every pull request. It runs `npm test` an
 
 ## Releasing
 
-The version lives only in `skills/.claude-plugin/plugin.json`. To release version `X.Y.Z`:
+The version lives in two files that must hold the same value: `plugins/sdd/.claude-plugin/plugin.json` for Claude Code and `plugins/sdd/plugin.json` for Agent Plugins. To release version `X.Y.Z`:
 
-1. In a pull request, set `"version": "X.Y.Z"` in `skills/.claude-plugin/plugin.json`.
+1. In a pull request, set `"version": "X.Y.Z"` in both files.
 2. In the same pull request, rename `## [Unreleased]` in `CHANGELOG.md` to `## [X.Y.Z] - YYYY-MM-DD`, add a new empty `## [Unreleased]` above it, and update the compare links at the bottom of the file.
-3. The `Release` workflow runs on any pull request that changes the manifest, `CHANGELOG.md` or the workflow. It fails when the manifest version has no `## [X.Y.Z] - ` section.
-4. After the merge, tag the merge commit on `main` as `vX.Y.Z` and push the tag. The workflow checks that the tag matches the manifest version and publishes a GitHub release with that CHANGELOG section as the notes.
+3. The `Release` workflow runs on any pull request that changes a manifest, `CHANGELOG.md` or the workflow. It fails when the two manifests have different versions, and when the version has no `## [X.Y.Z] - ` section.
+4. After the merge, tag the merge commit on `main` as `vX.Y.Z` and push the tag. The workflow checks that the tag matches the version and publishes a GitHub release with that CHANGELOG section as the notes.
 
 While the version is 0.x, a minor version can contain breaking changes and a patch version does not.
 
