@@ -19,7 +19,7 @@ Read these in order without asking anything. Note each missing input on the `Sou
 
 1. The user's request. If it is absent or a single phrase, the first question asks for the problem.
 2. `AGENTS.md`, `CLAUDE.md`, `README.md` at the root: purpose and conventions.
-3. `**/UBIQUITOUS_LANGUAGE.md`: existing terms to reuse.
+3. `project/domain/**` when it exists, otherwise `**/UBIQUITOUS_LANGUAGE.md`: existing terms to reuse.
 4. `**/ARCHITECTURE.md`, `project/architecture/**`, `docs/architecture/**`: components the user may want reused.
 5. `**/openapi.yaml`, `docs/apis/**/*.yaml`: the existing contract, so decisions do not contradict it.
 6. `project/work-items/[0-9]*/`: overlap with existing work, draft `discovery.md` files, and the highest number in use.
