@@ -116,12 +116,12 @@ The `Skill structure` workflow runs on every pull request. It runs `npm test` an
 
 ## Releasing
 
-The version lives only in `skills/.claude-plugin/plugin.json`. To release version `X.Y.Z`:
+The version lives in two files that must hold the same value: `plugins/sdd/.claude-plugin/plugin.json` for Claude Code and `plugins/sdd/plugin.json` for Agent Plugins. To release version `X.Y.Z`:
 
-1. In a pull request, set `"version": "X.Y.Z"` in `skills/.claude-plugin/plugin.json`.
+1. In a pull request, set `"version": "X.Y.Z"` in both files.
 2. In the same pull request, rename `## [Unreleased]` in `CHANGELOG.md` to `## [X.Y.Z] - YYYY-MM-DD`, add a new empty `## [Unreleased]` above it, and update the compare links at the bottom of the file.
-3. The `Release` workflow runs on any pull request that changes the manifest, `CHANGELOG.md` or the workflow. It fails when the manifest version has no `## [X.Y.Z] - ` section.
-4. After the merge, tag the merge commit on `main` as `vX.Y.Z` and push the tag. The workflow checks that the tag matches the manifest version and publishes a GitHub release with that CHANGELOG section as the notes.
+3. The `Release` workflow runs on any pull request that changes a manifest, `CHANGELOG.md` or the workflow. It fails when the two manifests have different versions, and when the version has no `## [X.Y.Z] - ` section.
+4. After the merge, tag the merge commit on `main` as `vX.Y.Z` and push the tag. The workflow checks that the tag matches the version and publishes a GitHub release with that CHANGELOG section as the notes.
 
 While the version is 0.x, a minor version can contain breaking changes and a patch version does not.
 
