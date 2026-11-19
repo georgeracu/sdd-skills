@@ -1,0 +1,30 @@
+{
+  "description": "sdd: start the domain skills from file state. Every rule does nothing in a project without project/domain/.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/sdd_trigger.py"],
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/sdd_trigger.py"],
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
