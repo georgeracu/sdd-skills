@@ -18,7 +18,7 @@ How this repository works, for a person or an agent about to change it. Terms in
 
 ### The `sdd:` namespace
 
-The skills call each other by their namespaced names, such as `sdd:spec-generator` and `sdd:spec-design-review`. The plugin name `sdd` gives that prefix to a plugin install, and the manual copy into `.claude/skills/sdd/` keeps it. Write every cross-reference between skills with the `sdd:` prefix, or the call does not resolve. The superpowers skills that the pipeline names, `subagent-driven-development` for bugfix implementation and `finishing-a-development-branch` as an alternative for the last step, have no prefix.
+The skills call each other by their namespaced names, such as `sdd:spec-generator` and `sdd:spec-design-review`. The plugin name `sdd` gives that prefix to a plugin install, and the manual copy into `.claude/skills/sdd/` keeps it. Of the Agent Plugins clients tested, Codex CLI keeps the prefix and Copilot CLI lists the bare names; the README has the versions. Write every cross-reference between skills with the `sdd:` prefix, or the call does not resolve. The superpowers skills that the pipeline names, `subagent-driven-development` for bugfix implementation and `finishing-a-development-branch` as an alternative for the last step, have no prefix.
 
 ## Changing a skill
 

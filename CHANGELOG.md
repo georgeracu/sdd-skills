@@ -6,11 +6,13 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ### Added
 
+- An Agent Plugins 1.0 manifest at `plugins/sdd/plugin.json`, so that Agent Plugins clients can install the skills as a plugin. Codex CLI 0.170.0 and GitHub Copilot CLI 1.0.107 are smoke-tested: each lists the skills and starts `spec-discovery`. Cursor, Kiro, VS Code and ChatGPT are untested. The `Release` workflow fails when the two manifests have different versions.
 - A `Skill structure` workflow that runs on every pull request. It fails with a message that names the skill when a `SKILL.md` has no valid front matter, has a missing or unknown `metadata.sdd-kind`, or has no entry in `site/skills.yaml`, and it runs `claude plugin validate` against the marketplace and the plugin.
 
 ### Changed
 
 - **Breaking:** renamed the `setup` skill to `spec-setup`. Run `/sdd:spec-setup` instead of `/sdd:setup`. Projects already set up need no change. If you installed with `npx skills add` or a manual copy, delete the old `setup` skill folder.
+- **Breaking:** the skills moved from `skills/` to `plugins/sdd/skills/`. Plugin installs are unaffected; update a manual copy or a pinned path.
 - The `spec-generator` eval pack's `design-first-feature` case is rewritten so that one turn can answer it, with a new settled-decisions input. Iteration 8 runs that case alone, 3 runs an arm, and scores 9/12 with the skill and 4/12 without it, where iteration 3 scored 0/12 in both arms.
 - The `spec-design-review` eval pack's `bugfix-design-approved` case reviews a smaller bugfix: a Billing_Period with no `usage-meters` item reads as `metered` 0 instead of failing, with one code path and no write. Iteration 30 runs that case alone, 6 runs an arm against the `main` skill, and reaches APPROVED in 5 of 6 runs with the skill and 6 of 6 with the snapshot.
 
