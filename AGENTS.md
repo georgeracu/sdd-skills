@@ -12,6 +12,7 @@ How this repository works, for a person or an agent about to change it. Terms in
 | `.claude-plugin/marketplace.json` | The marketplace entry. Its plugin source is `./plugins/sdd`, which is the plugin root, so an install copies the plugin and not the site or the evals. It has no version of its own. |
 | `evals/<name>/` | The **eval pack** for one skill: `evals.json`, the input files under `files/`, and the committed results under `results/`. The packs live outside `plugins/sdd/` so that no install copies them. |
 | `.claude/skills/sdd/`, `.agents/skills/sdd/` | Real directories that hold one symlink per skill, pointing to `plugins/sdd/skills/<name>`, so an agent opening this repository can use the skills on the repository itself. |
+| `tests/` | Python tests for the scripts that ship in skills, and the check that each domain skill's copy of `references/formats.md` matches. |
 | `examples/38-source-fidelity-and-accuracy-sla/` | A real **work item** that went through the pipeline. The site's worked example uses it. |
 | `site/` | The documentation site (Astro and Starlight). Its skill pages and its Evals page are generated, so do not edit `site/src/content/docs/skills/` or `site/src/content/docs/evals.md`. |
 | `ROADMAP.md`, `CHANGELOG.md` | Candidate work, and the record of each release. The site renders both. |
@@ -29,6 +30,8 @@ A change to `plugins/sdd/skills/<name>/SKILL.md`, or to a file it reads, also ne
 3. **`site/skills.yaml`**, when you add, rename or remove a skill, or change its pipeline position. The site build fails when a skill folder has no entry.
 4. **A symlink in `.claude/skills/sdd/` and in `.agents/skills/sdd/`**, when you add a skill.
 5. **A kind in the front matter**, when you add a skill. See [Choosing a kind](#choosing-a-kind).
+
+A change to `plugins/sdd/skills/domain-define/references/formats.md` must be copied to `domain-maintenance` and `domain-map`, and `tests/domain-formats` fails until it is.
 
 `spec-setup` and `spec-workflow` have no eval pack. A change to either needs a manual check instead: run the changed skill in a scratch project and paste what it did into the pull request.
 

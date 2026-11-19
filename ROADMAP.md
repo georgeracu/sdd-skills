@@ -8,9 +8,13 @@ These are candidates, not commitments. Each one names the gap in the current ski
 
 `design.md` already states correctness properties, and `spec-generator` can add optional property-based test tasks, but no skill turns those properties into tests and runs them. A skill between the QA plan and implementation would make the properties executable.
 
+### Start the domain skills from the pipeline
+
+The domain skills run on request only. A hook and a trigger section in `spec-workflow` would start them from file state. See [#76](https://github.com/georgeracu/sdd-skills/issues/76).
+
 ### Cumulative drift detection
 
-`spec-maintenance` compares one new work item with the older ones, so it sees only the impacts that one item caused. It cannot see an old spec that no single change invalidated but several changes did together. Detecting that needs a check across many work items, not one run.
+`spec-maintenance` compares one new work item with the older ones, so it sees only the impacts that one item caused. It cannot see an old spec that no single change invalidated but several changes did together. Detecting that needs a check across many work items, not one run. The repo-wide mode of `domain-maintenance` covers drift in domain language and context dependencies, not in the rest of the spec.
 
 ### An accessibility layer in the test plan
 

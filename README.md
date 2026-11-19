@@ -69,6 +69,16 @@ Teams that need an audit trail and gates that block. Every work item keeps its r
 
 You start a user-invoked skill yourself, for example with `/sdd:spec-setup`. The agent starts a model-invoked skill when the pipeline reaches it. Claude Code reads the `disable-model-invocation` key that marks a user-invoked skill, and Codex reads `agents/openai.yaml` in the skill folder. Each of these agents leaves `spec-setup` out of its list of skills, so it does not start `spec-setup` from the description. Copilot CLI documents the key, but its effect is not yet tested here. The opt-out does not hide the files. When the skills are installed inside the project, for example with `npx skills add`, Codex and Copilot CLI can find `spec-setup/SKILL.md` while they explore the project, and follow it. Gemini CLI has no per-skill opt-out. A claude.ai upload or the Skills API rejects a skill that has this key, so remove the key from `spec-setup` before you upload it. The Agent Skills reference validator, `skills-ref`, reports the key as an unexpected field, and Codex CLI 0.170.0 and Copilot CLI 1.0.107 load the skill anyway.
 
+## Domain skills
+
+| Skill | Kind | Writes |
+|---|---|---|
+| `domain-map` | user-invoked | First `project/domain/**`, imports of older glossaries |
+| `domain-define` | model-invoked | New terms in `project/domain/**`, as proposed |
+| `domain-maintenance` | model-invoked | `domain-maintenance-report.md`, promotions and deprecations in `project/domain/**` |
+
+They keep a domain model in `project/domain/`, and the pipeline does not start them yet.
+
 ## Stability
 
 Releases are tagged, and the plugin carries the same version, so pin a tag if you depend on specific behaviour. While the version is 0.x, breaking changes come only in minor versions, such as 0.2.0 to 0.3.0, and patch versions do not break anything. The [changelog](CHANGELOG.md) marks every breaking change.

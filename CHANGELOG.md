@@ -6,6 +6,7 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ### Added
 
+- Added `domain-define`, `domain-maintenance` and `domain-map`, with eval packs. They write and check a domain model in `project/domain/`. The pipeline does not start them yet.
 - An Agent Plugins 1.0 manifest at `plugins/sdd/plugin.json`, so that Agent Plugins clients can install the skills as a plugin. Codex CLI 0.170.0 and GitHub Copilot CLI 1.0.107 are smoke-tested: each lists the skills and starts `spec-discovery`. Cursor, Kiro, VS Code and ChatGPT are untested. The `Release` workflow fails when the two manifests have different versions.
 - A `Skill structure` workflow that runs on every pull request. It fails with a message that names the skill when a `SKILL.md` has no valid front matter, has a missing or unknown `metadata.sdd-kind`, or has no entry in `site/skills.yaml`, and it runs `claude plugin validate` against the marketplace and the plugin.
 
