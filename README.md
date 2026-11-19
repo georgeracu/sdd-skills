@@ -73,7 +73,7 @@ You start a user-invoked skill yourself, for example with `/sdd:spec-setup`. The
 
 | Skill | Kind | Writes |
 |---|---|---|
-| `domain-map` | user-invoked | First `project/domain/**`, imports of older glossaries |
+| `domain-map` | model-invoked | First `project/domain/**`, imports of older glossaries |
 | `domain-define` | model-invoked | New terms in `project/domain/**`, as proposed |
 | `domain-maintenance` | model-invoked | `domain-maintenance-report.md`, promotions and deprecations in `project/domain/**` |
 

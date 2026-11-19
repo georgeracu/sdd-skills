@@ -1,9 +1,8 @@
 ---
 name: domain-map
-description: Run when a project adopts the domain skills, when shaping a bet that may cross contexts, or when splitting a service. Imports an existing UBIQUITOUS_LANGUAGE.md or glossary, proposes bounded contexts and their relationships from the code with the evidence for each, and writes the first project/domain/ after the user confirms.
-disable-model-invocation: true
+description: "Use when the user asks to create, set up, import or redraw the project's domain model or context map as a whole: a project adopting the domain skills, an older UBIQUITOUS_LANGUAGE.md or glossary to import, a Shape Up bet that may cross contexts, or a service split. Explores the code, proposes bounded contexts with the evidence for each, and writes project/domain/ only after the user approves. Not for adding or renaming specific terms, which is sdd:domain-define, and not for questions about an existing model, which are answered by reading project/domain/."
 metadata:
-  sdd-kind: user-invoked
+  sdd-kind: model-invoked
 ---
 
 # Domain Map

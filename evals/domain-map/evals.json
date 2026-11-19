@@ -215,6 +215,41 @@
           }
         ]
       }
+    },
+    {
+      "id": 6,
+      "slug": "unnamed-request-starts-mapping",
+      "prompt": "Set up the domain model for this repository. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "The request does not name a skill, and the skill still starts, because the request is for the whole domain model. There is no older glossary, so the import section is skipped in one line. The contexts section recommends two contexts, Metering (com.example.metering) and Billing (com.example.billing), each graded strong from its own Gradle module and package. The reply waits for the user and writes nothing.",
+      "files": [
+        "files/evidence-graded/README.md",
+        "files/evidence-graded/billing",
+        "files/evidence-graded/metering",
+        "files/evidence-graded/settings.gradle.kts"
+      ],
+      "criteria": [
+        "Explores the repository and presents the contexts section instead of asking what to set up or writing a model at once",
+        "Recommends Metering and Billing as contexts, graded strong, with evidence for each",
+        "Presents only this section and waits for the user's answer",
+        "Writes no file under outputs/ and creates no project/domain/ file in this reply"
+      ],
+      "assertions": {
+        "must_include": [
+          "Metering",
+          "Billing",
+          "strong"
+        ],
+        "must_not_include": [
+          {
+            "text": "# Context Map",
+            "scope": "outputs"
+          },
+          {
+            "text": "# Glossary",
+            "scope": "outputs"
+          }
+        ]
+      }
     }
   ]
 }

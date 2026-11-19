@@ -1,6 +1,6 @@
 ---
 name: domain-define
-description: Use when a work item introduces, renames or redefines a business term, a bounded context or a message between contexts, or when the user asks to define domain language, a glossary or a context map. Agrees each term with the user one question at a time and writes it to project/domain/ as proposed. Runs after sdd:spec-discovery approval and before sdd:spec-generator. Not for code-level aggregate design, which belongs in design.md.
+description: Use when a work item, or the user, adds, renames or redefines specific business terms, a bounded context or a message between contexts. Agrees each change with the user one question at a time and writes it to project/domain/ as proposed. Runs after sdd:spec-discovery approval and before sdd:spec-generator. Not for creating, importing or redrawing the whole domain model, which is sdd:domain-map, and not for code-level aggregate design.
 metadata:
   sdd-kind: model-invoked
 ---
@@ -35,6 +35,10 @@ In the pipeline, skip when every `Terms` entry in `discovery.md` is marked exist
 On its own, skip when the request changes no business term, context or relationship, such as a purely technical change. Write nothing, say "No domain change" and why in one sentence, and stop.
 
 A skipped run counts as a pass.
+
+## Not This Skill
+
+If the request is to create, set up, import or redraw the project's domain model as a whole, rather than to decide specific terms, contexts or relationships, write nothing and invoke `sdd:domain-map`. A request that names no term, context or relationship is a whole-model request.
 
 ## Procedure
 
@@ -99,7 +103,7 @@ Most work items need no domain change. Do not:
 - Never set `**Status:** agreed` or `deprecated`; only `sdd:domain-maintenance` and `sdd:domain-map` do that.
 - Never delete a term or a `CHANGELOG.md` line.
 - Ask one question per message.
-- Invoke no skill other than `sdd:spec-generator`.
+- Invoke no skill other than `sdd:spec-generator`, and `sdd:domain-map` under Not This Skill.
 - Commit, push and run nothing.
 
 ## Next Step

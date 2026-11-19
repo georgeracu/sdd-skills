@@ -237,6 +237,41 @@
           }
         ]
       }
+    },
+    {
+      "id": 7,
+      "slug": "whole-model-request-hands-over",
+      "prompt": "Set up the domain model for this repository. Write every file you create or change under outputs/, keeping its project path: to change a file, copy it to outputs/<path> and edit the copy.",
+      "expected_output": "The request names no term, context or relationship, so it asks for the whole domain model, which is not this skill's job. The skill writes nothing under outputs/, asks no question about a term, and says that sdd:domain-map sets up a whole domain model. It names sdd:domain-map as the next step, including when the run says that skill is not available in its session.",
+      "files": [
+        "files/skip-all-terms-existing/project",
+        "files/shared"
+      ],
+      "criteria": [
+        "Recognises that the request is for the domain model as a whole and not for a specific term, context or relationship",
+        "Writes no file and copies no file under outputs/, including no glossary, context map or CHANGELOG.md entry",
+        "Asks the user no question about a term, a definition or an alias",
+        "Names sdd:domain-map as the skill that sets up the whole domain model (naming it counts, including when the run says the skill is not available in its session)"
+      ],
+      "assertions": {
+        "must_include": [
+          "sdd:domain-map"
+        ],
+        "must_not_include": [
+          {
+            "text": "**Status:** proposed",
+            "scope": "outputs"
+          },
+          {
+            "text": "# Glossary",
+            "scope": "outputs"
+          },
+          {
+            "text": "# Context Map",
+            "scope": "outputs"
+          }
+        ]
+      }
     }
   ]
 }
