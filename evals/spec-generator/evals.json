@@ -194,6 +194,27 @@
         "files/existing-spec-update/project/work-items/03-profile-summary/tasks.md",
         "files/shared/openapi.yaml"
       ]
+    },
+    {
+      "id": 10,
+      "slug": "requirements-use-domain-glossary",
+      "prompt": "Start the spec for the weekly usage digest. It is a feature using the requirements-first workflow. The approved discovery is already at project/work-items/04-usage-digest/discovery.md, and the project's domain model is under project/domain. Shared architecture is available for context. Write requirements.md in place in that work item; the copy you save under ./outputs/ keeps the same path, outputs/project/work-items/04-usage-digest/requirements.md.",
+      "expected_output": "The reply writes requirements.md beside the approved discovery.md and stops for review before design. The discovery says customer and usage counter, but the glossary in project/domain/glossary.md makes Account the term for a customer, with Customer on its Avoid list, and Usage_Meter the term for the usage counter, with Counter and Usage Counter on its Avoid list. The requirements use Account, Account_Owner, Usage_Meter, Billing_Period and Quota as subjects and names. They never use Customer, Usage Counter or Counter as a name for those things, and their Glossary section defines only terms that the domain glossary lacks, such as Usage_Digest and Account_Admin, without redefining Account or Usage_Meter.",
+      "criteria": [
+        "Writes requirements.md in project/work-items/04-usage-digest/ beside the existing discovery.md and stops for user review before design work starts",
+        "Acceptance criteria use Account, Account_Owner and Usage_Meter as subjects and names",
+        "Does not use Customer, Usage Counter or Counter as a name for an Account or a Usage_Meter anywhere in the requirements",
+        "The Glossary section does not redefine Account, Account_Owner, Billing_Period, Quota or Usage_Meter with a different meaning",
+        "Carries the discovery decisions: Monday 08:00 in the account's timezone, previous seven days, at most one digest per account per week, enabled by default, retry the next hour at most three times, suspended accounts skipped"
+      ],
+      "files": [
+        "files/domain-model/project",
+        "files/shared/ARCHITECTURE.md",
+        "files/shared/openapi.yaml"
+      ],
+      "expected_files": [
+        "project/work-items/04-usage-digest/requirements.md"
+      ]
     }
   ]
 }

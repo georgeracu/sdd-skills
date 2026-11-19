@@ -1,0 +1,313 @@
+{
+  "iteration": "iteration-31",
+  "pack_hash": "3c9cff143a2b7bda293007de658f05b8d8ff8fe0e5a9eee97ecd7400a862a9d7",
+  "baseline": "old_skill",
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "n": 2
+      },
+      "time_seconds": {
+        "mean": 140.3265,
+        "stddev": 22.0055,
+        "n": 2
+      },
+      "tokens": {
+        "mean": 316669.5,
+        "stddev": 42767.5,
+        "n": 2
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.5512,
+        "stddev": 0.1761,
+        "n": 2
+      },
+      "time_seconds": {
+        "mean": 129.4485,
+        "stddev": 4.0115,
+        "n": 2
+      },
+      "tokens": {
+        "mean": 284633.5,
+        "stddev": 20188.5,
+        "n": 2
+      }
+    },
+    "delta": {
+      "pass_rate": 0.4488,
+      "time_seconds": 10.878,
+      "tokens": 32036.0
+    }
+  },
+  "cases": {
+    "domain-noun-not-in-glossary-major": {
+      "with_skill": {
+        "passed": 11,
+        "failed": 0,
+        "total": 11,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: MAJOR-001",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Output includes: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Output includes: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Output does not include: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Overall status is APPROVED WITH ISSUES, not BLOCKED and not plain APPROVED",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Reports no critical discrepancies",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Raises a MAJOR discrepancy that names Alert_Threshold as a business noun that is neither in the domain glossary nor proposed by the design",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Does not raise a discrepancy against Threshold_Set or Quota_Alert, which the design proposes",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Allows continuation to tasks.md while recommending that the major issue be fixed first",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 8,
+        "failed": 3,
+        "total": 11,
+        "pass_rate": 0.7273,
+        "checks": [
+          {
+            "text": "Output includes: MAJOR-001",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 1
+          },
+          {
+            "text": "Output includes: Critical discrepancies: 0",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Output includes: **Status:** APPROVED WITH ISSUES",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Output does not include: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Overall status is APPROVED WITH ISSUES, not BLOCKED and not plain APPROVED",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Reports no critical discrepancies",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Raises a MAJOR discrepancy that names Alert_Threshold as a business noun that is neither in the domain glossary nor proposed by the design",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Does not raise a discrepancy against Threshold_Set or Quota_Alert, which the design proposes",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Allows continuation to tasks.md while recommending that the major issue be fixed first",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 1
+          }
+        ]
+      }
+    },
+    "cross-context-call-without-row-blocked": {
+      "with_skill": {
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "pass_rate": 1.0,
+        "checks": [
+          {
+            "text": "Output includes: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Output includes: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Overall status is BLOCKED",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Raises a CRITICAL discrepancy for the call from the evaluator to com.example.billing.InvoiceFlagger, with the missing context-map row between Metering and Billing as its basis",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Does not raise a discrepancy against the call to Notification_Service, because the context map has a Notifications to Metering row",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Does not allow continuation to tasks.md and says what must change before the design is reviewed again",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          }
+        ]
+      },
+      "old_skill": {
+        "passed": 3,
+        "failed": 5,
+        "total": 8,
+        "pass_rate": 0.375,
+        "checks": [
+          {
+            "text": "Output includes: CRITICAL-001",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 1
+          },
+          {
+            "text": "Output includes: **Status:** BLOCKED",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 1
+          },
+          {
+            "text": "Run produced file: design-review-summary.md",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Writes design-review-summary.md for the work item rather than only replying in chat",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Overall status is BLOCKED",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Raises a CRITICAL discrepancy for the call from the evaluator to com.example.billing.InvoiceFlagger, with the missing context-map row between Metering and Billing as its basis",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Does not raise a discrepancy against the call to Notification_Service, because the context map has a Notifications to Metering row",
+            "occurrence": 0,
+            "passed": 1,
+            "total": 1
+          },
+          {
+            "text": "Meets criterion: Does not allow continuation to tasks.md and says what must change before the design is reviewed again",
+            "occurrence": 0,
+            "passed": 0,
+            "total": 1
+          }
+        ]
+      }
+    }
+  },
+  "cases_incomplete": []
+}

@@ -47,7 +47,7 @@ skills:
 
   spec-generator:
     group: Write the spec
-    order: 2
+    order: 3
     post:
       url: https://georgeracu.substack.com/p/inside-my-spec-generator-from-a-half
       date: 2026-09-07
@@ -55,9 +55,9 @@ skills:
 
   domain-define:
     group: Write the spec
-    order: 3
+    order: 2
     post: null
-    position: Runs on request, or after discovery when a work item adds or changes a business term. Not yet started automatically.
+    position: Runs after the user approves discovery.md when it marks a term as new, and before spec-generator. In Claude Code the plugin hook tells the agent to run it, and spec-workflow gives the same rule to other clients. It does nothing without project/domain/.
     example: []
     example_note: Spec 38 predates the domain skills.
 
@@ -114,7 +114,7 @@ skills:
     group: Keep specs true
     order: 2
     post: null
-    position: Runs on request after spec-maintenance, or as a repo-wide drift check. Not yet started automatically.
+    position: Runs after spec-maintenance writes its report, and before spec-finish. In Claude Code the plugin hook tells the agent to run it and blocks the end of the session once while domain-maintenance-report.md is missing. It also checks the whole repository on request. It does nothing without project/domain/.
     example: []
     example_note: Spec 38 predates the domain skills.
 

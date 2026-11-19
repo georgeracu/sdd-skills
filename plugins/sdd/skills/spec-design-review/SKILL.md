@@ -40,7 +40,7 @@ Read requirements.md (or bugfix.md) and design.md from the work item directory.
 
 Before reviewing, gather context about the existing system by reading relevant files based on what the design touches. This is **not** an exhaustive audit — read only what's needed to validate the design's architectural decisions.
 
-Read ARCHITECTURE.md, the project glossary and the API contract, then the existing code that each part of the design touches.
+Read ARCHITECTURE.md, the project glossary (`project/domain/**` when it exists, otherwise `**/UBIQUITOUS_LANGUAGE.md`) and the API contract, then the existing code that each part of the design touches.
 
 ### Step 3: Perform Comprehensive Review
 
@@ -135,12 +135,14 @@ Assign severity to each discrepancy:
 - Data exposure or an authentication or authorisation bypass in the design
 - A performance constraint that an acceptance criterion states, when design.md gives no budget or measurement that shows the design meets it
 - Missing core components needed for functionality
+- When `project/domain/` exists, a call or message from one bounded context to another that has no row in `context-map.md`
 
 **MAJOR** - Should be fixed for quality and consistency
 - Inconsistent patterns with existing codebase
 - Incomplete API specifications
 - An identifier (component, interface, data model, attribute or API path) that differs from the glossary term or the existing name
 - Data retained longer than any requirement needs
+- When `project/domain/` exists, a business noun that is neither a glossary term, whatever its status, nor proposed in design.md
 - Missing error handling design
 - Best practice violations
 

@@ -57,6 +57,19 @@ All gates follow the same pattern:
 3. Re-run the failed gate
 4. If the fix loop fails twice on the same gate, stop and ask the user
 
+## Triggers
+
+These rules apply only when `project/domain/` exists. Claude Code applies them through the plugin hook. In any other client, apply them yourself.
+
+| After you write | If | Then |
+|---|---|---|
+| `discovery.md`, once the user approves it | its Terms section marks a term as new | Run `sdd:domain-define` before `sdd:spec-generator`. |
+| `spec-maintenance-report.md` | always | Run `sdd:domain-maintenance` before `sdd:spec-finish`. |
+| a `glossary.md` or `context-map.md` in `project/domain/` | it breaks the formats in `references/formats.md` of `sdd:domain-define` | Fix it before you go on. |
+| a code file | it uses a word from an `Avoid:` list | Rename the word where your change added it. |
+
+Before you end a session in which you wrote `spec-maintenance-report.md`, check that `domain-maintenance-report.md` exists beside it. If it does not, run `sdd:domain-maintenance`.
+
 ## Discovery → Spec-Generator Handoff
 
 1. `sdd:spec-discovery` creates `project/work-items/{NN}-{name}/`, writes `discovery.md` there and, on user approval, passes the directory path to `sdd:spec-generator`.
@@ -103,6 +116,7 @@ If you are unsure whether the work warrants a spec: if it changes any user-visib
 | `test-plan.md` | `sdd:spec-qa-review` | Permanent (updated in review mode) |
 | `implementation-audit.md` | `sdd:spec-implementation-audit` | Permanent |
 | `spec-maintenance-report.md` | `sdd:spec-maintenance` | Permanent |
+| `domain-maintenance-report.md` | `sdd:domain-maintenance` | Permanent |
 
 ### Bugfix Work Item
 
