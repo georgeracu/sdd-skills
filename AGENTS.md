@@ -99,6 +99,12 @@ skill-eval iterate --skill plugins/sdd/skills/<name> --pack evals/<name> --model
 
 `iterate` writes `evals/<name>/results/iteration-N.md` and `iteration-N.json`. Commit both. Each iteration gets the next unused number, so a new run never overwrites a committed one.
 
+### Local models
+
+Do not commit results from a local model. skill-eval's `pi` adapter can run a pack on an Ollama model, but it has not passed calibration. On pi 1.5.2 with `ollama/ornith-1.5:35b` and an Opus judge, the stripped twin cleared its ceiling in one of four calibration runs, and the spread between identical baselines reached 0.15. A local delta of the size these packs measure is therefore noise. See `docs/pi-1.5.2-calibration-findings.md` in skill-eval.
+
+skill-eval 0.4.0 also gives a `pi` run no way to list a directory, so a skill that explores a codebase, such as `domain-map`, cannot do its work there. skill-eval pull request #66 adds the list tools.
+
 ## Building the site and checking the plugin
 
 ```bash
