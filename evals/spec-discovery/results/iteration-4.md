@@ -1,6 +1,6 @@
 # Eval results — iteration-4
 
-**What this iteration tests:** skill-eval 0.4.0 in use: per-arm skill activation; every case prompt names the active bet so the user-level bet check does not stop the run; baseline = no skill
+**What this iteration tests:** skill-eval 0.4.0 in use: per-arm skill activation; every case prompt began with one operator-specific sentence, removed after this iteration; baseline = no skill
 
 ## Provenance
 
