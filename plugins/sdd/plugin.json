@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "sdd",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Spec-driven development skills: EARS requirements, design, blocking review gates, traced tasks, implementation audit, QA review and spec maintenance.",
   "author": { "name": "George Racu" },
   "homepage": "https://georgeracu.com/sdd-skills/",

@@ -4,6 +4,8 @@ Every notable change to the skills is recorded here. The format follows [Keep a 
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-11-27
+
 ### Added
 
 - Added `domain-define`, `domain-maintenance` and `domain-map`, with eval packs. They write and check a domain model in `project/domain/`.
@@ -136,7 +138,8 @@ Breaking changes are marked **Breaking**. A gate's status values changed, so upd
 
 - Seven skills extracted from a private project: `spec-workflow`, `spec-generator`, `spec-design-review`, `spec-task-review`, `spec-qa-review`, `spec-implementation-audit` and `spec-maintenance`.
 
-[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.5.1...HEAD
+[Unreleased]: https://github.com/georgeracu/sdd-skills/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/georgeracu/sdd-skills/compare/v0.5.1...v0.6.0
 [0.5.1]: https://github.com/georgeracu/sdd-skills/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/georgeracu/sdd-skills/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/georgeracu/sdd-skills/compare/v0.3.0...v0.4.0
